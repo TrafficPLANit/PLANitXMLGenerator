@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.planit.all</groupId>
+		<artifactId>PLANitAll</artifactId>
+		<version>0.0.5a2</version>
+	</parent>
+
+	<groupId>org.planit.xml</groupId>
+	<artifactId>PLANitXMLGenerator</artifactId>
+	<description>Generate XML java files from xsd schemas to be used by PLANitIO to convert XML based inputs into PLANit memory model. This is a seperate project
+	to ensure that only when the xsd schemas change a recompilation of the generated XMLs is required. Conversely whenever business logic in PLANitIO changes no
+	update of the generated classes will be necessary.
+	</description>
+	<packaging>jar</packaging>
+
+	<name>PLANitXMLGenerator</name>
+	<url>https://github.com/TrafficPLANit/PLANitXMLGenerator</url>
+
+	<!-- license based on the one published on the website -->
+	<licenses>
+		<license>
+			<name>PLANit license based on modified BSD</name>
+			<url>${planit.website.url}/docs/licenses/LICENSE.txt</url>
+			<distribution>repo</distribution>
+			<comments>A slightly modified version of a modified BSD license</comments>
+		</license>
+	</licenses>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jvnet.jaxb2.maven2</groupId>
+			<artifactId>maven-jaxb2-plugin</artifactId>
+			<!-- whenever a fat jar is built with this project as dependency we do not need to generate xml classes anymore since they are already
+				available. Hence make this optional.
+				Result: no warnings of clashing versions in fat jar
+				TODO: create modules instead of parent pom dependency and remove optional clause
+			-->
+			<optional>true</optional>
+		</dependency>
+
+		<!-- TODO: remove once we upgraded to 0.14.1 for jaxb2 plugin -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
+
+		<!-- TODO: remove once we upgraded to 0.14.1 for jaxb2 plugin -->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+		</dependency>	
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>${maven.jaxb2.plugin.version}</version>
+				<configuration>
+					<args>
+						<arg>-XautoNameResolution</arg>
+					</args>
+					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
+					<bindingDirectory>src/main/resources/xjb</bindingDirectory>
+					<generateDirectory>src/main/java</generateDirectory>
+					<no-header>true</no-header>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

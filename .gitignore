@@ -1,0 +1,13 @@
+/target
+/.classpath
+/.settings
+.project
+/src/main/java/META-INF
+/src/main/java/net
+/src/main/java/org/hisrc
+/src/main/java/org/w3
+/src/main/java/org/planit/generated/
+/dependency-reduced-pom.xml
+/logs
+/bin
+/doc
