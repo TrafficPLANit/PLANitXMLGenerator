@@ -2,6 +2,8 @@
 
 Tool to generate Java classes from PLANit XML schemas to facilitate PLANitIO to parse PLANit input files. This repository uses JAXB to generate the Java classes that are populated based on the provided XML.
 
+For more information on PLANit such as the user the manual, licensing, installation, getting started, reference documentation, and more, please visit [https://trafficplanit.github.io/PLANitManual/](https://trafficplanit.github.io/PLANitManual/)
+
 ## Maven parent
 
 Projects need to be built from Maven before they can be run. The common maven configuration can be found in the PLANitAll project which acts as the parent for this project's pom.xml.
