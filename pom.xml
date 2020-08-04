@@ -2,11 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>org.planit.all</groupId>
 		<artifactId>PLANitAll</artifactId>
-		<version>0.0.5a2</version>
+		<version>0.1.0</version>
 	</parent>
 
 	<groupId>org.planit.xml</groupId>
@@ -31,15 +31,15 @@
 	</licenses>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>org.jvnet.jaxb2.maven2</groupId>
 			<artifactId>maven-jaxb2-plugin</artifactId>
-			<!-- whenever a fat jar is built with this project as dependency we do not need to generate xml classes anymore since they are already
-				available. Hence make this optional.
-				Result: no warnings of clashing versions in fat jar
-				TODO: create modules instead of parent pom dependency and remove optional clause
-			-->
+			<!-- whenever a fat jar is built with this project as dependency we do 
+				not need to generate xml classes anymore since they are already available. 
+				Hence make this optional. Result: no warnings of clashing versions in fat 
+				jar TODO: create modules instead of parent pom dependency and remove optional 
+				clause -->
 			<optional>true</optional>
 		</dependency>
 
@@ -53,22 +53,22 @@
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
-		</dependency>	
+		</dependency>
 
 	</dependencies>
 
 	<build>
-	
-	    <resources>
-	        <resource>
-	            <directory>src/main/resources</directory>
-	            <excludes>
-	            	<!-- only used for internal formatting of logging statements -->
-	                <exclude>*.properties</exclude>
-	            </excludes>
-	        </resource>
-	    </resources>		
-	
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<!-- only used for internal formatting of logging statements -->
+					<exclude>*.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
@@ -92,37 +92,33 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			<!-- to avoid every re-generation of source files requires ALL files to be different just because of time stamp: remove
-			the time stamp -->
-		<plugin>
-        <groupId>com.google.code.maven-replacer-plugin</groupId>
-        <artifactId>replacer</artifactId>
-        <version>${maven.replacer.plugin.version}</version>
-		    <executions>
-		        <execution> 
-		            <phase>prepare-package</phase>                          
-		            <goals>
-		                <goal>replace</goal>
-		            </goals>
-		        </execution>
-		    </executions>
-		    <configuration>                         
-		        <includes>                              
-		            <include>${basedir}/**/*.java</include>            
-		        </includes>
-		        <token>^// Generated on.*$</token>
-		        <value>// Generated on: [TEXT REMOVED by maven-replacer-plugin]</value>                         
-		        <regexFlags>
-		            <regexFlag>MULTILINE</regexFlag>
-		        </regexFlags>
-		    </configuration>
-		</plugin>			
-			
+
+			<!-- to avoid every re-generation of source files requires ALL files to 
+				be different just because of time stamp: remove the time stamp -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>			
-				<artifactId>maven-source-plugin</artifactId>
-			</plugin>				
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>${maven.replacer.plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includes>
+						<include>${basedir}/**/*.java</include>
+					</includes>
+					<token>^// Generated on.*$</token>
+					<value>// Generated on: [TEXT REMOVED by maven-replacer-plugin]</value>
+					<regexFlags>
+						<regexFlag>MULTILINE</regexFlag>
+					</regexFlags>
+				</configuration>
+			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -135,5 +131,5 @@
 
 		</plugins>
 	</build>
-	
+
 </project>
