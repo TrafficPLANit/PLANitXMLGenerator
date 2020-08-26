@@ -287,8 +287,17 @@
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="name" type="xs:string" default=""
-								minOccurs="0" />
+							<xs:element name="name" type="xs:string" default="" minOccurs="0" />
+							<xs:element ref="gml:LineString" minOccurs="0"
+								maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										Each link segment has an optional gml
+										LineString to define shape points. Note that one can choose to
+										either duplicate the node points or not here
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>								
 							<!-- a link segment has a direction, at most two directions exist 
 								per link -->
 							<xs:element ref="linksegment" minOccurs="1"
@@ -297,16 +306,6 @@
 									<xs:documentation>
 										Each link segment has a direction and at most
 										two directions exist per link
-									</xs:documentation>
-								</xs:annotation>
-							</xs:element>
-							<xs:element ref="gml:LineString" minOccurs="0"
-								maxOccurs="1">
-								<xs:annotation>
-									<xs:documentation>
-										Each link segment has an optional gml
-										LineString to define shape points. Note that one can choose to
-										either duplicate the node points or not here
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
@@ -340,7 +339,7 @@
 									associated with node 'b' of this link segment
 								</xs:documentation>
 							</xs:annotation>
-						</xs:attribute>
+						</xs:attribute>					
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

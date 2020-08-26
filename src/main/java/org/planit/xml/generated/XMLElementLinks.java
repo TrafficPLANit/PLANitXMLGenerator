@@ -42,8 +42,8 @@ import net.opengis.gml.LineStringType;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *                     &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
  *                     &lt;element ref="{http://www.opengis.net/gml}LineString" minOccurs="0"/&gt;
+ *                     &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
  *                     &lt;element name="length" type="{}linkLengthType" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
  *                   &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
@@ -113,8 +113,8 @@ public class XMLElementLinks {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
-     *         &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
      *         &lt;element ref="{http://www.opengis.net/gml}LineString" minOccurs="0"/&gt;
+     *         &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
      *         &lt;element name="length" type="{}linkLengthType" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
      *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
@@ -130,18 +130,18 @@ public class XMLElementLinks {
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "name",
-        "linksegment",
         "lineString",
+        "linksegment",
         "length"
     })
     public static class Link {
 
         @XmlElement(defaultValue = "")
         protected String name;
-        @XmlElement(required = true)
-        protected List<XMLElementLinkSegment> linksegment;
         @XmlElement(name = "LineString", namespace = "http://www.opengis.net/gml")
         protected LineStringType lineString;
+        @XmlElement(required = true)
+        protected List<XMLElementLinkSegment> linksegment;
         protected XMLElementLinkLengthType length;
         @XmlAttribute(name = "id")
         @XmlSchemaType(name = "positiveInteger")
@@ -179,6 +179,34 @@ public class XMLElementLinks {
 
         /**
          * 
+         * 										Each link segment has an optional gml
+         * 										LineString to define shape points. Note that one can choose to
+         * 										either duplicate the node points or not here
+         * 									
+         * 
+         * @return
+         *     possible object is
+         *     {@link LineStringType }
+         *     
+         */
+        public LineStringType getLineString() {
+            return lineString;
+        }
+
+        /**
+         * Sets the value of the lineString property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link LineStringType }
+         *     
+         */
+        public void setLineString(LineStringType value) {
+            this.lineString = value;
+        }
+
+        /**
+         * 
          * 										Each link segment has a direction and at most
          * 										two directions exist per link
          * 									Gets the value of the linksegment property.
@@ -207,34 +235,6 @@ public class XMLElementLinks {
                 linksegment = new ArrayList<XMLElementLinkSegment>();
             }
             return this.linksegment;
-        }
-
-        /**
-         * 
-         * 										Each link segment has an optional gml
-         * 										LineString to define shape points. Note that one can choose to
-         * 										either duplicate the node points or not here
-         * 									
-         * 
-         * @return
-         *     possible object is
-         *     {@link LineStringType }
-         *     
-         */
-        public LineStringType getLineString() {
-            return lineString;
-        }
-
-        /**
-         * Sets the value of the lineString property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link LineStringType }
-         *     
-         */
-        public void setLineString(LineStringType value) {
-            this.lineString = value;
         }
 
         /**
