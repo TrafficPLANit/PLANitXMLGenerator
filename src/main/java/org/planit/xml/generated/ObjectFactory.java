@@ -233,6 +233,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementPhysicalFeatures }
+     * 
+     */
+    public XMLElementPhysicalFeatures createXMLElementPhysicalFeatures() {
+        return new XMLElementPhysicalFeatures();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementUsabilityFeatures }
+     * 
+     */
+    public XMLElementUsabilityFeatures createXMLElementUsabilityFeatures() {
+        return new XMLElementUsabilityFeatures();
+    }
+
+    /**
      * Create an instance of {@link XMLElementMacroscopicNetwork }
      * 
      */

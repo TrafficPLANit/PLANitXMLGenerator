@@ -46,6 +46,56 @@
 			<xs:enumeration value="m" />
 		</xs:restriction>
 	</xs:simpleType>
+	
+  <xs:simpleType name="vehicularType">
+    <xs:annotation>
+      <xs:documentation>
+        Choice between vehicle and no_vehicle
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="vehicle" />
+      <xs:enumeration value="no_vehicle" />
+    </xs:restriction>
+  </xs:simpleType>	
+  
+  <xs:simpleType name="motorisationType">
+    <xs:annotation>
+      <xs:documentation>
+        Choice between motorised and non_motorised
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="motorised" />
+      <xs:enumeration value="non_motorised" />
+    </xs:restriction>
+  </xs:simpleType>  
+  
+  <xs:simpleType name="trackType">
+    <xs:annotation>
+      <xs:documentation>
+        Choice between double and single, e.g. does it create a double or single track when driving
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="double" />
+      <xs:enumeration value="single" />
+    </xs:restriction>
+  </xs:simpleType> 
+  
+  <xs:simpleType name="usedToType">
+    <xs:annotation>
+      <xs:documentation>
+        Choice between private, public, ride_share, and high_occupancy
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="private" />
+      <xs:enumeration value="public" />
+      <xs:enumeration value="ride_share" />
+      <xs:enumeration value="high_occupancy" />
+    </xs:restriction>
+  </xs:simpleType>   
 
 	<!-- simple elements -->
 	<xs:element name="maxdensitylane" type="xs:float"
@@ -345,6 +395,58 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	
+  <xs:element name="physicalfeatures">
+    <xs:annotation>
+      <xs:documentation>
+        Physical features of a mode.        
+      </xs:documentation>
+    </xs:annotation>  
+    <xs:complexType>
+      <xs:sequence>
+          <xs:element name="vehicletype" type="vehicularType">
+				    <xs:annotation>
+				      <xs:documentation>
+				        vehicular type of the mode
+				      </xs:documentation>
+				    </xs:annotation>
+				  </xs:element>
+          <xs:element name="motorisationtype" type="motorisationType">
+            <xs:annotation>
+              <xs:documentation>
+                motorisation type of the mode
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="tracktype" type="trackType">
+            <xs:annotation>
+              <xs:documentation>
+                track type of the mode
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>  
+        </xs:sequence>               				  
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="usabilityfeatures">
+    <xs:annotation>
+      <xs:documentation>
+        Usability features of a mode.        
+      </xs:documentation>
+    </xs:annotation>    
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="usedtotype" type="usedToType">
+          <xs:annotation>
+            <xs:documentation>
+               how this mode is used
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+       </xs:sequence>
+     </xs:complexType>
+  </xs:element>  
 
 	<!-- Root element -->
 	<xs:element name="macroscopicnetwork">
@@ -373,7 +475,7 @@
 	<xs:element name="modes">
 		<xs:annotation>
 			<xs:documentation>
-				The modes of transport used by travellers.
+				The modes of transport used by travelers.
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
@@ -385,16 +487,22 @@
 								Each mode can have a description(name) and pcu
 								value besides their unique identifier (id).
 								When no name is given, the description is absent. When no pcu value
-								is defined the default is adopted.
+								is defined the default is adopted. When a predefined PLANit mode is used
+								this is indicated with attribute predefined. For predefined modes all features
+								are defined by defaults and therefore sub-elements need not be specified, if they are
+								they are ignored. When the predefines attribute is missing, it is inferred from the name. Note however
+								that if you use a custom mode with a predefined name, PLANit will then populate the mode with the predefined
+								defaults instead of the specified ones.
 							</xs:documentation>
 						</xs:annotation>
 						<xs:sequence>
-							<xs:element name="name" type="xs:string" minOccurs="0"
-								maxOccurs="1" />
+							<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element ref="pcu" minOccurs="0" />
+							<xs:element ref="physicalfeatures" minOccurs="0" maxOccurs="1"/>
+							<xs:element ref="usabilityfeatures" minOccurs="0" maxOccurs="1" />
 						</xs:sequence>
-						<xs:attribute name="id" type="xs:positiveInteger"
-							use="required" />
+						<xs:attribute name="id" type="xs:positiveInteger" use="required" />
+						<xs:attribute name="predefined" type="xs:boolean" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

@@ -47,5 +47,15 @@
 		node="xs:element[@name ='nodes']">
 		<jaxb:class name="XMLElementNodes" />
 	</jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../xsd/macroscopicnetworkinput.xsd"
+    node="xs:element[@name ='physicalfeatures']">
+    <jaxb:class name="XMLElementPhysicalFeatures" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../xsd/macroscopicnetworkinput.xsd"
+    node="xs:element[@name ='usabilityfeatures']">
+    <jaxb:class name="XMLElementUsabilityFeatures" />
+  </jaxb:bindings>    	
 
 </jaxb:bindings>

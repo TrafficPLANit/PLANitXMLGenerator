@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				The modes of transport used by travellers.
+ * 				The modes of transport used by travelers.
  * 			
  * 
  * <p>Java class for modes element declaration.
@@ -42,8 +42,11 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *                     &lt;element ref="{}pcu" minOccurs="0"/&gt;
+ *                     &lt;element ref="{}physicalfeatures" minOccurs="0"/&gt;
+ *                     &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *                   &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -102,7 +105,12 @@ public class XMLElementModes {
      * 								Each mode can have a description(name) and pcu
      * 								value besides their unique identifier (id).
      * 								When no name is given, the description is absent. When no pcu value
-     * 								is defined the default is adopted.
+     * 								is defined the default is adopted. When a predefined PLANit mode is used
+     * 								this is indicated with attribute predefined. For predefined modes all features
+     * 								are defined by defaults and therefore sub-elements need not be specified, if they are
+     * 								they are ignored. When the predefines attribute is missing, it is inferred from the name. Note however
+     * 								that if you use a custom mode with a predefined name, PLANit will then populate the mode with the predefined
+     * 								defaults instead of the specified ones.
      * 							
      * 
      * <p>Java class for anonymous complex type.
@@ -116,8 +124,11 @@ public class XMLElementModes {
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
      *         &lt;element ref="{}pcu" minOccurs="0"/&gt;
+     *         &lt;element ref="{}physicalfeatures" minOccurs="0"/&gt;
+     *         &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+     *       &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -128,16 +139,22 @@ public class XMLElementModes {
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "name",
-        "pcu"
+        "pcu",
+        "physicalfeatures",
+        "usabilityfeatures"
     })
     public static class Mode {
 
         protected String name;
         @XmlElement(defaultValue = "1")
         protected Float pcu;
+        protected XMLElementPhysicalFeatures physicalfeatures;
+        protected XMLElementUsabilityFeatures usabilityfeatures;
         @XmlAttribute(name = "id", required = true)
         @XmlSchemaType(name = "positiveInteger")
         protected BigInteger id;
+        @XmlAttribute(name = "predefined")
+        protected Boolean predefined;
 
         /**
          * Gets the value of the name property.
@@ -188,6 +205,54 @@ public class XMLElementModes {
         }
 
         /**
+         * Gets the value of the physicalfeatures property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLElementPhysicalFeatures }
+         *     
+         */
+        public XMLElementPhysicalFeatures getPhysicalfeatures() {
+            return physicalfeatures;
+        }
+
+        /**
+         * Sets the value of the physicalfeatures property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLElementPhysicalFeatures }
+         *     
+         */
+        public void setPhysicalfeatures(XMLElementPhysicalFeatures value) {
+            this.physicalfeatures = value;
+        }
+
+        /**
+         * Gets the value of the usabilityfeatures property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLElementUsabilityFeatures }
+         *     
+         */
+        public XMLElementUsabilityFeatures getUsabilityfeatures() {
+            return usabilityfeatures;
+        }
+
+        /**
+         * Sets the value of the usabilityfeatures property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLElementUsabilityFeatures }
+         *     
+         */
+        public void setUsabilityfeatures(XMLElementUsabilityFeatures value) {
+            this.usabilityfeatures = value;
+        }
+
+        /**
          * Gets the value of the id property.
          * 
          * @return
@@ -209,6 +274,30 @@ public class XMLElementModes {
          */
         public void setId(BigInteger value) {
             this.id = value;
+        }
+
+        /**
+         * Gets the value of the predefined property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Boolean }
+         *     
+         */
+        public Boolean isPredefined() {
+            return predefined;
+        }
+
+        /**
+         * Sets the value of the predefined property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Boolean }
+         *     
+         */
+        public void setPredefined(Boolean value) {
+            this.predefined = value;
         }
 
     }
