@@ -94,6 +94,7 @@
       <xs:enumeration value="public" />
       <xs:enumeration value="ride_share" />
       <xs:enumeration value="high_occupancy" />
+      <xs:enumeration value="goods" />
     </xs:restriction>
   </xs:simpleType>   
 
@@ -502,7 +503,7 @@
 							<xs:element ref="usabilityfeatures" minOccurs="0" maxOccurs="1" />
 						</xs:sequence>
 						<xs:attribute name="id" type="xs:positiveInteger" use="required" />
-						<xs:attribute name="predefined" type="xs:boolean" use="optional" />
+						<xs:attribute name="predefined" type="xs:boolean" use="optional" default="false" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

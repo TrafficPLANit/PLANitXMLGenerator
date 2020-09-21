@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.XmlType;
  *                     &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
- *                   &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *                   &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -128,7 +128,7 @@ public class XMLElementModes {
      *         &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
-     *       &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+     *       &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -284,8 +284,12 @@ public class XMLElementModes {
          *     {@link Boolean }
          *     
          */
-        public Boolean isPredefined() {
-            return predefined;
+        public boolean isPredefined() {
+            if (predefined == null) {
+                return false;
+            } else {
+                return predefined;
+            }
         }
 
         /**

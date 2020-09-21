@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="public"/&gt;
  *     &lt;enumeration value="ride_share"/&gt;
  *     &lt;enumeration value="high_occupancy"/&gt;
+ *     &lt;enumeration value="goods"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -41,7 +42,9 @@ public enum UsedToType {
     @XmlEnumValue("ride_share")
     RIDE_SHARE("ride_share"),
     @XmlEnumValue("high_occupancy")
-    HIGH_OCCUPANCY("high_occupancy");
+    HIGH_OCCUPANCY("high_occupancy"),
+    @XmlEnumValue("goods")
+    GOODS("goods");
     private final String value;
 
     UsedToType(String v) {
