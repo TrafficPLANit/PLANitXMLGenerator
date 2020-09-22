@@ -48,7 +48,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "usabilityfeatures")
 public class XMLElementUsabilityFeatures {
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, defaultValue = "private")
     @XmlSchemaType(name = "string")
     protected UsedToType usedtotype;
 

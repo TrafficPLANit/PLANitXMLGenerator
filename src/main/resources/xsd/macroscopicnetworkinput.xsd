@@ -405,21 +405,21 @@
     </xs:annotation>  
     <xs:complexType>
       <xs:sequence>
-          <xs:element name="vehicletype" type="vehicularType">
+          <xs:element name="vehicletype" type="vehicularType" default="vehicle">
 				    <xs:annotation>
 				      <xs:documentation>
 				        vehicular type of the mode
 				      </xs:documentation>
 				    </xs:annotation>
 				  </xs:element>
-          <xs:element name="motorisationtype" type="motorisationType">
+          <xs:element name="motorisationtype" type="motorisationType" default="motorised">
             <xs:annotation>
               <xs:documentation>
                 motorisation type of the mode
               </xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="tracktype" type="trackType">
+          <xs:element name="tracktype" type="trackType" default="double">
             <xs:annotation>
               <xs:documentation>
                 track type of the mode
@@ -438,7 +438,7 @@
     </xs:annotation>    
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="usedtotype" type="usedToType">
+        <xs:element name="usedtotype" type="usedToType" default="private">
           <xs:annotation>
             <xs:documentation>
                how this mode is used

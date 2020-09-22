@@ -52,13 +52,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "physicalfeatures")
 public class XMLElementPhysicalFeatures {
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, defaultValue = "vehicle")
     @XmlSchemaType(name = "string")
     protected VehicularType vehicletype;
-    @XmlElement(required = true)
+    @XmlElement(required = true, defaultValue = "motorised")
     @XmlSchemaType(name = "string")
     protected MotorisationType motorisationtype;
-    @XmlElement(required = true)
+    @XmlElement(required = true, defaultValue = "double")
     @XmlSchemaType(name = "string")
     protected TrackType tracktype;
 
