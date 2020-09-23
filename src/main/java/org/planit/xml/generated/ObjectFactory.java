@@ -532,7 +532,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
      */
-    @XmlElementDecl(namespace = "", name = "maxspeed")
+    @XmlElementDecl(namespace = "", name = "maxspeed", defaultValue = "80.0")
     public JAXBElement<Float> createMaxspeed(Float value) {
         return new JAXBElement<Float>(_Maxspeed_QNAME, Float.class, null, value);
     }

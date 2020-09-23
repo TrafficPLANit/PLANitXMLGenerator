@@ -413,6 +413,7 @@ public class XMLElementLinkSegmentTypes {
             })
             public static class Mode {
 
+                @XmlElement(defaultValue = "80.0")
                 protected Float maxspeed;
                 protected Float critspeed;
                 @XmlAttribute(name = "ref")

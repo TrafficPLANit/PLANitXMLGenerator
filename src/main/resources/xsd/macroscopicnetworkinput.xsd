@@ -126,7 +126,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="maxspeed" type="xs:float">
+	<xs:element name="maxspeed" type="xs:float" default="80.0">
 		<xs:annotation>
 			<xs:documentation>
 				Maximum speed in km/h
@@ -167,8 +167,7 @@
 						<xs:documentation>
 							Modes available in this project. Note that when
 							this element is absent a single 'virtual' mode is created to
-							represent
-							all modes. If this is the case, no references to modes are to be
+							represent all modes. If this is the case, no references to modes are to be
 							made in any forthcoming elements as there is nothing to refer
 							to,
 							i.e., no ids of modes are present so they cannot be referred.
@@ -498,6 +497,8 @@
 						</xs:annotation>
 						<xs:sequence>
 							<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<!-- max speed in km/h -->
+							<xs:element ref="maxspeed" minOccurs="0" maxOccurs="1"/>
 							<xs:element ref="pcu" minOccurs="0" />
 							<xs:element ref="physicalfeatures" minOccurs="0" maxOccurs="1"/>
 							<xs:element ref="usabilityfeatures" minOccurs="0" maxOccurs="1" />

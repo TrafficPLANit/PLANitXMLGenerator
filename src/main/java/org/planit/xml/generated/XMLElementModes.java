@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                     &lt;element ref="{}maxspeed" minOccurs="0"/&gt;
  *                     &lt;element ref="{}pcu" minOccurs="0"/&gt;
  *                     &lt;element ref="{}physicalfeatures" minOccurs="0"/&gt;
  *                     &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
@@ -123,6 +124,7 @@ public class XMLElementModes {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element ref="{}maxspeed" minOccurs="0"/&gt;
      *         &lt;element ref="{}pcu" minOccurs="0"/&gt;
      *         &lt;element ref="{}physicalfeatures" minOccurs="0"/&gt;
      *         &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
@@ -139,6 +141,7 @@ public class XMLElementModes {
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "name",
+        "maxspeed",
         "pcu",
         "physicalfeatures",
         "usabilityfeatures"
@@ -146,6 +149,8 @@ public class XMLElementModes {
     public static class Mode {
 
         protected String name;
+        @XmlElement(defaultValue = "80.0")
+        protected Float maxspeed;
         @XmlElement(defaultValue = "1")
         protected Float pcu;
         protected XMLElementPhysicalFeatures physicalfeatures;
@@ -178,6 +183,30 @@ public class XMLElementModes {
          */
         public void setName(String value) {
             this.name = value;
+        }
+
+        /**
+         * Gets the value of the maxspeed property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Float }
+         *     
+         */
+        public Float getMaxspeed() {
+            return maxspeed;
+        }
+
+        /**
+         * Sets the value of the maxspeed property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Float }
+         *     
+         */
+        public void setMaxspeed(Float value) {
+            this.maxspeed = value;
         }
 
         /**

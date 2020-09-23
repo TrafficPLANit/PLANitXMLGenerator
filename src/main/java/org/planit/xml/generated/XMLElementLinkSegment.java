@@ -54,6 +54,7 @@ public class XMLElementLinkSegment {
     @XmlElement(defaultValue = "1")
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger numberoflanes;
+    @XmlElement(defaultValue = "80.0")
     protected Float maxspeed;
     @XmlAttribute(name = "id", required = true)
     @XmlSchemaType(name = "positiveInteger")

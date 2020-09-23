@@ -56,8 +56,7 @@ public class XMLElementLinkConfiguration {
      * 
      * 							Modes available in this project. Note that when
      * 							this element is absent a single 'virtual' mode is created to
-     * 							represent
-     * 							all modes. If this is the case, no references to modes are to be
+     * 							represent all modes. If this is the case, no references to modes are to be
      * 							made in any forthcoming elements as there is nothing to refer
      * 							to,
      * 							i.e., no ids of modes are present so they cannot be referred.
