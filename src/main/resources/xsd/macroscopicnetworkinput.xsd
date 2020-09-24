@@ -74,12 +74,12 @@
   <xs:simpleType name="trackType">
     <xs:annotation>
       <xs:documentation>
-        Choice between double and single, e.g. does it create a double or single track when driving
+        Choice between road and rail, e.g. does it refer to a mode that uses rail or road
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="double" />
-      <xs:enumeration value="single" />
+      <xs:enumeration value="road" />
+      <xs:enumeration value="rail" />
     </xs:restriction>
   </xs:simpleType> 
   

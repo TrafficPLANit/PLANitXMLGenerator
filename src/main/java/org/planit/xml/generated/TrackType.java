@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="trackType"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="double"/&gt;
- *     &lt;enumeration value="single"/&gt;
+ *     &lt;enumeration value="road"/&gt;
+ *     &lt;enumeration value="rail"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -32,10 +32,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum TrackType {
 
-    @XmlEnumValue("double")
-    DOUBLE("double"),
-    @XmlEnumValue("single")
-    SINGLE("single");
+    @XmlEnumValue("road")
+    ROAD("road"),
+    @XmlEnumValue("rail")
+    RAIL("rail");
     private final String value;
 
     TrackType(String v) {
