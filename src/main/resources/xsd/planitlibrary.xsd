@@ -4,7 +4,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
 	<!-- simple PLANit attributes -->
-	<xs:attribute name="srsname" type="srsname">
+	<xs:attribute name="srsname" type="srsname" default="EPSG:4326">
 		<xs:annotation>
 			<xs:documentation>
 				Global definition of the spatial reference system used for all gml elements. Should comply with the srs naming conventions of such a string
@@ -20,7 +20,6 @@
 			</xs:documentation>
 		</xs:annotation>	
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="EPSG:4326"/>
 		</xs:restriction>
 	</xs:simpleType>	
 

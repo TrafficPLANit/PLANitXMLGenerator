@@ -206,8 +206,7 @@
 				<xs:annotation>
 					<xs:documentation>
 						Spatial reference system chosen for
-						infrastructure, if absent Cartesian system is assumed with 0,0 to
-						be the top left
+						infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>

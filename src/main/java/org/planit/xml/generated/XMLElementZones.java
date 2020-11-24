@@ -71,7 +71,7 @@ public class XMLElementZones {
     @XmlElement(required = true)
     protected List<XMLElementZones.Zone> zone;
     @XmlAttribute(name = "srsname")
-    protected Srsname srsname;
+    protected String srsname;
 
     /**
      * Gets the value of the zone property.
@@ -111,11 +111,15 @@ public class XMLElementZones {
      * 
      * @return
      *     possible object is
-     *     {@link Srsname }
+     *     {@link String }
      *     
      */
-    public Srsname getSrsname() {
-        return srsname;
+    public String getSrsname() {
+        if (srsname == null) {
+            return "EPSG:4326";
+        } else {
+            return srsname;
+        }
     }
 
     /**
@@ -123,10 +127,10 @@ public class XMLElementZones {
      * 
      * @param value
      *     allowed object is
-     *     {@link Srsname }
+     *     {@link String }
      *     
      */
-    public void setSrsname(Srsname value) {
+    public void setSrsname(String value) {
         this.srsname = value;
     }
 

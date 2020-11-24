@@ -57,7 +57,7 @@ public class XMLElementInfrastructure {
     @XmlElement(required = true)
     protected XMLElementLinks links;
     @XmlAttribute(name = "srsname")
-    protected Srsname srsname;
+    protected String srsname;
 
     /**
      * Gets the value of the nodes property.
@@ -110,17 +110,20 @@ public class XMLElementInfrastructure {
     /**
      * 
      * 						Spatial reference system chosen for
-     * 						infrastructure, if absent Cartesian system is assumed with 0,0 to
-     * 						be the top left
+     * 						infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
      * 					
      * 
      * @return
      *     possible object is
-     *     {@link Srsname }
+     *     {@link String }
      *     
      */
-    public Srsname getSrsname() {
-        return srsname;
+    public String getSrsname() {
+        if (srsname == null) {
+            return "EPSG:4326";
+        } else {
+            return srsname;
+        }
     }
 
     /**
@@ -128,10 +131,10 @@ public class XMLElementInfrastructure {
      * 
      * @param value
      *     allowed object is
-     *     {@link Srsname }
+     *     {@link String }
      *     
      */
-    public void setSrsname(Srsname value) {
+    public void setSrsname(String value) {
         this.srsname = value;
     }
 
