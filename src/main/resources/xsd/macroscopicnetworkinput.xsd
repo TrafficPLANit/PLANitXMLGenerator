@@ -8,7 +8,7 @@
 	<!-- Complex types -->
 	<xs:complexType name="linkLengthType">
 		<xs:simpleContent>
-			<xs:extension base="xs:float">
+			<xs:extension base="xs:double">
 				<xs:attribute name="unit" type="lengthUnit"
 					default="km" use="optional">
 					<xs:annotation>

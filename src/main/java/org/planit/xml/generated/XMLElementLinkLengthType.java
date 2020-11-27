@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlValue;
  * <pre>
  * &lt;complexType name="linkLengthType"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;double"&gt;
  *       &lt;attribute name="unit" type="{}lengthUnit" default="km" /&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlValue;
 public class XMLElementLinkLengthType {
 
     @XmlValue
-    protected float value;
+    protected double value;
     @XmlAttribute(name = "unit")
     protected LengthUnit unit;
 
@@ -47,7 +47,7 @@ public class XMLElementLinkLengthType {
      * Gets the value of the value property.
      * 
      */
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -55,7 +55,7 @@ public class XMLElementLinkLengthType {
      * Sets the value of the value property.
      * 
      */
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
