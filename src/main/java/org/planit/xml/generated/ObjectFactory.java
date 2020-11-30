@@ -486,16 +486,16 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      */
     @XmlElementDecl(namespace = "", name = "maxdensitylane", defaultValue = "180.0")
-    public JAXBElement<Float> createMaxdensitylane(Float value) {
-        return new JAXBElement<Float>(_Maxdensitylane_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createMaxdensitylane(Double value) {
+        return new JAXBElement<Double>(_Maxdensitylane_QNAME, Double.class, null, value);
     }
 
     /**

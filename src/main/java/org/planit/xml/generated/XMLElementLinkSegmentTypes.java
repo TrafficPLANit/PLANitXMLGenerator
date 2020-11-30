@@ -180,7 +180,7 @@ public class XMLElementLinkSegmentTypes {
         @XmlElement(required = true, defaultValue = "")
         protected String name;
         @XmlElement(defaultValue = "180.0")
-        protected Float maxdensitylane;
+        protected Double maxdensitylane;
         @XmlElement(defaultValue = "1800.0")
         protected Double capacitylane;
         protected XMLElementLinkSegmentTypes.Linksegmenttype.Modes modes;
@@ -220,10 +220,10 @@ public class XMLElementLinkSegmentTypes {
          * 
          * @return
          *     possible object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public Float getMaxdensitylane() {
+        public Double getMaxdensitylane() {
             return maxdensitylane;
         }
 
@@ -232,10 +232,10 @@ public class XMLElementLinkSegmentTypes {
          * 
          * @param value
          *     allowed object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public void setMaxdensitylane(Float value) {
+        public void setMaxdensitylane(Double value) {
             this.maxdensitylane = value;
         }
 
