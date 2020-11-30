@@ -99,7 +99,7 @@
   </xs:simpleType>   
 
 	<!-- simple elements -->
-	<xs:element name="maxdensitylane" type="xs:float"
+	<xs:element name="maxdensitylane" type="xs:double"
 		default="180.0">
 		<xs:annotation>
 			<xs:documentation>
