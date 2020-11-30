@@ -182,7 +182,7 @@ public class XMLElementLinkSegmentTypes {
         @XmlElement(defaultValue = "180.0")
         protected Float maxdensitylane;
         @XmlElement(defaultValue = "1800.0")
-        protected Float capacitylane;
+        protected Double capacitylane;
         protected XMLElementLinkSegmentTypes.Linksegmenttype.Modes modes;
         @XmlAttribute(name = "id")
         @XmlSchemaType(name = "positiveInteger")
@@ -247,10 +247,10 @@ public class XMLElementLinkSegmentTypes {
          * 
          * @return
          *     possible object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public Float getCapacitylane() {
+        public Double getCapacitylane() {
             return capacitylane;
         }
 
@@ -259,10 +259,10 @@ public class XMLElementLinkSegmentTypes {
          * 
          * @param value
          *     allowed object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public void setCapacitylane(Float value) {
+        public void setCapacitylane(Double value) {
             this.capacitylane = value;
         }
 
@@ -414,8 +414,8 @@ public class XMLElementLinkSegmentTypes {
             public static class Mode {
 
                 @XmlElement(defaultValue = "80.0")
-                protected Float maxspeed;
-                protected Float critspeed;
+                protected Double maxspeed;
+                protected Double critspeed;
                 @XmlAttribute(name = "ref")
                 @XmlSchemaType(name = "nonNegativeInteger")
                 protected BigInteger ref;
@@ -425,10 +425,10 @@ public class XMLElementLinkSegmentTypes {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link Float }
+                 *     {@link Double }
                  *     
                  */
-                public Float getMaxspeed() {
+                public Double getMaxspeed() {
                     return maxspeed;
                 }
 
@@ -437,10 +437,10 @@ public class XMLElementLinkSegmentTypes {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link Float }
+                 *     {@link Double }
                  *     
                  */
-                public void setMaxspeed(Float value) {
+                public void setMaxspeed(Double value) {
                     this.maxspeed = value;
                 }
 
@@ -449,10 +449,10 @@ public class XMLElementLinkSegmentTypes {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link Float }
+                 *     {@link Double }
                  *     
                  */
-                public Float getCritspeed() {
+                public Double getCritspeed() {
                     return critspeed;
                 }
 
@@ -461,10 +461,10 @@ public class XMLElementLinkSegmentTypes {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link Float }
+                 *     {@link Double }
                  *     
                  */
-                public void setCritspeed(Float value) {
+                public void setCritspeed(Double value) {
                     this.critspeed = value;
                 }
 

@@ -499,55 +499,55 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      */
     @XmlElementDecl(namespace = "", name = "pcu", defaultValue = "1")
-    public JAXBElement<Float> createPcu(Float value) {
-        return new JAXBElement<Float>(_Pcu_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createPcu(Double value) {
+        return new JAXBElement<Double>(_Pcu_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      */
     @XmlElementDecl(namespace = "", name = "capacitylane", defaultValue = "1800.0")
-    public JAXBElement<Float> createCapacitylane(Float value) {
-        return new JAXBElement<Float>(_Capacitylane_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createCapacitylane(Double value) {
+        return new JAXBElement<Double>(_Capacitylane_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      */
     @XmlElementDecl(namespace = "", name = "maxspeed", defaultValue = "80.0")
-    public JAXBElement<Float> createMaxspeed(Float value) {
-        return new JAXBElement<Float>(_Maxspeed_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createMaxspeed(Double value) {
+        return new JAXBElement<Double>(_Maxspeed_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Float }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link Double }{@code >}
      */
     @XmlElementDecl(namespace = "", name = "critspeed")
-    public JAXBElement<Float> createCritspeed(Float value) {
-        return new JAXBElement<Float>(_Critspeed_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createCritspeed(Double value) {
+        return new JAXBElement<Double>(_Critspeed_QNAME, Double.class, null, value);
     }
 
     /**

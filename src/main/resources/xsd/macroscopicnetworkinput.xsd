@@ -108,7 +108,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="pcu" type="xs:float" default="1">
+	<xs:element name="pcu" type="xs:double" default="1">
 		<xs:annotation>
 			<xs:documentation>
 				Person car equivalent of a mode
@@ -116,7 +116,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="capacitylane" type="xs:float"
+	<xs:element name="capacitylane" type="xs:double"
 		default="1800.0">
 		<xs:annotation>
 			<xs:documentation>
@@ -126,7 +126,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="maxspeed" type="xs:float" default="80.0">
+	<xs:element name="maxspeed" type="xs:double" default="80.0">
 		<xs:annotation>
 			<xs:documentation>
 				Maximum speed in km/h
@@ -134,7 +134,7 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="critspeed" type="xs:float">
+	<xs:element name="critspeed" type="xs:double">
 		<xs:annotation>
 			<xs:documentation>
 				Speed at capacity, i.e., critical speed of a lane

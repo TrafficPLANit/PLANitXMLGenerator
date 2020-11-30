@@ -55,7 +55,7 @@ public class XMLElementLinkSegment {
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger numberoflanes;
     @XmlElement(defaultValue = "80.0")
-    protected Float maxspeed;
+    protected Double maxspeed;
     @XmlAttribute(name = "id", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger id;
@@ -94,10 +94,10 @@ public class XMLElementLinkSegment {
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getMaxspeed() {
+    public Double getMaxspeed() {
         return maxspeed;
     }
 
@@ -106,10 +106,10 @@ public class XMLElementLinkSegment {
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setMaxspeed(Float value) {
+    public void setMaxspeed(Double value) {
         this.maxspeed = value;
     }
 

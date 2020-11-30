@@ -150,9 +150,9 @@ public class XMLElementModes {
 
         protected String name;
         @XmlElement(defaultValue = "80.0")
-        protected Float maxspeed;
+        protected Double maxspeed;
         @XmlElement(defaultValue = "1")
-        protected Float pcu;
+        protected Double pcu;
         protected XMLElementPhysicalFeatures physicalfeatures;
         protected XMLElementUsabilityFeatures usabilityfeatures;
         @XmlAttribute(name = "id", required = true)
@@ -190,10 +190,10 @@ public class XMLElementModes {
          * 
          * @return
          *     possible object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public Float getMaxspeed() {
+        public Double getMaxspeed() {
             return maxspeed;
         }
 
@@ -202,10 +202,10 @@ public class XMLElementModes {
          * 
          * @param value
          *     allowed object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public void setMaxspeed(Float value) {
+        public void setMaxspeed(Double value) {
             this.maxspeed = value;
         }
 
@@ -214,10 +214,10 @@ public class XMLElementModes {
          * 
          * @return
          *     possible object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public Float getPcu() {
+        public Double getPcu() {
             return pcu;
         }
 
@@ -226,10 +226,10 @@ public class XMLElementModes {
          * 
          * @param value
          *     allowed object is
-         *     {@link Float }
+         *     {@link Double }
          *     
          */
-        public void setPcu(Float value) {
+        public void setPcu(Double value) {
             this.pcu = value;
         }
 
