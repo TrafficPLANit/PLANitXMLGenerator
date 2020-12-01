@@ -8,7 +8,6 @@
 
 package org.planit.xml.generated;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import net.opengis.gml.LineStringType;
 
@@ -46,9 +44,10 @@ import net.opengis.gml.LineStringType;
  *                     &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
  *                     &lt;element name="length" type="{}linkLengthType" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
- *                   &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
- *                   &lt;attribute name="nodearef" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
- *                   &lt;attribute name="nodebref" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="nodearef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="nodebref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -117,9 +116,10 @@ public class XMLElementLinks {
      *         &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
      *         &lt;element name="length" type="{}linkLengthType" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
-     *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
-     *       &lt;attribute name="nodearef" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
-     *       &lt;attribute name="nodebref" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+     *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="nodearef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="nodebref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -143,15 +143,14 @@ public class XMLElementLinks {
         @XmlElement(required = true)
         protected List<XMLElementLinkSegment> linksegment;
         protected XMLElementLinkLengthType length;
-        @XmlAttribute(name = "id")
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger id;
+        @XmlAttribute(name = "id", required = true)
+        protected String id;
+        @XmlAttribute(name = "externalid")
+        protected String externalid;
         @XmlAttribute(name = "nodearef", required = true)
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger nodearef;
+        protected String nodearef;
         @XmlAttribute(name = "nodebref", required = true)
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger nodebref;
+        protected String nodebref;
 
         /**
          * Gets the value of the name property.
@@ -266,10 +265,10 @@ public class XMLElementLinks {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getId() {
+        public String getId() {
             return id;
         }
 
@@ -278,11 +277,35 @@ public class XMLElementLinks {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setId(BigInteger value) {
+        public void setId(String value) {
             this.id = value;
+        }
+
+        /**
+         * Gets the value of the externalid property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getExternalid() {
+            return externalid;
+        }
+
+        /**
+         * Sets the value of the externalid property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setExternalid(String value) {
+            this.externalid = value;
         }
 
         /**
@@ -290,10 +313,10 @@ public class XMLElementLinks {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getNodearef() {
+        public String getNodearef() {
             return nodearef;
         }
 
@@ -302,10 +325,10 @@ public class XMLElementLinks {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setNodearef(BigInteger value) {
+        public void setNodearef(String value) {
             this.nodearef = value;
         }
 
@@ -314,10 +337,10 @@ public class XMLElementLinks {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getNodebref() {
+        public String getNodebref() {
             return nodebref;
         }
 
@@ -326,10 +349,10 @@ public class XMLElementLinks {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setNodebref(BigInteger value) {
+        public void setNodebref(String value) {
             this.nodebref = value;
         }
 

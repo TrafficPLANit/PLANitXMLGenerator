@@ -8,11 +8,9 @@
 
 package org.planit.xml.generated;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
@@ -45,21 +43,19 @@ import javax.xml.bind.annotation.XmlType;
 public class XMLElementOdMatrix {
 
     @XmlAttribute(name = "timeperiodref", required = true)
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger timeperiodref;
+    protected String timeperiodref;
     @XmlAttribute(name = "userclassref")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger userclassref;
+    protected String userclassref;
 
     /**
      * Gets the value of the timeperiodref property.
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getTimeperiodref() {
+    public String getTimeperiodref() {
         return timeperiodref;
     }
 
@@ -68,10 +64,10 @@ public class XMLElementOdMatrix {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setTimeperiodref(BigInteger value) {
+    public void setTimeperiodref(String value) {
         this.timeperiodref = value;
     }
 
@@ -80,10 +76,10 @@ public class XMLElementOdMatrix {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getUserclassref() {
+    public String getUserclassref() {
         return userclassref;
     }
 
@@ -92,10 +88,10 @@ public class XMLElementOdMatrix {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setUserclassref(BigInteger value) {
+    public void setUserclassref(String value) {
         this.userclassref = value;
     }
 

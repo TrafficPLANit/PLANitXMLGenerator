@@ -8,12 +8,10 @@
 
 package org.planit.xml.generated;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -48,8 +46,7 @@ import javax.xml.bind.annotation.XmlType;
 public class XMLElementOutputTimePeriod {
 
     @XmlElement(required = true)
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger id;
+    protected String id;
     @XmlElement(required = true)
     protected String name;
 
@@ -58,10 +55,10 @@ public class XMLElementOutputTimePeriod {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getId() {
+    public String getId() {
         return id;
     }
 
@@ -70,10 +67,10 @@ public class XMLElementOutputTimePeriod {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setId(BigInteger value) {
+    public void setId(String value) {
         this.id = value;
     }
 

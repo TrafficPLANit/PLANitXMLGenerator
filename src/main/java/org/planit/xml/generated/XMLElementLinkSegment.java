@@ -32,9 +32,10 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element ref="{}numberoflanes" minOccurs="0"/&gt;
  *           &lt;element ref="{}maxspeed" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="dir" use="required" type="{}direction" /&gt;
- *         &lt;attribute name="typeref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *         &lt;attribute name="typeref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -57,13 +58,13 @@ public class XMLElementLinkSegment {
     @XmlElement(defaultValue = "80.0")
     protected Double maxspeed;
     @XmlAttribute(name = "id", required = true)
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger id;
+    protected String id;
+    @XmlAttribute(name = "externalid")
+    protected String externalid;
     @XmlAttribute(name = "dir", required = true)
     protected Direction dir;
     @XmlAttribute(name = "typeref")
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger typeref;
+    protected String typeref;
 
     /**
      * Gets the value of the numberoflanes property.
@@ -118,10 +119,10 @@ public class XMLElementLinkSegment {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getId() {
+    public String getId() {
         return id;
     }
 
@@ -130,11 +131,35 @@ public class XMLElementLinkSegment {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setId(BigInteger value) {
+    public void setId(String value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the externalid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getExternalid() {
+        return externalid;
+    }
+
+    /**
+     * Sets the value of the externalid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setExternalid(String value) {
+        this.externalid = value;
     }
 
     /**
@@ -166,10 +191,10 @@ public class XMLElementLinkSegment {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getTyperef() {
+    public String getTyperef() {
         return typeref;
     }
 
@@ -178,10 +203,10 @@ public class XMLElementLinkSegment {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setTyperef(BigInteger value) {
+    public void setTyperef(String value) {
         this.typeref = value;
     }
 

@@ -8,7 +8,6 @@
 
 package org.planit.xml.generated;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
@@ -48,13 +46,13 @@ import javax.xml.bind.annotation.XmlValue;
  *                       &lt;complexType&gt;
  *                         &lt;simpleContent&gt;
  *                           &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
- *                             &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *                             &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                           &lt;/extension&gt;
  *                         &lt;/simpleContent&gt;
  *                       &lt;/complexType&gt;
  *                     &lt;/element&gt;
  *                   &lt;/sequence&gt;
- *                   &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *                   &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -124,13 +122,13 @@ public class XMLElementOdCellByCellMatrix
      *           &lt;complexType&gt;
      *             &lt;simpleContent&gt;
      *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
-     *                 &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+     *                 &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *               &lt;/extension&gt;
      *             &lt;/simpleContent&gt;
      *           &lt;/complexType&gt;
      *         &lt;/element&gt;
      *       &lt;/sequence&gt;
-     *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+     *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -147,8 +145,7 @@ public class XMLElementOdCellByCellMatrix
         @XmlElement(required = true)
         protected List<XMLElementOdCellByCellMatrix.O.D> d;
         @XmlAttribute(name = "ref")
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger ref;
+        protected String ref;
 
         /**
          * Gets the value of the d property.
@@ -184,10 +181,10 @@ public class XMLElementOdCellByCellMatrix
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getRef() {
+        public String getRef() {
             return ref;
         }
 
@@ -196,10 +193,10 @@ public class XMLElementOdCellByCellMatrix
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setRef(BigInteger value) {
+        public void setRef(String value) {
             this.ref = value;
         }
 
@@ -213,7 +210,7 @@ public class XMLElementOdCellByCellMatrix
          * &lt;complexType&gt;
          *   &lt;simpleContent&gt;
          *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
-         *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+         *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
          *     &lt;/extension&gt;
          *   &lt;/simpleContent&gt;
          * &lt;/complexType&gt;
@@ -230,8 +227,7 @@ public class XMLElementOdCellByCellMatrix
             @XmlValue
             protected float value;
             @XmlAttribute(name = "ref")
-            @XmlSchemaType(name = "positiveInteger")
-            protected BigInteger ref;
+            protected String ref;
 
             /**
              * Gets the value of the value property.
@@ -254,10 +250,10 @@ public class XMLElementOdCellByCellMatrix
              * 
              * @return
              *     possible object is
-             *     {@link BigInteger }
+             *     {@link String }
              *     
              */
-            public BigInteger getRef() {
+            public String getRef() {
                 return ref;
             }
 
@@ -266,10 +262,10 @@ public class XMLElementOdCellByCellMatrix
              * 
              * @param value
              *     allowed object is
-             *     {@link BigInteger }
+             *     {@link String }
              *     
              */
-            public void setRef(BigInteger value) {
+            public void setRef(String value) {
                 this.ref = value;
             }
 

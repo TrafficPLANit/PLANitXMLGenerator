@@ -8,7 +8,6 @@
 
 package org.planit.xml.generated;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
@@ -41,7 +39,7 @@ import javax.xml.bind.annotation.XmlValue;
  *             &lt;complexType&gt;
  *               &lt;simpleContent&gt;
  *                 &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;string"&gt;
- *                   &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *                   &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/extension&gt;
  *               &lt;/simpleContent&gt;
  *             &lt;/complexType&gt;
@@ -137,7 +135,7 @@ public class XMLElementOdRowMatrix
      * &lt;complexType&gt;
      *   &lt;simpleContent&gt;
      *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;string"&gt;
-     *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+     *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/extension&gt;
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
@@ -154,8 +152,7 @@ public class XMLElementOdRowMatrix
         @XmlValue
         protected String value;
         @XmlAttribute(name = "ref")
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger ref;
+        protected String ref;
 
         /**
          * Gets the value of the value property.
@@ -186,10 +183,10 @@ public class XMLElementOdRowMatrix
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getRef() {
+        public String getRef() {
             return ref;
         }
 
@@ -198,10 +195,10 @@ public class XMLElementOdRowMatrix
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setRef(BigInteger value) {
+        public void setRef(String value) {
             this.ref = value;
         }
 

@@ -39,7 +39,7 @@
 	</xs:simpleType>
 
 	<!-- Demand specific attributes -->
-	<xs:attribute name="timeperiodref" type="xs:nonNegativeInteger">
+	<xs:attribute name="timeperiodref" type="xs:string">
 		<xs:annotation>
 			<xs:documentation>
 				Reference to the time period the item relates to
@@ -47,7 +47,7 @@
 		</xs:annotation>
 	</xs:attribute>
 
-	<xs:attribute name="userclassref" type="xs:positiveInteger">
+	<xs:attribute name="userclassref" type="xs:string">
 		<xs:annotation>
 			<xs:documentation>
 				Reference to the user class the travel demand
@@ -205,7 +205,7 @@
 										<xs:complexType>
 											<xs:simpleContent>
 												<xs:extension base="xs:float">
-													<xs:attribute name="ref" type="xs:positiveInteger" use="optional">
+													<xs:attribute name="ref" type="xs:string" use="optional">
 														<xs:annotation>
 															<xs:documentation>
 																Reference to the destination zone id
@@ -221,7 +221,7 @@
 										</xs:complexType>
 									</xs:element>
 								</xs:sequence>
-								<xs:attribute name="ref" type="xs:positiveInteger" use="optional">
+								<xs:attribute name="ref" type="xs:string" use="optional">
 									<xs:annotation>
 										<xs:documentation>
 											Reference to the origin zone id this row
@@ -286,7 +286,7 @@
 							<xs:complexType>
 								<xs:simpleContent>
 									<xs:extension base="xs:string">
-										<xs:attribute name="ref" type="xs:positiveInteger" use="optional">
+										<xs:attribute name="ref" type="xs:string" use="optional">
 											<xs:annotation>
 												<xs:documentation>
 													Reference to origin row, gaps in reference
@@ -321,8 +321,8 @@
 							<xs:element ref="starttime" minOccurs="0" />
 							<xs:element ref="duration" />
 						</xs:sequence>
-						<xs:attribute name="id" type="xs:nonNegativeInteger"
-							use="required" />
+						<xs:attribute name="id" type="xs:string" use="required" />
+						<xs:attribute name="externalid" type="xs:string" use="optional"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
@@ -337,7 +337,8 @@
 						<xs:sequence>
 							<xs:element name="name" type="xs:string" minOccurs="0" 	maxOccurs="1" />
 						</xs:sequence>
-						<xs:attribute name="id" type="xs:positiveInteger" use="required" />
+						<xs:attribute name="id" type="xs:string" use="required" />
+						<xs:attribute name="externalid" type="xs:string" use="optional"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
@@ -356,9 +357,10 @@
 						<xs:sequence>
 							<xs:element name="name" type="xs:string" minOccurs="0" 	maxOccurs="1" />
 						</xs:sequence>
-						<xs:attribute name="id" type="xs:positiveInteger" use="required" />
-						<xs:attribute name="moderef" type="xs:positiveInteger" use="optional" />
-						<xs:attribute name="travellertyperef" type="xs:positiveInteger" use="optional" />
+						<xs:attribute name="id" type="xs:string" use="required" />
+						<xs:attribute name="externalid" type="xs:string" use="optional"/>
+						<xs:attribute name="moderef" type="xs:string" use="optional" />
+						<xs:attribute name="travellertyperef" type="xs:string" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

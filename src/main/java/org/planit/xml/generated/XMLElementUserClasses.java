@@ -8,7 +8,6 @@
 
 package org.planit.xml.generated;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -38,9 +36,10 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
- *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
- *                   &lt;attribute name="moderef" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
- *                   &lt;attribute name="travellertyperef" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="moderef" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="travellertyperef" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -106,9 +105,10 @@ public class XMLElementUserClasses {
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
-     *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
-     *       &lt;attribute name="moderef" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
-     *       &lt;attribute name="travellertyperef" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+     *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="moderef" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="travellertyperef" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -124,14 +124,13 @@ public class XMLElementUserClasses {
 
         protected String name;
         @XmlAttribute(name = "id", required = true)
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger id;
+        protected String id;
+        @XmlAttribute(name = "externalid")
+        protected String externalid;
         @XmlAttribute(name = "moderef")
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger moderef;
+        protected String moderef;
         @XmlAttribute(name = "travellertyperef")
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger travellertyperef;
+        protected String travellertyperef;
 
         /**
          * Gets the value of the name property.
@@ -162,10 +161,10 @@ public class XMLElementUserClasses {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getId() {
+        public String getId() {
             return id;
         }
 
@@ -174,11 +173,35 @@ public class XMLElementUserClasses {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setId(BigInteger value) {
+        public void setId(String value) {
             this.id = value;
+        }
+
+        /**
+         * Gets the value of the externalid property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getExternalid() {
+            return externalid;
+        }
+
+        /**
+         * Sets the value of the externalid property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setExternalid(String value) {
+            this.externalid = value;
         }
 
         /**
@@ -186,10 +209,10 @@ public class XMLElementUserClasses {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getModeref() {
+        public String getModeref() {
             return moderef;
         }
 
@@ -198,10 +221,10 @@ public class XMLElementUserClasses {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setModeref(BigInteger value) {
+        public void setModeref(String value) {
             this.moderef = value;
         }
 
@@ -210,10 +233,10 @@ public class XMLElementUserClasses {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getTravellertyperef() {
+        public String getTravellertyperef() {
             return travellertyperef;
         }
 
@@ -222,10 +245,10 @@ public class XMLElementUserClasses {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setTravellertyperef(BigInteger value) {
+        public void setTravellertyperef(String value) {
             this.travellertyperef = value;
         }
 

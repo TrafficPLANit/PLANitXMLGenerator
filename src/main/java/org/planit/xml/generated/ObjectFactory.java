@@ -97,27 +97,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementLinkSegmentTypes }
+     * Create an instance of {@link XMLElementLinkSegmentType }
      * 
      */
-    public XMLElementLinkSegmentTypes createXMLElementLinkSegmentTypes() {
-        return new XMLElementLinkSegmentTypes();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementLinkSegmentTypes.Linksegmenttype }
-     * 
-     */
-    public XMLElementLinkSegmentTypes.Linksegmenttype createXMLElementLinkSegmentTypesLinksegmenttype() {
-        return new XMLElementLinkSegmentTypes.Linksegmenttype();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementLinkSegmentTypes.Linksegmenttype.Modes }
-     * 
-     */
-    public XMLElementLinkSegmentTypes.Linksegmenttype.Modes createXMLElementLinkSegmentTypesLinksegmenttypeModes() {
-        return new XMLElementLinkSegmentTypes.Linksegmenttype.Modes();
+    public XMLElementLinkSegmentType createXMLElementLinkSegmentType() {
+        return new XMLElementLinkSegmentType();
     }
 
     /**
@@ -222,6 +206,14 @@ public class ObjectFactory {
      */
     public XMLElementInfrastructure createXMLElementInfrastructure() {
         return new XMLElementInfrastructure();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementLinkSegmentTypes }
+     * 
+     */
+    public XMLElementLinkSegmentTypes createXMLElementLinkSegmentTypes() {
+        return new XMLElementLinkSegmentTypes();
     }
 
     /**
@@ -385,6 +377,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Accessmode }
+     * 
+     */
+    public Accessmode createAccessmode() {
+        return new Accessmode();
+    }
+
+    /**
      * Create an instance of {@link XMLElementZones.Zone }
      * 
      */
@@ -417,11 +417,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementLinkSegmentTypes.Linksegmenttype.Modes.Mode }
+     * Create an instance of {@link XMLElementLinkSegmentType.Access }
      * 
      */
-    public XMLElementLinkSegmentTypes.Linksegmenttype.Modes.Mode createXMLElementLinkSegmentTypesLinksegmenttypeModesMode() {
-        return new XMLElementLinkSegmentTypes.Linksegmenttype.Modes.Mode();
+    public XMLElementLinkSegmentType.Access createXMLElementLinkSegmentTypeAccess() {
+        return new XMLElementLinkSegmentType.Access();
     }
 
     /**
@@ -590,16 +590,16 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BigInteger }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link BigInteger }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
      */
     @XmlElementDecl(namespace = "", name = "id")
-    public JAXBElement<BigInteger> createId(BigInteger value) {
-        return new JAXBElement<BigInteger>(_Id_QNAME, BigInteger.class, null, value);
+    public JAXBElement<String> createId(String value) {
+        return new JAXBElement<String>(_Id_QNAME, String.class, null, value);
     }
 
     /**

@@ -52,14 +52,15 @@
 				<xs:element name="name"  type="xs:string" minOccurs="0" maxOccurs="1"/>
 				<xs:element name="length" type="xs:float" minOccurs="0" maxOccurs="1"/>
 			</xs:sequence>
-			<xs:attribute name="noderef" type="xs:positiveInteger" use="required">
+			<xs:attribute name="noderef" type="xs:string" use="required">
 				<xs:annotation>
 					<xs:documentation>
 						Reference to the node that also acts as a connectoid for the zone.
 					</xs:documentation>
 				</xs:annotation>			
 			</xs:attribute>
-			<xs:attribute name="id" type="xs:positiveInteger" use="optional"/>					
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="externalid" type="xs:string" use="optional"/>					
 		</xs:complexType>				
 	</xs:element>
 
@@ -101,7 +102,8 @@
 								</xs:annotation>							
 							</xs:element>
 						</xs:sequence>
-						<xs:attribute name="id" type="xs:positiveInteger" use="required" />						
+						<xs:attribute name="id" type="xs:string" use="required" />
+						<xs:attribute name="externalid" type="xs:string" use="optional"/>						
 					</xs:complexType>
 				</xs:element>				
 			</xs:sequence>			

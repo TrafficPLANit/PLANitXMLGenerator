@@ -8,7 +8,6 @@
 
 package org.planit.xml.generated;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -46,7 +44,8 @@ import javax.xml.bind.annotation.XmlType;
  *                     &lt;element ref="{}physicalfeatures" minOccurs="0"/&gt;
  *                     &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
- *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+ *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
@@ -129,7 +128,8 @@ public class XMLElementModes {
      *         &lt;element ref="{}physicalfeatures" minOccurs="0"/&gt;
      *         &lt;element ref="{}usabilityfeatures" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
-     *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" /&gt;
+     *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="predefined" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
@@ -156,8 +156,9 @@ public class XMLElementModes {
         protected XMLElementPhysicalFeatures physicalfeatures;
         protected XMLElementUsabilityFeatures usabilityfeatures;
         @XmlAttribute(name = "id", required = true)
-        @XmlSchemaType(name = "positiveInteger")
-        protected BigInteger id;
+        protected String id;
+        @XmlAttribute(name = "externalid")
+        protected String externalid;
         @XmlAttribute(name = "predefined")
         protected Boolean predefined;
 
@@ -286,10 +287,10 @@ public class XMLElementModes {
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public BigInteger getId() {
+        public String getId() {
             return id;
         }
 
@@ -298,11 +299,35 @@ public class XMLElementModes {
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link String }
          *     
          */
-        public void setId(BigInteger value) {
+        public void setId(String value) {
             this.id = value;
+        }
+
+        /**
+         * Gets the value of the externalid property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getExternalid() {
+            return externalid;
+        }
+
+        /**
+         * Sets the value of the externalid property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setExternalid(String value) {
+            this.externalid = value;
         }
 
         /**

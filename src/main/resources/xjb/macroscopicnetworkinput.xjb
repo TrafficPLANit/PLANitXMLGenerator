@@ -27,6 +27,11 @@
 		node="//xs:element[@name ='linksegmenttypes']">
 		<jaxb:class name="XMLElementLinkSegmentTypes" />
 	</jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../xsd/macroscopicnetworkinput.xsd"
+    node="//xs:element[@name ='linksegmenttype']">
+    <jaxb:class name="XMLElementLinkSegmentType" />
+  </jaxb:bindings>	
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
 		node="//xs:element[@name ='linksegment']">
@@ -41,7 +46,7 @@
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
 		node="/xs:schema/xs:element[@name ='modes']">
 		<jaxb:class name="XMLElementModes" />
-	</jaxb:bindings>
+	</jaxb:bindings>	
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
 		node="xs:element[@name ='nodes']">

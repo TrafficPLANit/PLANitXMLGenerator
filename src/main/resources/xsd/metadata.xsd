@@ -38,7 +38,7 @@
 	<!-- definition of simple elements -->
 	<xs:element name="assignment" type="xs:string" />
 	<xs:element name="description" type="xs:string" />
-	<xs:element name="id" type="xs:nonNegativeInteger" />
+	<xs:element name="id" type="xs:string" />
 	<xs:element name="name" type="xs:string" />
 	<xs:element name="nr" type="xs:nonNegativeInteger" />
 	<xs:element name="physicalcost" type="xs:string" />
