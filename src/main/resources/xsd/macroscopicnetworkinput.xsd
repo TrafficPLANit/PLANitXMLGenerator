@@ -308,7 +308,7 @@
 				<xs:element ref="maxspeed" minOccurs="0" maxOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
-      <xs:attribute name="externalid" type="xs:string" use="optional"/>			
+      		<xs:attribute name="externalid" type="xs:string" use="optional"/>			
 			<xs:attribute name="dir" type="direction" use="required" />
 			<xs:attribute name="typeref" type="xs:string" use="optional">
 				<xs:annotation>
