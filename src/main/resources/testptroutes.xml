@@ -1,0 +1,10 @@
+<PLANit xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xxxx/xsd/routedservices.xsd">
+	<!-- to be as generic as possible we do not call this public transport services, because potentially this could be used for shipping services, truck supply chains
+	etc, anything involving semi-fixed routes of entities across a network of a specific mode -->
+	<routedservices mode="bus"> 
+		
+	</routedservices>
+	<routedservices mode="train"> 
+		
+	</routedservices>	
+</PLANit>
