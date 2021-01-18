@@ -201,11 +201,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementInfrastructure }
+     * Create an instance of {@link Layerconfiguration }
      * 
      */
-    public XMLElementInfrastructure createXMLElementInfrastructure() {
-        return new XMLElementInfrastructure();
+    public Layerconfiguration createLayerconfiguration() {
+        return new Layerconfiguration();
     }
 
     /**
@@ -214,6 +214,22 @@ public class ObjectFactory {
      */
     public XMLElementLinkSegmentTypes createXMLElementLinkSegmentTypes() {
         return new XMLElementLinkSegmentTypes();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementInfrastructureLayer }
+     * 
+     */
+    public XMLElementInfrastructureLayer createXMLElementInfrastructureLayer() {
+        return new XMLElementInfrastructureLayer();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementInfrastructureLayers }
+     * 
+     */
+    public XMLElementInfrastructureLayers createXMLElementInfrastructureLayers() {
+        return new XMLElementInfrastructureLayers();
     }
 
     /**

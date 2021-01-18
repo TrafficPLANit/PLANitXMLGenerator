@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<macroscopicnetwork
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:gml="http://www.opengis.net/gml"                     
+   xsi:noNamespaceSchemaLocation="<path_to_schema>/macroscopicnetworkinput.xsd">
+  <configuration>
+    <!-- the available modes are on the top level configuration of the network -->                                   
+    <modes>                                     
+      <mode id="1">                               
+        <name>car</name>                            
+        <pcu>1</pcu>                                        
+      </mode>                   
+    </modes>        
+  </configuration>
+  <infrastructurelayers srsname="EPSG:4326">
+    <!-- a layer supports a subset of modes, each of which can only occur on one layer each  -->
+    <layer xmlid="roadlayer" externalid="someid" modes="xmlref1, xmlref2, ...">
+      <!-- each layer has its own configuration, in case of a macroscopic network these contain the link segment types -->
+      <layerconfiguration>
+          <linksegmenttypes>                                
+			      <linksegmenttype id="1">                          
+			        <name>local road</name>                         
+			        <maxdensitylane>180</maxdensitylane>                  
+			        <capacitylane>2000</capacitylane>                   
+			        <access>
+			          <mode ref="1">                              
+			            <maxspeed>40</maxspeed>                     
+			            <critspeed>35</critspeed>                   
+			          </mode>       
+			        </access>
+			      </linksegmenttype>
+			    </linksegmenttypes> 
+      </layerconfiguration>
+      <!-- ids of nodes, links, still need to be unique across layers to make sure outputs can easily be identified, internal ids
+           might not be unique across all layers, depending on how it is configured, but should be unique within the context (layer).
+           the user however should not be aware of this -->
+	    <nodes>
+	      <node id="1">                                 
+	        <name>George Street roundabout</name>
+	        <gml:Point>
+	          <gml:pos>150.512796 -34.900145</gml:pos>
+	        </gml:Point>                            
+	      </node>
+	      <node id="2"> 
+	        <name>Broadway intersection</name>
+	        <gml:Point>
+	          <gml:pos>150.512527 -34.900319</gml:pos>
+	        </gml:Point>          
+	      </node>       
+	    </nodes>    
+	    <links>
+	      <link id="1" nodearef="1" nodebref="2">             
+	        <name>Broadway</name>                       
+	        <linksegment id="1" dir="a_b" typeref="1">  
+	          <numberoflanes>2</numberoflanes>      
+	          <maxspeed>50</maxspeed>                       
+	        </linksegment>
+	        <linksegment id="2" dir="b_a" typeref="1">
+	          <numberoflanes>1</numberoflanes>
+	          <maxspeed>50</maxspeed>
+	        </linksegment>          
+	        <gml:LineString>                  
+	          <gml:coordinates cs=" " ts=",">100,200 150,300</gml:coordinates>
+	        </gml:LineString> 
+	        <length unit="km">1.33</length>                 
+	      </link>
+	    </links>
+	    
+    </layer>            
+    <layer xmlId="railnetwork" modes="train,xmlid4,...">
+      ...
+    </layer>             
+  </infrastructurelayers>
+</macroscopicnetwork>

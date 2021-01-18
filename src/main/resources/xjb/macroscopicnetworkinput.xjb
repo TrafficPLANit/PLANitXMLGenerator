@@ -4,9 +4,14 @@
 
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
-		node="//xs:element[@name = 'infrastructure']">
-		<jaxb:class name="XMLElementInfrastructure" />
+		node="//xs:element[@name = 'infrastructurelayers']">
+		<jaxb:class name="XMLElementInfrastructureLayers" />
 	</jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../xsd/macroscopicnetworkinput.xsd"
+    node="//xs:element[@name = 'layer']">
+    <jaxb:class name="XMLElementInfrastructureLayer" />
+  </jaxb:bindings>	
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
 		node="//xs:element[@name = 'linkconfiguration']">

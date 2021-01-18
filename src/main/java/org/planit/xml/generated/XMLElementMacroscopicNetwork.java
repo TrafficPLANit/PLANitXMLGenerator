@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
  *           &lt;element ref="{}linkconfiguration" minOccurs="0"/&gt;
- *           &lt;element ref="{}infrastructure"/&gt;
+ *           &lt;element ref="{}infrastructurelayers"/&gt;
  *         &lt;/sequence&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -45,14 +45,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "linkconfiguration",
-    "infrastructure"
+    "infrastructurelayers"
 })
 @XmlRootElement(name = "macroscopicnetwork")
 public class XMLElementMacroscopicNetwork {
 
     protected XMLElementLinkConfiguration linkconfiguration;
     @XmlElement(required = true)
-    protected XMLElementInfrastructure infrastructure;
+    protected XMLElementInfrastructureLayers infrastructurelayers;
 
     /**
      * 
@@ -83,27 +83,27 @@ public class XMLElementMacroscopicNetwork {
     }
 
     /**
-     * Gets the value of the infrastructure property.
+     * Gets the value of the infrastructurelayers property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementInfrastructure }
+     *     {@link XMLElementInfrastructureLayers }
      *     
      */
-    public XMLElementInfrastructure getInfrastructure() {
-        return infrastructure;
+    public XMLElementInfrastructureLayers getInfrastructurelayers() {
+        return infrastructurelayers;
     }
 
     /**
-     * Sets the value of the infrastructure property.
+     * Sets the value of the infrastructurelayers property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementInfrastructure }
+     *     {@link XMLElementInfrastructureLayers }
      *     
      */
-    public void setInfrastructure(XMLElementInfrastructure value) {
-        this.infrastructure = value;
+    public void setInfrastructurelayers(XMLElementInfrastructureLayers value) {
+        this.infrastructurelayers = value;
     }
 
 }

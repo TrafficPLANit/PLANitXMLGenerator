@@ -8,6 +8,8 @@
 
 package org.planit.xml.generated;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -18,22 +20,21 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				The physical infrastructure consists of nodes and
- * 				links
- * 			
+ *         The physical infrastructure consists of nodes and
+ *         links
+ *       
  * 
- * <p>Java class for infrastructure element declaration.
+ * <p>Java class for infrastructurelayers element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;element name="infrastructure"&gt;
+ * &lt;element name="infrastructurelayers"&gt;
  *   &lt;complexType&gt;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element ref="{}nodes"/&gt;
- *           &lt;element ref="{}links"/&gt;
+ *           &lt;element ref="{}layer" maxOccurs="unbounded"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute ref="{}srsname"/&gt;
  *       &lt;/restriction&gt;
@@ -46,72 +47,53 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "nodes",
-    "links"
+    "layer"
 })
-@XmlRootElement(name = "infrastructure")
-public class XMLElementInfrastructure {
+@XmlRootElement(name = "infrastructurelayers")
+public class XMLElementInfrastructureLayers {
 
     @XmlElement(required = true)
-    protected XMLElementNodes nodes;
-    @XmlElement(required = true)
-    protected XMLElementLinks links;
+    protected List<XMLElementInfrastructureLayer> layer;
     @XmlAttribute(name = "srsname")
     protected String srsname;
 
     /**
-     * Gets the value of the nodes property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementNodes }
-     *     
-     */
-    public XMLElementNodes getNodes() {
-        return nodes;
-    }
-
-    /**
-     * Sets the value of the nodes property.
+     * 	            each network consists of at least one infrastructure layer containing network elements
+     * 	            such as nodes, links, etc.
+     * 	          Gets the value of the layer property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementNodes }
-     *     
-     */
-    public void setNodes(XMLElementNodes value) {
-        this.nodes = value;
-    }
-
-    /**
-     * Gets the value of the links property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the layer property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementLinks }
-     *     
-     */
-    public XMLElementLinks getLinks() {
-        return links;
-    }
-
-    /**
-     * Sets the value of the links property.
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getLayer().add(newItem);
+     * </pre>
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementLinks }
-     *     
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link XMLElementInfrastructureLayer }
+     * 
+     * 
      */
-    public void setLinks(XMLElementLinks value) {
-        this.links = value;
+    public List<XMLElementInfrastructureLayer> getLayer() {
+        if (layer == null) {
+            layer = new ArrayList<XMLElementInfrastructureLayer>();
+        }
+        return this.layer;
     }
 
     /**
      * 
-     * 						Spatial reference system chosen for
-     * 						infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
-     * 					
+     *             Spatial reference system chosen for
+     *             infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
+     *           
      * 
      * @return
      *     possible object is
