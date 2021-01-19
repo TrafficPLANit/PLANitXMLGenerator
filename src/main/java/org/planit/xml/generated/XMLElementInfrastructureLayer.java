@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
+ *           &lt;element ref="{}layerconfiguration"/&gt;
  *           &lt;element ref="{}nodes"/&gt;
  *           &lt;element ref="{}links"/&gt;
  *         &lt;/sequence&gt;
@@ -49,12 +50,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "layerconfiguration",
     "nodes",
     "links"
 })
 @XmlRootElement(name = "layer")
 public class XMLElementInfrastructureLayer {
 
+    @XmlElement(required = true)
+    protected Layerconfiguration layerconfiguration;
     @XmlElement(required = true)
     protected XMLElementNodes nodes;
     @XmlElement(required = true)
@@ -67,6 +71,30 @@ public class XMLElementInfrastructureLayer {
     protected String srsname;
     @XmlAttribute(name = "modes")
     protected String modes;
+
+    /**
+     * Gets the value of the layerconfiguration property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Layerconfiguration }
+     *     
+     */
+    public Layerconfiguration getLayerconfiguration() {
+        return layerconfiguration;
+    }
+
+    /**
+     * Sets the value of the layerconfiguration property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Layerconfiguration }
+     *     
+     */
+    public void setLayerconfiguration(Layerconfiguration value) {
+        this.layerconfiguration = value;
+    }
 
     /**
      * Gets the value of the nodes property.

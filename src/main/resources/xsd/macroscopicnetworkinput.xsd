@@ -181,7 +181,7 @@
 	</xs:element>
 
 	<!-- Complex elements -->
-	<xs:element name="linkconfiguration">
+	<xs:element name="configuration">
 		<xs:annotation>
 			<xs:documentation>
 				Configuration, i.e., meta data of the network
@@ -194,11 +194,10 @@
 					<xs:annotation>
 						<xs:documentation>
 							Modes available in this project. Note that when
-							this element is absent a single 'virtual' mode is created to
+							this element is absent a single default mode is created to
 							represent all modes. If this is the case, no references to modes are to be
 							made in any forthcoming elements as there is nothing to refer
-							to,
-							i.e., no ids of modes are present so they cannot be referred.
+							to, i.e., no ids of modes are present so they cannot be referred.
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
@@ -221,8 +220,7 @@
               link segment properties that can be attributed to links. Note
               that it is allowed not to define this element. In that case all
               link(segments) are assumed to be of the same default
-              link segment
-              type.
+              link segment type.
             </xs:documentation>
           </xs:annotation>
         </xs:element>
@@ -239,6 +237,7 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
+        <xs:element ref="layerconfiguration" />
         <xs:element ref="nodes" />
         <xs:element ref="links" />
       </xs:sequence>
@@ -516,12 +515,11 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="linkconfiguration" minOccurs="0">
+				<xs:element ref="configuration" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>
 							When configuration is absent we assume a single
-							link segment type for the entire simulation and a simple
-							Cartesian coordinate system with top-left (0,0)
+							mode for the entire simulation
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>

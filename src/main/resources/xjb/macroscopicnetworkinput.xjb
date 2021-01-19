@@ -14,8 +14,8 @@
   </jaxb:bindings>	
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
-		node="//xs:element[@name = 'linkconfiguration']">
-		<jaxb:class name="XMLElementLinkConfiguration" />
+		node="//xs:element[@name = 'configuration']">
+		<jaxb:class name="XMLElementConfiguration" />
 	</jaxb:bindings>
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"

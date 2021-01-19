@@ -193,11 +193,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementLinkConfiguration }
+     * Create an instance of {@link XMLElementConfiguration }
      * 
      */
-    public XMLElementLinkConfiguration createXMLElementLinkConfiguration() {
-        return new XMLElementLinkConfiguration();
+    public XMLElementConfiguration createXMLElementConfiguration() {
+        return new XMLElementConfiguration();
     }
 
     /**

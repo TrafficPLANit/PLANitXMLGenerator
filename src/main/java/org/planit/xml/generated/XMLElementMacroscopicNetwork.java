@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element ref="{}linkconfiguration" minOccurs="0"/&gt;
+ *           &lt;element ref="{}configuration" minOccurs="0"/&gt;
  *           &lt;element ref="{}infrastructurelayers"/&gt;
  *         &lt;/sequence&gt;
  *       &lt;/restriction&gt;
@@ -44,42 +44,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "linkconfiguration",
+    "configuration",
     "infrastructurelayers"
 })
 @XmlRootElement(name = "macroscopicnetwork")
 public class XMLElementMacroscopicNetwork {
 
-    protected XMLElementLinkConfiguration linkconfiguration;
+    protected XMLElementConfiguration configuration;
     @XmlElement(required = true)
     protected XMLElementInfrastructureLayers infrastructurelayers;
 
     /**
      * 
      * 							When configuration is absent we assume a single
-     * 							link segment type for the entire simulation and a simple
-     * 							Cartesian coordinate system with top-left (0,0)
+     * 							mode for the entire simulation
      * 						
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementLinkConfiguration }
+     *     {@link XMLElementConfiguration }
      *     
      */
-    public XMLElementLinkConfiguration getLinkconfiguration() {
-        return linkconfiguration;
+    public XMLElementConfiguration getConfiguration() {
+        return configuration;
     }
 
     /**
-     * Sets the value of the linkconfiguration property.
+     * Sets the value of the configuration property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementLinkConfiguration }
+     *     {@link XMLElementConfiguration }
      *     
      */
-    public void setLinkconfiguration(XMLElementLinkConfiguration value) {
-        this.linkconfiguration = value;
+    public void setConfiguration(XMLElementConfiguration value) {
+        this.configuration = value;
     }
 
     /**

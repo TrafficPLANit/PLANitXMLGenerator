@@ -48,8 +48,7 @@ public class Layerconfiguration {
      *               link segment properties that can be attributed to links. Note
      *               that it is allowed not to define this element. In that case all
      *               link(segments) are assumed to be of the same default
-     *               link segment
-     *               type.
+     *               link segment type.
      *             
      * 
      * @return

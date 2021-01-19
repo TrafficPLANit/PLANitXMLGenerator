@@ -20,12 +20,12 @@ import javax.xml.bind.annotation.XmlType;
  * 				infrastructure
  * 			
  * 
- * <p>Java class for linkconfiguration element declaration.
+ * <p>Java class for configuration element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;element name="linkconfiguration"&gt;
+ * &lt;element name="configuration"&gt;
  *   &lt;complexType&gt;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
@@ -44,19 +44,18 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "modes"
 })
-@XmlRootElement(name = "linkconfiguration")
-public class XMLElementLinkConfiguration {
+@XmlRootElement(name = "configuration")
+public class XMLElementConfiguration {
 
     protected XMLElementModes modes;
 
     /**
      * 
      * 							Modes available in this project. Note that when
-     * 							this element is absent a single 'virtual' mode is created to
+     * 							this element is absent a single default mode is created to
      * 							represent all modes. If this is the case, no references to modes are to be
      * 							made in any forthcoming elements as there is nothing to refer
-     * 							to,
-     * 							i.e., no ids of modes are present so they cannot be referred.
+     * 							to, i.e., no ids of modes are present so they cannot be referred.
      * 						
      * 
      * @return
