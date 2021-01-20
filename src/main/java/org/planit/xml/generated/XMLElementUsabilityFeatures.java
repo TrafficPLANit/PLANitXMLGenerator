@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- *         Usability features of a mode.        
- *       
+ * 				Usability features of a mode.
+ * 			
  * 
  * <p>Java class for usabilityfeatures element declaration.
  * 

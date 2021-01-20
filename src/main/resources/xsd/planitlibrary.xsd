@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- This XSD contains common definitions which are used by all the other XSD files -->
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml">
+
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+	
+	<xs:simpleType name="lengthUnit">
+		<xs:annotation>
+			<xs:documentation>
+				Choice between km (kilometres), m (metres)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="km" />
+			<xs:enumeration value="m" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="timeUnit">
+		<xs:annotation>
+			<xs:documentation>
+				Choice between h (hours), min (minutes), s (seconds)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="h" />
+			<xs:enumeration value="min" />
+			<xs:enumeration value="s" />
+		</xs:restriction>
+	</xs:simpleType>		
 	
 	<!-- simple PLANit attributes -->
 	<xs:attribute name="srsname" type="srsname" default="EPSG:4326">
@@ -39,5 +66,26 @@
 			</xs:documentation>
 		</xs:annotation> 		      					
 	</xs:attribute>	
+	
+	<xs:element name="centroid">
+		<xs:annotation>
+			<xs:documentation>
+				Centroid is a point of departure and/or arrival of travellers from/to a zone. 
+			</xs:documentation>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" minOccurs="0" />
+				<xs:element ref="gml:Point" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Each centroids geo spatial location determines its location (point of departure/arrival). It should fall within the zones
+							geo spatial area (if defined). 
+						</xs:documentation>
+					</xs:annotation>				
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>		
 	
 </xs:schema>

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{}linksegmenttypes" minOccurs="0"/&gt;
+ *         &lt;element name="defaultstartoffset" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -35,41 +35,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "linksegmenttypes"
+    "defaultstartoffset"
 })
-@XmlRootElement(name = "layerconfiguration")
-public class Layerconfiguration {
+@XmlRootElement(name = "reltimings")
+public class Reltimings {
 
-    protected XMLElementLinkSegmentTypes linksegmenttypes;
+    protected String defaultstartoffset;
 
     /**
-     * 
-     * 							Link segment types define the different types of
-     * 							link segment properties that can be attributed to links. Note
-     * 							that it is allowed not to define this element. In that case all
-     * 							link(segments) are assumed to be of the same default
-     * 							link segment type.
-     * 						
+     * Gets the value of the defaultstartoffset property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementLinkSegmentTypes }
+     *     {@link String }
      *     
      */
-    public XMLElementLinkSegmentTypes getLinksegmenttypes() {
-        return linksegmenttypes;
+    public String getDefaultstartoffset() {
+        return defaultstartoffset;
     }
 
     /**
-     * Sets the value of the linksegmenttypes property.
+     * Sets the value of the defaultstartoffset property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementLinkSegmentTypes }
+     *     {@link String }
      *     
      */
-    public void setLinksegmenttypes(XMLElementLinkSegmentTypes value) {
-        this.linksegmenttypes = value;
+    public void setDefaultstartoffset(String value) {
+        this.defaultstartoffset = value;
     }
 
 }

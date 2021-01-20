@@ -17,11 +17,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- *        Mode specific attributes associated with
- *        the link segment type are the maximum and critical speed.
- *        If a mode is not defined on the link segment type it is
- *        assumed the mode is not allowed on the link segment.
- *      
+ * 				Mode specific attributes associated with
+ * 				the link segment type are the maximum and critical speed.
+ * 				If a mode is not defined on the link segment type it is
+ * 				assumed the mode is not allowed on the link segment.
+ * 			
  * 
  * <p>Java class for accessmode complex type.
  * 

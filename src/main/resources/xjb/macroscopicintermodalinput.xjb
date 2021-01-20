@@ -1,0 +1,47 @@
+<jaxb:bindings version="2.1"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+		node="//xs:element[@name = 'macroscopicintermodal']">
+		<jaxb:class name="XMLElementMacroscopicIntermodal" />
+	</jaxb:bindings>
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+		node="//xs:element[@name = 'transferconnectoid']">
+		<jaxb:class name="XMLElementTransferConnectoid" />
+	</jaxb:bindings>
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+		node="//xs:element[@name = 'transfergroup']">
+		<jaxb:class name="XMLElementTransferGroup" />
+	</jaxb:bindings>
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+		node="//xs:element[@name = 'transferzone']">
+		<jaxb:class name="XMLElementTransferZone" />
+	</jaxb:bindings>		
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+		node="//xs:element[@name = 'transferzoneaccess']">
+		<jaxb:class name="XMLElementTransferZoneAccess" />
+	</jaxb:bindings>	
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+		node="//xs:element[@name = 'transferzonegroups']">
+		<jaxb:class name="XMLElementTransferZoneGroups" />
+	</jaxb:bindings>	
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+		node="//xs:element[@name = 'transferzones']">
+		<jaxb:class name="XMLElementTransferZones" />
+	</jaxb:bindings>	
+	
+</jaxb:bindings>

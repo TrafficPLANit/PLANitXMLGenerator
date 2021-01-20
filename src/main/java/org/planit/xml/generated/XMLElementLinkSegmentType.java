@@ -20,8 +20,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- *        a single link segment type with macroscopic model mode specific properties
- *      
+ * 				a single link segment type with macroscopic model mode specific
+ * 				properties
+ * 			
  * 
  * <p>Java class for linksegmenttype element declaration.
  * 
@@ -106,9 +107,9 @@ public class XMLElementLinkSegmentType {
 
     /**
      * 
-     *              When not present, the default maximum density per lane will be
-     *              applied
-     *            
+     * 							When not present, the default maximum density per lane will be
+     * 							applied
+     * 						
      * 
      * @return
      *     possible object is
@@ -133,9 +134,9 @@ public class XMLElementLinkSegmentType {
 
     /**
      * 
-     *              When not present, the default capacity per
-     *              lane will be applied
-     *            
+     * 							When not present, the default capacity per
+     * 							lane will be applied
+     * 						
      * 
      * @return
      *     possible object is

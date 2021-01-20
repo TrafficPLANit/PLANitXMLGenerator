@@ -4,11 +4,6 @@
 
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopiczoninginput.xsd"
-		node="//xs:element[@name='centroid']">
-		<jaxb:class name="XMLElementCentroid" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../xsd/macroscopiczoninginput.xsd"
 		node="//xs:element[@name='zones']">
 		<jaxb:class name="XMLElementZones" />
 	</jaxb:bindings>

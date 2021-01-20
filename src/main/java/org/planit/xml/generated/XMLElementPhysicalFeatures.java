@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- *         Physical features of a mode.        
- *       
+ * 				Physical features of a mode.
+ * 			
  * 
  * <p>Java class for physicalfeatures element declaration.
  * 

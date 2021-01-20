@@ -20,9 +20,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- *         The physical infrastructure consists of nodes and
- *         links
- *       
+ * 				The physical infrastructure consists of nodes and
+ * 				links
+ * 			
  * 
  * <p>Java class for infrastructurelayers element declaration.
  * 
@@ -59,9 +59,10 @@ public class XMLElementInfrastructureLayers {
 
     /**
      * 
-     * 	            each network consists of at least one infrastructure layer containing network elements
-     * 	            such as nodes, links, etc.
-     * 	          Gets the value of the layer property.
+     * 							each network consists of at least one infrastructure layer containing
+     * 							network elements
+     * 							such as nodes, links, etc.
+     * 						Gets the value of the layer property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
@@ -91,9 +92,9 @@ public class XMLElementInfrastructureLayers {
 
     /**
      * 
-     *             Spatial reference system chosen for
-     *             infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
-     *           
+     * 						Spatial reference system chosen for
+     * 						infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
+     * 					
      * 
      * @return
      *     possible object is

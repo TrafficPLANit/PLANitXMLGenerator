@@ -14,32 +14,34 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import net.opengis.gml.PolygonType;
 
 
 /**
  * 
- * 				The physical infrastructure consists of nodes and
- * 				links
+ * 				A transfer zone is a geographic representation of a location where intermodal transfers are facilitated.
+ * 				It is akin to a regular origin/destination zone, albeit now allowing for a transfer between modes within a route
+ * 				rather then ending or commencing one 
  * 			
  * 
- * <p>Java class for layer element declaration.
+ * <p>Java class for transferzone element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;element name="layer"&gt;
+ * &lt;element name="transferzone"&gt;
  *   &lt;complexType&gt;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element ref="{}layerconfiguration"/&gt;
- *           &lt;element ref="{}nodes"/&gt;
- *           &lt;element ref="{}links"/&gt;
+ *           &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *           &lt;element ref="{}centroid"/&gt;
+ *           &lt;element ref="{http://www.opengis.net/gml}Polygon" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute ref="{}srsname"/&gt;
- *         &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="type" type="{}transferzonetype" /&gt;
+ *         &lt;attribute name="tzarefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -50,98 +52,104 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "layerconfiguration",
-    "nodes",
-    "links"
+    "name",
+    "centroid",
+    "polygon"
 })
-@XmlRootElement(name = "layer")
-public class XMLElementInfrastructureLayer {
+@XmlRootElement(name = "transferzone")
+public class XMLElementTransferZone {
 
+    protected String name;
     @XmlElement(required = true)
-    protected Layerconfiguration layerconfiguration;
-    @XmlElement(required = true)
-    protected XMLElementNodes nodes;
-    @XmlElement(required = true)
-    protected XMLElementLinks links;
+    protected XMLElementCentroid centroid;
+    @XmlElement(name = "Polygon", namespace = "http://www.opengis.net/gml")
+    protected PolygonType polygon;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
     protected String externalid;
-    @XmlAttribute(name = "srsname")
-    protected String srsname;
-    @XmlAttribute(name = "modes")
-    protected String modes;
+    @XmlAttribute(name = "type")
+    protected Transferzonetype type;
+    @XmlAttribute(name = "tzarefs", required = true)
+    protected String tzarefs;
 
     /**
-     * Gets the value of the layerconfiguration property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
-     *     {@link Layerconfiguration }
+     *     {@link String }
      *     
      */
-    public Layerconfiguration getLayerconfiguration() {
-        return layerconfiguration;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the layerconfiguration property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Layerconfiguration }
+     *     {@link String }
      *     
      */
-    public void setLayerconfiguration(Layerconfiguration value) {
-        this.layerconfiguration = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
     /**
-     * Gets the value of the nodes property.
+     * 
+     * 							each transfer zone has a centroid to allow modes to enter via one mode/network layer, pass through
+     * 							the centroid, and exit the zone via another mode/network layer
+     * 						
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementNodes }
+     *     {@link XMLElementCentroid }
      *     
      */
-    public XMLElementNodes getNodes() {
-        return nodes;
+    public XMLElementCentroid getCentroid() {
+        return centroid;
     }
 
     /**
-     * Sets the value of the nodes property.
+     * Sets the value of the centroid property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementNodes }
+     *     {@link XMLElementCentroid }
      *     
      */
-    public void setNodes(XMLElementNodes value) {
-        this.nodes = value;
+    public void setCentroid(XMLElementCentroid value) {
+        this.centroid = value;
     }
 
     /**
-     * Gets the value of the links property.
+     * 
+     * 							Each transfer zone can additional define a geographical area that it represents (e.g., train platform), but
+     * 							this is entirely optional. Alternatively it can also represent simply a stop pole (which can be located via
+     * 							the centroid only) 
+     * 						
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementLinks }
+     *     {@link PolygonType }
      *     
      */
-    public XMLElementLinks getLinks() {
-        return links;
+    public PolygonType getPolygon() {
+        return polygon;
     }
 
     /**
-     * Sets the value of the links property.
+     * Sets the value of the polygon property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementLinks }
+     *     {@link PolygonType }
      *     
      */
-    public void setLinks(XMLElementLinks value) {
-        this.links = value;
+    public void setPolygon(PolygonType value) {
+        this.polygon = value;
     }
 
     /**
@@ -193,58 +201,51 @@ public class XMLElementInfrastructureLayer {
     }
 
     /**
+     * Gets the value of the type property.
      * 
-     * 						Spatial reference system chosen for
-     * 						infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
-     * 					
+     * @return
+     *     possible object is
+     *     {@link Transferzonetype }
+     *     
+     */
+    public Transferzonetype getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Transferzonetype }
+     *     
+     */
+    public void setType(Transferzonetype value) {
+        this.type = value;
+    }
+
+    /**
+     * Gets the value of the tzarefs property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSrsname() {
-        if (srsname == null) {
-            return "EPSG:4326";
-        } else {
-            return srsname;
-        }
+    public String getTzarefs() {
+        return tzarefs;
     }
 
     /**
-     * Sets the value of the srsname property.
+     * Sets the value of the tzarefs property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSrsname(String value) {
-        this.srsname = value;
-    }
-
-    /**
-     * Gets the value of the modes property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getModes() {
-        return modes;
-    }
-
-    /**
-     * Sets the value of the modes property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setModes(String value) {
-        this.modes = value;
+    public void setTzarefs(String value) {
+        this.tzarefs = value;
     }
 
 }

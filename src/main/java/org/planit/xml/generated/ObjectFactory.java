@@ -65,6 +65,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Variant }
+     * 
+     */
+    public Variant createVariant() {
+        return new Variant();
+    }
+
+    /**
      * Create an instance of {@link XMLElementZones }
      * 
      */
@@ -158,6 +166,14 @@ public class ObjectFactory {
      */
     public XMLElementOdCellByCellMatrix.O createXMLElementOdCellByCellMatrixO() {
         return new XMLElementOdCellByCellMatrix.O();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementCentroid }
+     * 
+     */
+    public XMLElementCentroid createXMLElementCentroid() {
+        return new XMLElementCentroid();
     }
 
     /**
@@ -265,14 +281,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementCentroid }
-     * 
-     */
-    public XMLElementCentroid createXMLElementCentroid() {
-        return new XMLElementCentroid();
-    }
-
-    /**
      * Create an instance of {@link XMLElementConnectoids }
      * 
      */
@@ -302,6 +310,62 @@ public class ObjectFactory {
      */
     public XMLElementPLANit createXMLElementPLANit() {
         return new XMLElementPLANit();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferZone }
+     * 
+     */
+    public XMLElementTransferZone createXMLElementTransferZone() {
+        return new XMLElementTransferZone();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferZones }
+     * 
+     */
+    public XMLElementTransferZones createXMLElementTransferZones() {
+        return new XMLElementTransferZones();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferZoneAccess }
+     * 
+     */
+    public XMLElementTransferZoneAccess createXMLElementTransferZoneAccess() {
+        return new XMLElementTransferZoneAccess();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferConnectoid }
+     * 
+     */
+    public XMLElementTransferConnectoid createXMLElementTransferConnectoid() {
+        return new XMLElementTransferConnectoid();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferZoneGroups }
+     * 
+     */
+    public XMLElementTransferZoneGroups createXMLElementTransferZoneGroups() {
+        return new XMLElementTransferZoneGroups();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferGroup }
+     * 
+     */
+    public XMLElementTransferGroup createXMLElementTransferGroup() {
+        return new XMLElementTransferGroup();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementMacroscopicIntermodal }
+     * 
+     */
+    public XMLElementMacroscopicIntermodal createXMLElementMacroscopicIntermodal() {
+        return new XMLElementMacroscopicIntermodal();
     }
 
     /**
@@ -366,6 +430,86 @@ public class ObjectFactory {
      */
     public XMLElementColumn createXMLElementColumn() {
         return new XMLElementColumn();
+    }
+
+    /**
+     * Create an instance of {@link Legs }
+     * 
+     */
+    public Legs createLegs() {
+        return new Legs();
+    }
+
+    /**
+     * Create an instance of {@link Leg }
+     * 
+     */
+    public Leg createLeg() {
+        return new Leg();
+    }
+
+    /**
+     * Create an instance of {@link Services }
+     * 
+     */
+    public Services createServices() {
+        return new Services();
+    }
+
+    /**
+     * Create an instance of {@link Service }
+     * 
+     */
+    public Service createService() {
+        return new Service();
+    }
+
+    /**
+     * Create an instance of {@link Variants }
+     * 
+     */
+    public Variants createVariants() {
+        return new Variants();
+    }
+
+    /**
+     * Create an instance of {@link Variant.Frequency }
+     * 
+     */
+    public Variant.Frequency createVariantFrequency() {
+        return new Variant.Frequency();
+    }
+
+    /**
+     * Create an instance of {@link Schedule }
+     * 
+     */
+    public Schedule createSchedule() {
+        return new Schedule();
+    }
+
+    /**
+     * Create an instance of {@link Departures }
+     * 
+     */
+    public Departures createDepartures() {
+        return new Departures();
+    }
+
+    /**
+     * Create an instance of {@link Reltimings }
+     * 
+     */
+    public Reltimings createReltimings() {
+        return new Reltimings();
+    }
+
+    /**
+     * Create an instance of {@link Routedservices }
+     * 
+     */
+    public Routedservices createRoutedservices() {
+        return new Routedservices();
     }
 
     /**

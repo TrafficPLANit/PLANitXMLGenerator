@@ -8,8 +8,11 @@
 
 package org.planit.xml.generated;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{}linksegmenttypes" minOccurs="0"/&gt;
+ *         &lt;element ref="{}variant" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -35,41 +38,43 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "linksegmenttypes"
+    "variant"
 })
-@XmlRootElement(name = "layerconfiguration")
-public class Layerconfiguration {
+@XmlRootElement(name = "variants")
+public class Variants {
 
-    protected XMLElementLinkSegmentTypes linksegmenttypes;
-
-    /**
-     * 
-     * 							Link segment types define the different types of
-     * 							link segment properties that can be attributed to links. Note
-     * 							that it is allowed not to define this element. In that case all
-     * 							link(segments) are assumed to be of the same default
-     * 							link segment type.
-     * 						
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementLinkSegmentTypes }
-     *     
-     */
-    public XMLElementLinkSegmentTypes getLinksegmenttypes() {
-        return linksegmenttypes;
-    }
+    @XmlElement(required = true)
+    protected List<Variant> variant;
 
     /**
-     * Sets the value of the linksegmenttypes property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementLinkSegmentTypes }
-     *     
+     * 							An instance of a routed service variant
+     * 						Gets the value of the variant property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the variant property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getVariant().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Variant }
+     * 
+     * 
      */
-    public void setLinksegmenttypes(XMLElementLinkSegmentTypes value) {
-        this.linksegmenttypes = value;
+    public List<Variant> getVariant() {
+        if (variant == null) {
+            variant = new ArrayList<Variant>();
+        }
+        return this.variant;
     }
 
 }
