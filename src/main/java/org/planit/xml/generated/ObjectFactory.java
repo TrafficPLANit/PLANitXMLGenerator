@@ -65,11 +65,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Variant }
+     * Create an instance of {@link Departures }
      * 
      */
-    public Variant createVariant() {
-        return new Variant();
+    public Departures createDepartures() {
+        return new Departures();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRelativeTimings }
+     * 
+     */
+    public XMLElementRelativeTimings createXMLElementRelativeTimings() {
+        return new XMLElementRelativeTimings();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRoutedVariant }
+     * 
+     */
+    public XMLElementRoutedVariant createXMLElementRoutedVariant() {
+        return new XMLElementRoutedVariant();
     }
 
     /**
@@ -217,19 +233,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Layerconfiguration }
+     * Create an instance of {@link XMLElementLayerConfiguration }
      * 
      */
-    public Layerconfiguration createLayerconfiguration() {
-        return new Layerconfiguration();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementLinkSegmentTypes }
-     * 
-     */
-    public XMLElementLinkSegmentTypes createXMLElementLinkSegmentTypes() {
-        return new XMLElementLinkSegmentTypes();
+    public XMLElementLayerConfiguration createXMLElementLayerConfiguration() {
+        return new XMLElementLayerConfiguration();
     }
 
     /**
@@ -246,6 +254,14 @@ public class ObjectFactory {
      */
     public XMLElementInfrastructureLayers createXMLElementInfrastructureLayers() {
         return new XMLElementInfrastructureLayers();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementLinkSegmentTypes }
+     * 
+     */
+    public XMLElementLinkSegmentTypes createXMLElementLinkSegmentTypes() {
+        return new XMLElementLinkSegmentTypes();
     }
 
     /**
@@ -433,83 +449,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Legs }
+     * Create an instance of {@link XMLElementLegs }
      * 
      */
-    public Legs createLegs() {
-        return new Legs();
+    public XMLElementLegs createXMLElementLegs() {
+        return new XMLElementLegs();
     }
 
     /**
-     * Create an instance of {@link Leg }
+     * Create an instance of {@link XMLElementServices }
      * 
      */
-    public Leg createLeg() {
-        return new Leg();
+    public XMLElementServices createXMLElementServices() {
+        return new XMLElementServices();
     }
 
     /**
-     * Create an instance of {@link Services }
+     * Create an instance of {@link XMLElementService }
      * 
      */
-    public Services createServices() {
-        return new Services();
+    public XMLElementService createXMLElementService() {
+        return new XMLElementService();
     }
 
     /**
-     * Create an instance of {@link Service }
+     * Create an instance of {@link XMLElementRoutedVariants }
      * 
      */
-    public Service createService() {
-        return new Service();
+    public XMLElementRoutedVariants createXMLElementRoutedVariants() {
+        return new XMLElementRoutedVariants();
     }
 
     /**
-     * Create an instance of {@link Variants }
+     * Create an instance of {@link Departures.Departure }
      * 
      */
-    public Variants createVariants() {
-        return new Variants();
+    public Departures.Departure createDeparturesDeparture() {
+        return new Departures.Departure();
     }
 
     /**
-     * Create an instance of {@link Variant.Frequency }
+     * Create an instance of {@link XMLElementRoutedServices }
      * 
      */
-    public Variant.Frequency createVariantFrequency() {
-        return new Variant.Frequency();
-    }
-
-    /**
-     * Create an instance of {@link Schedule }
-     * 
-     */
-    public Schedule createSchedule() {
-        return new Schedule();
-    }
-
-    /**
-     * Create an instance of {@link Departures }
-     * 
-     */
-    public Departures createDepartures() {
-        return new Departures();
-    }
-
-    /**
-     * Create an instance of {@link Reltimings }
-     * 
-     */
-    public Reltimings createReltimings() {
-        return new Reltimings();
-    }
-
-    /**
-     * Create an instance of {@link Routedservices }
-     * 
-     */
-    public Routedservices createRoutedservices() {
-        return new Routedservices();
+    public XMLElementRoutedServices createXMLElementRoutedServices() {
+        return new XMLElementRoutedServices();
     }
 
     /**
@@ -542,6 +526,38 @@ public class ObjectFactory {
      */
     public Accessmode createAccessmode() {
         return new Accessmode();
+    }
+
+    /**
+     * Create an instance of {@link Legdefinition }
+     * 
+     */
+    public Legdefinition createLegdefinition() {
+        return new Legdefinition();
+    }
+
+    /**
+     * Create an instance of {@link Scheduledefinition }
+     * 
+     */
+    public Scheduledefinition createScheduledefinition() {
+        return new Scheduledefinition();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRelativeTimings.Leg }
+     * 
+     */
+    public XMLElementRelativeTimings.Leg createXMLElementRelativeTimingsLeg() {
+        return new XMLElementRelativeTimings.Leg();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRoutedVariant.Frequency }
+     * 
+     */
+    public XMLElementRoutedVariant.Frequency createXMLElementRoutedVariantFrequency() {
+        return new XMLElementRoutedVariant.Frequency();
     }
 
     /**
@@ -916,6 +932,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "stopcriterion")
     public JAXBElement<String> createStopcriterion(String value) {
         return new JAXBElement<String>(_Stopcriterion_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRoutedVariant.XMLElementSchedule }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementRoutedVariant.XMLElementSchedule }
+     */
+    @XmlElementDecl(namespace = "", name = "schedule", scope = XMLElementRoutedVariant.class)
+    public XMLElementRoutedVariant.XMLElementSchedule createXMLElementRoutedVariantXMLElementSchedule(Scheduledefinition value) {
+        return new XMLElementRoutedVariant.XMLElementSchedule(value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementLegs.XMLElementLeg }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementLegs.XMLElementLeg }
+     */
+    @XmlElementDecl(namespace = "", name = "leg", scope = XMLElementLegs.class)
+    public XMLElementLegs.XMLElementLeg createXMLElementLegsXMLElementLeg(Legdefinition value) {
+        return new XMLElementLegs.XMLElementLeg(value);
     }
 
 }

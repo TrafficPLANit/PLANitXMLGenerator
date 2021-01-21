@@ -11,17 +11,20 @@ package org.planit.xml.generated;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				Contains the schedule for a routed service variant
+ * 			
+ * 
+ * <p>Java class for scheduledefinition complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
+ * &lt;complexType name="scheduledefinition"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
@@ -36,22 +39,21 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
+@XmlType(name = "scheduledefinition", propOrder = {
     "departures",
     "reltimings"
 })
-@XmlRootElement(name = "schedule")
-public class Schedule {
+public class Scheduledefinition {
 
     @XmlElement(required = true)
     protected Departures departures;
     @XmlElement(required = true)
-    protected Reltimings reltimings;
+    protected XMLElementRelativeTimings reltimings;
 
     /**
      * 
-     * 							Contains all absolute departure times for this schedule
-     * 						
+     * 						Contains all absolute departure times for this schedule
+     * 					
      * 
      * @return
      *     possible object is
@@ -76,16 +78,16 @@ public class Schedule {
 
     /**
      * 
-     * 							Contains all leg travel times which combined with the absolute departure times can be used
-     * 							to construct the (idealised) travel time of the service variant 
-     * 						
+     * 						Contains all leg travel times which combined with the absolute departure times can be used
+     * 						to construct the (idealised) travel time of the service variant 
+     * 					
      * 
      * @return
      *     possible object is
-     *     {@link Reltimings }
+     *     {@link XMLElementRelativeTimings }
      *     
      */
-    public Reltimings getReltimings() {
+    public XMLElementRelativeTimings getReltimings() {
         return reltimings;
     }
 
@@ -94,10 +96,10 @@ public class Schedule {
      * 
      * @param value
      *     allowed object is
-     *     {@link Reltimings }
+     *     {@link XMLElementRelativeTimings }
      *     
      */
-    public void setReltimings(Reltimings value) {
+    public void setReltimings(XMLElementRelativeTimings value) {
         this.reltimings = value;
     }
 

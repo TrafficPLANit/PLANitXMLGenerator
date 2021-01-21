@@ -8,40 +8,49 @@
 
 package org.planit.xml.generated;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.namespace.QName;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				Instance of a routed service defining the route, schedule/frequency and other related attributes
+ * 			
+ * 
+ * <p>Java class for variant element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;choice&gt;
- *         &lt;element name="schedule" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="frequency"&gt;
- *           &lt;complexType&gt;
- *             &lt;complexContent&gt;
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                 &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
- *               &lt;/restriction&gt;
- *             &lt;/complexContent&gt;
- *           &lt;/complexType&gt;
- *         &lt;/element&gt;
- *       &lt;/choice&gt;
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="variant"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;choice&gt;
+ *           &lt;element name="schedule" type="{}scheduledefinition"/&gt;
+ *           &lt;element name="frequency"&gt;
+ *             &lt;complexType&gt;
+ *               &lt;complexContent&gt;
+ *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                   &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
+ *                 &lt;/restriction&gt;
+ *               &lt;/complexContent&gt;
+ *             &lt;/complexType&gt;
+ *           &lt;/element&gt;
+ *         &lt;/choice&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -52,10 +61,11 @@ import javax.xml.bind.annotation.XmlType;
     "frequency"
 })
 @XmlRootElement(name = "variant")
-public class Variant {
+public class XMLElementRoutedVariant {
 
-    protected String schedule;
-    protected Variant.Frequency frequency;
+    @XmlElementRef(name = "schedule", type = XMLElementRoutedVariant.XMLElementSchedule.class, required = false)
+    protected XMLElementRoutedVariant.XMLElementSchedule schedule;
+    protected XMLElementRoutedVariant.Frequency frequency;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -68,10 +78,10 @@ public class Variant {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLElementRoutedVariant.XMLElementSchedule }
      *     
      */
-    public String getSchedule() {
+    public XMLElementRoutedVariant.XMLElementSchedule getSchedule() {
         return schedule;
     }
 
@@ -80,10 +90,10 @@ public class Variant {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLElementRoutedVariant.XMLElementSchedule }
      *     
      */
-    public void setSchedule(String value) {
+    public void setSchedule(XMLElementRoutedVariant.XMLElementSchedule value) {
         this.schedule = value;
     }
 
@@ -92,10 +102,10 @@ public class Variant {
      * 
      * @return
      *     possible object is
-     *     {@link Variant.Frequency }
+     *     {@link XMLElementRoutedVariant.Frequency }
      *     
      */
-    public Variant.Frequency getFrequency() {
+    public XMLElementRoutedVariant.Frequency getFrequency() {
         return frequency;
     }
 
@@ -104,10 +114,10 @@ public class Variant {
      * 
      * @param value
      *     allowed object is
-     *     {@link Variant.Frequency }
+     *     {@link XMLElementRoutedVariant.Frequency }
      *     
      */
-    public void setFrequency(Variant.Frequency value) {
+    public void setFrequency(XMLElementRoutedVariant.Frequency value) {
         this.frequency = value;
     }
 
@@ -234,6 +244,22 @@ public class Variant {
          */
         public void setUnit(TimeUnit value) {
             this.unit = value;
+        }
+
+    }
+
+    public static class XMLElementSchedule
+        extends JAXBElement<Scheduledefinition>
+    {
+
+        protected final static QName NAME = new QName("", "schedule");
+
+        public XMLElementSchedule(Scheduledefinition value) {
+            super(NAME, ((Class) Scheduledefinition.class), XMLElementRoutedVariant.class, value);
+        }
+
+        public XMLElementSchedule() {
+            super(NAME, ((Class) Scheduledefinition.class), XMLElementRoutedVariant.class, null);
         }
 
     }

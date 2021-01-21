@@ -11,17 +11,21 @@ package org.planit.xml.generated;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				A leg definition represents a (partial) route for a service in between two locations of interest, e.g., public transport stops 
+ * 				for example
+ * 			
+ * 
+ * <p>Java class for legdefinition complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
+ * &lt;complexType name="legdefinition"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -39,9 +43,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "leg")
-public class Leg {
+@XmlType(name = "legdefinition")
+public class Legdefinition {
 
     @XmlAttribute(name = "id", required = true)
     protected String id;

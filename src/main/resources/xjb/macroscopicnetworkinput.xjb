@@ -19,6 +19,11 @@
 	</jaxb:bindings>
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name = 'layerconfiguration']">
+		<jaxb:class name="XMLElementLayerConfiguration" />
+	</jaxb:bindings>	
+	<jaxb:bindings
+		schemaLocation="../xsd/macroscopicnetworkinput.xsd"
 		node="//xs:complexType[@name ='linkLengthType']">
 		<jaxb:class name="XMLElementLinkLengthType" />
 	</jaxb:bindings>

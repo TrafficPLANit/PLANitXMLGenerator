@@ -58,7 +58,7 @@ import javax.xml.bind.annotation.XmlType;
 public class XMLElementInfrastructureLayer {
 
     @XmlElement(required = true)
-    protected Layerconfiguration layerconfiguration;
+    protected XMLElementLayerConfiguration layerconfiguration;
     @XmlElement(required = true)
     protected XMLElementNodes nodes;
     @XmlElement(required = true)
@@ -77,10 +77,10 @@ public class XMLElementInfrastructureLayer {
      * 
      * @return
      *     possible object is
-     *     {@link Layerconfiguration }
+     *     {@link XMLElementLayerConfiguration }
      *     
      */
-    public Layerconfiguration getLayerconfiguration() {
+    public XMLElementLayerConfiguration getLayerconfiguration() {
         return layerconfiguration;
     }
 
@@ -89,10 +89,10 @@ public class XMLElementInfrastructureLayer {
      * 
      * @param value
      *     allowed object is
-     *     {@link Layerconfiguration }
+     *     {@link XMLElementLayerConfiguration }
      *     
      */
-    public void setLayerconfiguration(Layerconfiguration value) {
+    public void setLayerconfiguration(XMLElementLayerConfiguration value) {
         this.layerconfiguration = value;
     }
 

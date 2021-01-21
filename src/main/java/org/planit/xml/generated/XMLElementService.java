@@ -19,25 +19,31 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				Definition for a single routed service
+ * 			
+ * 
+ * <p>Java class for service element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="servicenr" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="circular" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
- *         &lt;element ref="{}variants" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="service"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element name="servicenr" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *           &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *           &lt;element name="circular" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
+ *           &lt;element ref="{}variants" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -50,7 +56,7 @@ import javax.xml.bind.annotation.XmlType;
     "variants"
 })
 @XmlRootElement(name = "service")
-public class Service {
+public class XMLElementService {
 
     @XmlElement(required = true)
     protected String servicenr;
@@ -59,7 +65,7 @@ public class Service {
     @XmlElement(defaultValue = "false")
     protected Boolean circular;
     @XmlElement(required = true)
-    protected List<Variants> variants;
+    protected List<XMLElementRoutedVariants> variants;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -157,13 +163,13 @@ public class Service {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Variants }
+     * {@link XMLElementRoutedVariants }
      * 
      * 
      */
-    public List<Variants> getVariants() {
+    public List<XMLElementRoutedVariants> getVariants() {
         if (variants == null) {
-            variants = new ArrayList<Variants>();
+            variants = new ArrayList<XMLElementRoutedVariants>();
         }
         return this.variants;
     }

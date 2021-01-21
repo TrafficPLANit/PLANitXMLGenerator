@@ -19,23 +19,29 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				all routed services for a particular mode
+ * 			
+ * 
+ * <p>Java class for services element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}service" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="moderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="services"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element ref="{}service" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="moderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -45,10 +51,10 @@ import javax.xml.bind.annotation.XmlType;
     "service"
 })
 @XmlRootElement(name = "services")
-public class Services {
+public class XMLElementServices {
 
     @XmlElement(required = true)
-    protected List<Service> service;
+    protected List<XMLElementService> service;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -76,13 +82,13 @@ public class Services {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Service }
+     * {@link XMLElementService }
      * 
      * 
      */
-    public List<Service> getService() {
+    public List<XMLElementService> getService() {
         if (service == null) {
-            service = new ArrayList<Service>();
+            service = new ArrayList<XMLElementService>();
         }
         return this.service;
     }

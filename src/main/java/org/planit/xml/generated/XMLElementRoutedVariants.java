@@ -18,20 +18,26 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				Contains all unique service variants for its parent service. Outlining their route and schedule/frequency pattern
+ * 			
+ * 
+ * <p>Java class for variants element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}variant" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="variants"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element ref="{}variant" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -41,10 +47,10 @@ import javax.xml.bind.annotation.XmlType;
     "variant"
 })
 @XmlRootElement(name = "variants")
-public class Variants {
+public class XMLElementRoutedVariants {
 
     @XmlElement(required = true)
-    protected List<Variant> variant;
+    protected List<XMLElementRoutedVariant> variant;
 
     /**
      * 
@@ -66,13 +72,13 @@ public class Variants {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Variant }
+     * {@link XMLElementRoutedVariant }
      * 
      * 
      */
-    public List<Variant> getVariant() {
+    public List<XMLElementRoutedVariant> getVariant() {
         if (variant == null) {
-            variant = new ArrayList<Variant>();
+            variant = new ArrayList<XMLElementRoutedVariant>();
         }
         return this.variant;
     }

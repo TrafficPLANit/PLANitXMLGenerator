@@ -15,20 +15,26 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				Configuration, i.e., meta data of a network layer
+ * 			
+ * 
+ * <p>Java class for layerconfiguration element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}linksegmenttypes" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="layerconfiguration"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element ref="{}linksegmenttypes" minOccurs="0"/&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -38,7 +44,7 @@ import javax.xml.bind.annotation.XmlType;
     "linksegmenttypes"
 })
 @XmlRootElement(name = "layerconfiguration")
-public class Layerconfiguration {
+public class XMLElementLayerConfiguration {
 
     protected XMLElementLinkSegmentTypes linksegmenttypes;
 

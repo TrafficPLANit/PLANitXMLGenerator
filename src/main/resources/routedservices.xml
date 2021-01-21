@@ -31,10 +31,10 @@
 					<!-- choice between a schedule and frequency-->
 					<schedule>
 						<departures>
-							<departure id="xmlid" externalid="someid" vehtyperef="vehicletyperefid">													
+							<departure id="xmlid" externalid="someid" >													
 								<time>07:00:00</time>
 							</departure>
-							<departure id="xmlid2" externalid="someid" vehtyperef="vehicletyperefid">													
+							<departure id="xmlid2" externalid="someid" >													
 								<time>07:10:00</time>
 							</departure>							
 						</departures>

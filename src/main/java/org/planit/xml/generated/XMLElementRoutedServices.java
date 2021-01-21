@@ -18,21 +18,28 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 			Root element of routed services, these can be for either microscopic or macroscopic networks. A routed service
+ * 			has a predefined route that is being executed by a mode at specific time instances (or frequencies).
+ * 		
+ * 
+ * <p>Java class for routedservices element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}legs"/&gt;
- *         &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="routedservices"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element ref="{}legs"/&gt;
+ *           &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -43,12 +50,12 @@ import javax.xml.bind.annotation.XmlType;
     "services"
 })
 @XmlRootElement(name = "routedservices")
-public class Routedservices {
+public class XMLElementRoutedServices {
 
     @XmlElement(required = true)
-    protected Legs legs;
+    protected XMLElementLegs legs;
     @XmlElement(required = true)
-    protected List<Services> services;
+    protected List<XMLElementServices> services;
 
     /**
      * 
@@ -59,10 +66,10 @@ public class Routedservices {
      * 
      * @return
      *     possible object is
-     *     {@link Legs }
+     *     {@link XMLElementLegs }
      *     
      */
-    public Legs getLegs() {
+    public XMLElementLegs getLegs() {
         return legs;
     }
 
@@ -71,10 +78,10 @@ public class Routedservices {
      * 
      * @param value
      *     allowed object is
-     *     {@link Legs }
+     *     {@link XMLElementLegs }
      *     
      */
-    public void setLegs(Legs value) {
+    public void setLegs(XMLElementLegs value) {
         this.legs = value;
     }
 
@@ -99,13 +106,13 @@ public class Routedservices {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Services }
+     * {@link XMLElementServices }
      * 
      * 
      */
-    public List<Services> getServices() {
+    public List<XMLElementServices> getServices() {
         if (services == null) {
-            services = new ArrayList<Services>();
+            services = new ArrayList<XMLElementServices>();
         }
         return this.services;
     }

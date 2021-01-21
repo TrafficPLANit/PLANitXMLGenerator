@@ -10,28 +10,36 @@ package org.planit.xml.generated;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.namespace.QName;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				contains the legs for all routed service. Legs may overlap.
+ * 			
+ * 
+ * <p>Java class for legs element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}leg" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="legs"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element name="leg" type="{}legdefinition" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -41,16 +49,13 @@ import javax.xml.bind.annotation.XmlType;
     "leg"
 })
 @XmlRootElement(name = "legs")
-public class Legs {
+public class XMLElementLegs {
 
-    @XmlElement(required = true)
-    protected List<Leg> leg;
+    @XmlElementRef(name = "leg", type = XMLElementLegs.XMLElementLeg.class)
+    protected List<XMLElementLegs.XMLElementLeg> leg;
 
     /**
-     * 
-     * 							A leg indicates a (partial) route for a service in between two locations of interest, e.g., public transport stops 
-     * 							for example
-     * 						Gets the value of the leg property.
+     * Gets the value of the leg property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
@@ -67,15 +72,31 @@ public class Legs {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Leg }
+     * {@link XMLElementLegs.XMLElementLeg }
      * 
      * 
      */
-    public List<Leg> getLeg() {
+    public List<XMLElementLegs.XMLElementLeg> getLeg() {
         if (leg == null) {
-            leg = new ArrayList<Leg>();
+            leg = new ArrayList<XMLElementLegs.XMLElementLeg>();
         }
         return this.leg;
+    }
+
+    public static class XMLElementLeg
+        extends JAXBElement<Legdefinition>
+    {
+
+        protected final static QName NAME = new QName("", "leg");
+
+        public XMLElementLeg(Legdefinition value) {
+            super(NAME, ((Class) Legdefinition.class), XMLElementLegs.class, value);
+        }
+
+        public XMLElementLeg() {
+            super(NAME, ((Class) Legdefinition.class), XMLElementLegs.class, null);
+        }
+
     }
 
 }

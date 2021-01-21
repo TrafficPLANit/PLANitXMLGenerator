@@ -1,0 +1,59 @@
+<jaxb:bindings version="2.1"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name='leg' and @type = 'legdefinition']">
+			<jaxb:class name="XMLElementLeg" />
+	</jaxb:bindings>
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name = 'legs']">
+		<jaxb:class name="XMLElementLegs" />
+	</jaxb:bindings>
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name = 'reltimings']">
+		<jaxb:class name="XMLElementRelativeTimings" />
+	</jaxb:bindings>			
+
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name = 'routedservices']">
+		<jaxb:class name="XMLElementRoutedServices" />
+	</jaxb:bindings>
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name='schedule' and @type = 'scheduledefinition']">
+		<jaxb:class name="XMLElementSchedule" />
+	</jaxb:bindings>	
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name = 'service']">
+		<jaxb:class name="XMLElementService" />
+	</jaxb:bindings>			
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name = 'services']">
+		<jaxb:class name="XMLElementServices" />
+	</jaxb:bindings>			
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name = 'variant']">
+		<jaxb:class name="XMLElementRoutedVariant" />
+	</jaxb:bindings>
+	
+	<jaxb:bindings
+		schemaLocation="../xsd/routedservicesinput.xsd"
+		node="//xs:element[@name = 'variants']">
+		<jaxb:class name="XMLElementRoutedVariants" />
+	</jaxb:bindings>							
+	
+</jaxb:bindings>
