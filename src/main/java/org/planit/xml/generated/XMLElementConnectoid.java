@@ -8,178 +8,21 @@
 
 package org.planit.xml.generated;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.JAXBElement;
+import javax.xml.namespace.QName;
 
+public class XMLElementConnectoid
+    extends JAXBElement<Odconnectoid>
+{
 
-/**
- * 
- * 				Each connectoid represents a potential point of exit/entry from/to the physical network coming from the zone/centroid. There
- * 				must be at minimum one connectoid to be able to leave/enter the zone. 
- * 			
- * 
- * <p>Java class for connectoid element declaration.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;element name="connectoid"&gt;
- *   &lt;complexType&gt;
- *     &lt;complexContent&gt;
- *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *         &lt;sequence&gt;
- *           &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *           &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/&gt;
- *         &lt;/sequence&gt;
- *         &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;/restriction&gt;
- *     &lt;/complexContent&gt;
- *   &lt;/complexType&gt;
- * &lt;/element&gt;
- * </pre>
- * 
- * 
- */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "name",
-    "length"
-})
-@XmlRootElement(name = "connectoid")
-public class XMLElementConnectoid {
+    protected final static QName NAME = new QName("", "connectoid");
 
-    protected String name;
-    protected Float length;
-    @XmlAttribute(name = "noderef", required = true)
-    protected String noderef;
-    @XmlAttribute(name = "id", required = true)
-    protected String id;
-    @XmlAttribute(name = "externalid")
-    protected String externalid;
-
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
+    public XMLElementConnectoid(Odconnectoid value) {
+        super(NAME, ((Class) Odconnectoid.class), null, value);
     }
 
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    /**
-     * Gets the value of the length property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Float }
-     *     
-     */
-    public Float getLength() {
-        return length;
-    }
-
-    /**
-     * Sets the value of the length property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Float }
-     *     
-     */
-    public void setLength(Float value) {
-        this.length = value;
-    }
-
-    /**
-     * Gets the value of the noderef property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNoderef() {
-        return noderef;
-    }
-
-    /**
-     * Sets the value of the noderef property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNoderef(String value) {
-        this.noderef = value;
-    }
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the externalid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getExternalid() {
-        return externalid;
-    }
-
-    /**
-     * Sets the value of the externalid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setExternalid(String value) {
-        this.externalid = value;
+    public XMLElementConnectoid() {
+        super(NAME, ((Class) Odconnectoid.class), null, null);
     }
 
 }

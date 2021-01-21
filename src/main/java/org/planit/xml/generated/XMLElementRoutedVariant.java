@@ -8,14 +8,11 @@
 
 package org.planit.xml.generated;
 
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.namespace.QName;
 
 
 /**
@@ -33,7 +30,7 @@ import javax.xml.namespace.QName;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;choice&gt;
- *           &lt;element name="schedule" type="{}scheduledefinition"/&gt;
+ *           &lt;element ref="{}scheduledefinition"/&gt;
  *           &lt;element name="frequency"&gt;
  *             &lt;complexType&gt;
  *               &lt;complexContent&gt;
@@ -57,14 +54,13 @@ import javax.xml.namespace.QName;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "schedule",
+    "scheduledefinition",
     "frequency"
 })
 @XmlRootElement(name = "variant")
 public class XMLElementRoutedVariant {
 
-    @XmlElementRef(name = "schedule", type = XMLElementRoutedVariant.XMLElementSchedule.class, required = false)
-    protected XMLElementRoutedVariant.XMLElementSchedule schedule;
+    protected XMLElementSchedule scheduledefinition;
     protected XMLElementRoutedVariant.Frequency frequency;
     @XmlAttribute(name = "id", required = true)
     protected String id;
@@ -74,27 +70,29 @@ public class XMLElementRoutedVariant {
     protected String legrefs;
 
     /**
-     * Gets the value of the schedule property.
+     * 
+     * 							A scheduled variant
+     * 						
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementRoutedVariant.XMLElementSchedule }
+     *     {@link XMLElementSchedule }
      *     
      */
-    public XMLElementRoutedVariant.XMLElementSchedule getSchedule() {
-        return schedule;
+    public XMLElementSchedule getScheduledefinition() {
+        return scheduledefinition;
     }
 
     /**
-     * Sets the value of the schedule property.
+     * Sets the value of the scheduledefinition property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementRoutedVariant.XMLElementSchedule }
+     *     {@link XMLElementSchedule }
      *     
      */
-    public void setSchedule(XMLElementRoutedVariant.XMLElementSchedule value) {
-        this.schedule = value;
+    public void setScheduledefinition(XMLElementSchedule value) {
+        this.scheduledefinition = value;
     }
 
     /**
@@ -244,22 +242,6 @@ public class XMLElementRoutedVariant {
          */
         public void setUnit(TimeUnit value) {
             this.unit = value;
-        }
-
-    }
-
-    public static class XMLElementSchedule
-        extends JAXBElement<Scheduledefinition>
-    {
-
-        protected final static QName NAME = new QName("", "schedule");
-
-        public XMLElementSchedule(Scheduledefinition value) {
-            super(NAME, ((Class) Scheduledefinition.class), XMLElementRoutedVariant.class, value);
-        }
-
-        public XMLElementSchedule() {
-            super(NAME, ((Class) Scheduledefinition.class), XMLElementRoutedVariant.class, null);
         }
 
     }

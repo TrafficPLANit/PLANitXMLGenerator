@@ -17,8 +17,8 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 			Root element of the macroscopic network
- * 			infrastructure. Defines the physical road network and its properties
+ * 			root element that allows one to define intermodal transfer zones, their access and grouping to allow network layers to interact, for
+ * 			example to define public transport networks, supply chains, etc.
  * 		
  * 
  * <p>Java class for macroscopicintermodal element declaration.

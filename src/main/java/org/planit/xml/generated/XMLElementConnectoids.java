@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -51,7 +51,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "connectoids")
 public class XMLElementConnectoids {
 
-    @XmlElement(required = true)
+    @XmlElementRef(name = "connectoid", type = XMLElementConnectoid.class)
     protected List<XMLElementConnectoid> connectoid;
 
     /**

@@ -5,6 +5,26 @@
 
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
 	
+	<!-- COMPLEX TYPES -->
+	<xs:complexType name="connectoidtype">
+		<xs:sequence>
+			<xs:element name="name"  type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="length" type="xs:float" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional"/>
+		<xs:attribute name="modes" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Modes that are allowed to use this access point should be provided as a comma separated list of mode XML ids. When absent it is
+					assumed all possible modes are allowed
+				</xs:documentation>
+			</xs:annotation>							
+		</xs:attribute>								
+	</xs:complexType>
+	
+	<!-- SIMPLE TYPES -->	
+	
 	<xs:simpleType name="lengthUnit">
 		<xs:annotation>
 			<xs:documentation>
@@ -30,16 +50,6 @@
 		</xs:restriction>
 	</xs:simpleType>		
 	
-	<!-- simple PLANit attributes -->
-	<xs:attribute name="srsname" type="srsname" default="EPSG:4326">
-		<xs:annotation>
-			<xs:documentation>
-				Global definition of the spatial reference system used for all gml elements. Should comply with the srs naming conventions of such a string
-			</xs:documentation>
-		</xs:annotation>
-	</xs:attribute>	
-
-	<!-- Simple types -->
 	<xs:simpleType name="srsname">
 		<xs:annotation>
 			<xs:documentation>
@@ -48,8 +58,16 @@
 		</xs:annotation>	
 		<xs:restriction base="xs:string">
 		</xs:restriction>
-	</xs:simpleType>	
-
+	</xs:simpleType>		
+	
+	<!-- SIMPLE ATTRIBUTES-->
+	<xs:attribute name="srsname" type="srsname" default="EPSG:4326">
+		<xs:annotation>
+			<xs:documentation>
+				Global definition of the spatial reference system used for all gml elements. Should comply with the srs naming conventions of such a string
+			</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>	
 	
 	<xs:attribute name="ds" type="xs:string" default=",">
 		<xs:annotation>
@@ -66,6 +84,9 @@
 			</xs:documentation>
 		</xs:annotation> 		      					
 	</xs:attribute>	
+	
+	
+	<!-- ELEMENTS -->
 	
 	<xs:element name="centroid">
 		<xs:annotation>

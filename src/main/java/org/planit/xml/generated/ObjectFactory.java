@@ -297,38 +297,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementConnectoids }
-     * 
-     */
-    public XMLElementConnectoids createXMLElementConnectoids() {
-        return new XMLElementConnectoids();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementConnectoid }
-     * 
-     */
-    public XMLElementConnectoid createXMLElementConnectoid() {
-        return new XMLElementConnectoid();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementMacroscopicZoning }
-     * 
-     */
-    public XMLElementMacroscopicZoning createXMLElementMacroscopicZoning() {
-        return new XMLElementMacroscopicZoning();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementPLANit }
-     * 
-     */
-    public XMLElementPLANit createXMLElementPLANit() {
-        return new XMLElementPLANit();
-    }
-
-    /**
      * Create an instance of {@link XMLElementTransferZone }
      * 
      */
@@ -353,11 +321,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementTransferConnectoid }
+     * Create an instance of {@link Transferconnectoid }
      * 
      */
-    public XMLElementTransferConnectoid createXMLElementTransferConnectoid() {
-        return new XMLElementTransferConnectoid();
+    public Transferconnectoid createTransferconnectoid() {
+        return new Transferconnectoid();
     }
 
     /**
@@ -382,6 +350,38 @@ public class ObjectFactory {
      */
     public XMLElementMacroscopicIntermodal createXMLElementMacroscopicIntermodal() {
         return new XMLElementMacroscopicIntermodal();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementConnectoids }
+     * 
+     */
+    public XMLElementConnectoids createXMLElementConnectoids() {
+        return new XMLElementConnectoids();
+    }
+
+    /**
+     * Create an instance of {@link Odconnectoid }
+     * 
+     */
+    public Odconnectoid createOdconnectoid() {
+        return new Odconnectoid();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementMacroscopicZoning }
+     * 
+     */
+    public XMLElementMacroscopicZoning createXMLElementMacroscopicZoning() {
+        return new XMLElementMacroscopicZoning();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementPLANit }
+     * 
+     */
+    public XMLElementPLANit createXMLElementPLANit() {
+        return new XMLElementPLANit();
     }
 
     /**
@@ -449,6 +449,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementLeg }
+     * 
+     */
+    public XMLElementLeg createXMLElementLeg() {
+        return new XMLElementLeg();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSchedule }
+     * 
+     */
+    public XMLElementSchedule createXMLElementSchedule() {
+        return new XMLElementSchedule();
+    }
+
+    /**
      * Create an instance of {@link XMLElementLegs }
      * 
      */
@@ -497,6 +513,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Connectoidtype }
+     * 
+     */
+    public Connectoidtype createConnectoidtype() {
+        return new Connectoidtype();
+    }
+
+    /**
      * Create an instance of {@link XMLElementUnrestrictedDuration }
      * 
      */
@@ -526,22 +550,6 @@ public class ObjectFactory {
      */
     public Accessmode createAccessmode() {
         return new Accessmode();
-    }
-
-    /**
-     * Create an instance of {@link Legdefinition }
-     * 
-     */
-    public Legdefinition createLegdefinition() {
-        return new Legdefinition();
-    }
-
-    /**
-     * Create an instance of {@link Scheduledefinition }
-     * 
-     */
-    public Scheduledefinition createScheduledefinition() {
-        return new Scheduledefinition();
     }
 
     /**
@@ -740,6 +748,32 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementTransferConnectoid }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementTransferConnectoid }
+     */
+    @XmlElementDecl(namespace = "", name = "transferconnectoid")
+    public XMLElementTransferConnectoid createXMLElementTransferConnectoid(Transferconnectoid value) {
+        return new XMLElementTransferConnectoid(value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementConnectoid }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementConnectoid }
+     */
+    @XmlElementDecl(namespace = "", name = "connectoid")
+    public XMLElementConnectoid createXMLElementConnectoid(Odconnectoid value) {
+        return new XMLElementConnectoid(value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
      * 
      * @param value
@@ -932,32 +966,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "stopcriterion")
     public JAXBElement<String> createStopcriterion(String value) {
         return new JAXBElement<String>(_Stopcriterion_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementRoutedVariant.XMLElementSchedule }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementRoutedVariant.XMLElementSchedule }
-     */
-    @XmlElementDecl(namespace = "", name = "schedule", scope = XMLElementRoutedVariant.class)
-    public XMLElementRoutedVariant.XMLElementSchedule createXMLElementRoutedVariantXMLElementSchedule(Scheduledefinition value) {
-        return new XMLElementRoutedVariant.XMLElementSchedule(value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementLegs.XMLElementLeg }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementLegs.XMLElementLeg }
-     */
-    @XmlElementDecl(namespace = "", name = "leg", scope = XMLElementLegs.class)
-    public XMLElementLegs.XMLElementLeg createXMLElementLegsXMLElementLeg(Legdefinition value) {
-        return new XMLElementLegs.XMLElementLeg(value);
     }
 
 }

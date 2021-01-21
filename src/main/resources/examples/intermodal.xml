@@ -1,6 +1,5 @@
 <PLANit xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xxxx/xsd/macroscopicintermodal.xsd">
-	<!-- MOVE THIS TO ZONING INPUT + MOVE CONNECTOIDS THO THEIR OWN ELEMENT WHICH IS SPLIT IN "Regular" and transfer connectoids, ids must be unique across both types, so we
-		 can uniquely identify them in the inputs (from/to in legs) THIS REQUIRES SOME CHANGES IN  zoninginput.xsd and parsing as well -->
+	<!-- DO NOT USE AS STANDALONE FILE: INSTEAD AVAILABLE AS `INTERMODAL` ELEMENT UNDER ZONING ROOT ELEMENT -->
 	<macroscopicintermodal> 
 		<!-- by using transfer zones this can be much more versatile than only defining this for PT, for example this would allow for modelling bikesharing where people
 		do things partly by a bikeshare bikes that can be accessed from different transferzones. Observe that a transfer zone by itself is mode agnostic, it just allows
@@ -44,6 +43,7 @@
 				  pt vehicles of both modes can stop at these locations. NOTE: the type determines what the ref attribute relates to. For pt_veh_stop it refers to a link segment, 
 				  mainly because the actual stop location is likely somewhere along the link, rather than at the end node (allowing for more flexibility in the future) 
 			 -->
+			 <!-- extension of base connectoid type, connectoids for regular zones also extend it -->
 			<transferconnectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid1" lsref="linksegmentrefXmlId" modes="train" />
 			<transferconnectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid2,platformxmlid3" lsref="linksegmentXmlId" modes="bus,tram" />
 			<!--  	similarly, access to the transfer zone from other modes other than pt works the same way, only the type is different. 

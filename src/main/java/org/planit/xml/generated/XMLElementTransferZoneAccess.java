@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "transferzoneaccess")
 public class XMLElementTransferZoneAccess {
 
-    @XmlElement(required = true)
+    @XmlElementRef(name = "transferconnectoid", type = XMLElementTransferConnectoid.class)
     protected List<XMLElementTransferConnectoid> transferconnectoid;
 
     /**

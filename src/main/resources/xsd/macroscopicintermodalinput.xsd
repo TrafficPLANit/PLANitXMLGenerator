@@ -122,38 +122,35 @@
 		<xs:annotation>
 			<xs:documentation>
 				Each transfer connectoid allows one or more modes from a particular network layer access to one or more
-				transfer zones.
+				transfer zones. It is an extension of the abse connectoid. Main difference is that it refers to a link segment as a point
+				of references as well as the transfer zone(s) it is related to explicitly
 			</xs:documentation>
 		</xs:annotation>
-		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" use="required" />
-			<xs:attribute name="externalid" type="xs:string" use="optional"/>
-			<xs:attribute name="type" type="transferconnectoidtype" use="optional"/>
-			<xs:attribute name="tzrefs" type="xs:string" use="required">
-				<xs:annotation>
-					<xs:documentation>
-						transfer zone references should be provided as a comma separated list of transfer zone XML ids, reflecting the zones accessible
-						from this access point
-					</xs:documentation>
-				</xs:annotation>							
-			</xs:attribute>
-			<xs:attribute name="lsref" type="xs:string" use="required">
-				<xs:annotation>
-					<xs:documentation>
-						link segment reference should provide which link segment this access point resides on. In case the underlying usage is node based, 
-						the downstream node of the link segment will be utilised
-					</xs:documentation>
-				</xs:annotation>							
-			</xs:attribute>	
-			<xs:attribute name="modes" type="xs:string" use="required">
-				<xs:annotation>
-					<xs:documentation>
-						Modes that are allowed to use this access point should be provided as a comma separated list of mode XML ids
-					</xs:documentation>
-				</xs:annotation>							
-			</xs:attribute>						
+		<xs:complexType name = "transferconnectoid">
+			<xs:complexContent>
+				<xs:extension base="connectoidtype">
+					<xs:attribute name="tzrefs" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>
+								transfer zone references should be provided as a comma separated list of transfer zone XML ids, reflecting the zones accessible
+								from this access point. This is needed because a transfer connectoid might access multiple transfer zones.
+							</xs:documentation>
+						</xs:annotation>							
+					</xs:attribute>
+					<xs:attribute name="lsref" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>
+								link segment reference should provide which link segment this access point resides on. In case the underlying usage is node based, 
+								the downstream node of the link segment will be utilised
+							</xs:documentation>
+						</xs:annotation>							
+					</xs:attribute>					
+					<xs:attribute name="type" type="transferconnectoidtype" use="optional"/>						
+				</xs:extension>
+			</xs:complexContent>				
 		</xs:complexType>
 	</xs:element>	
+	
 	
 	<xs:element name="transferzonegroups">
 		<xs:annotation>
@@ -198,12 +195,12 @@
 		</xs:complexType>
 	</xs:element>	
 	
-	<!-- Root element -->
+	<!-- Root element referenced as optional element in macroscopiczoninginput.xsd -->
 	<xs:element name="macroscopicintermodal">
 	<xs:annotation>
 		<xs:documentation>
-			Root element of the macroscopic network
-			infrastructure. Defines the physical road network and its properties
+			root element that allows one to define intermodal transfer zones, their access and grouping to allow network layers to interact, for
+			example to define public transport networks, supply chains, etc.
 		</xs:documentation>
 	</xs:annotation>
 	<xs:complexType>

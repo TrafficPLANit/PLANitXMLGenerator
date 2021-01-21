@@ -4,7 +4,7 @@
 	
 	<jaxb:bindings
 		schemaLocation="../xsd/routedservicesinput.xsd"
-		node="//xs:element[@name='leg' and @type = 'legdefinition']">
+		node="//xs:element[@name='legdefinition']">
 			<jaxb:class name="XMLElementLeg" />
 	</jaxb:bindings>
 	
@@ -28,7 +28,7 @@
 	
 	<jaxb:bindings
 		schemaLocation="../xsd/routedservicesinput.xsd"
-		node="//xs:element[@name='schedule' and @type = 'scheduledefinition']">
+		node="//xs:element[@name='scheduledefinition']">
 		<jaxb:class name="XMLElementSchedule" />
 	</jaxb:bindings>	
 	

@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
  *           &lt;element ref="{}zones"/&gt;
+ *           &lt;element ref="{}macroscopicintermodal" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -38,13 +39,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "zones"
+    "zones",
+    "macroscopicintermodal"
 })
 @XmlRootElement(name = "macroscopiczoning")
 public class XMLElementMacroscopicZoning {
 
     @XmlElement(required = true)
     protected XMLElementZones zones;
+    protected XMLElementMacroscopicIntermodal macroscopicintermodal;
 
     /**
      * Gets the value of the zones property.
@@ -68,6 +71,33 @@ public class XMLElementMacroscopicZoning {
      */
     public void setZones(XMLElementZones value) {
         this.zones = value;
+    }
+
+    /**
+     * 
+     * 							Optional includion of intermodal transfer zones that allow for partial routes transfering at transfer zones (not starting/ending). Since the concept
+     * 							of transfer zones is a generalisation of regular "OD" zones, it is only logical to include the defintion within the overarching zoning description
+     * 						
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLElementMacroscopicIntermodal }
+     *     
+     */
+    public XMLElementMacroscopicIntermodal getMacroscopicintermodal() {
+        return macroscopicintermodal;
+    }
+
+    /**
+     * Sets the value of the macroscopicintermodal property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLElementMacroscopicIntermodal }
+     *     
+     */
+    public void setMacroscopicintermodal(XMLElementMacroscopicIntermodal value) {
+        this.macroscopicintermodal = value;
     }
 
 }
