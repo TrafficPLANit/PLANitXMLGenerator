@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="type" type="{}connectoidtypetype" default="none" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -57,6 +58,8 @@ public class Connectoidtype {
     protected String externalid;
     @XmlAttribute(name = "modes")
     protected String modes;
+    @XmlAttribute(name = "type")
+    protected Connectoidtypetype type;
 
     /**
      * Gets the value of the name property.
@@ -176,6 +179,34 @@ public class Connectoidtype {
      */
     public void setModes(String value) {
         this.modes = value;
+    }
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Connectoidtypetype }
+     *     
+     */
+    public Connectoidtypetype getType() {
+        if (type == null) {
+            return Connectoidtypetype.NONE;
+        } else {
+            return type;
+        }
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Connectoidtypetype }
+     *     
+     */
+    public void setType(Connectoidtypetype value) {
+        this.type = value;
     }
 
 }

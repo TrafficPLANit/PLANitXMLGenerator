@@ -9,8 +9,15 @@
 	<xs:complexType name="connectoidtype">
 		<xs:sequence>
 			<xs:element name="name"  type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="length" type="xs:float" minOccurs="0" maxOccurs="1"/>
-		</xs:sequence>
+			<xs:element name="length" type="xs:float" minOccurs="0" maxOccurs="1">
+			  <xs:annotation>
+          <xs:documentation>
+            Length can be used to override geometric length computed for connectoid based on zone and physical network (layer) connection. 
+            When multiple zones are accessible be careful using this property since it will set the same length for all accessible zones.
+          </xs:documentation>
+        </xs:annotation>        
+      </xs:element>
+		</xs:sequence>		
 		<xs:attribute name="id" type="xs:string" use="required"/>
 		<xs:attribute name="externalid" type="xs:string" use="optional"/>
 		<xs:attribute name="modes" type="xs:string" use="optional">
@@ -19,11 +26,32 @@
 					Modes that are allowed to use this access point should be provided as a comma separated list of mode XML ids. When absent it is
 					assumed all possible modes are allowed
 				</xs:documentation>
-			</xs:annotation>							
+			</xs:annotation>								
 		</xs:attribute>								
+    <xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
+      <xs:annotation>
+        <xs:documentation>
+          Use type to provide additional information on how to interpret this connectoid (no functional use at this point)
+        </xs:documentation>
+      </xs:annotation>        
+    </xs:attribute>   		
 	</xs:complexType>
 	
-	<!-- SIMPLE TYPES -->	
+	<!-- SIMPLE TYPES -->
+	
+	<xs:simpleType name="connectoidtypetype">
+    <xs:annotation>
+      <xs:documentation>
+        types of connectoid types
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+    <xs:enumeration value="none" />
+      <xs:enumeration value="pt_veh_stop" />
+      <xs:enumeration value="traveller_access" />
+      <xs:enumeration value="unknown" />
+    </xs:restriction>
+  </xs:simpleType>  
 	
 	<xs:simpleType name="lengthUnit">
 		<xs:annotation>

@@ -18,19 +18,7 @@
 			<xs:enumeration value="stop_pole" />
 		</xs:restriction>
 	</xs:simpleType>
-	
-	<xs:simpleType name="transferconnectoidtype">
-		<xs:annotation>
-			<xs:documentation>
-				options for transfer connectoid types
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="pt_veh_stop" />
-			<xs:enumeration value="traveller_access" />
-		</xs:restriction>
-	</xs:simpleType>	
-	
+		
 	<!-- Simple elements -->
 	
 	<!-- Complex elements -->
@@ -66,15 +54,7 @@
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string" use="optional"/>
-			<xs:attribute name="type" type="transferzonetype" use="optional"/>
-			<xs:attribute name="tzarefs" type="xs:string" use="required">
-				<xs:annotation>
-					<xs:documentation>
-						transfer zone access references should provide a comma separated list of transferzoneaccess XML ids, reflecting the access points
-						that can utilise this transfer zone 
-					</xs:documentation>
-				</xs:annotation>							
-			</xs:attribute>	
+			<xs:attribute name="type" type="transferzonetype" use="optional"/>	
 		</xs:complexType>
 	</xs:element>	
 	
@@ -144,8 +124,7 @@
 								the downstream node of the link segment will be utilised
 							</xs:documentation>
 						</xs:annotation>							
-					</xs:attribute>					
-					<xs:attribute name="type" type="transferconnectoidtype" use="optional"/>						
+					</xs:attribute>											
 				</xs:extension>
 			</xs:complexContent>				
 		</xs:complexType>

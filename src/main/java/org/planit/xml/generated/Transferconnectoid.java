@@ -25,7 +25,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{}connectoidtype"&gt;
  *       &lt;attribute name="tzrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="lsref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="type" type="{}transferconnectoidtype" /&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -43,8 +42,6 @@ public class Transferconnectoid
     protected String tzrefs;
     @XmlAttribute(name = "lsref", required = true)
     protected String lsref;
-    @XmlAttribute(name = "type")
-    protected Transferconnectoidtype type;
 
     /**
      * Gets the value of the tzrefs property.
@@ -92,30 +89,6 @@ public class Transferconnectoid
      */
     public void setLsref(String value) {
         this.lsref = value;
-    }
-
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Transferconnectoidtype }
-     *     
-     */
-    public Transferconnectoidtype getType() {
-        return type;
-    }
-
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Transferconnectoidtype }
-     *     
-     */
-    public void setType(Transferconnectoidtype value) {
-        this.type = value;
     }
 
 }

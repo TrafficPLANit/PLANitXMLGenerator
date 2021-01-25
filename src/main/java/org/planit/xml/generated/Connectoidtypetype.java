@@ -14,31 +14,37 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for transferconnectoidtype.
+ * <p>Java class for connectoidtypetype.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="transferconnectoidtype"&gt;
+ * &lt;simpleType name="connectoidtypetype"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *     &lt;enumeration value="none"/&gt;
  *     &lt;enumeration value="pt_veh_stop"/&gt;
  *     &lt;enumeration value="traveller_access"/&gt;
+ *     &lt;enumeration value="unknown"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
  * 
  */
-@XmlType(name = "transferconnectoidtype")
+@XmlType(name = "connectoidtypetype")
 @XmlEnum
-public enum Transferconnectoidtype {
+public enum Connectoidtypetype {
 
+    @XmlEnumValue("none")
+    NONE("none"),
     @XmlEnumValue("pt_veh_stop")
     PT_VEH_STOP("pt_veh_stop"),
     @XmlEnumValue("traveller_access")
-    TRAVELLER_ACCESS("traveller_access");
+    TRAVELLER_ACCESS("traveller_access"),
+    @XmlEnumValue("unknown")
+    UNKNOWN("unknown");
     private final String value;
 
-    Transferconnectoidtype(String v) {
+    Connectoidtypetype(String v) {
         value = v;
     }
 
@@ -46,8 +52,8 @@ public enum Transferconnectoidtype {
         return value;
     }
 
-    public static Transferconnectoidtype fromValue(String v) {
-        for (Transferconnectoidtype c: Transferconnectoidtype.values()) {
+    public static Connectoidtypetype fromValue(String v) {
+        for (Connectoidtypetype c: Connectoidtypetype.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

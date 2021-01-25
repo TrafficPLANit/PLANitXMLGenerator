@@ -41,7 +41,6 @@ import net.opengis.gml.PolygonType;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="type" type="{}transferzonetype" /&gt;
- *         &lt;attribute name="tzarefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -70,8 +69,6 @@ public class XMLElementTransferZone {
     protected String externalid;
     @XmlAttribute(name = "type")
     protected Transferzonetype type;
-    @XmlAttribute(name = "tzarefs", required = true)
-    protected String tzarefs;
 
     /**
      * Gets the value of the name property.
@@ -222,30 +219,6 @@ public class XMLElementTransferZone {
      */
     public void setType(Transferzonetype value) {
         this.type = value;
-    }
-
-    /**
-     * Gets the value of the tzarefs property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTzarefs() {
-        return tzarefs;
-    }
-
-    /**
-     * Sets the value of the tzarefs property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTzarefs(String value) {
-        this.tzarefs = value;
     }
 
 }
