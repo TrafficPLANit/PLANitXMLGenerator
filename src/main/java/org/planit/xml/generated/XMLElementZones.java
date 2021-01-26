@@ -40,7 +40,7 @@ import net.opengis.gml.PolygonType;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *                     &lt;element ref="{}centroid"/&gt;
+ *                     &lt;element ref="{}centroid" minOccurs="0"/&gt;
  *                     &lt;element ref="{}connectoids"/&gt;
  *                     &lt;element ref="{http://www.opengis.net/gml}Polygon" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
@@ -145,7 +145,7 @@ public class XMLElementZones {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
-     *         &lt;element ref="{}centroid"/&gt;
+     *         &lt;element ref="{}centroid" minOccurs="0"/&gt;
      *         &lt;element ref="{}connectoids"/&gt;
      *         &lt;element ref="{http://www.opengis.net/gml}Polygon" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
@@ -168,7 +168,6 @@ public class XMLElementZones {
     public static class Zone {
 
         protected String name;
-        @XmlElement(required = true)
         protected XMLElementCentroid centroid;
         @XmlElement(required = true)
         protected XMLElementConnectoids connectoids;

@@ -70,7 +70,7 @@
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1"/>
-							<xs:element ref="centroid">
+							<xs:element ref="centroid" minOccurs="0" maxOccurs="1">
 								<xs:annotation>
 									<xs:documentation>
 										Each travel zone has at most a single centroid from which all travellers depart/arrive. 
