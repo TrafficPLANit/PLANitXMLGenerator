@@ -97,6 +97,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementTransferZoneAccess }
+     * 
+     */
+    public XMLElementTransferZoneAccess createXMLElementTransferZoneAccess() {
+        return new XMLElementTransferZoneAccess();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferZones }
+     * 
+     */
+    public XMLElementTransferZones createXMLElementTransferZones() {
+        return new XMLElementTransferZones();
+    }
+
+    /**
      * Create an instance of {@link XMLElementNodes }
      * 
      */
@@ -297,38 +313,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementTransferZone }
-     * 
-     */
-    public XMLElementTransferZone createXMLElementTransferZone() {
-        return new XMLElementTransferZone();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementTransferZones }
-     * 
-     */
-    public XMLElementTransferZones createXMLElementTransferZones() {
-        return new XMLElementTransferZones();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementTransferZoneAccess }
-     * 
-     */
-    public XMLElementTransferZoneAccess createXMLElementTransferZoneAccess() {
-        return new XMLElementTransferZoneAccess();
-    }
-
-    /**
-     * Create an instance of {@link Transferconnectoid }
-     * 
-     */
-    public Transferconnectoid createTransferconnectoid() {
-        return new Transferconnectoid();
-    }
-
-    /**
      * Create an instance of {@link XMLElementTransferZoneGroups }
      * 
      */
@@ -345,11 +329,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementMacroscopicIntermodal }
+     * Create an instance of {@link Intermodaltype }
      * 
      */
-    public XMLElementMacroscopicIntermodal createXMLElementMacroscopicIntermodal() {
-        return new XMLElementMacroscopicIntermodal();
+    public Intermodaltype createIntermodaltype() {
+        return new Intermodaltype();
     }
 
     /**
@@ -577,6 +561,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementTransferZoneAccess.XMLElementTransferConnectoid }
+     * 
+     */
+    public XMLElementTransferZoneAccess.XMLElementTransferConnectoid createXMLElementTransferZoneAccessXMLElementTransferConnectoid() {
+        return new XMLElementTransferZoneAccess.XMLElementTransferConnectoid();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTransferZones.XMLElementTransferZone }
+     * 
+     */
+    public XMLElementTransferZones.XMLElementTransferZone createXMLElementTransferZonesXMLElementTransferZone() {
+        return new XMLElementTransferZones.XMLElementTransferZone();
+    }
+
+    /**
      * Create an instance of {@link XMLElementNodes.Node }
      * 
      */
@@ -748,16 +748,16 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementTransferConnectoid }
+     * Create an instance of {@link XMLElementMacroscopicIntermodal }
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link XMLElementTransferConnectoid }
+     *     the new instance of {@link XMLElementMacroscopicIntermodal }
      */
-    @XmlElementDecl(namespace = "", name = "transferconnectoid")
-    public XMLElementTransferConnectoid createXMLElementTransferConnectoid(Transferconnectoid value) {
-        return new XMLElementTransferConnectoid(value);
+    @XmlElementDecl(namespace = "", name = "macroscopicintermodal")
+    public XMLElementMacroscopicIntermodal createXMLElementMacroscopicIntermodal(Intermodaltype value) {
+        return new XMLElementMacroscopicIntermodal(value);
     }
 
     /**

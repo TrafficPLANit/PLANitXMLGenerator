@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
  *           &lt;element ref="{}zones"/&gt;
- *           &lt;element ref="{}macroscopicintermodal" minOccurs="0"/&gt;
+ *           &lt;element name="intermodal" type="{}intermodaltype" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -40,14 +40,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "zones",
-    "macroscopicintermodal"
+    "intermodal"
 })
 @XmlRootElement(name = "macroscopiczoning")
 public class XMLElementMacroscopicZoning {
 
     @XmlElement(required = true)
     protected XMLElementZones zones;
-    protected XMLElementMacroscopicIntermodal macroscopicintermodal;
+    protected Intermodaltype intermodal;
 
     /**
      * Gets the value of the zones property.
@@ -74,30 +74,27 @@ public class XMLElementMacroscopicZoning {
     }
 
     /**
-     * 
-     * 							Optional includion of intermodal transfer zones that allow for partial routes transfering at transfer zones (not starting/ending). Since the concept
-     * 							of transfer zones is a generalisation of regular "OD" zones, it is only logical to include the defintion within the overarching zoning description
-     * 						
+     * Gets the value of the intermodal property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementMacroscopicIntermodal }
+     *     {@link Intermodaltype }
      *     
      */
-    public XMLElementMacroscopicIntermodal getMacroscopicintermodal() {
-        return macroscopicintermodal;
+    public Intermodaltype getIntermodal() {
+        return intermodal;
     }
 
     /**
-     * Sets the value of the macroscopicintermodal property.
+     * Sets the value of the intermodal property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementMacroscopicIntermodal }
+     *     {@link Intermodaltype }
      *     
      */
-    public void setMacroscopicintermodal(XMLElementMacroscopicIntermodal value) {
-        this.macroscopicintermodal = value;
+    public void setIntermodal(Intermodaltype value) {
+        this.intermodal = value;
     }
 
 }

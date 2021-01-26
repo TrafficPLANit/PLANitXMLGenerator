@@ -45,7 +45,7 @@ import javax.xml.bind.annotation.XmlType;
     "length"
 })
 @XmlSeeAlso({
-    Transferconnectoid.class,
+    org.planit.xml.generated.XMLElementTransferZoneAccess.XMLElementTransferConnectoid.class,
     Odconnectoid.class
 })
 public class Connectoidtype {

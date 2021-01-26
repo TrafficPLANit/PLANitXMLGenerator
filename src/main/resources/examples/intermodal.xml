@@ -10,7 +10,7 @@
 					Further, no frequencies, or schedules  are included because this depends on the model and likely requires different inputs to the point 
 					that we must provide separate xml/xsd's for those -->
 			<!-- platforms are the entity where passengers can (dis)embark a pt vehicle, a platform can service one or more pt vehicle stops -->
-			<transferzone id="xmlid" externalid="externalid" type="platform" >
+			<zone id="xmlid" externalid="externalid" type="platform" >
 				<name>platform 3A</name>
 				<!-- a platform can best be thought of as a transfer zone where there is interaction between the pedestrian network mode and pt modes. The platform serves as the interaction
 					 point between the two network modes where: (1) vehicle stops act as connectoids between the platform centroid (transferoid) and pt vehicle on the PT side of the transfer, 
@@ -36,7 +36,7 @@
 		         			</gml:LinearRing>
 					</gml:exterior>
 				</gml:Polygon>		    	
-			</transferzone>
+			</zone>
 		</transferzones>
 		<transferzoneaccess>
 			<!--  because a pt vehicle stop can give access to multiple platforms, we separately define them as their own elements. Note that if they specify multiple modes 
@@ -44,11 +44,11 @@
 				  mainly because the actual stop location is likely somewhere along the link, rather than at the end node (allowing for more flexibility in the future) 
 			 -->
 			 <!-- extension of base connectoid type, connectoids for regular zones also extend it -->
-			<transferconnectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid1" lsref="linksegmentrefXmlId" modes="train" />
-			<transferconnectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid2,platformxmlid3" lsref="linksegmentXmlId" modes="bus,tram" />
+			<connectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid1" lsref="linksegmentrefXmlId" modes="train" />
+			<connectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid2,platformxmlid3" lsref="linksegmentXmlId" modes="bus,tram" />
 			<!--  	similarly, access to the transfer zone from other modes other than pt works the same way, only the type is different. 
 			-->
-			<transferconnectoid id="somexmlid" externalid="osmidx" type="traveller_access" tzrefs="refid1,refid2" lsref="linksegmentXmlId" modes="walk" />		
+			<connectoid id="somexmlid" externalid="osmidx" type="traveller_access" tzrefs="refid1,refid2" lsref="linksegmentXmlId" modes="walk" />		
 		</transferzoneaccess>			
 		<transferzonegroups>
 			<!-- a pt group reflects a group of related transferzones (platforms) that logically belong together. This is optional

@@ -8,9 +8,15 @@
 		<jaxb:class name="XMLElementMacroscopicIntermodal" />
 	</jaxb:bindings>
 	
+  <jaxb:bindings
+    schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+    node="//xs:element[@name = 'transferzoneaccess']">
+    <jaxb:class name="XMLElementTransferZoneAccess" />
+  </jaxb:bindings>  	
+	
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
-		node="//xs:element[@name = 'transferconnectoid']">
+    node="//xs:element[@name = 'transferzoneaccess']/xs:complexType/xs:sequence/xs:element[@name = 'connectoid']/xs:complexType">
 		<jaxb:class name="XMLElementTransferConnectoid" />
 	</jaxb:bindings>
 	
@@ -22,26 +28,20 @@
 	
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
-		node="//xs:element[@name = 'transferzone']">
-		<jaxb:class name="XMLElementTransferZone" />
+		node="//xs:element[@name = 'transferzones']">		
+		<jaxb:class name="XMLElementTransferZones" />   
 	</jaxb:bindings>		
 	
-	<jaxb:bindings
-		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
-		node="//xs:element[@name = 'transferzoneaccess']">
-		<jaxb:class name="XMLElementTransferZoneAccess" />
-	</jaxb:bindings>	
-	
+  <jaxb:bindings
+    schemaLocation="../xsd/macroscopicintermodalinput.xsd"
+      node="//xs:element[@name = 'transferzones']/xs:complexType/xs:sequence/xs:element[@name = 'zone']/xs:complexType">
+      <jaxb:class name="XMLElementTransferZone" />
+    </jaxb:bindings> 	
+		
 	<jaxb:bindings
 		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
 		node="//xs:element[@name = 'transferzonegroups']">
 		<jaxb:class name="XMLElementTransferZoneGroups" />
 	</jaxb:bindings>	
-	
-	<jaxb:bindings
-		schemaLocation="../xsd/macroscopicintermodalinput.xsd"
-		node="//xs:element[@name = 'transferzones']">
-		<jaxb:class name="XMLElementTransferZones" />
-	</jaxb:bindings>	
-	
+		
 </jaxb:bindings>

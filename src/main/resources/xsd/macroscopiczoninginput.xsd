@@ -46,7 +46,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="zones"/>
-				<xs:element name="intermodal" ref="macroscopicintermodal" minOccurs="0" maxOccurs="1">
+				<xs:element name="intermodal" type="intermodaltype" minOccurs="0" maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>
 							Optional includion of intermodal transfer zones that allow for partial routes transfering at transfer zones (not starting/ending). Since the concept

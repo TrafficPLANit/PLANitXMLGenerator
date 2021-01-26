@@ -8,135 +8,21 @@
 
 package org.planit.xml.generated;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.JAXBElement;
+import javax.xml.namespace.QName;
 
+public class XMLElementMacroscopicIntermodal
+    extends JAXBElement<Intermodaltype>
+{
 
-/**
- * 
- * 			root element that allows one to define intermodal transfer zones, their access and grouping to allow network layers to interact, for
- * 			example to define public transport networks, supply chains, etc.
- * 		
- * 
- * <p>Java class for macroscopicintermodal element declaration.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;element name="macroscopicintermodal"&gt;
- *   &lt;complexType&gt;
- *     &lt;complexContent&gt;
- *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *         &lt;sequence&gt;
- *           &lt;element ref="{}transferzones"/&gt;
- *           &lt;element ref="{}transferzoneaccess"/&gt;
- *           &lt;element ref="{}transferzonegroups" minOccurs="0"/&gt;
- *         &lt;/sequence&gt;
- *       &lt;/restriction&gt;
- *     &lt;/complexContent&gt;
- *   &lt;/complexType&gt;
- * &lt;/element&gt;
- * </pre>
- * 
- * 
- */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "transferzones",
-    "transferzoneaccess",
-    "transferzonegroups"
-})
-@XmlRootElement(name = "macroscopicintermodal")
-public class XMLElementMacroscopicIntermodal {
+    protected final static QName NAME = new QName("", "macroscopicintermodal");
 
-    @XmlElement(required = true)
-    protected XMLElementTransferZones transferzones;
-    @XmlElement(required = true)
-    protected XMLElementTransferZoneAccess transferzoneaccess;
-    protected XMLElementTransferZoneGroups transferzonegroups;
-
-    /**
-     * 
-     * 						A transfer zone represents a possibility for transfers between different modes from different
-     * 						network layers. How these interactions take place is defined via the transferzoneaccess elements.
-     * 					
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementTransferZones }
-     *     
-     */
-    public XMLElementTransferZones getTransferzones() {
-        return transferzones;
+    public XMLElementMacroscopicIntermodal(Intermodaltype value) {
+        super(NAME, ((Class) Intermodaltype.class), null, value);
     }
 
-    /**
-     * Sets the value of the transferzones property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementTransferZones }
-     *     
-     */
-    public void setTransferzones(XMLElementTransferZones value) {
-        this.transferzones = value;
-    }
-
-    /**
-     * 
-     * 						transfer zone access elements define how transfer zones can be accessed via different modes from different layers
-     * 						linking layer specific infrastructure to the transfer zones which exist between network layers.
-     * 					
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementTransferZoneAccess }
-     *     
-     */
-    public XMLElementTransferZoneAccess getTransferzoneaccess() {
-        return transferzoneaccess;
-    }
-
-    /**
-     * Sets the value of the transferzoneaccess property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementTransferZoneAccess }
-     *     
-     */
-    public void setTransferzoneaccess(XMLElementTransferZoneAccess value) {
-        this.transferzoneaccess = value;
-    }
-
-    /**
-     * 
-     * 						Transfer zone groups allow one to group multiple transfer zones to indicate they logically belong together. For
-     * 						example to group various platforms on a station. This is optional. 
-     * 					
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementTransferZoneGroups }
-     *     
-     */
-    public XMLElementTransferZoneGroups getTransferzonegroups() {
-        return transferzonegroups;
-    }
-
-    /**
-     * Sets the value of the transferzonegroups property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementTransferZoneGroups }
-     *     
-     */
-    public void setTransferzonegroups(XMLElementTransferZoneGroups value) {
-        this.transferzonegroups = value;
+    public XMLElementMacroscopicIntermodal() {
+        super(NAME, ((Class) Intermodaltype.class), null, null);
     }
 
 }
