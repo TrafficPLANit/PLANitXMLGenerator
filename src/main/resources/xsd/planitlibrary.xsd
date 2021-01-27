@@ -78,12 +78,7 @@
 		</xs:restriction>
 	</xs:simpleType>		
 	
-	<xs:simpleType name="srsname">
-		<xs:annotation>
-			<xs:documentation>
-				Choice between h (hours), m (minutes), s (seconds)
-			</xs:documentation>
-		</xs:annotation>	
+	<xs:simpleType name="srsname">	
 		<xs:restriction base="xs:string">
 		</xs:restriction>
 	</xs:simpleType>		
