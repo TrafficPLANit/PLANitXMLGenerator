@@ -6,9 +6,9 @@ For more information on PLANit such as the user the manual, licensing, installat
 
 ## Maven parent
 
-Projects need to be built from Maven before they can be run. The common maven configuration can be found in the PLANitAll project which acts as the parent for this project's pom.xml.
+Projects need to be built from Maven before they can be run. The common maven configuration can be found in the PLANitParentPom project which acts as the parent for this project's pom.xml.
 
-> Make sure you install the PLANitAll pom.xml before conducting a maven build (in Eclipse) on this project, otherwise it cannot find the references dependencies, plugins, and other resources.
+> Make sure you install the PLANitParentPom pom.xml before conducting a maven build (in Eclipse) on this project, otherwise it cannot find the references dependencies, plugins, and other resources.
 
 ## Maven JAXB2 Plugin
 
@@ -28,11 +28,13 @@ The src/main/resources directory contains the following files which are used by 
 |macroscopicinput.xsd|XSD schema defining the top-level <PLANit> element which contains the <macroscopicnetwork>, <macroscopicdemand> and <macroscopiczoning> elements
 |macroscopicdemandinput.xsd|XSD schema for demand input XML, defines the <macroscopicdemand> element|
 |macroscopiczoninginput.xsd|XSD schema for zoning input XML, defines the <macroscopiczoning> element|
+|macroscopicintermodalinput.xsd|XSD schema for the intermodal aspect of zoning input XML, defines the <intermodal> element and is imported in `macroscopiczoninginput.xsd`|
 |macroscopicnetworkinput.xsd|XSD schema for network input XML, defines the <macroscopicnetwork> element|
 |metadata.xsd|XSD schema used for XML output|
 |configuration.xjb|XJB file to define the package name for the generated Java classes which correspond to the definitions in the project's own XSD files|
 |macroscopicdemandinput.xjb|XJB file to define the names of the generated Java classes related to demand input|
 |macroscopiczoninginput.xjb|XJB file to define the names of the generated Java classes related to zoning input|
+|macroscopicintermodalinput.xjb|XJB file to define the names of the generated Java classes related to intermodal (zoning) input|
 |macroscopicnetworkinput.xjb|XJB file to define the names of the generated Java classes related to network input|
 |linkmetadata.xjb|XJB file to define the names of the generated Java classes related to output|    
 |gml-v_3_1_1.xjb|XJB file to resolve name clashes which appear when XJC is run on GML files|
