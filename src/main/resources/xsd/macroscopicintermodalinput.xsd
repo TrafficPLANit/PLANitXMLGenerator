@@ -16,8 +16,21 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="platform" />
 			<xs:enumeration value="stop_pole" />
+			<xs:enumeration value="small_station" />
+			<xs:enumeration value="station" />
 		</xs:restriction>
 	</xs:simpleType>
+	
+	<xs:simpleType name="transferzonegrouptype">
+		<xs:annotation>
+			<xs:documentation>
+				options for transfer zone types
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="train_station" />
+		</xs:restriction>
+	</xs:simpleType>	
 	
   <xs:simpleType name="connectoidnodelocationtype">
     <xs:annotation>
@@ -204,6 +217,7 @@
 					</xs:documentation>
 				</xs:annotation>							
 			</xs:attribute>
+			<xs:attribute name="type" type="transferzonegrouptype" use="optional"/>			
 		</xs:complexType>
 	</xs:element>	
 	

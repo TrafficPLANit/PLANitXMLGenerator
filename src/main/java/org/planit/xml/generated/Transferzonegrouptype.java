@@ -14,37 +14,28 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for transferzonetype.
+ * <p>Java class for transferzonegrouptype.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="transferzonetype"&gt;
+ * &lt;simpleType name="transferzonegrouptype"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="platform"/&gt;
- *     &lt;enumeration value="stop_pole"/&gt;
- *     &lt;enumeration value="small_station"/&gt;
- *     &lt;enumeration value="station"/&gt;
+ *     &lt;enumeration value="train_station"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
  * 
  */
-@XmlType(name = "transferzonetype")
+@XmlType(name = "transferzonegrouptype")
 @XmlEnum
-public enum Transferzonetype {
+public enum Transferzonegrouptype {
 
-    @XmlEnumValue("platform")
-    PLATFORM("platform"),
-    @XmlEnumValue("stop_pole")
-    STOP_POLE("stop_pole"),
-    @XmlEnumValue("small_station")
-    SMALL_STATION("small_station"),
-    @XmlEnumValue("station")
-    STATION("station");
+    @XmlEnumValue("train_station")
+    TRAIN_STATION("train_station");
     private final String value;
 
-    Transferzonetype(String v) {
+    Transferzonegrouptype(String v) {
         value = v;
     }
 
@@ -52,8 +43,8 @@ public enum Transferzonetype {
         return value;
     }
 
-    public static Transferzonetype fromValue(String v) {
-        for (Transferzonetype c: Transferzonetype.values()) {
+    public static Transferzonegrouptype fromValue(String v) {
+        for (Transferzonegrouptype c: Transferzonegrouptype.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

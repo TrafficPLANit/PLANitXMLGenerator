@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="tzrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="type" type="{}transferzonegrouptype" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -57,6 +58,8 @@ public class XMLElementTransferGroup {
     protected String externalid;
     @XmlAttribute(name = "tzrefs", required = true)
     protected String tzrefs;
+    @XmlAttribute(name = "type")
+    protected Transferzonegrouptype type;
 
     /**
      * Gets the value of the name property.
@@ -152,6 +155,30 @@ public class XMLElementTransferGroup {
      */
     public void setTzrefs(String value) {
         this.tzrefs = value;
+    }
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Transferzonegrouptype }
+     *     
+     */
+    public Transferzonegrouptype getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Transferzonegrouptype }
+     *     
+     */
+    public void setType(Transferzonegrouptype value) {
+        this.type = value;
     }
 
 }
