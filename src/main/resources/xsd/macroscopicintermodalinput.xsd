@@ -20,18 +20,7 @@
 			<xs:enumeration value="station" />
 		</xs:restriction>
 	</xs:simpleType>
-	
-	<xs:simpleType name="transferzonegrouptype">
-		<xs:annotation>
-			<xs:documentation>
-				options for transfer zone types
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="train_station" />
-		</xs:restriction>
-	</xs:simpleType>	
-	
+		
   <xs:simpleType name="connectoidnodelocationtype">
     <xs:annotation>
       <xs:documentation>
@@ -216,8 +205,7 @@
 						transfer zone references should be provided as a comma separated list of transfer zone XML ids, reflecting the zones grouped by this entity
 					</xs:documentation>
 				</xs:annotation>							
-			</xs:attribute>
-			<xs:attribute name="type" type="transferzonegrouptype" use="optional"/>			
+			</xs:attribute>		
 		</xs:complexType>
 	</xs:element>	
 	
