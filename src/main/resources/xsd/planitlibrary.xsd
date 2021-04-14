@@ -9,7 +9,7 @@
 	<xs:complexType name="connectoidtype">
 		<xs:sequence>
 			<xs:element name="name"  type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="length" type="xs:float" minOccurs="0" maxOccurs="1">
+			<xs:element name="length" type="xs:double" minOccurs="0" maxOccurs="1">
 			  <xs:annotation>
           <xs:documentation>
             Length can be used to override geometric length computed for connectoid based on zone and physical network (layer) connection. 
