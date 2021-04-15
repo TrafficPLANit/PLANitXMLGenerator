@@ -8,12 +8,15 @@
 
 package org.planit.xml.generated;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -49,7 +52,8 @@ public class XMLElementMacroscopicZoning {
 
     @XmlElement(required = true)
     protected XMLElementZones zones;
-    protected Intermodaltype intermodal;
+    @XmlElementRef(name = "intermodal", type = XMLElementMacroscopicZoning.XMLElementIntermodal.class, required = false)
+    protected XMLElementMacroscopicZoning.XMLElementIntermodal intermodal;
     @XmlAttribute(name = "srsname")
     protected String srsname;
 
@@ -82,10 +86,10 @@ public class XMLElementMacroscopicZoning {
      * 
      * @return
      *     possible object is
-     *     {@link Intermodaltype }
+     *     {@link XMLElementMacroscopicZoning.XMLElementIntermodal }
      *     
      */
-    public Intermodaltype getIntermodal() {
+    public XMLElementMacroscopicZoning.XMLElementIntermodal getIntermodal() {
         return intermodal;
     }
 
@@ -94,10 +98,10 @@ public class XMLElementMacroscopicZoning {
      * 
      * @param value
      *     allowed object is
-     *     {@link Intermodaltype }
+     *     {@link XMLElementMacroscopicZoning.XMLElementIntermodal }
      *     
      */
-    public void setIntermodal(Intermodaltype value) {
+    public void setIntermodal(XMLElementMacroscopicZoning.XMLElementIntermodal value) {
         this.intermodal = value;
     }
 
@@ -131,6 +135,22 @@ public class XMLElementMacroscopicZoning {
      */
     public void setSrsname(String value) {
         this.srsname = value;
+    }
+
+    public static class XMLElementIntermodal
+        extends JAXBElement<Intermodaltype>
+    {
+
+        protected final static QName NAME = new QName("", "intermodal");
+
+        public XMLElementIntermodal(Intermodaltype value) {
+            super(NAME, ((Class) Intermodaltype.class), XMLElementMacroscopicZoning.class, value);
+        }
+
+        public XMLElementIntermodal() {
+            super(NAME, ((Class) Intermodaltype.class), XMLElementMacroscopicZoning.class, null);
+        }
+
     }
 
 }

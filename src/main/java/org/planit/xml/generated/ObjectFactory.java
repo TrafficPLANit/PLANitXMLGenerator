@@ -968,4 +968,17 @@ public class ObjectFactory {
         return new JAXBElement<String>(_Stopcriterion_QNAME, String.class, null, value);
     }
 
+    /**
+     * Create an instance of {@link XMLElementMacroscopicZoning.XMLElementIntermodal }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementMacroscopicZoning.XMLElementIntermodal }
+     */
+    @XmlElementDecl(namespace = "", name = "intermodal", scope = XMLElementMacroscopicZoning.class)
+    public XMLElementMacroscopicZoning.XMLElementIntermodal createXMLElementMacroscopicZoningXMLElementIntermodal(Intermodaltype value) {
+        return new XMLElementMacroscopicZoning.XMLElementIntermodal(value);
+    }
+
 }
