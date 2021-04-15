@@ -51,7 +51,6 @@ import net.opengis.gml.PolygonType;
  *             &lt;/complexType&gt;
  *           &lt;/element&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute ref="{}srsname"/&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -69,8 +68,6 @@ public class XMLElementZones {
 
     @XmlElement(required = true)
     protected List<XMLElementZones.Zone> zone;
-    @XmlAttribute(name = "srsname")
-    protected String srsname;
 
     /**
      * Gets the value of the zone property.
@@ -99,38 +96,6 @@ public class XMLElementZones {
             zone = new ArrayList<XMLElementZones.Zone>();
         }
         return this.zone;
-    }
-
-    /**
-     * 
-     * 						Spatial reference system is optional, when absent it is assumed that the same srs is used as provided on the infrastrure element in the
-     * 						macroscopic supply input. If present it can be different but it is recommended to be the same. When different the gml elements in this xml
-     * 						are parsed according to the provided srs but will internally be converted into the "dominant" project srs which is the one provided on the infrastructure element
-     * 					
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSrsname() {
-        if (srsname == null) {
-            return "EPSG:4326";
-        } else {
-            return srsname;
-        }
-    }
-
-    /**
-     * Sets the value of the srsname property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSrsname(String value) {
-        this.srsname = value;
     }
 
 
