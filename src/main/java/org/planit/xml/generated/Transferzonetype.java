@@ -25,6 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="stop_pole"/&gt;
  *     &lt;enumeration value="small_station"/&gt;
  *     &lt;enumeration value="station"/&gt;
+ *     &lt;enumeration value="unknown"/&gt;
+ *     &lt;enumeration value="none"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -41,7 +43,11 @@ public enum Transferzonetype {
     @XmlEnumValue("small_station")
     SMALL_STATION("small_station"),
     @XmlEnumValue("station")
-    STATION("station");
+    STATION("station"),
+    @XmlEnumValue("unknown")
+    UNKNOWN("unknown"),
+    @XmlEnumValue("none")
+    NONE("none");
     private final String value;
 
     Transferzonetype(String v) {

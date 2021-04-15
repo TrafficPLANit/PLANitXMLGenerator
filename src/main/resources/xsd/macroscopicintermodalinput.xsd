@@ -18,6 +18,8 @@
 			<xs:enumeration value="stop_pole" />
 			<xs:enumeration value="small_station" />
 			<xs:enumeration value="station" />
+			<xs:enumeration value="unknown" />
+			<xs:enumeration value="none" />
 		</xs:restriction>
 	</xs:simpleType>
 		
@@ -109,7 +111,7 @@
 			      </xs:sequence>
 			      <xs:attribute name="id" type="xs:string" use="required" />
 			      <xs:attribute name="externalid" type="xs:string" use="optional"/>
-			      <xs:attribute name="type" type="transferzonetype" use="optional"/>  
+			      <xs:attribute name="type" type="transferzonetype" use="optional" default="none"/>  
 			    </xs:complexType>					
 				</xs:element>
 			</xs:sequence>

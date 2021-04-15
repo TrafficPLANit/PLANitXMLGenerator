@@ -46,7 +46,7 @@ import net.opengis.gml.PolygonType;
  *                   &lt;/sequence&gt;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                   &lt;attribute name="type" type="{}transferzonetype" /&gt;
+ *                   &lt;attribute name="type" type="{}transferzonetype" default="none" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -116,7 +116,7 @@ public class XMLElementTransferZones {
      *       &lt;/sequence&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
-     *       &lt;attribute name="type" type="{}transferzonetype" /&gt;
+     *       &lt;attribute name="type" type="{}transferzonetype" default="none" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -280,7 +280,11 @@ public class XMLElementTransferZones {
          *     
          */
         public Transferzonetype getType() {
-            return type;
+            if (type == null) {
+                return Transferzonetype.NONE;
+            } else {
+                return type;
+            }
         }
 
         /**
