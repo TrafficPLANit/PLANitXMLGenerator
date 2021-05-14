@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import net.opengis.gml.LineStringType;
 import net.opengis.gml.PolygonType;
 
 
@@ -42,7 +43,10 @@ import net.opengis.gml.PolygonType;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *                     &lt;element ref="{}centroid" minOccurs="0"/&gt;
- *                     &lt;element ref="{http://www.opengis.net/gml}Polygon" minOccurs="0"/&gt;
+ *                     &lt;choice minOccurs="0"&gt;
+ *                       &lt;element ref="{http://www.opengis.net/gml}LineString"/&gt;
+ *                       &lt;element ref="{http://www.opengis.net/gml}Polygon"/&gt;
+ *                     &lt;/choice&gt;
  *                   &lt;/sequence&gt;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -112,7 +116,10 @@ public class XMLElementTransferZones {
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
      *         &lt;element ref="{}centroid" minOccurs="0"/&gt;
-     *         &lt;element ref="{http://www.opengis.net/gml}Polygon" minOccurs="0"/&gt;
+     *         &lt;choice minOccurs="0"&gt;
+     *           &lt;element ref="{http://www.opengis.net/gml}LineString"/&gt;
+     *           &lt;element ref="{http://www.opengis.net/gml}Polygon"/&gt;
+     *         &lt;/choice&gt;
      *       &lt;/sequence&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -128,12 +135,15 @@ public class XMLElementTransferZones {
     @XmlType(name = "", propOrder = {
         "name",
         "centroid",
+        "lineString",
         "polygon"
     })
     public static class XMLElementTransferZone {
 
         protected String name;
         protected XMLElementCentroid centroid;
+        @XmlElement(name = "LineString", namespace = "http://www.opengis.net/gml")
+        protected LineStringType lineString;
         @XmlElement(name = "Polygon", namespace = "http://www.opengis.net/gml")
         protected PolygonType polygon;
         @XmlAttribute(name = "id", required = true)
@@ -196,11 +206,31 @@ public class XMLElementTransferZones {
         }
 
         /**
+         * Gets the value of the lineString property.
          * 
-         * 			              Each transfer zone can additional define a geographical area that it represents (e.g., train platform), but
-         * 			              this is entirely optional. Alternatively it can also represent simply a stop pole (which can be located via
-         * 			              the centroid only) 
-         * 			            
+         * @return
+         *     possible object is
+         *     {@link LineStringType }
+         *     
+         */
+        public LineStringType getLineString() {
+            return lineString;
+        }
+
+        /**
+         * Sets the value of the lineString property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link LineStringType }
+         *     
+         */
+        public void setLineString(LineStringType value) {
+            this.lineString = value;
+        }
+
+        /**
+         * Gets the value of the polygon property.
          * 
          * @return
          *     possible object is
