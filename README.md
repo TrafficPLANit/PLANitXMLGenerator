@@ -4,18 +4,6 @@ Tool to generate Java classes from PLANit XML schemas to facilitate PLANitIO to 
 
 For more information on PLANit such as the user the manual, licensing, installation, getting started, reference documentation, and more, please visit [https://trafficplanit.github.io/PLANitManual/](https://trafficplanit.github.io/PLANitManual/)
 
-## Maven parent
-
-Projects need to be built from Maven before they can be run. The common maven configuration can be found in the PLANitParentPom project which acts as the parent for this project's pom.xml.
-
-> Make sure you install the PLANitParentPom pom.xml before conducting a maven build (in Eclipse) on this project, otherwise it cannot find the references dependencies, plugins, and other resources.
-
-## Maven JAXB2 Plugin
-
-This project uses JAXB to generate Java classes from XSD files.  JAXB is run using the Maven JAXB2 Plugin (https://github.com/highsource/maven-jaxb2-plugin).
-
-The Maven JAXB2 Plugin is run by running Maven with goals "clean install" on the code. 
-
 ## XSD and XJB Files
 
 XJB files are used by JAXB to configure how JAXB creates Java files and to resolve naming clashes.
@@ -81,3 +69,19 @@ Due to the OCG Schemas project mentioned above, JAXB also creates several "extra
 * org.w3._2001.smil20.language.
 
 You can ignore the contents of all these packages, but do not delete them.  You will get compilation error if you delete any of their contents.
+
+## Maven parent
+
+Projects need to be built from Maven before they can be run. The common maven configuration can be found in the PLANitParentPom project which acts as the parent for this project's pom.xml.
+
+> Make sure you install the PLANitParentPom pom.xml before conducting a maven build (in Eclipse) on this project, otherwise it cannot find the references dependencies, plugins, and other resources.
+
+## Maven JAXB2 Plugin
+
+This project uses JAXB to generate Java classes from XSD files.  JAXB is run using the Maven JAXB2 Plugin (https://github.com/highsource/maven-jaxb2-plugin).
+
+The Maven JAXB2 Plugin is run by running Maven with goals "clean install" on the code.
+
+## Git Branching model
+
+We adopt GitFlow as per https://nvie.com/posts/a-successful-git-branching-model/
