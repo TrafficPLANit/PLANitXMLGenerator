@@ -5,19 +5,19 @@
 
 	<parent>
     <groupId>org.planit.parentpom</groupId>
-    <artifactId>PLANitParentPom</artifactId>
+    <artifactId>planit-parentpom</artifactId>
 		<version>0.2.1a1</version>
 	</parent>
 
 	<groupId>org.planit.xml</groupId>
-	<artifactId>PLANitXMLGenerator</artifactId>
+	<artifactId>planit-xmlgenerator</artifactId>
 	<description>Generate XML java files from xsd schemas to be used by PLANitIO to convert XML based inputs into PLANit memory model. This is a seperate project
 	to ensure that only when the xsd schemas change a recompilation of the generated XMLs is required. Conversely whenever business logic in PLANitIO changes no
 	update of the generated classes will be necessary.
 	</description>
 	<packaging>jar</packaging>
 
-	<name>PLANitXMLGenerator</name>
+	<name>planit-xmlgenerator</name>
 	<url>https://github.com/TrafficPLANit/PLANitXMLGenerator</url>
 
 	<!-- license based on the one published on the website -->
