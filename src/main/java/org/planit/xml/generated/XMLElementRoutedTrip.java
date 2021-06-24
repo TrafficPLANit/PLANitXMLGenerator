@@ -20,12 +20,12 @@ import javax.xml.bind.annotation.XmlType;
  * 				Instance of a routed service defining the route, schedule/frequency and other related attributes
  * 			
  * 
- * <p>Java class for variant element declaration.
+ * <p>Java class for trip element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;element name="variant"&gt;
+ * &lt;element name="trip"&gt;
  *   &lt;complexType&gt;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
  *               &lt;complexContent&gt;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
+ *                   &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -43,7 +44,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;/choice&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -57,17 +57,15 @@ import javax.xml.bind.annotation.XmlType;
     "scheduledefinition",
     "frequency"
 })
-@XmlRootElement(name = "variant")
-public class XMLElementRoutedVariant {
+@XmlRootElement(name = "trip")
+public class XMLElementRoutedTrip {
 
     protected XMLElementSchedule scheduledefinition;
-    protected XMLElementRoutedVariant.Frequency frequency;
+    protected XMLElementRoutedTrip.Frequency frequency;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
     protected String externalid;
-    @XmlAttribute(name = "legrefs", required = true)
-    protected String legrefs;
 
     /**
      * 
@@ -100,10 +98,10 @@ public class XMLElementRoutedVariant {
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementRoutedVariant.Frequency }
+     *     {@link XMLElementRoutedTrip.Frequency }
      *     
      */
-    public XMLElementRoutedVariant.Frequency getFrequency() {
+    public XMLElementRoutedTrip.Frequency getFrequency() {
         return frequency;
     }
 
@@ -112,10 +110,10 @@ public class XMLElementRoutedVariant {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementRoutedVariant.Frequency }
+     *     {@link XMLElementRoutedTrip.Frequency }
      *     
      */
-    public void setFrequency(XMLElementRoutedVariant.Frequency value) {
+    public void setFrequency(XMLElementRoutedTrip.Frequency value) {
         this.frequency = value;
     }
 
@@ -167,30 +165,6 @@ public class XMLElementRoutedVariant {
         this.externalid = value;
     }
 
-    /**
-     * Gets the value of the legrefs property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLegrefs() {
-        return legrefs;
-    }
-
-    /**
-     * Sets the value of the legrefs property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLegrefs(String value) {
-        this.legrefs = value;
-    }
-
 
     /**
      * <p>Java class for anonymous complex type.
@@ -202,6 +176,7 @@ public class XMLElementRoutedVariant {
      *   &lt;complexContent&gt;
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
+     *       &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -215,6 +190,8 @@ public class XMLElementRoutedVariant {
 
         @XmlAttribute(name = "unit")
         protected TimeUnit unit;
+        @XmlAttribute(name = "legrefs", required = true)
+        protected String legrefs;
 
         /**
          * Gets the value of the unit property.
@@ -242,6 +219,30 @@ public class XMLElementRoutedVariant {
          */
         public void setUnit(TimeUnit value) {
             this.unit = value;
+        }
+
+        /**
+         * Gets the value of the legrefs property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getLegrefs() {
+            return legrefs;
+        }
+
+        /**
+         * Sets the value of the legrefs property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setLegrefs(String value) {
+            this.legrefs = value;
         }
 
     }

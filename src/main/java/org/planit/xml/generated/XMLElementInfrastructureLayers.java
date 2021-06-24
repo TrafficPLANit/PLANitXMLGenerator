@@ -60,8 +60,7 @@ public class XMLElementInfrastructureLayers {
     /**
      * 
      * 							each network consists of at least one infrastructure layer containing
-     * 							network elements
-     * 							such as nodes, links, etc.
+     * 							network elements such as nodes, links, etc.
      * 						Gets the value of the layer property.
      * 
      * <p>

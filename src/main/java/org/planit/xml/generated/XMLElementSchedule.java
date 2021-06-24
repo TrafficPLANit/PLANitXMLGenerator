@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Contains the schedule for a routed service variant
+ * 				Contains the schedule for a routed service trip
  * 			
  * 
  * <p>Java class for scheduledefinition element declaration.
@@ -83,7 +83,7 @@ public class XMLElementSchedule {
     /**
      * 
      * 							Contains all leg travel times which combined with the absolute departure times can be used
-     * 							to construct the (idealised) travel time of the service variant 
+     * 							to construct the (idealised) travel time of the trip 
      * 						
      * 
      * @return

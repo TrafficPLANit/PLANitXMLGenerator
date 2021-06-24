@@ -34,11 +34,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *           &lt;complexType&gt;
  *             &lt;complexContent&gt;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                 &lt;sequence&gt;
- *                   &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}time"/&gt;
- *                 &lt;/sequence&gt;
  *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;
@@ -100,11 +98,9 @@ public class Departures {
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-     *       &lt;sequence&gt;
-     *         &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}time"/&gt;
-     *       &lt;/sequence&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -113,42 +109,16 @@ public class Departures {
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "time"
-    })
+    @XmlType(name = "")
     public static class Departure {
 
-        @XmlElement(required = true)
-        @XmlSchemaType(name = "time")
-        protected XMLGregorianCalendar time;
         @XmlAttribute(name = "id", required = true)
         protected String id;
         @XmlAttribute(name = "externalid")
         protected String externalid;
-
-        /**
-         * Gets the value of the time property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public XMLGregorianCalendar getTime() {
-            return time;
-        }
-
-        /**
-         * Sets the value of the time property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public void setTime(XMLGregorianCalendar value) {
-            this.time = value;
-        }
+        @XmlAttribute(name = "time", required = true)
+        @XmlSchemaType(name = "time")
+        protected XMLGregorianCalendar time;
 
         /**
          * Gets the value of the id property.
@@ -196,6 +166,30 @@ public class Departures {
          */
         public void setExternalid(String value) {
             this.externalid = value;
+        }
+
+        /**
+         * Gets the value of the time property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public XMLGregorianCalendar getTime() {
+            return time;
+        }
+
+        /**
+         * Sets the value of the time property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public void setTime(XMLGregorianCalendar value) {
+            this.time = value;
         }
 
     }

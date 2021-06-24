@@ -35,8 +35,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;attribute name="from" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="to" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="lsrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="modes" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="type" type="{}legtype" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -60,10 +58,6 @@ public class XMLElementLeg {
     protected String to;
     @XmlAttribute(name = "lsrefs", required = true)
     protected String lsrefs;
-    @XmlAttribute(name = "modes", required = true)
-    protected String modes;
-    @XmlAttribute(name = "type")
-    protected Legtype type;
 
     /**
      * Gets the value of the id property.
@@ -183,54 +177,6 @@ public class XMLElementLeg {
      */
     public void setLsrefs(String value) {
         this.lsrefs = value;
-    }
-
-    /**
-     * Gets the value of the modes property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getModes() {
-        return modes;
-    }
-
-    /**
-     * Sets the value of the modes property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setModes(String value) {
-        this.modes = value;
-    }
-
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Legtype }
-     *     
-     */
-    public Legtype getType() {
-        return type;
-    }
-
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Legtype }
-     *     
-     */
-    public void setType(Legtype value) {
-        this.type = value;
     }
 
 }

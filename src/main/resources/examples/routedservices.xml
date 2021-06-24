@@ -2,71 +2,51 @@
 	<!-- to be as generic as possible we do not call this public transport services, because potentially this could be used for shipping services, truck supply chains
 	etc, anything involving semi-fixed routes of entities across a network of a specific mode -->
 	
-	<!-- route legs representing a number of adjacents link segments on a particular network (so can potentially used by multiple modes of that network)
-		 the network is needed, because the link segment xmlids need not be unique across the different networks 
-	-->
-	<legs>
-		<leg id="xmlId" externalid="someid" lsrefs="lsxmlid1,lsxmlid5,lsxmlid13,..." modes="bus" type="pt"/>
-		<!-- optional from and to attributes allow one to make it clear between what (transfer)zones in case of pt the leg runs, all connectoids should have unique Xml ids across 
-		origins/destination/transfers because otherwise we cannot uniquely identify the from/to -->
-		<leg id="xmlId" externalid="someid" lsrefs="lsxmlid1,lsxmlid5,lsxmlid13,..." modes="train" from="connectoidXmlid" to="transferconnectoidsmlid" type="pt"/>
-		<!-- 	one can imagine that we can also use this to move goods from warehouses to intermodal terminals, so we can use the type to be able to determine if 
-				the from to is an origin/destination zone, or a transfer zone, or either -->
-		<leg id="xmlId" externalid="someid" lsrefs="lsxmlid1,lsxmlid5,lsxmlid13,..." modes="truck" from="warehouse1xmlid" to="terminal3xmlid" type="freight"/>			
-	</legs>
-	<!-- a particular materialisation of a routed service, while a service represents for example a pt service between point A and B, an instance could be a variation
-		 that runs with different stops than another instance of the same service -->
-	<!-- a service can contain one or more instances of a route but has a commonality in the service that it offers (from A to B for example, which is captured in its name) -->
-	<services id="xmlId" externalid="someid" mode="bus"> 
-		<service id="xmlid" externalid="someid">
-			<!-- often services have a reference nr for users, (bus nr's for example), while they might not be unique in a large area, it is still useful to include -->
-			<servicenr>370</servicenr>			
-			<name>Glebe to Coogee</name>
-			<!--  a service can be circular, this implies that-->
-			<circular>false</circular> 
-			<variants>
-				<!-- a variant travels along the legs, where at each leg's start/end they make a stop, at least for pt this is how we use legs, and avoids having to explicitly
-				register stops here and it avoids having to make routedservice specific in storing them, instead the complexity is in the model that uses them which is always better -->
-				<variant id="xmlId" externalid="someid" legrefs="xmlid1,xmlid4,xmlid2,xmlid8,...">
-					<!-- choice between a schedule and frequency-->
-					<schedule>
-						<departures>
-							<departure id="xmlid" externalid="someid" >													
-								<time>07:00:00</time>
-							</departure>
-							<departure id="xmlid2" externalid="someid" >													
-								<time>07:10:00</time>
-							</departure>							
-						</departures>
-						<reltimings>
-							<!-- default offset for start time: if start is not provided for subsequent legs this offset is added to previous end time for departure on the next
-							 leg, but it is assumed the vehicle arrives at the end time of the previous leg still. can be used to support transfers on trains more easily and 
-							 makes repeating the start time with waiting time at start of the leg not necessary if it takes on the same value over and over -->
-							<defaultstartoffset>00:00:30</defaultstartoffset>
-							<leg ref="legrefid1">
-								<start>00:00:00</start>
-								<end>00:03:00</end>
-							</leg>
-							<leg ref="legrefid4">
-								<!-- start is optional, when left out, the start time is the end time of the previous leg + default offset, since they must be in order -->
-								<end>00:05:00</end>
-							</leg>
-							<leg ref="legrefid5">
-								<start>00:06:00</start>
-								<end>00:00:08:00</end>
-							</leg>							
-							<leg> ... </leg>  
-						</reltimings>
-					</schedule>
-					<!-- frequency based is much simpler, only a frequency for the variant is needed -->
-					<frequency unit="h">3</frequency>					
-				</variant>
-			</variants>			
-		</service>
-	</services>
-	<services mode="train"> 
-		<service>
-			...
-		</service>
-	</services>
+	<!--  services are defined per layer as a service is mode specific it can only reside on a single layer, yet ids of network objects are only unique within the layer
+		  so therefore we differentiate per layer  -->
+	<layer ref="1">
+		<!-- route legs representing a number of adjacents link segments on a particular network (so can potentially used by multiple modes of that network)
+			 the network is needed, because the link segment xmlids need not be unique across the different networks 
+		-->	
+		<legs>
+			<leg id="xmlId" externalid="someid" lsrefs="lsxmlid1,lsxmlid5,lsxmlid13,..."/>
+			<!-- optional from and to attributes allow one to make it clear between what (transfer)zones in case of pt the leg runs, all connectoids should have unique Xml ids across 
+			origins/destination/transfers because otherwise we cannot uniquely identify the from/to -->
+			<leg id="xmlId" externalid="someid" lsrefs="lsxmlid1,lsxmlid5,lsxmlid13,..." from="connectoidXmlid" to="transferconnectoidsmlid"/>			
+		</legs>
+		<!-- a particular materialisation of a routed service, while a service represents for example a pt service between point A and B, an instance could be a variation
+			 that runs with different stops than another instance of the same service -->
+		<services id="xmlId" externalid="someid"> 
+			<!-- a service can contain one or more instances of the same or slightly different trip but has a commonality in the service that it offers (from A to B for example, which is captured in its name) -->		
+			<service id="xmlid" externalid="someid" moderef="bus">
+				<!-- often services have a reference nr for users, (bus nr's for example), while they might not be unique in a large area, it is still useful to include -->
+				<name>370</name>
+				<namedescription>Glebe to Coogee</namedescription>			
+				<servicedescription>long description about this service rather than a more readable form of the name</servicedescription>
+				<trips>
+					<!-- a variant travels along the legs, where at each leg's start/end they make a stop, at least for pt this is how we use legs, and avoids having to explicitly
+					register stops here and it avoids having to make routedservice specific in storing them, instead the complexity is in the model that uses them which is always better -->
+					<trip id="xmlId" externalid="someid" >
+						<!-- choice between a schedule and frequency-->
+						<schedule>
+							<departures>
+								<departure id="xmlid" externalid="someid" time="07:00:00" />													
+							</departures>
+							<reltimings dwelltime="00:30:00">
+								<!--  optional dwell time, this is the default waiting time applied at the stop at the end of the leg, i.e., time added to the duration of the leg
+									  note that the duration is based on the schedule, not necessarily on the actual travel time in any simulation. Dwell time can be overridden per leg -->
+								<leg ref="legrefid1" traveltime="00:03:00" dwelltime="00:01:00" />						
+								<leg ... />  
+							</reltimings>
+						</schedule>
+						<!-- frequency based is much simpler, only a frequency for the variant is needed and the ordered legs between stops-->
+						<frequency legrefs="xmlid1,xmlid4,xmlid2,xmlid8,..." unit="h" >3</frequency>					
+					</trip>
+				</trips>			
+			</service>
+			<service>
+				...
+			</service>
+		</services>
+	</layer>
 </routedservices>

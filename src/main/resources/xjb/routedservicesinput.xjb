@@ -46,14 +46,14 @@
 	
 	<jaxb:bindings
 		schemaLocation="../xsd/routedservicesinput.xsd"
-		node="//xs:element[@name = 'variant']">
-		<jaxb:class name="XMLElementRoutedVariant" />
+		node="//xs:element[@name = 'trip']">
+		<jaxb:class name="XMLElementRoutedTrip" />
 	</jaxb:bindings>
 	
 	<jaxb:bindings
 		schemaLocation="../xsd/routedservicesinput.xsd"
-		node="//xs:element[@name = 'variants']">
-		<jaxb:class name="XMLElementRoutedVariants" />
+		node="//xs:element[@name = 'trips']">
+		<jaxb:class name="XMLElementRoutedTrips" />
 	</jaxb:bindings>							
 	
 </jaxb:bindings>

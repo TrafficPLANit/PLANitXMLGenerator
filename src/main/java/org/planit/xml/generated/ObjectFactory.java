@@ -73,6 +73,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementRoutedServices }
+     * 
+     */
+    public XMLElementRoutedServices createXMLElementRoutedServices() {
+        return new XMLElementRoutedServices();
+    }
+
+    /**
      * Create an instance of {@link XMLElementRelativeTimings }
      * 
      */
@@ -81,11 +89,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementRoutedVariant }
+     * Create an instance of {@link XMLElementRoutedTrip }
      * 
      */
-    public XMLElementRoutedVariant createXMLElementRoutedVariant() {
-        return new XMLElementRoutedVariant();
+    public XMLElementRoutedTrip createXMLElementRoutedTrip() {
+        return new XMLElementRoutedTrip();
     }
 
     /**
@@ -473,11 +481,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementRoutedVariants }
+     * Create an instance of {@link XMLElementRoutedTrips }
      * 
      */
-    public XMLElementRoutedVariants createXMLElementRoutedVariants() {
-        return new XMLElementRoutedVariants();
+    public XMLElementRoutedTrips createXMLElementRoutedTrips() {
+        return new XMLElementRoutedTrips();
     }
 
     /**
@@ -486,14 +494,6 @@ public class ObjectFactory {
      */
     public Departures.Departure createDeparturesDeparture() {
         return new Departures.Departure();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementRoutedServices }
-     * 
-     */
-    public XMLElementRoutedServices createXMLElementRoutedServices() {
-        return new XMLElementRoutedServices();
     }
 
     /**
@@ -537,6 +537,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementRoutedServices.Layer }
+     * 
+     */
+    public XMLElementRoutedServices.Layer createXMLElementRoutedServicesLayer() {
+        return new XMLElementRoutedServices.Layer();
+    }
+
+    /**
      * Create an instance of {@link XMLElementRelativeTimings.Leg }
      * 
      */
@@ -545,11 +553,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementRoutedVariant.Frequency }
+     * Create an instance of {@link XMLElementRoutedTrip.Frequency }
      * 
      */
-    public XMLElementRoutedVariant.Frequency createXMLElementRoutedVariantFrequency() {
-        return new XMLElementRoutedVariant.Frequency();
+    public XMLElementRoutedTrip.Frequency createXMLElementRoutedTripFrequency() {
+        return new XMLElementRoutedTrip.Frequency();
     }
 
     /**

@@ -19,20 +19,20 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Contains all unique service variants for its parent service. Outlining their route and schedule/frequency pattern
+ * 				Contains all trips conducted for its parent service. Outlining the route and schedule/frequency pattern
  * 			
  * 
- * <p>Java class for variants element declaration.
+ * <p>Java class for trips element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;element name="variants"&gt;
+ * &lt;element name="trips"&gt;
  *   &lt;complexType&gt;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element ref="{}variant" maxOccurs="unbounded"/&gt;
+ *           &lt;element ref="{}trip" maxOccurs="unbounded"/&gt;
  *         &lt;/sequence&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -44,43 +44,43 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "variant"
+    "trip"
 })
-@XmlRootElement(name = "variants")
-public class XMLElementRoutedVariants {
+@XmlRootElement(name = "trips")
+public class XMLElementRoutedTrips {
 
     @XmlElement(required = true)
-    protected List<XMLElementRoutedVariant> variant;
+    protected List<XMLElementRoutedTrip> trip;
 
     /**
      * 
-     * 							An instance of a routed service variant
-     * 						Gets the value of the variant property.
+     * 							An instance of a routed service
+     * 						Gets the value of the trip property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the variant property.
+     * This is why there is not a <CODE>set</CODE> method for the trip property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getVariant().add(newItem);
+     *    getTrip().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementRoutedVariant }
+     * {@link XMLElementRoutedTrip }
      * 
      * 
      */
-    public List<XMLElementRoutedVariant> getVariant() {
-        if (variant == null) {
-            variant = new ArrayList<XMLElementRoutedVariant>();
+    public List<XMLElementRoutedTrip> getTrip() {
+        if (trip == null) {
+            trip = new ArrayList<XMLElementRoutedTrip>();
         }
-        return this.variant;
+        return this.trip;
     }
 
 }

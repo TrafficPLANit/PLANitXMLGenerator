@@ -55,7 +55,7 @@ public class XMLElementLegs {
     /**
      * 
      * 							A leg indicates a (partial) route for a service in between two locations of interest, e.g., public transport stops 
-     * 							for example
+     * 							for example, or two warehouses.
      * 						Gets the value of the legdefinition property.
      * 
      * <p>

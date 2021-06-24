@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Definition for a single routed service
+ * 				Definition for a single routed service for a particular mode
  * 			
  * 
  * <p>Java class for service element declaration.
@@ -33,13 +33,15 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element name="servicenr" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *           &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *           &lt;element name="namedescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *           &lt;element name="servicedescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *           &lt;element name="circular" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
- *           &lt;element ref="{}variants" maxOccurs="unbounded"/&gt;
+ *           &lt;element ref="{}trips" maxOccurs="unbounded"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="moderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -50,50 +52,29 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "servicenr",
     "name",
+    "namedescription",
+    "servicedescription",
     "circular",
-    "variants"
+    "trips"
 })
 @XmlRootElement(name = "service")
 public class XMLElementService {
 
     @XmlElement(required = true)
-    protected String servicenr;
-    @XmlElement(required = true)
     protected String name;
+    protected String namedescription;
+    protected String servicedescription;
     @XmlElement(defaultValue = "false")
     protected Boolean circular;
     @XmlElement(required = true)
-    protected List<XMLElementRoutedVariants> variants;
+    protected List<XMLElementRoutedTrips> trips;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
     protected String externalid;
-
-    /**
-     * Gets the value of the servicenr property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getServicenr() {
-        return servicenr;
-    }
-
-    /**
-     * Sets the value of the servicenr property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setServicenr(String value) {
-        this.servicenr = value;
-    }
+    @XmlAttribute(name = "moderef", required = true)
+    protected String moderef;
 
     /**
      * Gets the value of the name property.
@@ -117,6 +98,54 @@ public class XMLElementService {
      */
     public void setName(String value) {
         this.name = value;
+    }
+
+    /**
+     * Gets the value of the namedescription property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNamedescription() {
+        return namedescription;
+    }
+
+    /**
+     * Sets the value of the namedescription property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNamedescription(String value) {
+        this.namedescription = value;
+    }
+
+    /**
+     * Gets the value of the servicedescription property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getServicedescription() {
+        return servicedescription;
+    }
+
+    /**
+     * Sets the value of the servicedescription property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setServicedescription(String value) {
+        this.servicedescription = value;
     }
 
     /**
@@ -145,33 +174,33 @@ public class XMLElementService {
 
     /**
      * 
-     * 							Lists the service variants in existence for this service
-     * 						Gets the value of the variants property.
+     * 							Lists the instances of trips made for this service
+     * 						Gets the value of the trips property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the variants property.
+     * This is why there is not a <CODE>set</CODE> method for the trips property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getVariants().add(newItem);
+     *    getTrips().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementRoutedVariants }
+     * {@link XMLElementRoutedTrips }
      * 
      * 
      */
-    public List<XMLElementRoutedVariants> getVariants() {
-        if (variants == null) {
-            variants = new ArrayList<XMLElementRoutedVariants>();
+    public List<XMLElementRoutedTrips> getTrips() {
+        if (trips == null) {
+            trips = new ArrayList<XMLElementRoutedTrips>();
         }
-        return this.variants;
+        return this.trips;
     }
 
     /**
@@ -220,6 +249,30 @@ public class XMLElementService {
      */
     public void setExternalid(String value) {
         this.externalid = value;
+    }
+
+    /**
+     * Gets the value of the moderef property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getModeref() {
+        return moderef;
+    }
+
+    /**
+     * Sets the value of the moderef property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setModeref(String value) {
+        this.moderef = value;
     }
 
 }

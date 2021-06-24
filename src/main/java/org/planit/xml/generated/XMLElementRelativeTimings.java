@@ -13,7 +13,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -35,21 +34,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element name="defaultstartoffset" type="{http://www.w3.org/2001/XMLSchema}time" minOccurs="0"/&gt;
  *           &lt;element name="leg" maxOccurs="unbounded" minOccurs="0"&gt;
  *             &lt;complexType&gt;
  *               &lt;complexContent&gt;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                   &lt;sequence&gt;
- *                     &lt;element name="start" type="{http://www.w3.org/2001/XMLSchema}time" minOccurs="0"/&gt;
- *                     &lt;element name="end" type="{http://www.w3.org/2001/XMLSchema}time"/&gt;
- *                   &lt;/sequence&gt;
- *                   &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" /&gt;
+ *                   &lt;attribute name="duration" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
+ *                   &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
  *           &lt;/element&gt;
  *         &lt;/sequence&gt;
+ *         &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" default="00:00:00" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -60,40 +57,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "defaultstartoffset",
     "leg"
 })
 @XmlRootElement(name = "reltimings")
 public class XMLElementRelativeTimings {
 
-    @XmlElement(defaultValue = "00:00:00")
-    @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar defaultstartoffset;
     protected List<XMLElementRelativeTimings.Leg> leg;
-
-    /**
-     * Gets the value of the defaultstartoffset property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDefaultstartoffset() {
-        return defaultstartoffset;
-    }
-
-    /**
-     * Sets the value of the defaultstartoffset property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDefaultstartoffset(XMLGregorianCalendar value) {
-        this.defaultstartoffset = value;
-    }
+    @XmlAttribute(name = "dwelltime")
+    @XmlSchemaType(name = "time")
+    protected XMLGregorianCalendar dwelltime;
 
     /**
      * Gets the value of the leg property.
@@ -124,6 +96,30 @@ public class XMLElementRelativeTimings {
         return this.leg;
     }
 
+    /**
+     * Gets the value of the dwelltime property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDwelltime() {
+        return dwelltime;
+    }
+
+    /**
+     * Sets the value of the dwelltime property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDwelltime(XMLGregorianCalendar value) {
+        this.dwelltime = value;
+    }
+
 
     /**
      * <p>Java class for anonymous complex type.
@@ -134,11 +130,9 @@ public class XMLElementRelativeTimings {
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-     *       &lt;sequence&gt;
-     *         &lt;element name="start" type="{http://www.w3.org/2001/XMLSchema}time" minOccurs="0"/&gt;
-     *         &lt;element name="end" type="{http://www.w3.org/2001/XMLSchema}time"/&gt;
-     *       &lt;/sequence&gt;
-     *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" /&gt;
+     *       &lt;attribute name="duration" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
+     *       &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -147,67 +141,18 @@ public class XMLElementRelativeTimings {
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "start",
-        "end"
-    })
+    @XmlType(name = "")
     public static class Leg {
 
-        @XmlSchemaType(name = "time")
-        protected XMLGregorianCalendar start;
-        @XmlElement(required = true)
-        @XmlSchemaType(name = "time")
-        protected XMLGregorianCalendar end;
-        @XmlAttribute(name = "ref", required = true)
+        @XmlAttribute(name = "ref")
+        @XmlSchemaType(name = "anySimpleType")
         protected String ref;
-
-        /**
-         * Gets the value of the start property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public XMLGregorianCalendar getStart() {
-            return start;
-        }
-
-        /**
-         * Sets the value of the start property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public void setStart(XMLGregorianCalendar value) {
-            this.start = value;
-        }
-
-        /**
-         * Gets the value of the end property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public XMLGregorianCalendar getEnd() {
-            return end;
-        }
-
-        /**
-         * Sets the value of the end property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public void setEnd(XMLGregorianCalendar value) {
-            this.end = value;
-        }
+        @XmlAttribute(name = "duration", required = true)
+        @XmlSchemaType(name = "time")
+        protected XMLGregorianCalendar duration;
+        @XmlAttribute(name = "dwelltime")
+        @XmlSchemaType(name = "time")
+        protected XMLGregorianCalendar dwelltime;
 
         /**
          * Gets the value of the ref property.
@@ -231,6 +176,54 @@ public class XMLElementRelativeTimings {
          */
         public void setRef(String value) {
             this.ref = value;
+        }
+
+        /**
+         * Gets the value of the duration property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public XMLGregorianCalendar getDuration() {
+            return duration;
+        }
+
+        /**
+         * Sets the value of the duration property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public void setDuration(XMLGregorianCalendar value) {
+            this.duration = value;
+        }
+
+        /**
+         * Gets the value of the dwelltime property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public XMLGregorianCalendar getDwelltime() {
+            return dwelltime;
+        }
+
+        /**
+         * Sets the value of the dwelltime property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public void setDwelltime(XMLGregorianCalendar value) {
+            this.dwelltime = value;
         }
 
     }

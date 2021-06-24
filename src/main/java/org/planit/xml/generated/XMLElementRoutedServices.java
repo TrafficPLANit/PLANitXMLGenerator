@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -33,9 +34,20 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element ref="{}legs"/&gt;
- *           &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
+ *           &lt;element name="layer" maxOccurs="unbounded"&gt;
+ *             &lt;complexType&gt;
+ *               &lt;complexContent&gt;
+ *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                   &lt;sequence&gt;
+ *                     &lt;element ref="{}legs"/&gt;
+ *                     &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
+ *                   &lt;/sequence&gt;
+ *                 &lt;/restriction&gt;
+ *               &lt;/complexContent&gt;
+ *             &lt;/complexType&gt;
+ *           &lt;/element&gt;
  *         &lt;/sequence&gt;
+ *         &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -46,75 +58,162 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "legs",
-    "services"
+    "layer"
 })
 @XmlRootElement(name = "routedservices")
 public class XMLElementRoutedServices {
 
     @XmlElement(required = true)
-    protected XMLElementLegs legs;
-    @XmlElement(required = true)
-    protected List<XMLElementServices> services;
+    protected List<XMLElementRoutedServices.Layer> layer;
+    @XmlAttribute(name = "ref", required = true)
+    protected String ref;
 
     /**
-     * 
-     * 						Legs are used to unique define one or more infrastructure elements that are traversed by a routed service
-     * 						without stopping. The routed service is expected to make a stop at the end of each leg to - for example - allow
-     * 						for transfers by people or goods being carried by the routed service.
-     * 					
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementLegs }
-     *     
-     */
-    public XMLElementLegs getLegs() {
-        return legs;
-    }
-
-    /**
-     * Sets the value of the legs property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementLegs }
-     *     
-     */
-    public void setLegs(XMLElementLegs value) {
-        this.legs = value;
-    }
-
-    /**
-     * 
-     * 						The services where each service has a schedule of frequency, is linked to a mode and follows a route as per
-     * 						a combination of legs. Each instance of services can define for one mode each.
-     * 					Gets the value of the services property.
+     * Gets the value of the layer property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the services property.
+     * This is why there is not a <CODE>set</CODE> method for the layer property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getServices().add(newItem);
+     *    getLayer().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementServices }
+     * {@link XMLElementRoutedServices.Layer }
      * 
      * 
      */
-    public List<XMLElementServices> getServices() {
-        if (services == null) {
-            services = new ArrayList<XMLElementServices>();
+    public List<XMLElementRoutedServices.Layer> getLayer() {
+        if (layer == null) {
+            layer = new ArrayList<XMLElementRoutedServices.Layer>();
         }
-        return this.services;
+        return this.layer;
+    }
+
+    /**
+     * Gets the value of the ref property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRef() {
+        return ref;
+    }
+
+    /**
+     * Sets the value of the ref property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRef(String value) {
+        this.ref = value;
+    }
+
+
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element ref="{}legs"/&gt;
+     *         &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "legs",
+        "services"
+    })
+    public static class Layer {
+
+        @XmlElement(required = true)
+        protected XMLElementLegs legs;
+        @XmlElement(required = true)
+        protected List<XMLElementServices> services;
+
+        /**
+         * 
+         * 									Legs are used to unique define one or more infrastructure elements that are traversed by a routed service
+         * 									without stopping. The routed service is expected to make a stop at the end of each leg to - for example - allow
+         * 									for transfers by people or goods being carried by the routed service.
+         * 								
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLElementLegs }
+         *     
+         */
+        public XMLElementLegs getLegs() {
+            return legs;
+        }
+
+        /**
+         * Sets the value of the legs property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLElementLegs }
+         *     
+         */
+        public void setLegs(XMLElementLegs value) {
+            this.legs = value;
+        }
+
+        /**
+         * 
+         * 									The services where each service has a schedule of frequency, is linked to a mode and follows a route as per
+         * 									a combination of legs. Each instance of services can define for one mode each.
+         * 								Gets the value of the services property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the services property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getServices().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link XMLElementServices }
+         * 
+         * 
+         */
+        public List<XMLElementServices> getServices() {
+            if (services == null) {
+                services = new ArrayList<XMLElementServices>();
+            }
+            return this.services;
+        }
+
     }
 
 }
