@@ -20,9 +20,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 			Root element of routed services, these can be for either microscopic or macroscopic networks. A routed service
- * 			has a predefined route that is being executed by a mode at specific time instances (or frequencies).
- * 		
+ * 				Root element of routed services, these can be for either microscopic or macroscopic networks. A routed service
+ * 				has a predefined route that is being executed by a mode at specific time instances (or frequencies).
+ * 			
  * 
  * <p>Java class for routedservices element declaration.
  * 
@@ -34,21 +34,19 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element name="layer" maxOccurs="unbounded"&gt;
+ *           &lt;element name="servicelayers"&gt;
  *             &lt;complexType&gt;
  *               &lt;complexContent&gt;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;sequence&gt;
- *                     &lt;element ref="{}legs"/&gt;
- *                     &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
+ *                     &lt;element ref="{}servicelayer" maxOccurs="unbounded"/&gt;
  *                   &lt;/sequence&gt;
+ *                   &lt;attribute name="servicenetworkref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
  *           &lt;/element&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -59,93 +57,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "layer"
+    "servicelayers"
 })
 @XmlRootElement(name = "routedservices")
 public class XMLElementRoutedServices {
 
     @XmlElement(required = true)
-    protected List<XMLElementRoutedServices.Layer> layer;
-    @XmlAttribute(name = "id", required = true)
-    protected String id;
-    @XmlAttribute(name = "ref", required = true)
-    protected String ref;
+    protected XMLElementRoutedServices.Servicelayers servicelayers;
 
     /**
-     * Gets the value of the layer property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the layer property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getLayer().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementRoutedServices.Layer }
-     * 
-     * 
-     */
-    public List<XMLElementRoutedServices.Layer> getLayer() {
-        if (layer == null) {
-            layer = new ArrayList<XMLElementRoutedServices.Layer>();
-        }
-        return this.layer;
-    }
-
-    /**
-     * Gets the value of the id property.
+     * Gets the value of the servicelayers property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLElementRoutedServices.Servicelayers }
      *     
      */
-    public String getId() {
-        return id;
+    public XMLElementRoutedServices.Servicelayers getServicelayers() {
+        return servicelayers;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the servicelayers property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLElementRoutedServices.Servicelayers }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the ref property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRef() {
-        return ref;
-    }
-
-    /**
-     * Sets the value of the ref property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRef(String value) {
-        this.ref = value;
+    public void setServicelayers(XMLElementRoutedServices.Servicelayers value) {
+        this.servicelayers = value;
     }
 
 
@@ -159,9 +100,9 @@ public class XMLElementRoutedServices {
      *   &lt;complexContent&gt;
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;sequence&gt;
-     *         &lt;element ref="{}legs"/&gt;
-     *         &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
+     *         &lt;element ref="{}servicelayer" maxOccurs="unbounded"/&gt;
      *       &lt;/sequence&gt;
+     *       &lt;attribute name="servicenetworkref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -171,74 +112,66 @@ public class XMLElementRoutedServices {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "legs",
-        "services"
+        "servicelayer"
     })
-    public static class Layer {
+    public static class Servicelayers {
 
         @XmlElement(required = true)
-        protected XMLElementLegs legs;
-        @XmlElement(required = true)
-        protected List<XMLElementServices> services;
+        protected List<Servicelayer> servicelayer;
+        @XmlAttribute(name = "servicenetworkref", required = true)
+        protected String servicenetworkref;
 
         /**
-         * 
-         * 									Legs are used to unique define one or more infrastructure elements that are traversed by a routed service
-         * 									without stopping. The routed service is expected to make a stop at the end of each leg to - for example - allow
-         * 									for transfers by people or goods being carried by the routed service.
-         * 								
-         * 
-         * @return
-         *     possible object is
-         *     {@link XMLElementLegs }
-         *     
-         */
-        public XMLElementLegs getLegs() {
-            return legs;
-        }
-
-        /**
-         * Sets the value of the legs property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link XMLElementLegs }
-         *     
-         */
-        public void setLegs(XMLElementLegs value) {
-            this.legs = value;
-        }
-
-        /**
-         * 
-         * 									The services where each service has a schedule of frequency, is linked to a mode and follows a route as per
-         * 									a combination of legs. Each instance of services can define for one mode each.
-         * 								Gets the value of the services property.
+         * Gets the value of the servicelayer property.
          * 
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the services property.
+         * This is why there is not a <CODE>set</CODE> method for the servicelayer property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getServices().add(newItem);
+         *    getServicelayer().add(newItem);
          * </pre>
          * 
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link XMLElementServices }
+         * {@link Servicelayer }
          * 
          * 
          */
-        public List<XMLElementServices> getServices() {
-            if (services == null) {
-                services = new ArrayList<XMLElementServices>();
+        public List<Servicelayer> getServicelayer() {
+            if (servicelayer == null) {
+                servicelayer = new ArrayList<Servicelayer>();
             }
-            return this.services;
+            return this.servicelayer;
+        }
+
+        /**
+         * Gets the value of the servicenetworkref property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getServicenetworkref() {
+            return servicenetworkref;
+        }
+
+        /**
+         * Sets the value of the servicenetworkref property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setServicenetworkref(String value) {
+            this.servicenetworkref = value;
         }
 
     }

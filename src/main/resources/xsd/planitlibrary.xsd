@@ -39,6 +39,18 @@
 	
 	<!-- SIMPLE TYPES -->
 	
+  <xs:simpleType name="direction">
+    <xs:annotation>
+      <xs:documentation>
+        Choice between direction from a->b, or b->a
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="a_b" />
+      <xs:enumeration value="b_a" />
+    </xs:restriction>
+  </xs:simpleType>	
+	
 	<xs:simpleType name="connectoidtypetype">
     <xs:annotation>
       <xs:documentation>

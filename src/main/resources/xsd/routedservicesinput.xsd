@@ -3,42 +3,7 @@
 	<xs:include schemaLocation="planitlibrary.xsd" />
 	<xs:import namespace="http://www.opengis.net/gml"
 		schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
-		
-	<!-- Complex types -->
-	<xs:element name="legdefinition">
-		<xs:annotation>
-			<xs:documentation>
-				A leg definition represents a (partial) route for a service in between two locations of interest, e.g., public transport stops 
-				for example
-			</xs:documentation>
-		</xs:annotation>	
-		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" use="required" />
-			<xs:attribute name="externalid" type="xs:string" use="optional"/>
-			<xs:attribute name="from" type="xs:string" use="optional">
-				<xs:annotation>
-					<xs:documentation>
-						Optional `from` connectoid Xml id, this can either be an origin/destination/transfer zone connectoid
-					</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="to" type="xs:string" use="optional">
-				<xs:annotation>
-					<xs:documentation>
-						Optional `to` connectoid Xml id, this can either be an origin/destination/transfer zone connectoid
-					</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>					
-			<xs:attribute name="lsrefs" type="xs:string" use="required">
-				<xs:annotation>
-					<xs:documentation>
-						Link segment references should be provided as an ordered comma separated list of XML ids, reflecting the legs infrastructure elements used
-					</xs:documentation>
-				</xs:annotation>							
-			</xs:attribute>				
-		</xs:complexType>
-	</xs:element>	
-		
+				
 	<xs:element name="scheduledefinition">
 		<xs:annotation>
 			<xs:documentation>
@@ -69,27 +34,7 @@
 	<!-- Simple elements -->
 	
 	<!-- Complex elements -->
-	
-	<xs:element name="legs">
-		<xs:annotation>
-			<xs:documentation>
-				contains the legs for all routed service. Legs may overlap.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="leg" ref="legdefinition" minOccurs="1" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>
-							A leg indicates a (partial) route for a service in between two locations of interest, e.g., public transport stops 
-							for example, or two warehouses.
-						</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>	
-		
+			
 	<xs:element name="services">
 		<xs:annotation>
 			<xs:documentation>
@@ -299,50 +244,54 @@
 			</xs:attribute>			
 		</xs:complexType>
 	</xs:element>			
+	
+  <xs:element name="servicelayer">
+	  <xs:annotation>
+	    <xs:documentation>
+	      A service layer contains all routed services available on a particular physical network layer referenced by the network layer id.
+	    </xs:documentation>
+	  </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>	  
+		    <xs:element ref="services">
+		      <xs:annotation>
+				    <xs:documentation>
+				      Container element for the actual services
+				    </xs:documentation>
+				  </xs:annotation>	
+				</xs:element>              
+      </xs:sequence>
+	    <xs:attribute name="id" type="xs:string" use="required" />
+	    <xs:attribute name="externalid" type="xs:string" use="optional" />
+	    <xs:attribute name="servicenetworklayerref" type="xs:string" use="required"/>
+    </xs:complexType> 
+  </xs:element>	
 		
 	<!-- Root element -->
 	<xs:element name="routedservices">
-	<xs:annotation>
-		<xs:documentation>
-			Root element of routed services, these can be for either microscopic or macroscopic networks. A routed service
-			has a predefined route that is being executed by a mode at specific time instances (or frequencies).
-		</xs:documentation>
-	</xs:annotation>
-	<xs:complexType>
-		<xs:sequence>
-			<xs:element name="layer" minOccurs="1" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>
-						Routed services take place on a network layer since each service is related to a single mode. Therefore, all routed services
-						are grouped per layer.
-					</xs:documentation>
-				</xs:annotation>			
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element ref="legs" minOccurs="1" maxOccurs="1">
-							<xs:annotation>
-								<xs:documentation>
-									Legs are used to unique define one or more infrastructure elements that are traversed by a routed service
-									without stopping. The routed service is expected to make a stop at the end of each leg to - for example - allow
-									for transfers by people or goods being carried by the routed service.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element ref="services" minOccurs="1" maxOccurs="unbounded" >
-							<xs:annotation>
-								<xs:documentation>
-									The services where each service has a schedule of frequency, is linked to a mode and follows a route as per
-									a combination of legs. Each instance of services can define for one mode each.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>									
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="id" type="xs:string" use="required" />
-		<xs:attribute name="ref" type="xs:string" use="required"/>
-	</xs:complexType>	
-</xs:element>
+		<xs:annotation>
+			<xs:documentation>
+				Root element of routed services, these can be for either microscopic or macroscopic networks. A routed service
+				has a predefined route that is being executed by a mode at specific time instances (or frequencies).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+		  <xs:sequence>
+		    <xs:element name="servicelayers" minOccurs="1" maxOccurs="1">
+			    <xs:annotation>
+	          <xs:documentation>
+	            grouping of all service layers tied to a particular network via the network reference 
+	          </xs:documentation>
+	        </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="servicelayer" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="servicenetworkref" type="xs:string" use="required"/>            
+          </xs:complexType>          
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>                  	        	      
 	
 </xs:schema>

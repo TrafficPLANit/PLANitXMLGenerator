@@ -73,6 +73,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link org.planit.xml.generated.Leg }
+     * 
+     */
+    public org.planit.xml.generated.Leg createLeg() {
+        return new org.planit.xml.generated.Leg();
+    }
+
+    /**
+     * Create an instance of {@link Servicenodes }
+     * 
+     */
+    public Servicenodes createServicenodes() {
+        return new Servicenodes();
+    }
+
+    /**
      * Create an instance of {@link XMLElementRoutedServices }
      * 
      */
@@ -441,27 +457,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementLeg }
-     * 
-     */
-    public XMLElementLeg createXMLElementLeg() {
-        return new XMLElementLeg();
-    }
-
-    /**
      * Create an instance of {@link XMLElementSchedule }
      * 
      */
     public XMLElementSchedule createXMLElementSchedule() {
         return new XMLElementSchedule();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementLegs }
-     * 
-     */
-    public XMLElementLegs createXMLElementLegs() {
-        return new XMLElementLegs();
     }
 
     /**
@@ -494,6 +494,54 @@ public class ObjectFactory {
      */
     public Departures.Departure createDeparturesDeparture() {
         return new Departures.Departure();
+    }
+
+    /**
+     * Create an instance of {@link Servicelayer }
+     * 
+     */
+    public Servicelayer createServicelayer() {
+        return new Servicelayer();
+    }
+
+    /**
+     * Create an instance of {@link org.planit.xml.generated.Leg.Legsegment }
+     * 
+     */
+    public org.planit.xml.generated.Leg.Legsegment createLegLegsegment() {
+        return new org.planit.xml.generated.Leg.Legsegment();
+    }
+
+    /**
+     * Create an instance of {@link Servicenodes.Servicenode }
+     * 
+     */
+    public Servicenodes.Servicenode createServicenodesServicenode() {
+        return new Servicenodes.Servicenode();
+    }
+
+    /**
+     * Create an instance of {@link Servicelegs }
+     * 
+     */
+    public Servicelegs createServicelegs() {
+        return new Servicelegs();
+    }
+
+    /**
+     * Create an instance of {@link Servicenetworklayer }
+     * 
+     */
+    public Servicenetworklayer createServicenetworklayer() {
+        return new Servicenetworklayer();
+    }
+
+    /**
+     * Create an instance of {@link Servicenetwork }
+     * 
+     */
+    public Servicenetwork createServicenetwork() {
+        return new Servicenetwork();
     }
 
     /**
@@ -537,11 +585,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementRoutedServices.Layer }
+     * Create an instance of {@link XMLElementRoutedServices.Servicelayers }
      * 
      */
-    public XMLElementRoutedServices.Layer createXMLElementRoutedServicesLayer() {
-        return new XMLElementRoutedServices.Layer();
+    public XMLElementRoutedServices.Servicelayers createXMLElementRoutedServicesServicelayers() {
+        return new XMLElementRoutedServices.Servicelayers();
     }
 
     /**

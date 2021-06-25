@@ -1,18 +1,23 @@
 <servicenetwork xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xxxx/xsd/routedservices.xsd"
-	id="1" networkref="1"
->
+	id="1" networkref="1">
+	
 	<!-- multiple service network layers can be defined for a service network. However each service network is 1:1 mapped to a physical network via its -->
 	<!-- each servicenetworklayer is mapped 1:1 to a network layer of the physical network -->
 	<servicenetworklayer id="1" networklayerref="1">
 		<!-- service nodes simply provide a link to the physical node for which a service is available-->
 		<servicenodes>
-			<servicenode id="1" externalid="someid" nref="1" />
+			<servicenode id="1" externalid="someid" noderef="1" />
 		</servicenodes>
 		<!-- service legs provide links between service nodes (from/to) where multiple legs between the same service nodes are possible as long as the underlying link segments
-			 these legs represent are different. A leg is modelled as a link in the service network, but reflect a path on the underlying physical network via their order link segment ids
+			 these legs represent are different. A leg is modelled as a link in the service network, but reflect a path on the underlying physical network via the combination of
+			 link ids and the leg segment direction (which uniquely identify the underlying link segments in the appropriate direction). It is expected the link references are provided
+			 in the a_b direction
 		-->
 		<servicelegs>
-			<leg id="1" externalid="someid" from="1" to="2" lsrefs="1,2,3" />
+			<leg id="1" externalid="someid" nodearef="1" nodebref="2" lrefs="1,2,3">
+			   <legsegment id="1" dir="a_b" />
+			   <legsegment id="2" dir="b_a" />			   
+			</leg>
 		</servicelegs>
 	</servicenetworklayer>
 </servicenetwork>

@@ -18,70 +18,61 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * 
- * 				contains the legs for all routed service. Legs may overlap.
- * 			
- * 
- * <p>Java class for legs element declaration.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;element name="legs"&gt;
- *   &lt;complexType&gt;
- *     &lt;complexContent&gt;
- *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *         &lt;sequence&gt;
- *           &lt;element ref="{}legdefinition" maxOccurs="unbounded"/&gt;
- *         &lt;/sequence&gt;
- *       &lt;/restriction&gt;
- *     &lt;/complexContent&gt;
- *   &lt;/complexType&gt;
- * &lt;/element&gt;
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element ref="{}leg" maxOccurs="unbounded"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "legdefinition"
+    "leg"
 })
-@XmlRootElement(name = "legs")
-public class XMLElementLegs {
+@XmlRootElement(name = "servicelegs")
+public class Servicelegs {
 
     @XmlElement(required = true)
-    protected List<XMLElementLeg> legdefinition;
+    protected List<Leg> leg;
 
     /**
-     * 
-     * 							A leg indicates a (partial) route for a service in between two locations of interest, e.g., public transport stops 
-     * 							for example, or two warehouses.
-     * 						Gets the value of the legdefinition property.
+     * Gets the value of the leg property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the legdefinition property.
+     * This is why there is not a <CODE>set</CODE> method for the leg property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getLegdefinition().add(newItem);
+     *    getLeg().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementLeg }
+     * {@link Leg }
      * 
      * 
      */
-    public List<XMLElementLeg> getLegdefinition() {
-        if (legdefinition == null) {
-            legdefinition = new ArrayList<XMLElementLeg>();
+    public List<Leg> getLeg() {
+        if (leg == null) {
+            leg = new ArrayList<Leg>();
         }
-        return this.legdefinition;
+        return this.leg;
     }
 
 }
