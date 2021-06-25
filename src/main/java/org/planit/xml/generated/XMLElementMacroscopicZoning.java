@@ -33,6 +33,7 @@ import javax.xml.namespace.QName;
  *           &lt;element ref="{}zones"/&gt;
  *           &lt;element name="intermodal" type="{}intermodaltype" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute ref="{}srsname"/&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -54,6 +55,8 @@ public class XMLElementMacroscopicZoning {
     protected XMLElementZones zones;
     @XmlElementRef(name = "intermodal", type = XMLElementMacroscopicZoning.XMLElementIntermodal.class, required = false)
     protected XMLElementMacroscopicZoning.XMLElementIntermodal intermodal;
+    @XmlAttribute(name = "id", required = true)
+    protected String id;
     @XmlAttribute(name = "srsname")
     protected String srsname;
 
@@ -106,11 +109,35 @@ public class XMLElementMacroscopicZoning {
     }
 
     /**
+     * Gets the value of the id property.
      * 
-     *             Spatial reference system is optional, when absent it is assumed that the same srs is used as provided on the infrastrure element in the
-     *             macroscopic supply input. If present it can be different but it is recommended to be the same. When different the gml elements in this xml
-     *             are parsed according to the provided srs but will internally be converted into the "dominant" project srs which is the one provided on the infrastructure element
-     *           
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
+
+    /**
+     * 
+     * 		            Spatial reference system is optional, when absent it is assumed that the same srs is used as provided on the infrastrure element in the
+     * 		            macroscopic supply input. If present it can be different but it is recommended to be the same. When different the gml elements in this xml
+     * 		            are parsed according to the provided srs but will internally be converted into the "dominant" project srs which is the one provided on the infrastructure element
+     * 		          
      * 
      * @return
      *     possible object is

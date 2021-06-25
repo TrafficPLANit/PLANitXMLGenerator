@@ -47,6 +47,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexType&gt;
  *           &lt;/element&gt;
  *         &lt;/sequence&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -65,6 +66,8 @@ public class XMLElementRoutedServices {
 
     @XmlElement(required = true)
     protected List<XMLElementRoutedServices.Layer> layer;
+    @XmlAttribute(name = "id", required = true)
+    protected String id;
     @XmlAttribute(name = "ref", required = true)
     protected String ref;
 
@@ -95,6 +98,30 @@ public class XMLElementRoutedServices {
             layer = new ArrayList<XMLElementRoutedServices.Layer>();
         }
         return this.layer;
+    }
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
     }
 
     /**
