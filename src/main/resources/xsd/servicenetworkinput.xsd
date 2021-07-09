@@ -94,6 +94,7 @@
       </xs:sequence>
 	    <xs:attribute name="id" type="xs:string" use="required" />
 	    <xs:attribute name="externalid" type="xs:string" use="optional" />
+      <xs:attribute name="networkref" type="xs:string" use="required"/>	    
 	    <xs:attribute name="servicenetworklayerref" type="xs:string" use="required"/>
     </xs:complexType> 
   </xs:element>	
@@ -108,10 +109,9 @@
 		</xs:annotation>
 		<xs:complexType>
 		  <xs:sequence>
+		    <xs:element name="id" type="xs:string" use="required" />
 		    <xs:element ref="servicenetworklayer" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
-      <xs:attribute name="id" type="xs:string" use="required"/>
-      <xs:attribute name="networkref" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>                  	        	      
 	

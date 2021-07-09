@@ -601,7 +601,8 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="configuration" minOccurs="0">
+        <xs:element name="id" type="xs:string" use="required" />			
+				<xs:element ref="configuration" minOccurs="0">				
 					<xs:annotation>
 						<xs:documentation>
 							When configuration is absent we assume a single
@@ -611,7 +612,6 @@
 				</xs:element>
 				<xs:element ref="infrastructurelayers" />
 			</xs:sequence>
-			<xs:attribute name="id" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
 

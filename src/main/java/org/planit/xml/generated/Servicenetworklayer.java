@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="networkref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="servicenetworklayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -55,6 +56,8 @@ public class Servicenetworklayer {
     protected String id;
     @XmlAttribute(name = "externalid")
     protected String externalid;
+    @XmlAttribute(name = "networkref", required = true)
+    protected String networkref;
     @XmlAttribute(name = "servicenetworklayerref", required = true)
     protected String servicenetworklayerref;
 
@@ -152,6 +155,30 @@ public class Servicenetworklayer {
      */
     public void setExternalid(String value) {
         this.externalid = value;
+    }
+
+    /**
+     * Gets the value of the networkref property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNetworkref() {
+        return networkref;
+    }
+
+    /**
+     * Sets the value of the networkref property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNetworkref(String value) {
+        this.networkref = value;
     }
 
     /**

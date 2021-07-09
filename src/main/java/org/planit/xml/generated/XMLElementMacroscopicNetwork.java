@@ -10,7 +10,6 @@ package org.planit.xml.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -32,10 +31,10 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
+ *           &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *           &lt;element ref="{}configuration" minOccurs="0"/&gt;
  *           &lt;element ref="{}infrastructurelayers"/&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -46,17 +45,42 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "id",
     "configuration",
     "infrastructurelayers"
 })
 @XmlRootElement(name = "macroscopicnetwork")
 public class XMLElementMacroscopicNetwork {
 
+    @XmlElement(required = true)
+    protected String id;
     protected XMLElementConfiguration configuration;
     @XmlElement(required = true)
     protected XMLElementInfrastructureLayers infrastructurelayers;
-    @XmlAttribute(name = "id", required = true)
-    protected String id;
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
 
     /**
      * 
@@ -107,30 +131,6 @@ public class XMLElementMacroscopicNetwork {
      */
     public void setInfrastructurelayers(XMLElementInfrastructureLayers value) {
         this.infrastructurelayers = value;
-    }
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
     }
 
 }
