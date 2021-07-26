@@ -110,6 +110,8 @@
 		<xs:complexType>
 		  <xs:sequence>
 		    <xs:element name="id" type="xs:string" use="required" />
+		    <!-- reference to parent network id the service network is built upon-->
+		    <xs:element name="parentnetwork" type="xs:string" use="required" />
 		    <xs:element ref="servicenetworklayer" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
     </xs:complexType>

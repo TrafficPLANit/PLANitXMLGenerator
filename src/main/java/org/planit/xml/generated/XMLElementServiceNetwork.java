@@ -18,21 +18,29 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				Root element of a service network. Each service network is built on top of a physical network, where each service network layer directly
+ * 				corresponds to a physical network layer on top of which its services are placed.
+ * 			
+ * 
+ * <p>Java class for servicenetwork element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element ref="{}servicenetworklayer" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="servicenetwork"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *           &lt;element name="parentnetwork" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *           &lt;element ref="{}servicenetworklayer" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -40,15 +48,18 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "id",
+    "parentnetwork",
     "servicenetworklayer"
 })
 @XmlRootElement(name = "servicenetwork")
-public class Servicenetwork {
+public class XMLElementServiceNetwork {
 
     @XmlElement(required = true)
     protected String id;
     @XmlElement(required = true)
-    protected List<Servicenetworklayer> servicenetworklayer;
+    protected String parentnetwork;
+    @XmlElement(required = true)
+    protected List<XMLElementServiceNetworkLayer> servicenetworklayer;
 
     /**
      * Gets the value of the id property.
@@ -75,6 +86,30 @@ public class Servicenetwork {
     }
 
     /**
+     * Gets the value of the parentnetwork property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getParentnetwork() {
+        return parentnetwork;
+    }
+
+    /**
+     * Sets the value of the parentnetwork property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setParentnetwork(String value) {
+        this.parentnetwork = value;
+    }
+
+    /**
      * Gets the value of the servicenetworklayer property.
      * 
      * <p>
@@ -92,13 +127,13 @@ public class Servicenetwork {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Servicenetworklayer }
+     * {@link XMLElementServiceNetworkLayer }
      * 
      * 
      */
-    public List<Servicenetworklayer> getServicenetworklayer() {
+    public List<XMLElementServiceNetworkLayer> getServicenetworklayer() {
         if (servicenetworklayer == null) {
-            servicenetworklayer = new ArrayList<Servicenetworklayer>();
+            servicenetworklayer = new ArrayList<XMLElementServiceNetworkLayer>();
         }
         return this.servicenetworklayer;
     }

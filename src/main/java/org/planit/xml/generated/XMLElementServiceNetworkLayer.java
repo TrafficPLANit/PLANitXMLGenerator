@@ -17,25 +17,33 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 	       A service network layer defines services on top of a physical network layer, but is a network in itself albeit that nodes refer
+ *          to physical nodes and link(segment)s are represented as leg(segment)s which in turn represent one or more link(segments) in the underlying 
+ *          physical network
+ * 	    
+ * 
+ * <p>Java class for servicenetworklayer element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}servicenodes"/&gt;
- *         &lt;element ref="{}servicelegs"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="networkref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="servicenetworklayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="servicenetworklayer"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element ref="{}servicenodes"/&gt;
+ *           &lt;element ref="{}servicelegs"/&gt;
+ *         &lt;/sequence&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="networkref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="servicenetworklayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -46,7 +54,7 @@ import javax.xml.bind.annotation.XmlType;
     "servicelegs"
 })
 @XmlRootElement(name = "servicenetworklayer")
-public class Servicenetworklayer {
+public class XMLElementServiceNetworkLayer {
 
     @XmlElement(required = true)
     protected Servicenodes servicenodes;

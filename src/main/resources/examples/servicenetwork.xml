@@ -1,8 +1,8 @@
-<servicenetwork xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xxxx/xsd/routedservices.xsd"
-	id="1" networkref="1">
-	
+<servicenetwork xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/servicenetworkinput.xsd">
+	<id>1</id>
+	<parentnetwork>1</parentnetwork>
 	<!-- multiple service network layers can be defined for a service network. However each service network is 1:1 mapped to a physical network via its -->
-	<!-- each servicenetworklayer is mapped 1:1 to a network layer of the physical network -->
+	<!-- each service network layer is mapped 1:1 to a network layer of the physical network -->
 	<servicenetworklayer id="1" networklayerref="1">
 		<!-- service nodes simply provide a link to the physical node for which a service is available-->
 		<servicenodes>

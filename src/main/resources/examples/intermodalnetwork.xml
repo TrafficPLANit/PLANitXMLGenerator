@@ -2,7 +2,8 @@
 <macroscopicnetwork
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xmlns:gml="http://www.opengis.net/gml"                     
-   xsi:noNamespaceSchemaLocation="<path_to_schema>/macroscopicnetworkinput.xsd">
+   xsi:noNamespaceSchemaLocation="../xsd/macroscopicnetworkinput.xsd">
+  <id>1</id>
   <configuration>
     <!-- the available modes are on the top level configuration of the network -->                                   
     <modes>                                     

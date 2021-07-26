@@ -1,0 +1,16 @@
+<jaxb:bindings version="2.1"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<jaxb:bindings
+		schemaLocation="../xsd/servicenetworkinput.xsd"
+    node="//xs:element[@name ='servicenetwork']">
+    <jaxb:class name="XMLElementServiceNetwork" />
+	</jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../xsd/servicenetworkinput.xsd"
+    node="//xs:element[@name ='servicenetworklayer']">
+    <jaxb:class name="XMLElementServiceNetworkLayer" />
+  </jaxb:bindings>	
+  
+</jaxb:bindings>

@@ -529,19 +529,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Servicenetworklayer }
+     * Create an instance of {@link XMLElementServiceNetworkLayer }
      * 
      */
-    public Servicenetworklayer createServicenetworklayer() {
-        return new Servicenetworklayer();
+    public XMLElementServiceNetworkLayer createXMLElementServiceNetworkLayer() {
+        return new XMLElementServiceNetworkLayer();
     }
 
     /**
-     * Create an instance of {@link Servicenetwork }
+     * Create an instance of {@link XMLElementServiceNetwork }
      * 
      */
-    public Servicenetwork createServicenetwork() {
-        return new Servicenetwork();
+    public XMLElementServiceNetwork createXMLElementServiceNetwork() {
+        return new XMLElementServiceNetwork();
     }
 
     /**
