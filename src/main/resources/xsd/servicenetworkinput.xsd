@@ -12,7 +12,7 @@
 		</xs:annotation>	
 		<xs:complexType>
 		  <xs:sequence>
-		    <xs:element name="legsegment">
+		    <xs:element name="legsegment" minOccurs="1" maxOccurs="2">
 			    <xs:complexType>
 			      <xs:sequence>
 			      </xs:sequence>
@@ -29,7 +29,7 @@
       <xs:attribute name="lrefs" type="xs:string" use="optional" >			
 				<xs:annotation>
 					<xs:documentation>
-						Comma separated list of physical network layer link ids portraying the link in order from node a towards node b
+						Comma separated list of parent network layer link ids portraying the link in order from node a towards node b
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>							
@@ -51,8 +51,7 @@
         <xs:element name="servicenode" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation>
             <xs:documentation>
-              A node with a direct reference to a physical network layer node. this allows service legs to reference a service
-              node within the service network without directly referencing a physical node of the physical network layer
+              A node with a direct reference to a parent layer node.
             </xs:documentation>
           </xs:annotation>
           <xs:complexType>
@@ -93,9 +92,8 @@
         <xs:element ref="servicelegs" minoccurs="1" maxoccurs="unbounded" />          				             
       </xs:sequence>
 	    <xs:attribute name="id" type="xs:string" use="required" />
-	    <xs:attribute name="externalid" type="xs:string" use="optional" />
-      <xs:attribute name="networkref" type="xs:string" use="required"/>	    
-	    <xs:attribute name="servicenetworklayerref" type="xs:string" use="required"/>
+	    <xs:attribute name="externalid" type="xs:string" use="optional" />	    
+	    <xs:attribute name="parentlayerref" type="xs:string" use="required"/>
     </xs:complexType> 
   </xs:element>	
 		

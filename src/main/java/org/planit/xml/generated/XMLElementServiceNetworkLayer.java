@@ -38,8 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="networkref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="servicenetworklayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="parentlayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -57,27 +56,25 @@ import javax.xml.bind.annotation.XmlType;
 public class XMLElementServiceNetworkLayer {
 
     @XmlElement(required = true)
-    protected Servicenodes servicenodes;
+    protected XMLElementServiceNodes servicenodes;
     @XmlElement(required = true)
-    protected Servicelegs servicelegs;
+    protected XMLElementServiceLegs servicelegs;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
     protected String externalid;
-    @XmlAttribute(name = "networkref", required = true)
-    protected String networkref;
-    @XmlAttribute(name = "servicenetworklayerref", required = true)
-    protected String servicenetworklayerref;
+    @XmlAttribute(name = "parentlayerref", required = true)
+    protected String parentlayerref;
 
     /**
      * Gets the value of the servicenodes property.
      * 
      * @return
      *     possible object is
-     *     {@link Servicenodes }
+     *     {@link XMLElementServiceNodes }
      *     
      */
-    public Servicenodes getServicenodes() {
+    public XMLElementServiceNodes getServicenodes() {
         return servicenodes;
     }
 
@@ -86,10 +83,10 @@ public class XMLElementServiceNetworkLayer {
      * 
      * @param value
      *     allowed object is
-     *     {@link Servicenodes }
+     *     {@link XMLElementServiceNodes }
      *     
      */
-    public void setServicenodes(Servicenodes value) {
+    public void setServicenodes(XMLElementServiceNodes value) {
         this.servicenodes = value;
     }
 
@@ -98,10 +95,10 @@ public class XMLElementServiceNetworkLayer {
      * 
      * @return
      *     possible object is
-     *     {@link Servicelegs }
+     *     {@link XMLElementServiceLegs }
      *     
      */
-    public Servicelegs getServicelegs() {
+    public XMLElementServiceLegs getServicelegs() {
         return servicelegs;
     }
 
@@ -110,10 +107,10 @@ public class XMLElementServiceNetworkLayer {
      * 
      * @param value
      *     allowed object is
-     *     {@link Servicelegs }
+     *     {@link XMLElementServiceLegs }
      *     
      */
-    public void setServicelegs(Servicelegs value) {
+    public void setServicelegs(XMLElementServiceLegs value) {
         this.servicelegs = value;
     }
 
@@ -166,51 +163,27 @@ public class XMLElementServiceNetworkLayer {
     }
 
     /**
-     * Gets the value of the networkref property.
+     * Gets the value of the parentlayerref property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNetworkref() {
-        return networkref;
+    public String getParentlayerref() {
+        return parentlayerref;
     }
 
     /**
-     * Sets the value of the networkref property.
+     * Sets the value of the parentlayerref property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNetworkref(String value) {
-        this.networkref = value;
-    }
-
-    /**
-     * Gets the value of the servicenetworklayerref property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getServicenetworklayerref() {
-        return servicenetworklayerref;
-    }
-
-    /**
-     * Sets the value of the servicenetworklayerref property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setServicenetworklayerref(String value) {
-        this.servicenetworklayerref = value;
+    public void setParentlayerref(String value) {
+        this.parentlayerref = value;
     }
 
 }

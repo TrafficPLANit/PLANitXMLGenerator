@@ -12,5 +12,20 @@
     node="//xs:element[@name ='servicenetworklayer']">
     <jaxb:class name="XMLElementServiceNetworkLayer" />
   </jaxb:bindings>	
+  <jaxb:bindings
+    schemaLocation="../xsd/servicenetworkinput.xsd"
+    node="//xs:element[@name ='servicenodes']">
+    <jaxb:class name="XMLElementServiceNodes" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../xsd/servicenetworkinput.xsd"
+    node="//xs:element[@name ='servicelegs']">
+    <jaxb:class name="XMLElementServiceLegs" />
+  </jaxb:bindings>    
+  <jaxb:bindings
+    schemaLocation="../xsd/servicenetworkinput.xsd"
+    node="//xs:element[@name ='leg']">
+    <jaxb:class name="XMLElementServiceLeg" />
+  </jaxb:bindings>            
   
 </jaxb:bindings>

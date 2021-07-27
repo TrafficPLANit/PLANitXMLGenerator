@@ -8,6 +8,8 @@
 
 package org.planit.xml.generated;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -17,37 +19,44 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				A leg definition represents a (partial) route for a service in between two locations of interest, e.g., public transport stops 
+ * 				for example. The node references are to the service node ids in this same service network
+ * 			
+ * 
+ * <p>Java class for leg element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="legsegment"&gt;
- *           &lt;complexType&gt;
- *             &lt;complexContent&gt;
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                 &lt;sequence&gt;
- *                 &lt;/sequence&gt;
- *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;attribute name="dir" use="required" type="{}direction" /&gt;
- *               &lt;/restriction&gt;
- *             &lt;/complexContent&gt;
- *           &lt;/complexType&gt;
- *         &lt;/element&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="nodearef" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="nodebref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="lrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="leg"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element name="legsegment" maxOccurs="2"&gt;
+ *             &lt;complexType&gt;
+ *               &lt;complexContent&gt;
+ *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                   &lt;sequence&gt;
+ *                   &lt;/sequence&gt;
+ *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="dir" use="required" type="{}direction" /&gt;
+ *                 &lt;/restriction&gt;
+ *               &lt;/complexContent&gt;
+ *             &lt;/complexType&gt;
+ *           &lt;/element&gt;
+ *         &lt;/sequence&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="nodearef" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="nodebref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="lrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -57,10 +66,10 @@ import javax.xml.bind.annotation.XmlType;
     "legsegment"
 })
 @XmlRootElement(name = "leg")
-public class Leg {
+public class XMLElementServiceLeg {
 
     @XmlElement(required = true)
-    protected Leg.Legsegment legsegment;
+    protected List<XMLElementServiceLeg.Legsegment> legsegment;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -75,25 +84,30 @@ public class Leg {
     /**
      * Gets the value of the legsegment property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Leg.Legsegment }
-     *     
-     */
-    public Leg.Legsegment getLegsegment() {
-        return legsegment;
-    }
-
-    /**
-     * Sets the value of the legsegment property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the legsegment property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Leg.Legsegment }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getLegsegment().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link XMLElementServiceLeg.Legsegment }
+     * 
+     * 
      */
-    public void setLegsegment(Leg.Legsegment value) {
-        this.legsegment = value;
+    public List<XMLElementServiceLeg.Legsegment> getLegsegment() {
+        if (legsegment == null) {
+            legsegment = new ArrayList<XMLElementServiceLeg.Legsegment>();
+        }
+        return this.legsegment;
     }
 
     /**

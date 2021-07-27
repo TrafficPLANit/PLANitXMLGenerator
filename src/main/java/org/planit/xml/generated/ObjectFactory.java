@@ -73,19 +73,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link org.planit.xml.generated.Leg }
+     * Create an instance of {@link XMLElementServiceNodes }
      * 
      */
-    public org.planit.xml.generated.Leg createLeg() {
-        return new org.planit.xml.generated.Leg();
+    public XMLElementServiceNodes createXMLElementServiceNodes() {
+        return new XMLElementServiceNodes();
     }
 
     /**
-     * Create an instance of {@link Servicenodes }
+     * Create an instance of {@link XMLElementServiceLeg }
      * 
      */
-    public Servicenodes createServicenodes() {
-        return new Servicenodes();
+    public XMLElementServiceLeg createXMLElementServiceLeg() {
+        return new XMLElementServiceLeg();
     }
 
     /**
@@ -505,27 +505,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link org.planit.xml.generated.Leg.Legsegment }
+     * Create an instance of {@link XMLElementServiceLegs }
      * 
      */
-    public org.planit.xml.generated.Leg.Legsegment createLegLegsegment() {
-        return new org.planit.xml.generated.Leg.Legsegment();
-    }
-
-    /**
-     * Create an instance of {@link Servicenodes.Servicenode }
-     * 
-     */
-    public Servicenodes.Servicenode createServicenodesServicenode() {
-        return new Servicenodes.Servicenode();
-    }
-
-    /**
-     * Create an instance of {@link Servicelegs }
-     * 
-     */
-    public Servicelegs createServicelegs() {
-        return new Servicelegs();
+    public XMLElementServiceLegs createXMLElementServiceLegs() {
+        return new XMLElementServiceLegs();
     }
 
     /**
@@ -582,6 +566,22 @@ public class ObjectFactory {
      */
     public Accessmode createAccessmode() {
         return new Accessmode();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceNodes.Servicenode }
+     * 
+     */
+    public XMLElementServiceNodes.Servicenode createXMLElementServiceNodesServicenode() {
+        return new XMLElementServiceNodes.Servicenode();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceLeg.Legsegment }
+     * 
+     */
+    public XMLElementServiceLeg.Legsegment createXMLElementServiceLegLegsegment() {
+        return new XMLElementServiceLeg.Legsegment();
     }
 
     /**

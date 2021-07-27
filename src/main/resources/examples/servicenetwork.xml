@@ -3,7 +3,7 @@
 	<parentnetwork>1</parentnetwork>
 	<!-- multiple service network layers can be defined for a service network. However each service network is 1:1 mapped to a physical network via its -->
 	<!-- each service network layer is mapped 1:1 to a network layer of the physical network -->
-	<servicenetworklayer id="1" networklayerref="1">
+	<servicenetworklayer id="1" parentlayerref="1">
 		<!-- service nodes simply provide a link to the physical node for which a service is available-->
 		<servicenodes>
 			<servicenode id="1" externalid="someid" noderef="1" />

@@ -18,20 +18,27 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				A leg represents a direct service between two service nodes. Multiple Legs may exist between the same service nodes as 
+ * 				long as the underlying physical links	differ. Legs may also partially overlap in terms of the underlying links referenced.
+ * 			
+ * 
+ * <p>Java class for servicelegs element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}leg" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="servicelegs"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element ref="{}leg" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -41,10 +48,10 @@ import javax.xml.bind.annotation.XmlType;
     "leg"
 })
 @XmlRootElement(name = "servicelegs")
-public class Servicelegs {
+public class XMLElementServiceLegs {
 
     @XmlElement(required = true)
-    protected List<Leg> leg;
+    protected List<XMLElementServiceLeg> leg;
 
     /**
      * Gets the value of the leg property.
@@ -64,13 +71,13 @@ public class Servicelegs {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Leg }
+     * {@link XMLElementServiceLeg }
      * 
      * 
      */
-    public List<Leg> getLeg() {
+    public List<XMLElementServiceLeg> getLeg() {
         if (leg == null) {
-            leg = new ArrayList<Leg>();
+            leg = new ArrayList<XMLElementServiceLeg>();
         }
         return this.leg;
     }

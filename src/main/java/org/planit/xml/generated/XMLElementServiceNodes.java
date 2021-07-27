@@ -19,30 +19,36 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ *         Contains the nodes where at least a single routed service exists
+ *       
+ * 
+ * <p>Java class for servicenodes element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="servicenode" maxOccurs="unbounded"&gt;
- *           &lt;complexType&gt;
- *             &lt;complexContent&gt;
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *               &lt;/restriction&gt;
- *             &lt;/complexContent&gt;
- *           &lt;/complexType&gt;
- *         &lt;/element&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="servicenodes"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element name="servicenode" maxOccurs="unbounded"&gt;
+ *             &lt;complexType&gt;
+ *               &lt;complexContent&gt;
+ *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;/restriction&gt;
+ *               &lt;/complexContent&gt;
+ *             &lt;/complexType&gt;
+ *           &lt;/element&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -52,10 +58,10 @@ import javax.xml.bind.annotation.XmlType;
     "servicenode"
 })
 @XmlRootElement(name = "servicenodes")
-public class Servicenodes {
+public class XMLElementServiceNodes {
 
     @XmlElement(required = true)
-    protected List<Servicenodes.Servicenode> servicenode;
+    protected List<XMLElementServiceNodes.Servicenode> servicenode;
 
     /**
      * Gets the value of the servicenode property.
@@ -75,13 +81,13 @@ public class Servicenodes {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Servicenodes.Servicenode }
+     * {@link XMLElementServiceNodes.Servicenode }
      * 
      * 
      */
-    public List<Servicenodes.Servicenode> getServicenode() {
+    public List<XMLElementServiceNodes.Servicenode> getServicenode() {
         if (servicenode == null) {
-            servicenode = new ArrayList<Servicenodes.Servicenode>();
+            servicenode = new ArrayList<XMLElementServiceNodes.Servicenode>();
         }
         return this.servicenode;
     }
