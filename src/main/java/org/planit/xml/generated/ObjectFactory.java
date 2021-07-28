@@ -73,22 +73,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementServiceNodes }
-     * 
-     */
-    public XMLElementServiceNodes createXMLElementServiceNodes() {
-        return new XMLElementServiceNodes();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementServiceLeg }
-     * 
-     */
-    public XMLElementServiceLeg createXMLElementServiceLeg() {
-        return new XMLElementServiceLeg();
-    }
-
-    /**
      * Create an instance of {@link XMLElementRoutedServices }
      * 
      */
@@ -110,6 +94,22 @@ public class ObjectFactory {
      */
     public XMLElementRoutedTrip createXMLElementRoutedTrip() {
         return new XMLElementRoutedTrip();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceNodes }
+     * 
+     */
+    public XMLElementServiceNodes createXMLElementServiceNodes() {
+        return new XMLElementServiceNodes();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceLeg }
+     * 
+     */
+    public XMLElementServiceLeg createXMLElementServiceLeg() {
+        return new XMLElementServiceLeg();
     }
 
     /**
@@ -385,6 +385,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementServiceLegs }
+     * 
+     */
+    public XMLElementServiceLegs createXMLElementServiceLegs() {
+        return new XMLElementServiceLegs();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceNetworkLayer }
+     * 
+     */
+    public XMLElementServiceNetworkLayer createXMLElementServiceNetworkLayer() {
+        return new XMLElementServiceNetworkLayer();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceNetwork }
+     * 
+     */
+    public XMLElementServiceNetwork createXMLElementServiceNetwork() {
+        return new XMLElementServiceNetwork();
+    }
+
+    /**
      * Create an instance of {@link XMLElementPLANit }
      * 
      */
@@ -505,30 +529,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementServiceLegs }
-     * 
-     */
-    public XMLElementServiceLegs createXMLElementServiceLegs() {
-        return new XMLElementServiceLegs();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementServiceNetworkLayer }
-     * 
-     */
-    public XMLElementServiceNetworkLayer createXMLElementServiceNetworkLayer() {
-        return new XMLElementServiceNetworkLayer();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementServiceNetwork }
-     * 
-     */
-    public XMLElementServiceNetwork createXMLElementServiceNetwork() {
-        return new XMLElementServiceNetwork();
-    }
-
-    /**
      * Create an instance of {@link Connectoidtype }
      * 
      */
@@ -569,22 +569,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementServiceNodes.Servicenode }
-     * 
-     */
-    public XMLElementServiceNodes.Servicenode createXMLElementServiceNodesServicenode() {
-        return new XMLElementServiceNodes.Servicenode();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementServiceLeg.Legsegment }
-     * 
-     */
-    public XMLElementServiceLeg.Legsegment createXMLElementServiceLegLegsegment() {
-        return new XMLElementServiceLeg.Legsegment();
-    }
-
-    /**
      * Create an instance of {@link XMLElementRoutedServices.Servicelayers }
      * 
      */
@@ -606,6 +590,22 @@ public class ObjectFactory {
      */
     public XMLElementRoutedTrip.Frequency createXMLElementRoutedTripFrequency() {
         return new XMLElementRoutedTrip.Frequency();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceNodes.Servicenode }
+     * 
+     */
+    public XMLElementServiceNodes.Servicenode createXMLElementServiceNodesServicenode() {
+        return new XMLElementServiceNodes.Servicenode();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementServiceLeg.Legsegment }
+     * 
+     */
+    public XMLElementServiceLeg.Legsegment createXMLElementServiceLegLegsegment() {
+        return new XMLElementServiceLeg.Legsegment();
     }
 
     /**

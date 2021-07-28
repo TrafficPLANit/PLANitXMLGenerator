@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element ref="{}macroscopicnetwork"/&gt;
  *           &lt;element ref="{}macroscopicdemand"/&gt;
  *           &lt;element ref="{}macroscopiczoning"/&gt;
+ *           &lt;element ref="{}servicenetwork" minOccurs="0"/&gt;
  *         &lt;/all&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -51,6 +52,7 @@ public class XMLElementPLANit {
     protected XMLElementMacroscopicDemand macroscopicdemand;
     @XmlElement(required = true)
     protected XMLElementMacroscopicZoning macroscopiczoning;
+    protected XMLElementServiceNetwork servicenetwork;
 
     /**
      * Gets the value of the macroscopicnetwork property.
@@ -122,6 +124,30 @@ public class XMLElementPLANit {
      */
     public void setMacroscopiczoning(XMLElementMacroscopicZoning value) {
         this.macroscopiczoning = value;
+    }
+
+    /**
+     * Gets the value of the servicenetwork property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLElementServiceNetwork }
+     *     
+     */
+    public XMLElementServiceNetwork getServicenetwork() {
+        return servicenetwork;
+    }
+
+    /**
+     * Sets the value of the servicenetwork property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLElementServiceNetwork }
+     *     
+     */
+    public void setServicenetwork(XMLElementServiceNetwork value) {
+        this.servicenetwork = value;
     }
 
 }
