@@ -34,6 +34,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
+ *           &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *           &lt;element name="externalid" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *           &lt;element name="servicelayers"&gt;
  *             &lt;complexType&gt;
  *               &lt;complexContent&gt;
@@ -57,13 +59,67 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "id",
+    "externalid",
     "servicelayers"
 })
 @XmlRootElement(name = "routedservices")
 public class XMLElementRoutedServices {
 
     @XmlElement(required = true)
+    protected String id;
+    @XmlElement(required = true)
+    protected String externalid;
+    @XmlElement(required = true)
     protected XMLElementRoutedServices.Servicelayers servicelayers;
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
+
+    /**
+     * Gets the value of the externalid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getExternalid() {
+        return externalid;
+    }
+
+    /**
+     * Sets the value of the externalid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setExternalid(String value) {
+        this.externalid = value;
+    }
 
     /**
      * Gets the value of the servicelayers property.

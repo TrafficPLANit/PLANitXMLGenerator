@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="servicenetworklayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="servicelayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -51,8 +51,8 @@ public class Servicelayer {
     protected String id;
     @XmlAttribute(name = "externalid")
     protected String externalid;
-    @XmlAttribute(name = "servicenetworklayerref", required = true)
-    protected String servicenetworklayerref;
+    @XmlAttribute(name = "servicelayerref", required = true)
+    protected String servicelayerref;
 
     /**
      * 
@@ -129,27 +129,27 @@ public class Servicelayer {
     }
 
     /**
-     * Gets the value of the servicenetworklayerref property.
+     * Gets the value of the servicelayerref property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getServicenetworklayerref() {
-        return servicenetworklayerref;
+    public String getServicelayerref() {
+        return servicelayerref;
     }
 
     /**
-     * Sets the value of the servicenetworklayerref property.
+     * Sets the value of the servicelayerref property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setServicenetworklayerref(String value) {
-        this.servicenetworklayerref = value;
+    public void setServicelayerref(String value) {
+        this.servicelayerref = value;
     }
 
 }

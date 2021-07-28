@@ -4,8 +4,9 @@
 	
 	<!--  services are built on top of a service networklayer. All services are therefore based on a mode available on that service network layer which in turn is linked to a 
 	      physical network layer. Multiple service layers can exist within routes service, but they are expected to all relate to the same service network  -->
+	<id>1</id>
 	<servicelayers servicenetworkref="1">
-	   <servicelayer id="xmlId" externalid="someid" servicenetworklayerref="1">
+	   <servicelayer id="xmlId" externalid="someid" servicelayerref="1">
 		    <!-- a particular materialisation of a routed service, while a service represents for example a pt service between point A and B, an instance could be a variation
 		       that runs with different stops than another instance of the same service -->
 		    <services > 
@@ -31,7 +32,8 @@
 		                <leg ... />  
 		              </reltimings>
 		            </schedule>
-		            <!-- frequency based is much simpler, only a frequency for the variant is needed and the ordered legs between stops-->
+		            <!-- frequency based is much simpler, only a frequency for the variant is needed and the ordered legs between stops, the value indicates how often the service
+		                 occurs within a single unit of the time dimension, e.g. here every 20min, i.e., 3 times per hour-->
 		            <frequency legrefs="xmlid1,xmlid4,xmlid2,xmlid8,..." unit="h" >3</frequency>          
 		          </trip>
 		        </trips>      
