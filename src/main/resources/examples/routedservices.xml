@@ -8,10 +8,10 @@
 	<servicelayers servicenetworkref="1">
 	   <servicelayer id="xmlId" externalid="someid" servicelayerref="1">
 		    <!-- a particular materialisation of a routed service, while a service represents for example a pt service between point A and B, an instance could be a variation
-		       that runs with different stops than another instance of the same service -->
-		    <services > 
+		       that runs with different stops than another instance of the same service, we group all services per mode -->
+		    <services moderef="bus"> 
 		      <!-- a service can contain one or more instances of the same or slightly different trip but has a commonality in the service that it offers (from A to B for example, which is captured in its name) -->    
-		      <service id="xmlid" externalid="someid" moderef="bus">
+		      <service id="xmlid" externalid="someid">
 		        <!-- often services have a reference nr for users, (bus nr's for example), while they might not be unique in a large area, it is still useful to include -->
 		        <name>370</name>
 		        <namedescription>Glebe to Coogee</namedescription>      

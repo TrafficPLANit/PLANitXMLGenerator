@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="moderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -58,6 +59,8 @@ public class XMLElementServices {
     protected String id;
     @XmlAttribute(name = "externalid")
     protected String externalid;
+    @XmlAttribute(name = "moderef", required = true)
+    protected String moderef;
 
     /**
      * 
@@ -136,6 +139,30 @@ public class XMLElementServices {
      */
     public void setExternalid(String value) {
         this.externalid = value;
+    }
+
+    /**
+     * Gets the value of the moderef property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getModeref() {
+        return moderef;
+    }
+
+    /**
+     * Sets the value of the moderef property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setModeref(String value) {
+        this.moderef = value;
     }
 
 }

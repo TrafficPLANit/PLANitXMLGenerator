@@ -173,7 +173,7 @@ public class XMLElementRoutedServices {
     public static class Servicelayers {
 
         @XmlElement(required = true)
-        protected List<Servicelayer> servicelayer;
+        protected List<XMLElementRoutedServicesLayer> servicelayer;
         @XmlAttribute(name = "servicenetworkref", required = true)
         protected String servicenetworkref;
 
@@ -195,13 +195,13 @@ public class XMLElementRoutedServices {
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link Servicelayer }
+         * {@link XMLElementRoutedServicesLayer }
          * 
          * 
          */
-        public List<Servicelayer> getServicelayer() {
+        public List<XMLElementRoutedServicesLayer> getServicelayer() {
             if (servicelayer == null) {
-                servicelayer = new ArrayList<Servicelayer>();
+                servicelayer = new ArrayList<XMLElementRoutedServicesLayer>();
             }
             return this.servicelayer;
         }

@@ -52,7 +52,14 @@
 				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
-			<xs:attribute name="externalid" type="xs:string" use="optional"/>	
+			<xs:attribute name="externalid" type="xs:string" use="optional"/>
+      <xs:attribute name="moderef" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            All services listed under this element are pertaining to the referenced mode only
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>   				
 		</xs:complexType>
 	</xs:element>
 	
@@ -103,13 +110,6 @@
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string" use="optional"/>
-			<xs:attribute name="moderef" type="xs:string" use="required">
-				<xs:annotation>
-					<xs:documentation>
-						All trips listed under this element are pertaining to the referenced mode only
-					</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>		
 		</xs:complexType>
 	</xs:element>	
 	
@@ -253,7 +253,7 @@
 	  </xs:annotation>
     <xs:complexType>
       <xs:sequence>	  
-		    <xs:element ref="services">
+		    <xs:element ref="services" minOccurs="1" maxOccurs="unbounded">
 		      <xs:annotation>
 				    <xs:documentation>
 				      Container element for the actual services

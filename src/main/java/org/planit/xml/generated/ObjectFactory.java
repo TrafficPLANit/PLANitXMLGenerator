@@ -521,11 +521,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Servicelayer }
+     * Create an instance of {@link XMLElementRoutedServicesLayer }
      * 
      */
-    public Servicelayer createServicelayer() {
-        return new Servicelayer();
+    public XMLElementRoutedServicesLayer createXMLElementRoutedServicesLayer() {
+        return new XMLElementRoutedServicesLayer();
     }
 
     /**

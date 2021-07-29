@@ -8,6 +8,8 @@
 
 package org.planit.xml.generated;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -17,23 +19,29 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 	      A service layer contains all routed services available on a particular physical network layer referenced by the network layer id.
+ * 	    
+ * 
+ * <p>Java class for servicelayer element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element ref="{}services"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="servicelayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="servicelayer"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element ref="{}services" maxOccurs="unbounded"/&gt;
+ *         &lt;/sequence&gt;
+ *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="servicelayerref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -43,10 +51,10 @@ import javax.xml.bind.annotation.XmlType;
     "services"
 })
 @XmlRootElement(name = "servicelayer")
-public class Servicelayer {
+public class XMLElementRoutedServicesLayer {
 
     @XmlElement(required = true)
-    protected XMLElementServices services;
+    protected List<XMLElementServices> services;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -57,27 +65,32 @@ public class Servicelayer {
     /**
      * 
      * 				      Container element for the actual services
-     * 				    
+     * 				    Gets the value of the services property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementServices }
-     *     
-     */
-    public XMLElementServices getServices() {
-        return services;
-    }
-
-    /**
-     * Sets the value of the services property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the services property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementServices }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getServices().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link XMLElementServices }
+     * 
+     * 
      */
-    public void setServices(XMLElementServices value) {
-        this.services = value;
+    public List<XMLElementServices> getServices() {
+        if (services == null) {
+            services = new ArrayList<XMLElementServices>();
+        }
+        return this.services;
     }
 
     /**
