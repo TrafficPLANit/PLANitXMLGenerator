@@ -48,6 +48,13 @@
 		schemaLocation="../xsd/routedservicesinput.xsd"
 		node="//xs:element[@name = 'trips']">
 		<jaxb:class name="XMLElementRoutedTrips" />
-	</jaxb:bindings>							
+	</jaxb:bindings>
+	
+  <jaxb:bindings
+    schemaLocation="../xsd/routedservicesinput.xsd"
+    node="//xs:element[@name = 'departures']">
+    <jaxb:class name="XMLElementDepartures" />
+  </jaxb:bindings>	
+	
 	
 </jaxb:bindings>

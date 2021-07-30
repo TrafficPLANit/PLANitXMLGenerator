@@ -50,7 +50,7 @@ import javax.xml.bind.annotation.XmlType;
 public class XMLElementSchedule {
 
     @XmlElement(required = true)
-    protected Departures departures;
+    protected XMLElementDepartures departures;
     @XmlElement(required = true)
     protected XMLElementRelativeTimings reltimings;
 
@@ -61,10 +61,10 @@ public class XMLElementSchedule {
      * 
      * @return
      *     possible object is
-     *     {@link Departures }
+     *     {@link XMLElementDepartures }
      *     
      */
-    public Departures getDepartures() {
+    public XMLElementDepartures getDepartures() {
         return departures;
     }
 
@@ -73,10 +73,10 @@ public class XMLElementSchedule {
      * 
      * @param value
      *     allowed object is
-     *     {@link Departures }
+     *     {@link XMLElementDepartures }
      *     
      */
-    public void setDepartures(Departures value) {
+    public void setDepartures(XMLElementDepartures value) {
         this.departures = value;
     }
 

@@ -8,8 +8,6 @@
 
 package org.planit.xml.generated;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -37,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element name="namedescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *           &lt;element name="servicedescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *           &lt;element name="circular" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
- *           &lt;element ref="{}trips" maxOccurs="unbounded"/&gt;
+ *           &lt;element ref="{}trips"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -67,7 +65,7 @@ public class XMLElementService {
     @XmlElement(defaultValue = "false")
     protected Boolean circular;
     @XmlElement(required = true)
-    protected List<XMLElementRoutedTrips> trips;
+    protected XMLElementRoutedTrips trips;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -172,32 +170,27 @@ public class XMLElementService {
     /**
      * 
      * 							Lists the instances of trips made for this service
-     * 						Gets the value of the trips property.
+     * 						
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the trips property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getTrips().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementRoutedTrips }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link XMLElementRoutedTrips }
+     *     
      */
-    public List<XMLElementRoutedTrips> getTrips() {
-        if (trips == null) {
-            trips = new ArrayList<XMLElementRoutedTrips>();
-        }
-        return this.trips;
+    public XMLElementRoutedTrips getTrips() {
+        return trips;
+    }
+
+    /**
+     * Sets the value of the trips property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLElementRoutedTrips }
+     *     
+     */
+    public void setTrips(XMLElementRoutedTrips value) {
+        this.trips = value;
     }
 
     /**

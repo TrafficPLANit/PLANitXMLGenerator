@@ -13,6 +13,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -34,7 +35,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
- *           &lt;element name="leg" maxOccurs="unbounded" minOccurs="0"&gt;
+ *           &lt;element name="leg" maxOccurs="unbounded"&gt;
  *             &lt;complexType&gt;
  *               &lt;complexContent&gt;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
@@ -62,6 +63,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlRootElement(name = "reltimings")
 public class XMLElementRelativeTimings {
 
+    @XmlElement(required = true)
     protected List<XMLElementRelativeTimings.Leg> leg;
     @XmlAttribute(name = "dwelltime")
     @XmlSchemaType(name = "time")

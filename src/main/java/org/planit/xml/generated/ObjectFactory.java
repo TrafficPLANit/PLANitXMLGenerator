@@ -65,14 +65,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Departures }
-     * 
-     */
-    public Departures createDepartures() {
-        return new Departures();
-    }
-
-    /**
      * Create an instance of {@link XMLElementRoutedServices }
      * 
      */
@@ -86,6 +78,14 @@ public class ObjectFactory {
      */
     public XMLElementRelativeTimings createXMLElementRelativeTimings() {
         return new XMLElementRelativeTimings();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementDepartures }
+     * 
+     */
+    public XMLElementDepartures createXMLElementDepartures() {
+        return new XMLElementDepartures();
     }
 
     /**
@@ -513,14 +513,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Departures.Departure }
-     * 
-     */
-    public Departures.Departure createDeparturesDeparture() {
-        return new Departures.Departure();
-    }
-
-    /**
      * Create an instance of {@link XMLElementRoutedServicesLayer }
      * 
      */
@@ -582,6 +574,14 @@ public class ObjectFactory {
      */
     public XMLElementRelativeTimings.Leg createXMLElementRelativeTimingsLeg() {
         return new XMLElementRelativeTimings.Leg();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementDepartures.Departure }
+     * 
+     */
+    public XMLElementDepartures.Departure createXMLElementDeparturesDeparture() {
+        return new XMLElementDepartures.Departure();
     }
 
     /**

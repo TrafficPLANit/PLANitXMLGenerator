@@ -21,30 +21,36 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * 
+ * 				Contains the schedule for a routed service trip
+ * 			
+ * 
+ * <p>Java class for departures element declaration.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="departure" maxOccurs="unbounded"&gt;
- *           &lt;complexType&gt;
- *             &lt;complexContent&gt;
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
- *               &lt;/restriction&gt;
- *             &lt;/complexContent&gt;
- *           &lt;/complexType&gt;
- *         &lt;/element&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;element name="departures"&gt;
+ *   &lt;complexType&gt;
+ *     &lt;complexContent&gt;
+ *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *         &lt;sequence&gt;
+ *           &lt;element name="departure" maxOccurs="unbounded"&gt;
+ *             &lt;complexType&gt;
+ *               &lt;complexContent&gt;
+ *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
+ *                 &lt;/restriction&gt;
+ *               &lt;/complexContent&gt;
+ *             &lt;/complexType&gt;
+ *           &lt;/element&gt;
+ *         &lt;/sequence&gt;
+ *       &lt;/restriction&gt;
+ *     &lt;/complexContent&gt;
+ *   &lt;/complexType&gt;
+ * &lt;/element&gt;
  * </pre>
  * 
  * 
@@ -54,10 +60,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "departure"
 })
 @XmlRootElement(name = "departures")
-public class Departures {
+public class XMLElementDepartures {
 
     @XmlElement(required = true)
-    protected List<Departures.Departure> departure;
+    protected List<XMLElementDepartures.Departure> departure;
 
     /**
      * Gets the value of the departure property.
@@ -77,13 +83,13 @@ public class Departures {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Departures.Departure }
+     * {@link XMLElementDepartures.Departure }
      * 
      * 
      */
-    public List<Departures.Departure> getDeparture() {
+    public List<XMLElementDepartures.Departure> getDeparture() {
         if (departure == null) {
-            departure = new ArrayList<Departures.Departure>();
+            departure = new ArrayList<XMLElementDepartures.Departure>();
         }
         return this.departure;
     }

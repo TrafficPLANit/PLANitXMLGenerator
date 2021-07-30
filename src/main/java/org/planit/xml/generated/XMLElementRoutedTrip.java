@@ -11,8 +11,10 @@ package org.planit.xml.generated;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -33,12 +35,12 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element ref="{}scheduledefinition"/&gt;
  *           &lt;element name="frequency"&gt;
  *             &lt;complexType&gt;
- *               &lt;complexContent&gt;
- *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *               &lt;simpleContent&gt;
+ *                 &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
  *                   &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
  *                   &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;/restriction&gt;
- *               &lt;/complexContent&gt;
+ *                 &lt;/extension&gt;
+ *               &lt;/simpleContent&gt;
  *             &lt;/complexType&gt;
  *           &lt;/element&gt;
  *         &lt;/choice&gt;
@@ -61,6 +63,7 @@ import javax.xml.bind.annotation.XmlType;
 public class XMLElementRoutedTrip {
 
     protected XMLElementSchedule scheduledefinition;
+    @XmlElement(defaultValue = "-1")
     protected XMLElementRoutedTrip.Frequency frequency;
     @XmlAttribute(name = "id", required = true)
     protected String id;
@@ -173,25 +176,45 @@ public class XMLElementRoutedTrip {
      * 
      * <pre>
      * &lt;complexType&gt;
-     *   &lt;complexContent&gt;
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *   &lt;simpleContent&gt;
+     *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
      *       &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
      *       &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
-     *     &lt;/restriction&gt;
-     *   &lt;/complexContent&gt;
+     *     &lt;/extension&gt;
+     *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
      * </pre>
      * 
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "")
+    @XmlType(name = "", propOrder = {
+        "value"
+    })
     public static class Frequency {
 
+        @XmlValue
+        protected float value;
         @XmlAttribute(name = "unit")
         protected TimeUnit unit;
         @XmlAttribute(name = "legrefs", required = true)
         protected String legrefs;
+
+        /**
+         * Gets the value of the value property.
+         * 
+         */
+        public float getValue() {
+            return value;
+        }
+
+        /**
+         * Sets the value of the value property.
+         * 
+         */
+        public void setValue(float value) {
+            this.value = value;
+        }
 
         /**
          * Gets the value of the unit property.

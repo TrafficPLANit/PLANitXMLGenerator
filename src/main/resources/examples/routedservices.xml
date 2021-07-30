@@ -28,7 +28,7 @@
 		              <reltimings dwelltime="00:30:00">
 		                <!--  optional dwell time, this is the default waiting time applied at the stop at the end of the leg, i.e., time added to the duration of the leg
 		                    note that the duration is based on the schedule, not necessarily on the actual travel time in any simulation. Dwell time can be overridden per leg -->
-		                <leg ref="legrefid1" traveltime="00:03:00" dwelltime="00:01:00" />            
+		                <leg ref="legrefid1" duration="00:03:00" dwelltime="00:01:00" />            
 		                <leg ... />  
 		              </reltimings>
 		            </schedule>
