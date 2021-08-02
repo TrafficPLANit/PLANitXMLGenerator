@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Contains all trips conducted for its parent service. Outlining the route and schedule/frequency pattern
+ * 				Contains all trips conducted for its parent
+ * 				service. Outlining the route and schedule/frequency pattern
  * 			
  * 
  * <p>Java class for trips element declaration.

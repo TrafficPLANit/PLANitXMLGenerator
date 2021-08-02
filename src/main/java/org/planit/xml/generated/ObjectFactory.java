@@ -409,6 +409,38 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementServices }
+     * 
+     */
+    public XMLElementServices createXMLElementServices() {
+        return new XMLElementServices();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementService }
+     * 
+     */
+    public XMLElementService createXMLElementService() {
+        return new XMLElementService();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRoutedTrips }
+     * 
+     */
+    public XMLElementRoutedTrips createXMLElementRoutedTrips() {
+        return new XMLElementRoutedTrips();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRoutedServicesLayer }
+     * 
+     */
+    public XMLElementRoutedServicesLayer createXMLElementRoutedServicesLayer() {
+        return new XMLElementRoutedServicesLayer();
+    }
+
+    /**
      * Create an instance of {@link XMLElementPLANit }
      * 
      */
@@ -481,46 +513,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementSchedule }
-     * 
-     */
-    public XMLElementSchedule createXMLElementSchedule() {
-        return new XMLElementSchedule();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementServices }
-     * 
-     */
-    public XMLElementServices createXMLElementServices() {
-        return new XMLElementServices();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementService }
-     * 
-     */
-    public XMLElementService createXMLElementService() {
-        return new XMLElementService();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementRoutedTrips }
-     * 
-     */
-    public XMLElementRoutedTrips createXMLElementRoutedTrips() {
-        return new XMLElementRoutedTrips();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementRoutedServicesLayer }
-     * 
-     */
-    public XMLElementRoutedServicesLayer createXMLElementRoutedServicesLayer() {
-        return new XMLElementRoutedServicesLayer();
-    }
-
-    /**
      * Create an instance of {@link Connectoidtype }
      * 
      */
@@ -582,6 +574,14 @@ public class ObjectFactory {
      */
     public XMLElementDepartures.Departure createXMLElementDeparturesDeparture() {
         return new XMLElementDepartures.Departure();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementRoutedTrip.Schedule }
+     * 
+     */
+    public XMLElementRoutedTrip.Schedule createXMLElementRoutedTripSchedule() {
+        return new XMLElementRoutedTrip.Schedule();
     }
 
     /**

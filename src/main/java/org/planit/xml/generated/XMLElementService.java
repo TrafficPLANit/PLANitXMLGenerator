@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Definition for a single routed service for a particular mode
+ * 				Definition for a single routed service for a
+ * 				particular mode
  * 			
  * 
  * <p>Java class for service element declaration.
@@ -169,7 +170,8 @@ public class XMLElementService {
 
     /**
      * 
-     * 							Lists the instances of trips made for this service
+     * 							Lists the instances of trips made for this
+     * 							service
      * 						
      * 
      * @return

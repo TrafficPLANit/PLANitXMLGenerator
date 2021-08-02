@@ -20,8 +20,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Root element of routed services, these can be for either microscopic or macroscopic networks. A routed service
- * 				has a predefined route that is being executed by a mode at specific time instances (or frequencies).
+ * 				Root element of routed services, these can be for
+ * 				either microscopic or macroscopic networks. A routed service
+ * 				has a
+ * 				predefined route that is being executed by a mode at specific time
+ * 				instances (or frequencies).
  * 			
  * 
  * <p>Java class for routedservices element declaration.

@@ -19,13 +19,7 @@
     node="//xs:element[@name = 'servicelayer']">
     <jaxb:class name="XMLElementRoutedServicesLayer" />
   </jaxb:bindings>	
-	
-	<jaxb:bindings
-		schemaLocation="../xsd/routedservicesinput.xsd"
-		node="//xs:element[@name='scheduledefinition']">
-		<jaxb:class name="XMLElementSchedule" />
-	</jaxb:bindings>	
-	
+		
 	<jaxb:bindings
 		schemaLocation="../xsd/routedservicesinput.xsd"
 		node="//xs:element[@name = 'service']">

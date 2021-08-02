@@ -64,7 +64,9 @@ public class XMLElementServices {
 
     /**
      * 
-     * 							A single service for a particular mode. A service can have mltiple variants, i.e., slightly different routes, within its service
+     * 							A single service for a particular mode. A
+     * 							service can have multiple variants, i.e., slightly different
+     * 							routes, within its service
      * 						Gets the value of the service property.
      * 
      * <p>

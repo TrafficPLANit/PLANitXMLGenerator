@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * 
- * 				Instance of a routed service defining the route, schedule/frequency and other related attributes
+ * 				Instance of a routed service defining the route,
+ * 				schedule/frequency and other related attributes
  * 			
  * 
  * <p>Java class for trip element declaration.
@@ -32,13 +33,24 @@ import javax.xml.bind.annotation.XmlValue;
  *     &lt;complexContent&gt;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;choice&gt;
- *           &lt;element ref="{}scheduledefinition"/&gt;
+ *           &lt;element name="schedule"&gt;
+ *             &lt;complexType&gt;
+ *               &lt;complexContent&gt;
+ *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                   &lt;sequence&gt;
+ *                     &lt;element ref="{}departures"/&gt;
+ *                     &lt;element ref="{}reltimings"/&gt;
+ *                   &lt;/sequence&gt;
+ *                 &lt;/restriction&gt;
+ *               &lt;/complexContent&gt;
+ *             &lt;/complexType&gt;
+ *           &lt;/element&gt;
  *           &lt;element name="frequency"&gt;
  *             &lt;complexType&gt;
  *               &lt;simpleContent&gt;
  *                 &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
  *                   &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
- *                   &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                   &lt;attribute name="lsrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/extension&gt;
  *               &lt;/simpleContent&gt;
  *             &lt;/complexType&gt;
@@ -56,13 +68,13 @@ import javax.xml.bind.annotation.XmlValue;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "scheduledefinition",
+    "schedule",
     "frequency"
 })
 @XmlRootElement(name = "trip")
 public class XMLElementRoutedTrip {
 
-    protected XMLElementSchedule scheduledefinition;
+    protected XMLElementRoutedTrip.Schedule schedule;
     @XmlElement(defaultValue = "-1")
     protected XMLElementRoutedTrip.Frequency frequency;
     @XmlAttribute(name = "id", required = true)
@@ -71,29 +83,27 @@ public class XMLElementRoutedTrip {
     protected String externalid;
 
     /**
-     * 
-     * 							A scheduled variant
-     * 						
+     * Gets the value of the schedule property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementSchedule }
+     *     {@link XMLElementRoutedTrip.Schedule }
      *     
      */
-    public XMLElementSchedule getScheduledefinition() {
-        return scheduledefinition;
+    public XMLElementRoutedTrip.Schedule getSchedule() {
+        return schedule;
     }
 
     /**
-     * Sets the value of the scheduledefinition property.
+     * Sets the value of the schedule property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementSchedule }
+     *     {@link XMLElementRoutedTrip.Schedule }
      *     
      */
-    public void setScheduledefinition(XMLElementSchedule value) {
-        this.scheduledefinition = value;
+    public void setSchedule(XMLElementRoutedTrip.Schedule value) {
+        this.schedule = value;
     }
 
     /**
@@ -179,7 +189,7 @@ public class XMLElementRoutedTrip {
      *   &lt;simpleContent&gt;
      *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;float"&gt;
      *       &lt;attribute name="unit" type="{}timeUnit" default="h" /&gt;
-     *       &lt;attribute name="legrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="lsrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/extension&gt;
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
@@ -197,8 +207,8 @@ public class XMLElementRoutedTrip {
         protected float value;
         @XmlAttribute(name = "unit")
         protected TimeUnit unit;
-        @XmlAttribute(name = "legrefs", required = true)
-        protected String legrefs;
+        @XmlAttribute(name = "lsrefs", required = true)
+        protected String lsrefs;
 
         /**
          * Gets the value of the value property.
@@ -245,27 +255,116 @@ public class XMLElementRoutedTrip {
         }
 
         /**
-         * Gets the value of the legrefs property.
+         * Gets the value of the lsrefs property.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getLegrefs() {
-            return legrefs;
+        public String getLsrefs() {
+            return lsrefs;
         }
 
         /**
-         * Sets the value of the legrefs property.
+         * Sets the value of the lsrefs property.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setLegrefs(String value) {
-            this.legrefs = value;
+        public void setLsrefs(String value) {
+            this.lsrefs = value;
+        }
+
+    }
+
+
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element ref="{}departures"/&gt;
+     *         &lt;element ref="{}reltimings"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "departures",
+        "reltimings"
+    })
+    public static class Schedule {
+
+        @XmlElement(required = true)
+        protected XMLElementDepartures departures;
+        @XmlElement(required = true)
+        protected XMLElementRelativeTimings reltimings;
+
+        /**
+         * 
+         * 										Contains all absolute departure times for this schedule
+         * 									
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLElementDepartures }
+         *     
+         */
+        public XMLElementDepartures getDepartures() {
+            return departures;
+        }
+
+        /**
+         * Sets the value of the departures property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLElementDepartures }
+         *     
+         */
+        public void setDepartures(XMLElementDepartures value) {
+            this.departures = value;
+        }
+
+        /**
+         * 
+         * 										Contains all leg (segment) travel times which combined with the
+         * 										absolute departure times can be used
+         * 										to construct the (idealised) travel time of the trip
+         * 									
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLElementRelativeTimings }
+         *     
+         */
+        public XMLElementRelativeTimings getReltimings() {
+            return reltimings;
+        }
+
+        /**
+         * Sets the value of the reltimings property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLElementRelativeTimings }
+         *     
+         */
+        public void setReltimings(XMLElementRelativeTimings value) {
+            this.reltimings = value;
         }
 
     }

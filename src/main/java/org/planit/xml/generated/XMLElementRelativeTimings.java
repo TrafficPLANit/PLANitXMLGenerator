@@ -39,7 +39,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;complexType&gt;
  *               &lt;complexContent&gt;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                   &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" /&gt;
+ *                   &lt;attribute name="lsref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="duration" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
  *                   &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
  *                 &lt;/restriction&gt;
@@ -132,7 +132,7 @@ public class XMLElementRelativeTimings {
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-     *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" /&gt;
+     *       &lt;attribute name="lsref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="duration" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
      *       &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
      *     &lt;/restriction&gt;
@@ -146,9 +146,8 @@ public class XMLElementRelativeTimings {
     @XmlType(name = "")
     public static class Leg {
 
-        @XmlAttribute(name = "ref")
-        @XmlSchemaType(name = "anySimpleType")
-        protected String ref;
+        @XmlAttribute(name = "lsref", required = true)
+        protected String lsref;
         @XmlAttribute(name = "duration", required = true)
         @XmlSchemaType(name = "time")
         protected XMLGregorianCalendar duration;
@@ -157,27 +156,27 @@ public class XMLElementRelativeTimings {
         protected XMLGregorianCalendar dwelltime;
 
         /**
-         * Gets the value of the ref property.
+         * Gets the value of the lsref property.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getRef() {
-            return ref;
+        public String getLsref() {
+            return lsref;
         }
 
         /**
-         * Sets the value of the ref property.
+         * Sets the value of the lsref property.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setRef(String value) {
-            this.ref = value;
+        public void setLsref(String value) {
+            this.lsref = value;
         }
 
         /**

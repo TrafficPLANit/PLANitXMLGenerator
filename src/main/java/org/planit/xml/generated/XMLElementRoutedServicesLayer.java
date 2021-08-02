@@ -20,8 +20,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 	      A service layer contains all routed services available on a particular physical network layer referenced by the network layer id.
- * 	    
+ * 				A service layer contains all routed services available on a
+ * 				particular physical network layer referenced by the network layer
+ * 				id.
+ * 			
  * 
  * <p>Java class for servicelayer element declaration.
  * 
@@ -64,8 +66,8 @@ public class XMLElementRoutedServicesLayer {
 
     /**
      * 
-     * 				      Container element for the actual services
-     * 				    Gets the value of the services property.
+     * 							Container element for the actual services
+     * 						Gets the value of the services property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
