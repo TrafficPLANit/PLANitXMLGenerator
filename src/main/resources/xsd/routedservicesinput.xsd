@@ -237,18 +237,18 @@
 								</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-						<xs:attribute name="dwelltime" type="xs:time" use="optional">
+						<xs:attribute name="dwelltime" type="xs:time" use="optional" default="00:00:00">
 							<xs:annotation>
 								<xs:documentation>
-									Override default service dwell time for the
-									end point of this leg.
+									Override default service dwell time for the end point of this leg. If no dwell time
+									is provided, and neither a default exists for the trip, 00:00:00 is adopted
 								</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="dwelltime" type="xs:time" minOccurs="0" maxOccurs="1" default="00:00:00">
+			<xs:attribute name="dwelltime" type="xs:time" use="optional" default="00:00:00">
 				<xs:annotation>
 					<xs:documentation>
 						Default dwell time to use for all legs if no

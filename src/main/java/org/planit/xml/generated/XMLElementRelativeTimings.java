@@ -41,7 +41,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;attribute name="lsref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="duration" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
- *                   &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
+ *                   &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" default="00:00:00" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -134,7 +134,7 @@ public class XMLElementRelativeTimings {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;attribute name="lsref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="duration" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
-     *       &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
+     *       &lt;attribute name="dwelltime" type="{http://www.w3.org/2001/XMLSchema}time" default="00:00:00" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
