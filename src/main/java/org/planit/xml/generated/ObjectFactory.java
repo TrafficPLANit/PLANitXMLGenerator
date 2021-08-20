@@ -265,6 +265,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementAccessGroup }
+     * 
+     */
+    public XMLElementAccessGroup createXMLElementAccessGroup() {
+        return new XMLElementAccessGroup();
+    }
+
+    /**
      * Create an instance of {@link XMLElementConfiguration }
      * 
      */
@@ -542,14 +550,6 @@ public class ObjectFactory {
      */
     public XMLElementLinkLengthType createXMLElementLinkLengthType() {
         return new XMLElementLinkLengthType();
-    }
-
-    /**
-     * Create an instance of {@link Accessmode }
-     * 
-     */
-    public Accessmode createAccessmode() {
-        return new Accessmode();
     }
 
     /**

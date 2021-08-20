@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  *               &lt;complexContent&gt;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;sequence&gt;
- *                     &lt;element name="mode" type="{}accessmode" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *                     &lt;element ref="{}accessgroup" maxOccurs="unbounded" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
@@ -242,7 +242,7 @@ public class XMLElementLinkSegmentType {
      *   &lt;complexContent&gt;
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;sequence&gt;
-     *         &lt;element name="mode" type="{}accessmode" maxOccurs="unbounded" minOccurs="0"/&gt;
+     *         &lt;element ref="{}accessgroup" maxOccurs="unbounded" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
@@ -253,39 +253,39 @@ public class XMLElementLinkSegmentType {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "mode"
+        "accessgroup"
     })
     public static class Access {
 
-        protected List<Accessmode> mode;
+        protected List<XMLElementAccessGroup> accessgroup;
 
         /**
-         * Gets the value of the mode property.
+         * Gets the value of the accessgroup property.
          * 
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the mode property.
+         * This is why there is not a <CODE>set</CODE> method for the accessgroup property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getMode().add(newItem);
+         *    getAccessgroup().add(newItem);
          * </pre>
          * 
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link Accessmode }
+         * {@link XMLElementAccessGroup }
          * 
          * 
          */
-        public List<Accessmode> getMode() {
-            if (mode == null) {
-                mode = new ArrayList<Accessmode>();
+        public List<XMLElementAccessGroup> getAccessgroup() {
+            if (accessgroup == null) {
+                accessgroup = new ArrayList<XMLElementAccessGroup>();
             }
-            return this.mode;
+            return this.accessgroup;
         }
 
     }

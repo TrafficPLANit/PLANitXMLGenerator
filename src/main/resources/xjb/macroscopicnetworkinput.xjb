@@ -72,5 +72,9 @@
     node="xs:element[@name ='usabilityfeatures']">
     <jaxb:class name="XMLElementUsabilityFeatures" />
   </jaxb:bindings>    	
-
+  <jaxb:bindings
+    schemaLocation="../xsd/macroscopicnetworkinput.xsd"
+    node="//xs:element[@name ='accessgroup']">
+    <jaxb:class name="XMLElementAccessGroup" />
+  </jaxb:bindings>
 </jaxb:bindings>
