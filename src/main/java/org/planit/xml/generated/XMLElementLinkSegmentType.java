@@ -107,8 +107,7 @@ public class XMLElementLinkSegmentType {
 
     /**
      * 
-     * 							When not present, the default maximum density per lane will be
-     * 							applied
+     * 							When not present, the default maximum density per lane will be applied
      * 						
      * 
      * @return
@@ -134,8 +133,8 @@ public class XMLElementLinkSegmentType {
 
     /**
      * 
-     * 							When not present, the default capacity per
-     * 							lane will be applied
+     * 							When not present, the default capacity per lane will be applied, unless the applied assignment can
+     * 							create a more accurate estimate of the capacity based on its fundamental diagram definition and available free speed
      * 						
      * 
      * @return

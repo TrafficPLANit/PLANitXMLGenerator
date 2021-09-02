@@ -99,7 +99,7 @@
 		<xs:annotation>
 			<xs:documentation>
 				Maximum capacity, i.e., throughput, of a lane in
-				veh/km/lane, default set to 1800
+				pcu/km/lane, default set to 1800
 			</xs:documentation>
 		</xs:annotation>
 	</xs:element>
@@ -287,16 +287,15 @@
 				<xs:element ref="maxdensitylane" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>
-							When not present, the default maximum density per lane will be
-							applied
+							When not present, the default maximum density per lane will be applied
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element ref="capacitylane" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>
-							When not present, the default capacity per
-							lane will be applied
+							When not present, the default capacity per lane will be applied, unless the applied assignment can
+							create a more accurate estimate of the capacity based on its fundamental diagram definition and available free speed
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
