@@ -22,8 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="unitsvalues"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
  *     &lt;enumeration value="veh/km"/&gt;
+ *     &lt;enumeration value="pcu/km"/&gt;
  *     &lt;enumeration value="none"/&gt;
  *     &lt;enumeration value="veh/h"/&gt;
+ *     &lt;enumeration value="pcu/h"/&gt;
  *     &lt;enumeration value="km/h"/&gt;
  *     &lt;enumeration value="h"/&gt;
  *     &lt;enumeration value="km"/&gt;
@@ -39,10 +41,14 @@ public enum Unitsvalues {
 
     @XmlEnumValue("veh/km")
     VEH_KM("veh/km"),
+    @XmlEnumValue("pcu/km")
+    PCU_KM("pcu/km"),
     @XmlEnumValue("none")
     NONE("none"),
     @XmlEnumValue("veh/h")
     VEH_H("veh/h"),
+    @XmlEnumValue("pcu/h")
+    PCU_H("pcu/h"),
     @XmlEnumValue("km/h")
     KM_H("km/h"),
     @XmlEnumValue("h")
