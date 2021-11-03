@@ -6,7 +6,7 @@
 		in the directory with default namespace -->
 	<jaxb:bindings	schemaLocation="../xsd/macroscopicinput.xsd">
 		<jaxb:schemaBindings>
-			<jaxb:package name="org.planit.xml.generated" />
+			<jaxb:package name="org.goplanit.xml.generated" />
 		</jaxb:schemaBindings>
 	</jaxb:bindings>
 
