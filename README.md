@@ -4,7 +4,25 @@ Tool to generate Java classes from PLANit XML schemas to facilitate PLANitIO to 
 
 For more information on PLANit such as the user the manual, licensing, installation, getting started, reference documentation, and more, please visit [www.goPLANit.org](http://www.goplanit.org)
 
-## XSD and XJB Files
+## Development
+
+### Maven parent
+
+Projects need to be built from Maven before they can be run. The common maven configuration can be found in the PLANitParentPom project which acts as the parent for this project's pom.xml.
+
+> Make sure you install the PLANitParentPom pom.xml before conducting a maven build (in Eclipse) on this project, otherwise it cannot find the references dependencies, plugins, and other resources.
+
+### Maven deploy
+
+Distribution management is setup via the parent pom such that Maven deploys this project to the PLANit online repository (also specified in the parent pom). To enable deployment ensure that you setup your credentials correctly in your settings.xml as otherwise the deployment will fail.
+
+### Maven JAXB2 Plugin
+
+This project uses JAXB to generate Java classes from XSD files.  JAXB is run using the Maven JAXB2 Plugin (https://github.com/highsource/maven-jaxb2-plugin).
+
+The Maven JAXB2 Plugin is run by running Maven with goals "clean install" on the code.
+
+#### XSD and XJB Files
 
 XJB files are used by JAXB to configure how JAXB creates Java files and to resolve naming clashes.
 
@@ -37,25 +55,25 @@ The XJB files had the following additions for this project:
 gml-v_3_1_1.xjb:
 
 ```xml
-		<jaxb:bindings node="xs:element[@name='Arc']">
-			<jaxb:factoryMethod name="GmlArc"/>
-		</jaxb:bindings>
-		
-		<jaxb:bindings node="xs:element[@name='animate']">
-			<jaxb:factoryMethod name="SmilAnimate"/>
-		</jaxb:bindings>
-		<jaxb:bindings node="xs:element[@name='animateMotion']">
-			<jaxb:factoryMethod name="SmilAnimateMotion"/>
-		</jaxb:bindings>
-		<jaxb:bindings node="xs:element[@name='animateColor']">
-			<jaxb:factoryMethod name="SmilAnimateColor"/>
-		</jaxb:bindings>
-		<jaxb:bindings node="xs:element[@name='set']">
-			<jaxb:factoryMethod name="SmilSet"/>
-		</jaxb:bindings>
+    <jaxb:bindings node="xs:element[@name='Arc']">
+      <jaxb:factoryMethod name="GmlArc"/>
+    </jaxb:bindings>
+    
+    <jaxb:bindings node="xs:element[@name='animate']">
+      <jaxb:factoryMethod name="SmilAnimate"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="xs:element[@name='animateMotion']">
+      <jaxb:factoryMethod name="SmilAnimateMotion"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="xs:element[@name='animateColor']">
+      <jaxb:factoryMethod name="SmilAnimateColor"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="xs:element[@name='set']">
+      <jaxb:factoryMethod name="SmilSet"/>
+    </jaxb:bindings>
 ```
 
-## Generated Java classes
+#### Generated Java classes
 
 The Maven build uses JAXB to generate Java classes from the XSD schema files described in the previous section.  These classes generated  are placed in package named `org.planit.xml.generated`.  The Java classes are all given names which begin with "XMLElement".  These names are set in the XJB files.
 
@@ -70,18 +88,6 @@ Due to the OCG Schemas project mentioned above, JAXB also creates several "extra
 
 You can ignore the contents of all these packages, but do not delete them.  You will get compilation error if you delete any of their contents.
 
-## Maven parent
-
-Projects need to be built from Maven before they can be run. The common maven configuration can be found in the PLANitParentPom project which acts as the parent for this project's pom.xml.
-
-> Make sure you install the PLANitParentPom pom.xml before conducting a maven build (in Eclipse) on this project, otherwise it cannot find the references dependencies, plugins, and other resources.
-
-## Maven JAXB2 Plugin
-
-This project uses JAXB to generate Java classes from XSD files.  JAXB is run using the Maven JAXB2 Plugin (https://github.com/highsource/maven-jaxb2-plugin).
-
-The Maven JAXB2 Plugin is run by running Maven with goals "clean install" on the code.
-
-## Git Branching model
+### Git Branching model
 
 We adopt GitFlow as per https://nvie.com/posts/a-successful-git-branching-model/
