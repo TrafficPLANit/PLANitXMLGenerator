@@ -2,6 +2,23 @@
 
 PLANitXMLGenerator release log.
 
+## 0.3.0
+
+* length of connectoids is now a double instead of a float #9
+* crs of zoning is now placed on root element, not on zones element, since we now have intermodal element as well #10
+* unknown and none added to options for transferzonetype, with default none if not provided #11
+* update default mode to car by updating xsd so this can be persisted as well (planitio/#8)
+* add support for transferzonegroups (planitio/#16)
+* add support for intermodal component of zoning (planitio/#15)
+* document transfer zone groups in expanded examples + documentation + xsd on website based on newly added functionality that is now active (planitio/#17)
+* allow transferzones to have not only polygon geometries but also linestring alternatively #8
+* added id attributes to main components (zoning, network, demands etc.) #17
+* added support for service networks built on top of a physical network #18
+* linkSegmentTypes should not define speed limits per mode within the access element but via an accessgroup. This has been changed #20
+* added support for inflow/outflow properties alongside the already existing flow property #66
+* update packages to conform to new domain org.goplanit.* #21
+* added support for routed services that route on the service network #19
+
 ## 0.2.0
 
 ** enhancements**
