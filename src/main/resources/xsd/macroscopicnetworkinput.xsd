@@ -597,7 +597,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-        <xs:element name="id" type="xs:string" use="required" />			
+        <xs:element name="id" type="xs:string" minOccurs="1" />			
 				<xs:element ref="configuration" minOccurs="0">				
 					<xs:annotation>
 						<xs:documentation>

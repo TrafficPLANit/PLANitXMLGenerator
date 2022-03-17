@@ -79,6 +79,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+        <xs:element name="id" type="xs:string" minOccurs="1" />     			
 				<xs:element ref="demandconfiguration" minOccurs="1">
 					<xs:annotation>
 						<xs:documentation>
@@ -88,8 +89,7 @@
 					</xs:annotation>
 				</xs:element>
 				<xs:element ref="oddemands" />
-			</xs:sequence>
-			<xs:attribute name="id" type="xs:string" use="required" />			
+			</xs:sequence>			
 		</xs:complexType>
 	</xs:element>
 
