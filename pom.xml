@@ -32,6 +32,12 @@
 
 	<dependencies>
 
+		<!-- some generated files have open gis dependencies requiring geotool -->
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-geometry</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.jvnet.jaxb2.maven2</groupId>
 			<artifactId>maven-jaxb2-plugin</artifactId>
