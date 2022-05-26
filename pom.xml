@@ -62,10 +62,9 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
-				<includes>
-					<include>xjb/*.xjb</include>
-					<include>xsd/*.xsd</include>
-				</includes>
+				<excludes>
+					<exclude>examples</exclude>
+				</excludes>
 			</resource>
 		</resources>
 
@@ -78,9 +77,9 @@
 					<args>
 						<arg>-XautoNameResolution</arg>
 					</args>
-					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
-					<bindingDirectory>src/main/resources/xjb</bindingDirectory>
-					<generateDirectory>src/main/java</generateDirectory>
+					<schemaDirectory>${project.basedir}src/main/resources/xsd</schemaDirectory>
+					<bindingDirectory>${project.basedir}src/main/resources/xjb</bindingDirectory>
+					<generateDirectory>${project.basedir}src/main/java</generateDirectory>
 					<noFileHeader>true</noFileHeader>
 				</configuration>
 				<executions>
