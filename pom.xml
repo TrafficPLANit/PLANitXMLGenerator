@@ -62,10 +62,10 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
-				<excludes>
-					<!-- only used for internal formatting of logging statements -->
-					<exclude>*.properties</exclude>
-				</excludes>
+				<includes>
+					<include>xjb/*.xjb</include>
+					<include>xsd/*.xsd</include>
+				</includes>
 			</resource>
 		</resources>
 
@@ -93,32 +93,6 @@
 				</executions>
 			</plugin>
 
-			<!-- to avoid every re-generation of source files requires ALL files to 
-				be different just because of time stamp: remove the time stamp -->
-			<plugin>
-				<groupId>com.google.code.maven-replacer-plugin</groupId>
-				<artifactId>replacer</artifactId>
-				<version>${maven.replacer.plugin.version}</version>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<includes>
-						<include>${basedir}/**/*.java</include>
-					</includes>
-					<token>^// Generated on.*$</token>
-					<value>// Generated on: [TEXT REMOVED by maven-replacer-plugin]</value>
-					<regexFlags>
-						<regexFlag>MULTILINE</regexFlag>
-					</regexFlags>
-				</configuration>
-			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
