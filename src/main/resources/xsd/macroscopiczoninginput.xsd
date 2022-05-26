@@ -26,18 +26,24 @@
 				must be at minimum one connectoid to be able to leave/enter the zone. Each regular connectoid attaches by means of a node XML id reference 
 			</xs:documentation>
 		</xs:annotation>				
-		<xs:complexType name = "odconnectoid">
-			<xs:complexContent>
-				<xs:extension base="connectoidtype">
-					<xs:attribute name="noderef" type="xs:string" use="required">
-						<xs:annotation>
-							<xs:documentation>
-								Reference to the node that also acts as a connectoid for the zone.
-							</xs:documentation>
-						</xs:annotation>			
-					</xs:attribute>				
-				</xs:extension>
-			</xs:complexContent>				
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="odconnectoid">
+					<xs:complextype>
+						<xs:complexContent>
+							<xs:extension base="connectoidtype">
+								<xs:attribute name="noderef" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>
+											Reference to the node that also acts as a connectoid for the zone.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complextype>
+				</xs:element>
+			</xs:sequence>
 		</xs:complexType>				
 	</xs:element>
 
