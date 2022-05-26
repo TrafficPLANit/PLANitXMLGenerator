@@ -184,7 +184,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="departure" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:element name="departure" minOccurs="1" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:attribute name="id" type="xs:string" use="required" />
 						<xs:attribute name="externalid" type="xs:string" use="optional" />
@@ -293,8 +293,8 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="id" type="xs:string" use="required" />
-				<xs:element name="externalid" type="xs:string" use="optional" />
+				<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="externalid" type="xs:string" minOccurs="0" maxOccurs="1" />
 				<xs:element name="servicelayers" minOccurs="1" maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>

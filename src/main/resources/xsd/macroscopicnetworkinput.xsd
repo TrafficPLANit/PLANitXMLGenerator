@@ -468,7 +468,7 @@
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="tracktype" type="trackType"
-					default="double">
+					default="road">
 					<xs:annotation>
 						<xs:documentation>
 							track type of the mode

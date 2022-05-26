@@ -88,8 +88,8 @@
 	  </xs:annotation>
     <xs:complexType>
       <xs:sequence>	  
-		    <xs:element ref="servicenodes" minoccurs="1" maxoccurs="unbounded" />
-        <xs:element ref="servicelegs" minoccurs="1" maxoccurs="unbounded" />          				             
+		    <xs:element ref="servicenodes" />
+        	<xs:element ref="servicelegs" />
       </xs:sequence>
 	    <xs:attribute name="id" type="xs:string" use="required" />
 	    <xs:attribute name="externalid" type="xs:string" use="optional" />	    
@@ -107,9 +107,9 @@
 		</xs:annotation>
 		<xs:complexType>
 		  <xs:sequence>
-		    <xs:element name="id" type="xs:string" use="required" />
+		    <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
 		    <!-- reference to parent network id the service network is built upon-->
-		    <xs:element name="parentnetwork" type="xs:string" use="required" />
+		    <xs:element name="parentnetwork" type="xs:string" minOccurs="1" maxOccurs="1" />
 		    <xs:element ref="servicenetworklayer" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
     </xs:complexType>

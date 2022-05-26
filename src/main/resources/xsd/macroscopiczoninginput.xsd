@@ -45,7 +45,7 @@
 	<xs:element name="macroscopiczoning">
 		<xs:complexType>
 			<xs:sequence>
-			  <xs:element name="id" type="xs:string" use="required" />
+			  <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
 				<xs:element ref="zones"/>
 				<xs:element name="intermodal" type="intermodaltype" minOccurs="0" maxOccurs="1">
 					<xs:annotation>
