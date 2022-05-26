@@ -2,6 +2,7 @@
 /.classpath
 /.settings
 .project
+/.idea
 /src/main/java/META-INF
 /src/main/java/net
 /src/main/java/org/hisrc

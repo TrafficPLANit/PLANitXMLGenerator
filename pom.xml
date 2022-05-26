@@ -81,7 +81,7 @@
 					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
 					<bindingDirectory>src/main/resources/xjb</bindingDirectory>
 					<generateDirectory>src/main/java</generateDirectory>
-					<no-header>true</no-header>
+					<noFileHeader>true</noFileHeader>
 				</configuration>
 				<executions>
 					<execution>
@@ -131,5 +131,14 @@
 
 		</plugins>
 	</build>
+
+	<repositories>
+		<!-- PLANit repository to obtain parentpom from-->
+		<repository>
+			<id>planit-repository.goplanit.org</id>
+			<name>PLANit Repository</name>
+			<url>https://repository.goplanit.org</url>
+		</repository>
+	</repositories>
 
 </project>
