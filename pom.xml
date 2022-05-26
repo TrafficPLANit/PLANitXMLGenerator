@@ -84,9 +84,9 @@
 					<args>
 						<arg>-XautoNameResolution</arg>
 					</args>
-					<schemaDirectory>${project.basedir}src/main/resources/xsd</schemaDirectory>
-					<bindingDirectory>${project.basedir}src/main/resources/xjb</bindingDirectory>
-					<generateDirectory>${project.basedir}src/main/java</generateDirectory>
+					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
+					<bindingDirectory>src/main/resources/xjb</bindingDirectory>
+					<generateDirectory>src/main/java</generateDirectory>
 					<noFileHeader>true</noFileHeader>
 				</configuration>
 				<executions>
