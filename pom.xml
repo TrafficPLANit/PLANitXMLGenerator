@@ -34,8 +34,9 @@
 
 		<!-- some generated files have open gis dependencies requiring geotool -->
 		<dependency>
-			<groupId>org.geotools</groupId>
-			<artifactId>gt-geometry</artifactId>
+			<groupId>net.opengis.schemas</groupId>
+			<artifactId>gml-3.1</artifactId>
+			<version>3.1.1-1</version>
 		</dependency>
 
 		<dependency>
