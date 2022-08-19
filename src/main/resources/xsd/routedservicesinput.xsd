@@ -235,7 +235,7 @@
 						<xs:attribute name="dwelltime" type="xs:time" use="optional" default="00:00:00">
 							<xs:annotation>
 								<xs:documentation>
-									Override default service dwell time for the end point of this leg. If no dwell time
+									Override default service dwell time (hh:mm:ss) for the end point of this leg. If no dwell time
 									is provided, and neither a default exists for the trip, 00:00:00 is adopted
 								</xs:documentation>
 							</xs:annotation>
