@@ -32,7 +32,7 @@
 
 	<dependencies>
 
-		<!-- some generated files have open gis dependencies requiring geotool -->
+		<!-- some generated files have gml dependencies -->
 		<dependency>
 			<groupId>net.opengis.schemas</groupId>
 			<artifactId>gml-3.1</artifactId>
