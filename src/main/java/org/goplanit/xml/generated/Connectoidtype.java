@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 @XmlSeeAlso({
     org.goplanit.xml.generated.XMLElementTransferZoneAccess.XMLElementTransferConnectoid.class,
-    Odconnectoid.class
+    XMLElementConnectoid.class
 })
 public class Connectoidtype {
 

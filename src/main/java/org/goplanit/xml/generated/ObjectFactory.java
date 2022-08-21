@@ -370,11 +370,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Odconnectoid }
+     * Create an instance of {@link XMLElementConnectoid }
      * 
      */
-    public Odconnectoid createOdconnectoid() {
-        return new Odconnectoid();
+    public XMLElementConnectoid createXMLElementConnectoid() {
+        return new XMLElementConnectoid();
     }
 
     /**
@@ -807,19 +807,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "macroscopicintermodal")
     public XMLElementMacroscopicIntermodal createXMLElementMacroscopicIntermodal(Intermodaltype value) {
         return new XMLElementMacroscopicIntermodal(value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementConnectoid }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementConnectoid }
-     */
-    @XmlElementDecl(namespace = "", name = "connectoid")
-    public XMLElementConnectoid createXMLElementConnectoid(Odconnectoid value) {
-        return new XMLElementConnectoid(value);
     }
 
     /**

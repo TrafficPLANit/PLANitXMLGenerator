@@ -8,9 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -34,7 +32,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                   &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
+ *                   &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -99,7 +97,7 @@ public class XMLElementDepartures {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
-     *       &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
+     *       &lt;attribute name="time" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -116,8 +114,7 @@ public class XMLElementDepartures {
         @XmlAttribute(name = "externalid")
         protected String externalid;
         @XmlAttribute(name = "time", required = true)
-        @XmlSchemaType(name = "time")
-        protected XMLGregorianCalendar time;
+        protected String time;
 
         /**
          * Gets the value of the id property.
@@ -172,10 +169,10 @@ public class XMLElementDepartures {
          * 
          * @return
          *     possible object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public XMLGregorianCalendar getTime() {
+        public String getTime() {
             return time;
         }
 
@@ -184,10 +181,10 @@ public class XMLElementDepartures {
          * 
          * @param value
          *     allowed object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public void setTime(XMLGregorianCalendar value) {
+        public void setTime(String value) {
             this.time = value;
         }
 

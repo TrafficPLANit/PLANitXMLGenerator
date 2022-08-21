@@ -188,10 +188,11 @@
 					<xs:complexType>
 						<xs:attribute name="id" type="xs:string" use="required" />
 						<xs:attribute name="externalid" type="xs:string" use="optional" />
-						<xs:attribute name="time" type="xs:time" use="required">
+						<xs:attribute name="time" type="xs:string" use="required">
 							<xs:annotation>
 								<xs:documentation>
-									The absolute within day departure time in hh::mm:ss format
+									The absolute within day departure time in hh::mm:ss format, because we allow the hours to
+									exceed beyond midnight, we do not enforce a time but instead parse it as a string
 								</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>

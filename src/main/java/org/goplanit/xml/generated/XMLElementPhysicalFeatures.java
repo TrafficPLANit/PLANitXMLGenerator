@@ -51,7 +51,7 @@ public class XMLElementPhysicalFeatures {
     @XmlElement(required = true, defaultValue = "motorised")
     @XmlSchemaType(name = "string")
     protected MotorisationType motorisationtype;
-    @XmlElement(required = true, defaultValue = "double")
+    @XmlElement(required = true, defaultValue = "road")
     @XmlSchemaType(name = "string")
     protected TrackType tracktype;
 

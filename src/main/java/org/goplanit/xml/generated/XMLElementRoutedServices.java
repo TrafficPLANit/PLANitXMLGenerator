@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
  *           &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *           &lt;element name="externalid" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *           &lt;element name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *           &lt;element name="servicelayers"&gt;
  *             &lt;complexType&gt;
  *               &lt;complexContent&gt;
@@ -64,7 +64,6 @@ public class XMLElementRoutedServices {
 
     @XmlElement(required = true)
     protected String id;
-    @XmlElement(required = true)
     protected String externalid;
     @XmlElement(required = true)
     protected XMLElementRoutedServices.Servicelayers servicelayers;
