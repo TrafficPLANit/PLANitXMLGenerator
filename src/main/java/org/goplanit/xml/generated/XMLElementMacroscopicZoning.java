@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
  *           &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *           &lt;element ref="{}zones"/&gt;
+ *           &lt;element ref="{}zones" minOccurs="0"/&gt;
  *           &lt;element name="intermodal" type="{}intermodaltype" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute ref="{}srsname"/&gt;
@@ -47,7 +47,6 @@ public class XMLElementMacroscopicZoning {
 
     @XmlElement(required = true)
     protected String id;
-    @XmlElement(required = true)
     protected XMLElementZones zones;
     @XmlElementRef(name = "intermodal", type = XMLElementMacroscopicZoning.XMLElementIntermodal.class, required = false)
     protected XMLElementMacroscopicZoning.XMLElementIntermodal intermodal;

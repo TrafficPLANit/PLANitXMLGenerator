@@ -46,11 +46,11 @@
 		<xs:complexType>
 			<xs:sequence>
 			  <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
-				<xs:element ref="zones"/>
+				<xs:element ref="zones" minOccurs="0" maxOccurs="1"/>
 				<xs:element name="intermodal" type="intermodaltype" minOccurs="0" maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>
-							Optional includion of intermodal transfer zones that allow for partial routes transfering at transfer zones (not starting/ending). Since the concept
+							Optional inclusion of intermodal transfer zones that allow for partial routes transfering at transfer zones (not starting/ending). Since the concept
 							of transfer zones is a generalisation of regular "OD" zones, it is only logical to include the defintion within the overarching zoning description
 						</xs:documentation>
 					</xs:annotation>				
