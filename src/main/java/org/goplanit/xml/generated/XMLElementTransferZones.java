@@ -35,6 +35,7 @@ import net.opengis.gml.PolygonType;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                     &lt;element name="platforms" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *                     &lt;element ref="{}centroid" minOccurs="0"/&gt;
  *                     &lt;choice minOccurs="0"&gt;
  *                       &lt;element ref="{http://www.opengis.net/gml}LineString"/&gt;
@@ -108,6 +109,7 @@ public class XMLElementTransferZones {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="platforms" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
      *         &lt;element ref="{}centroid" minOccurs="0"/&gt;
      *         &lt;choice minOccurs="0"&gt;
      *           &lt;element ref="{http://www.opengis.net/gml}LineString"/&gt;
@@ -127,6 +129,7 @@ public class XMLElementTransferZones {
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "name",
+        "platforms",
         "centroid",
         "lineString",
         "polygon"
@@ -134,6 +137,7 @@ public class XMLElementTransferZones {
     public static class XMLElementTransferZone {
 
         protected String name;
+        protected String platforms;
         protected XMLElementCentroid centroid;
         @XmlElement(name = "LineString", namespace = "http://www.opengis.net/gml")
         protected LineStringType lineString;
@@ -168,6 +172,30 @@ public class XMLElementTransferZones {
          */
         public void setName(String value) {
             this.name = value;
+        }
+
+        /**
+         * Gets the value of the platforms property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getPlatforms() {
+            return platforms;
+        }
+
+        /**
+         * Sets the value of the platforms property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setPlatforms(String value) {
+            this.platforms = value;
         }
 
         /**
