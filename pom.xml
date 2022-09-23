@@ -39,6 +39,7 @@
 			<version>3.1.1-1</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.jvnet.jaxb2.maven2</groupId>
 			<artifactId>maven-jaxb2-plugin</artifactId>
@@ -48,18 +49,6 @@
 				jar TODO: create modules instead of parent pom dependency and remove optional 
 				clause -->
 			<optional>true</optional>
-		</dependency>
-
-		<!-- TODO: remove once we upgraded to 0.14.1 for jaxb2 plugin -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-		</dependency>
-
-		<!-- TODO: remove once we upgraded to 0.14.1 for jaxb2 plugin -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
 
 	</dependencies>

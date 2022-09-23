@@ -69,8 +69,8 @@ public class XMLElementOdDemands {
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link XMLElementOdCellByCellMatrix }
-     * {@link XMLElementOdRowMatrix }
      * {@link XMLElementOdRawMatrix }
+     * {@link XMLElementOdRowMatrix }
      * 
      * 
      */

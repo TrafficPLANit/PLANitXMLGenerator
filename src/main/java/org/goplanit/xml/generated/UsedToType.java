@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlType;
  * <p>Java class for usedToType.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
  * <pre>
  * &lt;simpleType name="usedToType"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
