@@ -43,12 +43,6 @@
 		<dependency>
 			<groupId>org.jvnet.jaxb2.maven2</groupId>
 			<artifactId>maven-jaxb2-plugin</artifactId>
-			<!-- whenever a fat jar is built with this project as dependency we do 
-				not need to generate xml classes anymore since they are already available. 
-				Hence make this optional. Result: no warnings of clashing versions in fat 
-				jar TODO: create modules instead of parent pom dependency and remove optional 
-				clause -->
-			<optional>true</optional>
 		</dependency>
 
 	</dependencies>
