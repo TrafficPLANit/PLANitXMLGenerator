@@ -14,25 +14,25 @@
 		  <xs:sequence>
 		    <xs:element name="legsegment" minOccurs="1" maxOccurs="2">
 			    <xs:complexType>
-			      <xs:sequence>
-			      </xs:sequence>
-			      <xs:attribute name="id" type="xs:string" use="required" />
-			      <xs:attribute name="externalid" type="xs:string" use="optional"/>
-			      <xs:attribute name="dir" type="direction" use="required" />
+					<xs:sequence>
+					</xs:sequence>
+					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attribute name="externalid" type="xs:string" use="optional"/>
+					<xs:attribute name="dir" type="direction" use="required" />
+					<xs:attribute name="lsrefs" type="xs:string" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+								Comma separated list of parent network layer link segment ids portraying the link segment in order from (service) node a towards (service) node b
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 			    </xs:complexType>
 		    </xs:element>
 		  </xs:sequence>		  
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string" use="optional"/>
 			<xs:attribute name="nodearef" type="xs:string" use="required" />
-      <xs:attribute name="nodebref" type="xs:string" use="required" />
-      <xs:attribute name="lrefs" type="xs:string" use="required" >			
-				<xs:annotation>
-					<xs:documentation>
-						Comma separated list of parent network layer link ids portraying the link in order from node a towards node b
-					</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>							
+      		<xs:attribute name="nodebref" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>	
 			

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="dir" use="required" type="{}direction" /&gt;
+ *                   &lt;attribute name="lsrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -45,7 +46,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="nodearef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="nodebref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *         &lt;attribute name="lrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -71,8 +71,6 @@ public class XMLElementServiceLeg {
     protected String nodearef;
     @XmlAttribute(name = "nodebref", required = true)
     protected String nodebref;
-    @XmlAttribute(name = "lrefs", required = true)
-    protected String lrefs;
 
     /**
      * Gets the value of the legsegment property.
@@ -199,30 +197,6 @@ public class XMLElementServiceLeg {
         this.nodebref = value;
     }
 
-    /**
-     * Gets the value of the lrefs property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLrefs() {
-        return lrefs;
-    }
-
-    /**
-     * Sets the value of the lrefs property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLrefs(String value) {
-        this.lrefs = value;
-    }
-
 
     /**
      * <p>Java class for anonymous complex type.
@@ -238,6 +212,7 @@ public class XMLElementServiceLeg {
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="dir" use="required" type="{}direction" /&gt;
+     *       &lt;attribute name="lsrefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -255,6 +230,8 @@ public class XMLElementServiceLeg {
         protected String externalid;
         @XmlAttribute(name = "dir", required = true)
         protected Direction dir;
+        @XmlAttribute(name = "lsrefs", required = true)
+        protected String lsrefs;
 
         /**
          * Gets the value of the id property.
@@ -326,6 +303,30 @@ public class XMLElementServiceLeg {
          */
         public void setDir(Direction value) {
             this.dir = value;
+        }
+
+        /**
+         * Gets the value of the lsrefs property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getLsrefs() {
+            return lsrefs;
+        }
+
+        /**
+         * Sets the value of the lsrefs property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setLsrefs(String value) {
+            this.lsrefs = value;
         }
 
     }
