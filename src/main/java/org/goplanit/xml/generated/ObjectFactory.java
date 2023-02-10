@@ -3,11 +3,14 @@ package org.goplanit.xml.generated;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalTime;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
+import org.goplanit.xml.bindings.TimeAdapter;
 
 
 /**
@@ -706,16 +709,17 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LocalTime }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link LocalTime }{@code >}
      */
     @XmlElementDecl(namespace = "", name = "starttime", defaultValue = "00:00:00")
-    public JAXBElement<XMLGregorianCalendar> createStarttime(XMLGregorianCalendar value) {
-        return new JAXBElement<XMLGregorianCalendar>(_Starttime_QNAME, XMLGregorianCalendar.class, null, value);
+    @XmlJavaTypeAdapter(TimeAdapter.class)
+    public JAXBElement<LocalTime> createStarttime(LocalTime value) {
+        return new JAXBElement<LocalTime>(_Starttime_QNAME, LocalTime.class, null, value);
     }
 
     /**

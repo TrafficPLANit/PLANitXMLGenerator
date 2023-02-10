@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -39,8 +40,11 @@ import javax.xml.bind.annotation.XmlType;
     "usedtotype"
 })
 @XmlRootElement(name = "usabilityfeatures")
-public class XMLElementUsabilityFeatures {
+public class XMLElementUsabilityFeatures
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true, defaultValue = "private")
     @XmlSchemaType(name = "string")
     protected UsedToType usedtotype;

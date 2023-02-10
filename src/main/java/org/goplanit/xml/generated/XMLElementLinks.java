@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -59,8 +60,11 @@ import net.opengis.gml.LineStringType;
     "link"
 })
 @XmlRootElement(name = "links")
-public class XMLElementLinks {
+public class XMLElementLinks
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementLinks.Link> link;
 
@@ -127,8 +131,11 @@ public class XMLElementLinks {
         "linksegment",
         "length"
     })
-    public static class Link {
+    public static class Link
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlElement(defaultValue = "")
         protected String name;
         @XmlElement(name = "LineString", namespace = "http://www.opengis.net/gml")

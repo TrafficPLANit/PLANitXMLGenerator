@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -51,8 +52,11 @@ import javax.xml.bind.annotation.XmlType;
     "userclass"
 })
 @XmlRootElement(name = "userclasses")
-public class XMLElementUserClasses {
+public class XMLElementUserClasses
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementUserClasses.Userclass> userclass;
 
@@ -113,8 +117,11 @@ public class XMLElementUserClasses {
     @XmlType(name = "", propOrder = {
         "name"
     })
-    public static class Userclass {
+    public static class Userclass
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected String name;
         @XmlAttribute(name = "id", required = true)
         protected String id;

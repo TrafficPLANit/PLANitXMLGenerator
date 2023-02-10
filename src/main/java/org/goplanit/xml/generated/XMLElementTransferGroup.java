@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -41,8 +42,11 @@ import javax.xml.bind.annotation.XmlType;
     "name"
 })
 @XmlRootElement(name = "transfergroup")
-public class XMLElementTransferGroup {
+public class XMLElementTransferGroup
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     protected String name;
     @XmlAttribute(name = "id", required = true)
     protected String id;

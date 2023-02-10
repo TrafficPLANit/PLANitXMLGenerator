@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -42,8 +43,11 @@ import javax.xml.bind.annotation.XmlType;
     "critspeed"
 })
 @XmlRootElement(name = "accessgroup")
-public class XMLElementAccessGroup {
+public class XMLElementAccessGroup
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(defaultValue = "80.0")
     protected Double maxspeed;
     protected Double critspeed;

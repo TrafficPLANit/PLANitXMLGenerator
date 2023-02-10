@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -46,8 +47,11 @@ import javax.xml.bind.annotation.XmlType;
     "services"
 })
 @XmlRootElement(name = "servicelayer")
-public class XMLElementRoutedServicesLayer {
+public class XMLElementRoutedServicesLayer
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementServices> services;
     @XmlAttribute(name = "id", required = true)

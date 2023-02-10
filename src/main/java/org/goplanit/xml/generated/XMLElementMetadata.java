@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -46,8 +47,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "columns"
 })
 @XmlRootElement(name = "metadata")
-public class XMLElementMetadata {
+public class XMLElementMetadata
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar timestamp;

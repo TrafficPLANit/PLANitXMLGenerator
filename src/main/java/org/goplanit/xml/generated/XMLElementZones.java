@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -57,8 +58,11 @@ import net.opengis.gml.PolygonType;
     "zone"
 })
 @XmlRootElement(name = "zones")
-public class XMLElementZones {
+public class XMLElementZones
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementZones.Zone> zone;
 
@@ -123,8 +127,11 @@ public class XMLElementZones {
         "connectoids",
         "polygon"
     })
-    public static class Zone {
+    public static class Zone
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected String name;
         protected XMLElementCentroid centroid;
         @XmlElement(required = true)

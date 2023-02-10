@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -41,8 +42,11 @@ import net.opengis.gml.PointType;
     "point"
 })
 @XmlRootElement(name = "centroid")
-public class XMLElementCentroid {
+public class XMLElementCentroid
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     protected String name;
     @XmlElement(name = "Point", namespace = "http://www.opengis.net/gml")
     protected PointType point;

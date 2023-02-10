@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -54,8 +55,10 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlRootElement(name = "odrowmatrix")
 public class XMLElementOdRowMatrix
     extends XMLElementOdMatrix
+    implements Serializable
 {
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementOdRowMatrix.Odrow> odrow;
     @XmlAttribute(name = "ds")
@@ -140,8 +143,11 @@ public class XMLElementOdRowMatrix
     @XmlType(name = "", propOrder = {
         "value"
     })
-    public static class Odrow {
+    public static class Odrow
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlValue
         protected String value;
         @XmlAttribute(name = "ref")

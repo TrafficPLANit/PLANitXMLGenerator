@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,8 +38,11 @@ import javax.xml.bind.annotation.XmlType;
     "linksegmenttypes"
 })
 @XmlRootElement(name = "layerconfiguration")
-public class XMLElementLayerConfiguration {
+public class XMLElementLayerConfiguration
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     protected XMLElementLinkSegmentTypes linksegmenttypes;
 
     /**

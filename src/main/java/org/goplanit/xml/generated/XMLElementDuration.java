@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "duration")
 public class XMLElementDuration
     extends XMLElementUnrestrictedDuration
+    implements Serializable
 {
 
+    private final static long serialVersionUID = -1L;
 
 }

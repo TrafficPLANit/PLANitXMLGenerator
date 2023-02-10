@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -51,8 +52,11 @@ import javax.xml.bind.annotation.XmlType;
     "servicenode"
 })
 @XmlRootElement(name = "servicenodes")
-public class XMLElementServiceNodes {
+public class XMLElementServiceNodes
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementServiceNodes.Servicenode> servicenode;
 
@@ -107,8 +111,11 @@ public class XMLElementServiceNodes {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
-    public static class Servicenode {
+    public static class Servicenode
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlAttribute(name = "id", required = true)
         protected String id;
         @XmlAttribute(name = "externalid")

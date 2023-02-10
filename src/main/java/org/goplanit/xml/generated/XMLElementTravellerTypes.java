@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -49,8 +50,11 @@ import javax.xml.bind.annotation.XmlType;
     "travellertype"
 })
 @XmlRootElement(name = "travellertypes")
-public class XMLElementTravellerTypes {
+public class XMLElementTravellerTypes
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementTravellerTypes.Travellertype> travellertype;
 
@@ -109,8 +113,11 @@ public class XMLElementTravellerTypes {
     @XmlType(name = "", propOrder = {
         "name"
     })
-    public static class Travellertype {
+    public static class Travellertype
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected String name;
         @XmlAttribute(name = "id", required = true)
         protected String id;

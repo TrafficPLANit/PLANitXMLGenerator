@@ -1,6 +1,8 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,7 +12,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.goplanit.xml.bindings.TimeAdapter;
 
 
 /**
@@ -54,13 +57,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "leg"
 })
 @XmlRootElement(name = "reltimings")
-public class XMLElementRelativeTimings {
+public class XMLElementRelativeTimings
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementRelativeTimings.Leg> leg;
     @XmlAttribute(name = "dwelltime")
+    @XmlJavaTypeAdapter(TimeAdapter.class)
     @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar dwelltime;
+    protected LocalTime dwelltime;
 
     /**
      * Gets the value of the leg property.
@@ -96,11 +103,15 @@ public class XMLElementRelativeTimings {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getDwelltime() {
-        return dwelltime;
+    public LocalTime getDwelltime() {
+        if (dwelltime == null) {
+            return new TimeAdapter().unmarshal("00:00:00");
+        } else {
+            return dwelltime;
+        }
     }
 
     /**
@@ -108,10 +119,10 @@ public class XMLElementRelativeTimings {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setDwelltime(XMLGregorianCalendar value) {
+    public void setDwelltime(LocalTime value) {
         this.dwelltime = value;
     }
 
@@ -137,16 +148,21 @@ public class XMLElementRelativeTimings {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
-    public static class Leg {
+    public static class Leg
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlAttribute(name = "lsref", required = true)
         protected String lsref;
         @XmlAttribute(name = "duration", required = true)
+        @XmlJavaTypeAdapter(TimeAdapter.class)
         @XmlSchemaType(name = "time")
-        protected XMLGregorianCalendar duration;
+        protected LocalTime duration;
         @XmlAttribute(name = "dwelltime")
+        @XmlJavaTypeAdapter(TimeAdapter.class)
         @XmlSchemaType(name = "time")
-        protected XMLGregorianCalendar dwelltime;
+        protected LocalTime dwelltime;
 
         /**
          * Gets the value of the lsref property.
@@ -177,10 +193,10 @@ public class XMLElementRelativeTimings {
          * 
          * @return
          *     possible object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public XMLGregorianCalendar getDuration() {
+        public LocalTime getDuration() {
             return duration;
         }
 
@@ -189,10 +205,10 @@ public class XMLElementRelativeTimings {
          * 
          * @param value
          *     allowed object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public void setDuration(XMLGregorianCalendar value) {
+        public void setDuration(LocalTime value) {
             this.duration = value;
         }
 
@@ -201,11 +217,15 @@ public class XMLElementRelativeTimings {
          * 
          * @return
          *     possible object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public XMLGregorianCalendar getDwelltime() {
-            return dwelltime;
+        public LocalTime getDwelltime() {
+            if (dwelltime == null) {
+                return new TimeAdapter().unmarshal("00:00:00");
+            } else {
+                return dwelltime;
+            }
         }
 
         /**
@@ -213,10 +233,10 @@ public class XMLElementRelativeTimings {
          * 
          * @param value
          *     allowed object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public void setDwelltime(XMLGregorianCalendar value) {
+        public void setDwelltime(LocalTime value) {
             this.dwelltime = value;
         }
 

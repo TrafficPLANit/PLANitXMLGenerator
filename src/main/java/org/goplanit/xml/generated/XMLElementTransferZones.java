@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -63,8 +64,11 @@ import net.opengis.gml.PolygonType;
     "zone"
 })
 @XmlRootElement(name = "transferzones")
-public class XMLElementTransferZones {
+public class XMLElementTransferZones
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementTransferZones.XMLElementTransferZone> zone;
 
@@ -134,8 +138,11 @@ public class XMLElementTransferZones {
         "lineString",
         "polygon"
     })
-    public static class XMLElementTransferZone {
+    public static class XMLElementTransferZone
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected String name;
         protected String platforms;
         protected XMLElementCentroid centroid;

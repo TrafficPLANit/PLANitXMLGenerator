@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -50,8 +51,11 @@ import javax.xml.bind.annotation.XmlType;
     "trips"
 })
 @XmlRootElement(name = "service")
-public class XMLElementService {
+public class XMLElementService
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected String name;
     protected String namedescription;

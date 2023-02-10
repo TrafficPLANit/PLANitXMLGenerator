@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -51,8 +52,11 @@ import javax.xml.bind.annotation.XmlType;
     "connectoid"
 })
 @XmlRootElement(name = "transferzoneaccess")
-public class XMLElementTransferZoneAccess {
+public class XMLElementTransferZoneAccess
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementTransferZoneAccess.XMLElementTransferConnectoid> connectoid;
 
@@ -109,8 +113,10 @@ public class XMLElementTransferZoneAccess {
     @XmlType(name = "")
     public static class XMLElementTransferConnectoid
         extends Connectoidtype
+        implements Serializable
     {
 
+        private final static long serialVersionUID = -1L;
         @XmlAttribute(name = "tzrefs", required = true)
         protected String tzrefs;
         @XmlAttribute(name = "lsref", required = true)

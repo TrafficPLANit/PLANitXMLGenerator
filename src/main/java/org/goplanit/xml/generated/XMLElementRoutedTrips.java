@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -41,8 +42,11 @@ import javax.xml.bind.annotation.XmlType;
     "trip"
 })
 @XmlRootElement(name = "trips")
-public class XMLElementRoutedTrips {
+public class XMLElementRoutedTrips
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementRoutedTrip> trip;
 

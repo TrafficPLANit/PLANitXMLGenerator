@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -29,8 +30,11 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "linkLengthType", propOrder = {
     "value"
 })
-public class XMLElementLinkLengthType {
+public class XMLElementLinkLengthType
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlValue
     protected double value;
     @XmlAttribute(name = "unit")

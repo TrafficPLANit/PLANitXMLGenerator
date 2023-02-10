@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -58,8 +59,11 @@ import javax.xml.bind.annotation.XmlType;
     "mode"
 })
 @XmlRootElement(name = "modes")
-public class XMLElementModes {
+public class XMLElementModes
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementModes.Mode> mode;
 
@@ -147,8 +151,11 @@ public class XMLElementModes {
         "physicalfeatures",
         "usabilityfeatures"
     })
-    public static class Mode {
+    public static class Mode
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected String name;
         @XmlElement(defaultValue = "80.0")
         protected Double maxspeed;

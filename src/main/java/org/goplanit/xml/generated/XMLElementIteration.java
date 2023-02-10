@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,11 @@ import javax.xml.bind.annotation.XmlType;
     "csvdata"
 })
 @XmlRootElement(name = "iteration")
-public class XMLElementIteration {
+public class XMLElementIteration
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected BigInteger nr;

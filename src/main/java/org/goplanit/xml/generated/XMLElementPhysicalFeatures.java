@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -43,8 +44,11 @@ import javax.xml.bind.annotation.XmlType;
     "tracktype"
 })
 @XmlRootElement(name = "physicalfeatures")
-public class XMLElementPhysicalFeatures {
+public class XMLElementPhysicalFeatures
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true, defaultValue = "vehicle")
     @XmlSchemaType(name = "string")
     protected VehicularType vehicletype;

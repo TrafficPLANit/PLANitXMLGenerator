@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -41,8 +42,11 @@ import javax.xml.bind.annotation.XmlType;
     "odcellbycellmatrixOrOdrowmatrixOrOdrawmatrix"
 })
 @XmlRootElement(name = "oddemands")
-public class XMLElementOdDemands {
+public class XMLElementOdDemands
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElements({
         @XmlElement(name = "odcellbycellmatrix", type = XMLElementOdCellByCellMatrix.class),
         @XmlElement(name = "odrowmatrix", type = XMLElementOdRowMatrix.class),

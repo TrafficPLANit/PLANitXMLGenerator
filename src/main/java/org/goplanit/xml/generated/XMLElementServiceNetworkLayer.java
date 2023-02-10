@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -46,8 +47,11 @@ import javax.xml.bind.annotation.XmlType;
     "servicelegs"
 })
 @XmlRootElement(name = "servicenetworklayer")
-public class XMLElementServiceNetworkLayer {
+public class XMLElementServiceNetworkLayer
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected XMLElementServiceNodes servicenodes;
     @XmlElement(required = true)

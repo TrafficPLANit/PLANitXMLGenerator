@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -33,8 +34,11 @@ import javax.xml.bind.annotation.XmlValue;
     "value"
 })
 @XmlRootElement(name = "csvdata")
-public class XMLElementCsvdata {
+public class XMLElementCsvdata
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlValue
     protected String value;
     @XmlAttribute(name = "type", required = true)

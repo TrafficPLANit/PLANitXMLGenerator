@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -43,8 +44,11 @@ import javax.xml.bind.annotation.XmlType;
     "layer"
 })
 @XmlRootElement(name = "infrastructurelayers")
-public class XMLElementInfrastructureLayers {
+public class XMLElementInfrastructureLayers
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementInfrastructureLayer> layer;
     @XmlAttribute(name = "srsname")

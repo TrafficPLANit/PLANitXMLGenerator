@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -59,8 +60,11 @@ import javax.xml.bind.annotation.XmlType;
     "legsegment"
 })
 @XmlRootElement(name = "leg")
-public class XMLElementServiceLeg {
+public class XMLElementServiceLeg
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementServiceLeg.Legsegment> legsegment;
     @XmlAttribute(name = "id", required = true)
@@ -222,8 +226,11 @@ public class XMLElementServiceLeg {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
-    public static class Legsegment {
+    public static class Legsegment
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlAttribute(name = "id", required = true)
         protected String id;
         @XmlAttribute(name = "externalid")

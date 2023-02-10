@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -40,8 +41,11 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlSeeAlso({
     XMLElementDuration.class
 })
-public class XMLElementUnrestrictedDuration {
+public class XMLElementUnrestrictedDuration
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlValue
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger value;

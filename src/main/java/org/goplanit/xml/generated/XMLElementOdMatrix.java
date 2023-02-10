@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -33,8 +34,10 @@ import javax.xml.bind.annotation.XmlType;
     XMLElementOdRawMatrix.class,
     XMLElementOdRowMatrix.class
 })
-public class XMLElementOdMatrix {
+public class XMLElementOdMatrix implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlAttribute(name = "timeperiodref", required = true)
     protected String timeperiodref;
     @XmlAttribute(name = "userclassref")

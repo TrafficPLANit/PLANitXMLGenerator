@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -56,8 +57,11 @@ import net.opengis.gml.PointType;
     "node"
 })
 @XmlRootElement(name = "nodes")
-public class XMLElementNodes {
+public class XMLElementNodes
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementNodes.Node> node;
 
@@ -118,8 +122,11 @@ public class XMLElementNodes {
         "name",
         "point"
     })
-    public static class Node {
+    public static class Node
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected String name;
         @XmlElement(name = "Point", namespace = "http://www.opengis.net/gml")
         protected PointType point;

@@ -1,6 +1,8 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,7 +12,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.goplanit.xml.bindings.TimeAdapter;
 
 
 /**
@@ -53,8 +56,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "timeperiod"
 })
 @XmlRootElement(name = "timeperiods")
-public class XMLElementTimePeriods {
+public class XMLElementTimePeriods
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementTimePeriods.Timeperiod> timeperiod;
 
@@ -117,12 +123,16 @@ public class XMLElementTimePeriods {
         "starttime",
         "duration"
     })
-    public static class Timeperiod {
+    public static class Timeperiod
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected String name;
-        @XmlElement(defaultValue = "00:00:00")
+        @XmlElement(type = String.class, defaultValue = "00:00:00")
+        @XmlJavaTypeAdapter(TimeAdapter.class)
         @XmlSchemaType(name = "time")
-        protected XMLGregorianCalendar starttime;
+        protected LocalTime starttime;
         @XmlElement(required = true)
         protected XMLElementDuration duration;
         @XmlAttribute(name = "id", required = true)
@@ -159,10 +169,10 @@ public class XMLElementTimePeriods {
          * 
          * @return
          *     possible object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public XMLGregorianCalendar getStarttime() {
+        public LocalTime getStarttime() {
             return starttime;
         }
 
@@ -171,10 +181,10 @@ public class XMLElementTimePeriods {
          * 
          * @param value
          *     allowed object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public void setStarttime(XMLGregorianCalendar value) {
+        public void setStarttime(LocalTime value) {
             this.starttime = value;
         }
 

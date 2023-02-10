@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -37,8 +38,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "connectoid")
 public class XMLElementConnectoid
     extends Connectoidtype
+    implements Serializable
 {
 
+    private final static long serialVersionUID = -1L;
     @XmlAttribute(name = "noderef", required = true)
     protected String noderef;
 

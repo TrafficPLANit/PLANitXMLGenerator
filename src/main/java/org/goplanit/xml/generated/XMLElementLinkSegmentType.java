@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -60,8 +61,11 @@ import javax.xml.bind.annotation.XmlType;
     "access"
 })
 @XmlRootElement(name = "linksegmenttype")
-public class XMLElementLinkSegmentType {
+public class XMLElementLinkSegmentType
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true, defaultValue = "")
     protected String name;
     @XmlElement(defaultValue = "180.0")
@@ -247,8 +251,11 @@ public class XMLElementLinkSegmentType {
     @XmlType(name = "", propOrder = {
         "accessgroup"
     })
-    public static class Access {
+    public static class Access
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         protected List<XMLElementAccessGroup> accessgroup;
 
         /**

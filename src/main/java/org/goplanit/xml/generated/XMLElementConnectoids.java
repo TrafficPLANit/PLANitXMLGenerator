@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -42,8 +43,11 @@ import javax.xml.bind.annotation.XmlType;
     "connectoid"
 })
 @XmlRootElement(name = "connectoids")
-public class XMLElementConnectoids {
+public class XMLElementConnectoids
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementConnectoid> connectoid;
 

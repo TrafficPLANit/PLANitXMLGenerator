@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -60,8 +61,11 @@ import javax.xml.bind.annotation.XmlType;
     "servicelayers"
 })
 @XmlRootElement(name = "routedservices")
-public class XMLElementRoutedServices {
+public class XMLElementRoutedServices
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected String id;
     protected String externalid;
@@ -165,8 +169,11 @@ public class XMLElementRoutedServices {
     @XmlType(name = "", propOrder = {
         "servicelayer"
     })
-    public static class Servicelayers {
+    public static class Servicelayers
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlElement(required = true)
         protected List<XMLElementRoutedServicesLayer> servicelayer;
         @XmlAttribute(name = "servicenetworkref", required = true)

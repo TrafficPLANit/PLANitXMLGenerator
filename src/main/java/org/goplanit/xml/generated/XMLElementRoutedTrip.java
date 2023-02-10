@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -65,8 +66,11 @@ import javax.xml.bind.annotation.XmlValue;
     "frequency"
 })
 @XmlRootElement(name = "trip")
-public class XMLElementRoutedTrip {
+public class XMLElementRoutedTrip
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     protected XMLElementRoutedTrip.Schedule schedule;
     @XmlElement(defaultValue = "-1")
     protected XMLElementRoutedTrip.Frequency frequency;
@@ -194,8 +198,11 @@ public class XMLElementRoutedTrip {
     @XmlType(name = "", propOrder = {
         "value"
     })
-    public static class Frequency {
+    public static class Frequency
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlValue
         protected float value;
         @XmlAttribute(name = "unit")
@@ -299,8 +306,11 @@ public class XMLElementRoutedTrip {
         "departures",
         "reltimings"
     })
-    public static class Schedule {
+    public static class Schedule
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlElement(required = true)
         protected XMLElementDepartures departures;
         @XmlElement(required = true)

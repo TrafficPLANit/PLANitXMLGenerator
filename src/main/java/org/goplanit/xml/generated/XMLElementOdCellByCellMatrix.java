@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -66,8 +67,10 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlRootElement(name = "odcellbycellmatrix")
 public class XMLElementOdCellByCellMatrix
     extends XMLElementOdMatrix
+    implements Serializable
 {
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected List<XMLElementOdCellByCellMatrix.O> o;
 
@@ -133,8 +136,11 @@ public class XMLElementOdCellByCellMatrix
     @XmlType(name = "", propOrder = {
         "d"
     })
-    public static class O {
+    public static class O
+        implements Serializable
+    {
 
+        private final static long serialVersionUID = -1L;
         @XmlElement(required = true)
         protected List<XMLElementOdCellByCellMatrix.O.D> d;
         @XmlAttribute(name = "ref")
@@ -215,8 +221,11 @@ public class XMLElementOdCellByCellMatrix
         @XmlType(name = "", propOrder = {
             "value"
         })
-        public static class D {
+        public static class D
+            implements Serializable
+        {
 
+            private final static long serialVersionUID = -1L;
             @XmlValue
             protected float value;
             @XmlAttribute(name = "ref")

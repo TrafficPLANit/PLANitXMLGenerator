@@ -1,6 +1,7 @@
 
 package org.goplanit.xml.generated;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -44,8 +45,11 @@ import javax.xml.bind.annotation.XmlType;
     "oddemands"
 })
 @XmlRootElement(name = "macroscopicdemand")
-public class XMLElementMacroscopicDemand {
+public class XMLElementMacroscopicDemand
+    implements Serializable
+{
 
+    private final static long serialVersionUID = -1L;
     @XmlElement(required = true)
     protected String id;
     @XmlElement(required = true)
