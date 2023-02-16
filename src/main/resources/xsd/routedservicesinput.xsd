@@ -233,7 +233,7 @@
 								</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-						<xs:attribute name="dwelltime" type="xs:time" use="optional" default="00:00:00">
+						<xs:attribute name="dwelltime" type="xs:time" use="optional">
 							<xs:annotation>
 								<xs:documentation>
 									Override default service dwell time (hh:mm:ss) for the end point of this leg. If no dwell time

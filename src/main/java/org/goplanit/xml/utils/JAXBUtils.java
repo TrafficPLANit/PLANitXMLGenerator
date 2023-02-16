@@ -146,12 +146,11 @@ public class JAXBUtils {
         try {
           Object parsedXmlContent = JAXBUtils.generateObjectFromXml(clazz, currFileName);
           result = clazz.cast(parsedXmlContent);
+					LOGGER.info("parsed file " + currFileName);
+					break;
         } catch (final Exception e) {
           /* ok, just try next */   
         }                  
-      }else {
-        LOGGER.info("parsed file " + currFileName);
-        break;
       }
     }    
     return result;
