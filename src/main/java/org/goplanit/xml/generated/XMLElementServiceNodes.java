@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                   &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;/restriction&gt;
  *               &lt;/complexContent&gt;
  *             &lt;/complexType&gt;
@@ -101,7 +100,6 @@ public class XMLElementServiceNodes
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
-     *       &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -120,8 +118,6 @@ public class XMLElementServiceNodes
         protected String id;
         @XmlAttribute(name = "externalid")
         protected String externalid;
-        @XmlAttribute(name = "noderef", required = true)
-        protected String noderef;
 
         /**
          * Gets the value of the id property.
@@ -169,30 +165,6 @@ public class XMLElementServiceNodes
          */
         public void setExternalid(String value) {
             this.externalid = value;
-        }
-
-        /**
-         * Gets the value of the noderef property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getNoderef() {
-            return noderef;
-        }
-
-        /**
-         * Sets the value of the noderef property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setNoderef(String value) {
-            this.noderef = value;
         }
 
     }

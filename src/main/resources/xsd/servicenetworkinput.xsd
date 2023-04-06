@@ -57,7 +57,6 @@
           <xs:complexType>
 			      <xs:attribute name="id" type="xs:string" use="required" />
 			      <xs:attribute name="externalid" type="xs:string" use="optional" />
-			      <xs:attribute name="noderef" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
