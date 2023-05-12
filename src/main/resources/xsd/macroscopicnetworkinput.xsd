@@ -57,6 +57,7 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="road" />
 			<xs:enumeration value="rail" />
+			<xs:enumeration value="water" />
 		</xs:restriction>
 	</xs:simpleType>
 

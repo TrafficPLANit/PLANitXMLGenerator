@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
  *     &lt;enumeration value="road"/&gt;
  *     &lt;enumeration value="rail"/&gt;
+ *     &lt;enumeration value="water"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -27,7 +28,9 @@ public enum TrackType {
     @XmlEnumValue("road")
     ROAD("road"),
     @XmlEnumValue("rail")
-    RAIL("rail");
+    RAIL("rail"),
+    @XmlEnumValue("water")
+    WATER("water");
     private final String value;
 
     TrackType(String v) {
