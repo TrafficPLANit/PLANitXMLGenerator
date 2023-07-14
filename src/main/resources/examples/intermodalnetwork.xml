@@ -7,7 +7,7 @@
   <configuration>
     <!-- the available modes are on the top level configuration of the network -->                                   
     <modes>                                     
-      <mode id="1">                               
+      <mode id="car">
         <name>car</name>                            
         <pcu>1</pcu>                                        
       </mode>                   
@@ -15,7 +15,7 @@
   </configuration>
   <infrastructurelayers srsname="EPSG:4326">
     <!-- a layer supports a subset of modes, each of which can only occur on one layer each  -->
-    <layer xmlid="roadlayer" externalid="someid" modes="xmlref1, xmlref2, ...">
+    <layer id="roadlayer" externalid="someid" modes="xmlref1, xmlref2, ...">
       <!-- each layer has its own configuration, in case of a macroscopic network these contain the link segment types -->
       <layerconfiguration>
           <linksegmenttypes>                                
@@ -24,10 +24,10 @@
 			        <maxdensitylane>180</maxdensitylane>                  
 			        <capacitylane>2000</capacitylane>                   
 			        <access>
-			          <mode ref="1">                              
+			          <accessgroup moderefs="car">
 			            <maxspeed>40</maxspeed>                     
 			            <critspeed>35</critspeed>                   
-			          </mode>       
+			          </accessgroup>
 			        </access>
 			      </linksegmenttype>
 			    </linksegmenttypes> 
@@ -68,7 +68,7 @@
 	    </links>
 	    
     </layer>            
-    <layer xmlId="railnetwork" modes="train,xmlid4,...">
+    <layer id="railnetwork" modes="train,xmlid4,...">
       ...
     </layer>             
   </infrastructurelayers>

@@ -1,62 +1,59 @@
-<PLANit xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xxxx/xsd/macroscopicintermodal.xsd">
-	<!-- DO NOT USE AS STANDALONE FILE: INSTEAD AVAILABLE AS `INTERMODAL` ELEMENT UNDER ZONING ROOT ELEMENT -->
-	<macroscopicintermodal> 
-		<!-- by using transfer zones this can be much more versatile than only defining this for PT, for example this would allow for modelling bikesharing where people
-		do things partly by a bikeshare bikes that can be accessed from different transferzones. Observe that a transfer zone by itself is mode agnostic, it just allows
-		for interfacing between different modes that connect to it. Brilliant! -->	
-		<transferzones>	
-		<!-- the pt network ONLY describes the physical aspects of the pt network: stops, platforms, areas. This way we can easily
-					swap out different services without impacting on the infrastructure. 
-					Further, no frequencies, or schedules  are included because this depends on the model and likely requires different inputs to the point 
-					that we must provide separate xml/xsd's for those -->
-			<!-- platforms are the entity where passengers can (dis)embark a pt vehicle, a platform can service one or more pt vehicle stops -->
-			<zone id="xmlid" externalid="externalid" type="platform" >
-				<name>platform 3A</name>
-				<!-- a platform can best be thought of as a transfer zone where there is interaction between the pedestrian network mode and pt modes. The platform serves as the interaction
-					 point between the two network modes where: (1) vehicle stops act as connectoids between the platform centroid (transferoid) and pt vehicle on the PT side of the transfer, 
-					 and (2) the pedestrian access  
-				travellers (dis)embark onto a different Pt vehicle and they walk in between
-					 this transfer zone can have a geometry (physical platform) and in a macroscopic setting has one or more connectoids, representing the interactions 
-					 where all (walking) travelers (from the centroid) interact with the PT network's vehicle stops (conectoids)
-				 -->
-				 <!-- either a centroid or a polygon is mandatory, since we needs some geographic location information -->
-				<centroid>
-					<gml:Point> 															
-			        	<gml:pos>150.512796 -34.900145</gml:pos>
-			    	</gml:Point>
-			    </centroid>
-				<gml:Polygon>									
-					<gml:exterior>
-						<gml:LinearRing>
-							<gml:coordinates decimal="." cs="," ts="">119.593002319336,-31.6695003509522 119.595306396484,
-			         			31.6650276184082 119.600944519043,-31.6658897399902 119.603385925293,-31.669527053833 
-			         			119.60050201416,-31.6739158630371 119.595664978027,-31.6728610992432 119.593002319336,
-			         			31.6695003509522
-			         			</gml:coordinates>
-		         			</gml:LinearRing>
-					</gml:exterior>
-				</gml:Polygon>		    	
-			</zone>
-		</transferzones>
-		<transferzoneaccess>
-			<!--  because a pt vehicle stop can give access to multiple platforms, we separately define them as their own elements. Note that if they specify multiple modes 
-				  pt vehicles of both modes can stop at these locations. NOTE: the type determines what the ref attribute relates to. For pt_veh_stop it refers to a link segment, 
-				  mainly because the actual stop location is likely somewhere along the link, rather than at the end node (allowing for more flexibility in the future) 
+<macroscopicintermodal xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/macroscopicintermodalinput.xsd">
+	<!-- by using transfer zones this can be much more versatile than only defining this for PT, for example this would allow for modelling bikesharing where people
+	do things partly by a bikeshare bikes that can be accessed from different transferzones. Observe that a transfer zone by itself is mode agnostic, it just allows
+	for interfacing between different modes that connect to it. Brilliant! -->
+	<transferzones>
+	<!-- the pt network ONLY describes the physical aspects of the pt network: stops, platforms, areas. This way we can easily
+				swap out different services without impacting on the infrastructure.
+				Further, no frequencies, or schedules  are included because this depends on the model and likely requires different inputs to the point
+				that we must provide separate xml/xsd's for those -->
+		<!-- platforms are the entity where passengers can (dis)embark a pt vehicle, a platform can service one or more pt vehicle stops -->
+		<zone id="xmlid" externalid="externalid" type="platform" >
+			<name>platform 3A</name>
+			<!-- a platform can best be thought of as a transfer zone where there is interaction between the pedestrian network mode and pt modes. The platform serves as the interaction
+				 point between the two network modes where: (1) vehicle stops act as connectoids between the platform centroid (transferoid) and pt vehicle on the PT side of the transfer,
+				 and (2) the pedestrian access
+			travellers (dis)embark onto a different Pt vehicle and they walk in between
+				 this transfer zone can have a geometry (physical platform) and in a macroscopic setting has one or more connectoids, representing the interactions
+				 where all (walking) travelers (from the centroid) interact with the PT network's vehicle stops (conectoids)
 			 -->
-			 <!-- extension of base connectoid type, connectoids for regular zones also extend it -->
-			<connectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid1" lsref="linksegmentrefXmlId" modes="train" />
-			<connectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid2,platformxmlid3" lsref="linksegmentXmlId" modes="bus,tram" />
-			<!--  	similarly, access to the transfer zone from other modes other than pt works the same way, only the type is different. 
-			-->
-			<connectoid id="somexmlid" externalid="osmidx" type="traveller_access" tzrefs="refid1,refid2" lsref="linksegmentXmlId" modes="walk" />		
-		</transferzoneaccess>			
-		<transferzonegroups>
-			<!-- a pt group reflects a group of related transferzones (platforms) that logically belong together. This is optional
-				 this can be used to streamline finding eligible or more likely transfers at stations, or to aggregate transferzones if one wants to simplify the model in meaningful way
-			-->
-			<transfergroup zonerefs="transferzonexmlid1,transferzonexmlid2">
-				<name>Central Station</name>
-			</transfergroup>
-		</transferzonegroups>
-	</macroscopicintermodal>
-</PLANit>
+			 <!-- either a centroid or a polygon is mandatory, since we needs some geographic location information -->
+			<centroid>
+				<gml:Point>
+					<gml:pos>150.512796 -34.900145</gml:pos>
+				</gml:Point>
+			</centroid>
+			<gml:Polygon>
+				<gml:exterior>
+					<gml:LinearRing>
+						<gml:coordinates decimal="." cs="," ts="">119.593002319336,-31.6695003509522 119.595306396484,
+							31.6650276184082 119.600944519043,-31.6658897399902 119.603385925293,-31.669527053833
+							119.60050201416,-31.6739158630371 119.595664978027,-31.6728610992432 119.593002319336,
+							31.6695003509522
+							</gml:coordinates>
+						</gml:LinearRing>
+				</gml:exterior>
+			</gml:Polygon>
+		</zone>
+	</transferzones>
+	<transferzoneaccess>
+		<!--  because a pt vehicle stop can give access to multiple platforms, we separately define them as their own elements. Note that if they specify multiple modes
+			  pt vehicles of both modes can stop at these locations. NOTE: the type determines what the ref attribute relates to. For pt_veh_stop it refers to a link segment,
+			  mainly because the actual stop location is likely somewhere along the link, rather than at the end node (allowing for more flexibility in the future)
+		 -->
+		 <!-- extension of base connectoid type, connectoids for regular zones also extend it -->
+		<connectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid1" lsref="linksegmentrefXmlId" modes="train" />
+		<connectoid id="somexmlid" externalid="osmidx" type="pt_veh_stop" tzrefs="platformxmlid2,platformxmlid3" lsref="linksegmentXmlId" modes="bus,tram" />
+		<!--  	similarly, access to the transfer zone from other modes other than pt works the same way, only the type is different.
+		-->
+		<connectoid id="somexmlid" externalid="osmidx" type="traveller_access" tzrefs="refid1,refid2" lsref="linksegmentXmlId" modes="walk" />
+	</transferzoneaccess>
+	<transferzonegroups>
+		<!-- a pt group reflects a group of related transferzones (platforms) that logically belong together. This is optional
+			 this can be used to streamline finding eligible or more likely transfers at stations, or to aggregate transferzones if one wants to simplify the model in meaningful way
+		-->
+		<transfergroup id="1" tzrefs="transferzonexmlid1,transferzonexmlid2" >
+			<name>Central Station</name>
+		</transfergroup>
+	</transferzonegroups>
+</macroscopicintermodal>

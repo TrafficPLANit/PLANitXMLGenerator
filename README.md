@@ -1,4 +1,6 @@
 # PLANitXMLGenerator
+![Master Branch](https://github.com/TrafficPLANit/PLANitXMLGenerator/actions/workflows/maven_master.yml/badge.svg?branch=master)
+![Develop Branch](https://github.com/TrafficPLANit/PLANitXMLGenerator/actions/workflows/maven_develop.yml/badge.svg?branch=develop)
 
 Tool to generate Java classes from PLANit XML schemas to facilitate PLANitIO to parse PLANit input files. This repository uses JAXB to generate the Java classes that are populated based on the provided XML.
 
@@ -12,9 +14,6 @@ PLANit XML has the following PLANit specific dependencies (See pom.xml):
 
 * planit-parentpom
 
-Dependencies will be automatically downloaded from the PLANit website, (www.repository.goplanit.org)[http://repository.goplanit.org], or alternatively can be checked-out locally for local development. The shared PLANit Maven configuration can be found in planit-parent-pom which is defined as the parent pom of each PLANit repository.
-
-> When developing on multiple PLANit projects locally, including the parent-pom; make sure you install the PLANitParentPom pom.xml before conducting a Maven build (in for example Eclipse), otherwise it resorts to the online repository rather then the local one.
 
 ### Maven deploy
 

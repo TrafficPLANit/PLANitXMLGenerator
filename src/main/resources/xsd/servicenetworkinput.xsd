@@ -14,25 +14,25 @@
 		  <xs:sequence>
 		    <xs:element name="legsegment" minOccurs="1" maxOccurs="2">
 			    <xs:complexType>
-			      <xs:sequence>
-			      </xs:sequence>
-			      <xs:attribute name="id" type="xs:string" use="required" />
-			      <xs:attribute name="externalid" type="xs:string" use="optional"/>
-			      <xs:attribute name="dir" type="direction" use="required" />
+					<xs:sequence>
+					</xs:sequence>
+					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attribute name="externalid" type="xs:string" use="optional"/>
+					<xs:attribute name="dir" type="direction" use="required" />
+					<xs:attribute name="lsrefs" type="xs:string" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+								Comma separated list of parent network layer link segment ids portraying the link segment in order from (service) node a towards (service) node b
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 			    </xs:complexType>
 		    </xs:element>
 		  </xs:sequence>		  
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string" use="optional"/>
 			<xs:attribute name="nodearef" type="xs:string" use="required" />
-      <xs:attribute name="nodebref" type="xs:string" use="required" />
-      <xs:attribute name="lrefs" type="xs:string" use="required" >			
-				<xs:annotation>
-					<xs:documentation>
-						Comma separated list of parent network layer link ids portraying the link in order from node a towards node b
-					</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>							
+      		<xs:attribute name="nodebref" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>	
 			
@@ -57,7 +57,6 @@
           <xs:complexType>
 			      <xs:attribute name="id" type="xs:string" use="required" />
 			      <xs:attribute name="externalid" type="xs:string" use="optional" />
-			      <xs:attribute name="noderef" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
@@ -88,8 +87,8 @@
 	  </xs:annotation>
     <xs:complexType>
       <xs:sequence>	  
-		    <xs:element ref="servicenodes" minoccurs="1" maxoccurs="unbounded" />
-        <xs:element ref="servicelegs" minoccurs="1" maxoccurs="unbounded" />          				             
+		    <xs:element ref="servicenodes" />
+        	<xs:element ref="servicelegs" />
       </xs:sequence>
 	    <xs:attribute name="id" type="xs:string" use="required" />
 	    <xs:attribute name="externalid" type="xs:string" use="optional" />	    
@@ -107,9 +106,9 @@
 		</xs:annotation>
 		<xs:complexType>
 		  <xs:sequence>
-		    <xs:element name="id" type="xs:string" use="required" />
+		    <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
 		    <!-- reference to parent network id the service network is built upon-->
-		    <xs:element name="parentnetwork" type="xs:string" use="required" />
+		    <xs:element name="parentnetwork" type="xs:string" minOccurs="1" maxOccurs="1" />
 		    <xs:element ref="servicenetworklayer" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
     </xs:complexType>

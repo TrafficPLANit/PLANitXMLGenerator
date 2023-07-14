@@ -14,8 +14,8 @@
 				<xs:element ref="macroscopicdemand" minOccurs="1" maxOccurs="1" />
 				<xs:element ref="macroscopiczoning" minOccurs="1" 	maxOccurs="1" />
 				<!-- optional -->
-        <xs:element ref="servicenetwork" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="routedservices" minOccurs="0" maxOccurs="1" />				
+				<xs:element ref="servicenetwork" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="routedservices" minOccurs="0" maxOccurs="1" />
 			</xs:all>
 		</xs:complexType>
 	</xs:element>

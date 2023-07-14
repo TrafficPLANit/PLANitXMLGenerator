@@ -6,7 +6,7 @@
 	<servicenetworklayer id="1" parentlayerref="1">
 		<!-- service nodes simply provide a link to the physical node for which a service is available-->
 		<servicenodes>
-			<servicenode id="1" externalid="someid" noderef="1" />
+			<servicenode id="1" externalid="someid"/>
 		</servicenodes>
 		<!-- service legs provide links between service nodes (from/to) where multiple legs between the same service nodes are possible as long as the underlying link segments
 			 these legs represent are different. A leg is modelled as a link in the service network, but reflect a path on the underlying physical network via the combination of
@@ -14,9 +14,9 @@
 			 in the a_b direction
 		-->
 		<servicelegs>
-			<leg id="1" externalid="someid" nodearef="1" nodebref="2" lrefs="1,2,3">
-			   <legsegment id="1" dir="a_b" />
-			   <legsegment id="2" dir="b_a" />			   
+			<leg id="1" externalid="someid" nodearef="1" nodebref="2">
+			   <legsegment id="1" dir="a_b" lsrefs="1,2,3"/>
+			   <legsegment id="2" dir="b_a" lsrefs="3,2,1"/>
 			</leg>
 		</servicelegs>
 	</servicenetworklayer>

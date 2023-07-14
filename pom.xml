@@ -32,27 +32,17 @@
 
 	<dependencies>
 
+		<!-- some generated files have gml dependencies -->
+		<dependency>
+			<groupId>net.opengis.schemas</groupId>
+			<artifactId>gml-3.1</artifactId>
+			<version>3.1.1-1</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.jvnet.jaxb2.maven2</groupId>
 			<artifactId>maven-jaxb2-plugin</artifactId>
-			<!-- whenever a fat jar is built with this project as dependency we do 
-				not need to generate xml classes anymore since they are already available. 
-				Hence make this optional. Result: no warnings of clashing versions in fat 
-				jar TODO: create modules instead of parent pom dependency and remove optional 
-				clause -->
-			<optional>true</optional>
-		</dependency>
-
-		<!-- TODO: remove once we upgraded to 0.14.1 for jaxb2 plugin -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-		</dependency>
-
-		<!-- TODO: remove once we upgraded to 0.14.1 for jaxb2 plugin -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -63,8 +53,7 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<excludes>
-					<!-- only used for internal formatting of logging statements -->
-					<exclude>*.properties</exclude>
+					<exclude>examples</exclude>
 				</excludes>
 			</resource>
 		</resources>
@@ -81,7 +70,7 @@
 					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
 					<bindingDirectory>src/main/resources/xjb</bindingDirectory>
 					<generateDirectory>src/main/java</generateDirectory>
-					<no-header>true</no-header>
+					<noFileHeader>true</noFileHeader>
 				</configuration>
 				<executions>
 					<execution>
@@ -93,32 +82,6 @@
 				</executions>
 			</plugin>
 
-			<!-- to avoid every re-generation of source files requires ALL files to 
-				be different just because of time stamp: remove the time stamp -->
-			<plugin>
-				<groupId>com.google.code.maven-replacer-plugin</groupId>
-				<artifactId>replacer</artifactId>
-				<version>${maven.replacer.plugin.version}</version>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<includes>
-						<include>${basedir}/**/*.java</include>
-					</includes>
-					<token>^// Generated on.*$</token>
-					<value>// Generated on: [TEXT REMOVED by maven-replacer-plugin]</value>
-					<regexFlags>
-						<regexFlag>MULTILINE</regexFlag>
-					</regexFlags>
-				</configuration>
-			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -131,5 +94,14 @@
 
 		</plugins>
 	</build>
+
+	<repositories>
+		<!-- PLANit repository to obtain parentpom from-->
+		<repository>
+			<id>planit-repository.goplanit.org</id>
+			<name>PLANit Repository</name>
+			<url>https://repository.goplanit.org</url>
+		</repository>
+	</repositories>
 
 </project>

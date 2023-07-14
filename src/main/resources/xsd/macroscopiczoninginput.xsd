@@ -22,11 +22,11 @@
 	<xs:element name="connectoid">
 		<xs:annotation>
 			<xs:documentation>
-				Each "regular" connectoid represents a potential point of exit/entry from/to the physical network coming from the zone/centroid. There
+				Each "regular" OD connectoid represents a potential point of exit/entry from/to the physical network coming from the zone/centroid. There
 				must be at minimum one connectoid to be able to leave/enter the zone. Each regular connectoid attaches by means of a node XML id reference 
 			</xs:documentation>
 		</xs:annotation>				
-		<xs:complexType name = "odconnectoid">
+		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="connectoidtype">
 					<xs:attribute name="noderef" type="xs:string" use="required">
@@ -34,10 +34,10 @@
 							<xs:documentation>
 								Reference to the node that also acts as a connectoid for the zone.
 							</xs:documentation>
-						</xs:annotation>			
-					</xs:attribute>				
+						</xs:annotation>
+					</xs:attribute>
 				</xs:extension>
-			</xs:complexContent>				
+			</xs:complexContent>
 		</xs:complexType>				
 	</xs:element>
 
@@ -45,12 +45,12 @@
 	<xs:element name="macroscopiczoning">
 		<xs:complexType>
 			<xs:sequence>
-			  <xs:element name="id" type="xs:string" use="required" />
-				<xs:element ref="zones"/>
+			  <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="zones" minOccurs="0" maxOccurs="1"/>
 				<xs:element name="intermodal" type="intermodaltype" minOccurs="0" maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>
-							Optional includion of intermodal transfer zones that allow for partial routes transfering at transfer zones (not starting/ending). Since the concept
+							Optional inclusion of intermodal transfer zones that allow for partial routes transfering at transfer zones (not starting/ending). Since the concept
 							of transfer zones is a generalisation of regular "OD" zones, it is only logical to include the defintion within the overarching zoning description
 						</xs:documentation>
 					</xs:annotation>				
