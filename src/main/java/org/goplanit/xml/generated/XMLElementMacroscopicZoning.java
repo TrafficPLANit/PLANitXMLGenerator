@@ -28,7 +28,7 @@ import javax.xml.namespace.QName;
  *           &lt;element ref="{}zones" minOccurs="0"/&gt;
  *           &lt;element name="intermodal" type="{}intermodaltype" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute ref="{}srsname"/&gt;
+ *         &lt;attribute ref="{}srsname use="required""/&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -54,7 +54,7 @@ public class XMLElementMacroscopicZoning
     protected XMLElementZones zones;
     @XmlElementRef(name = "intermodal", type = XMLElementMacroscopicZoning.XMLElementIntermodal.class, required = false)
     protected XMLElementMacroscopicZoning.XMLElementIntermodal intermodal;
-    @XmlAttribute(name = "srsname")
+    @XmlAttribute(name = "srsname", required = true)
     protected String srsname;
 
     /**
@@ -131,8 +131,7 @@ public class XMLElementMacroscopicZoning
 
     /**
      * 
-     * 	            Spatial reference system is optional, when absent it is assumed that the same srs is used as provided on the infrastrure element in the
-     * 	            macroscopic supply input. If present it can be different but it is recommended to be the same. When different the gml elements in this xml
+     * 	            Spatial reference system used for this zoning. It can be different to the network it is used on but it is recommended to be the same. When different the gml elements in this xml
      * 	            are parsed according to the provided srs but will internally be converted into the "dominant" project srs which is the one provided on the infrastructure element
      * 	          
      * 
