@@ -2,6 +2,14 @@
 
 PLANitXMLGenerator release log.
 
+## 0.4.0
+
+* [GENERAL] Completed support for mapping PLANit to and from XML for service network and routed services 
+* #26 Remove physical/parent node ref from service node as this is not a 1:1 mapping
+* #25 Replace xs:time default JAXB GregorianCalendar withLocaltime
+* #24 Change departure time from XML time to String to allow for HH:MM:SS where hours can exceed 24 hour format
+* #23 Support CI though github actions and maven build
+
 ## 0.3.0
 
 * length of connectoids is now a double instead of a float #9
