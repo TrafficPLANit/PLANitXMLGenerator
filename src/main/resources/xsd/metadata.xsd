@@ -29,11 +29,13 @@
 			<xs:enumeration value="pcu/km" />
 			<xs:enumeration value="none" />
 			<xs:enumeration value="veh/h" />
-      <xs:enumeration value="pcu/h" />			
+      		<xs:enumeration value="pcu/h" />
 			<xs:enumeration value="km/h" />		
 			<xs:enumeration value="h" />
 			<xs:enumeration value="km" />
 			<xs:enumeration value="srs" />
+			<xs:enumeration value="s" />
+			<xs:enumeration value="ms" />
 		</xs:restriction>
 	</xs:simpleType>
 

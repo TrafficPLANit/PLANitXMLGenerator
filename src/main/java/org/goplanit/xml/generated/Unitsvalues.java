@@ -22,6 +22,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="h"/&gt;
  *     &lt;enumeration value="km"/&gt;
  *     &lt;enumeration value="srs"/&gt;
+ *     &lt;enumeration value="s"/&gt;
+ *     &lt;enumeration value="ms"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -48,7 +50,11 @@ public enum Unitsvalues {
     @XmlEnumValue("km")
     KM("km"),
     @XmlEnumValue("srs")
-    SRS("srs");
+    SRS("srs"),
+    @XmlEnumValue("s")
+    S("s"),
+    @XmlEnumValue("ms")
+    MS("ms");
     private final String value;
 
     Unitsvalues(String v) {
