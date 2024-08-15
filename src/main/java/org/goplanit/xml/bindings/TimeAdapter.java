@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * Replace default way xs:time is dealt with via XMLGregorianCalendar to this adapter (see global.xjb), so we replace it with
- * the mroe useful LocalTime of Java 8+, {@see https://gist.github.com/ylupol/1cf059b5fea59df7d8625f687001b756}
+ * the more useful LocalTime of Java 8+, {@see https://gist.github.com/ylupol/1cf059b5fea59df7d8625f687001b756}
  *
  * @author markr
  */

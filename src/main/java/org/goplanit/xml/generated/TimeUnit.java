@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="h"/&gt;
  *     &lt;enumeration value="min"/&gt;
  *     &lt;enumeration value="s"/&gt;
+ *     &lt;enumeration value="ms"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -30,7 +31,9 @@ public enum TimeUnit {
     @XmlEnumValue("min")
     MIN("min"),
     @XmlEnumValue("s")
-    S("s");
+    S("s"),
+    @XmlEnumValue("ms")
+    MS("ms");
     private final String value;
 
     TimeUnit(String v) {

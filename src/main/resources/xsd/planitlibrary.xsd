@@ -80,13 +80,14 @@
 	<xs:simpleType name="timeUnit">
 		<xs:annotation>
 			<xs:documentation>
-				Choice between h (hours), min (minutes), s (seconds)
+				Choice between h (hours), min (minutes), s (seconds), ms (milliseconds)
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="h" />
 			<xs:enumeration value="min" />
 			<xs:enumeration value="s" />
+			<xs:enumeration value="ms" />
 		</xs:restriction>
 	</xs:simpleType>		
 	
