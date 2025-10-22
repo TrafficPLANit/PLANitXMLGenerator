@@ -36,6 +36,7 @@ import net.opengis.gml.PointType;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *                     &lt;element ref="{http://www.opengis.net/gml}Point" minOccurs="0"/&gt;
+ *                     &lt;element name="custom" type="{}customPropertiesType" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
  *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -107,6 +108,7 @@ public class XMLElementNodes
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
      *         &lt;element ref="{http://www.opengis.net/gml}Point" minOccurs="0"/&gt;
+     *         &lt;element name="custom" type="{}customPropertiesType" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
      *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -120,7 +122,8 @@ public class XMLElementNodes
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "name",
-        "point"
+        "point",
+        "custom"
     })
     public static class Node
         implements Serializable
@@ -130,6 +133,7 @@ public class XMLElementNodes
         protected String name;
         @XmlElement(name = "Point", namespace = "http://www.opengis.net/gml")
         protected PointType point;
+        protected CustomPropertiesType custom;
         @XmlAttribute(name = "id", required = true)
         protected String id;
         @XmlAttribute(name = "externalid")
@@ -184,6 +188,30 @@ public class XMLElementNodes
          */
         public void setPoint(PointType value) {
             this.point = value;
+        }
+
+        /**
+         * Gets the value of the custom property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CustomPropertiesType }
+         *     
+         */
+        public CustomPropertiesType getCustom() {
+            return custom;
+        }
+
+        /**
+         * Sets the value of the custom property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CustomPropertiesType }
+         *     
+         */
+        public void setCustom(CustomPropertiesType value) {
+            this.custom = value;
         }
 
         /**

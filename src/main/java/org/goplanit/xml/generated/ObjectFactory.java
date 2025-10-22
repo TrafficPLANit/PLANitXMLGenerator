@@ -61,6 +61,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CustomPropertiesType }
+     * 
+     */
+    public CustomPropertiesType createCustomPropertiesType() {
+        return new CustomPropertiesType();
+    }
+
+    /**
      * Create an instance of {@link XMLElementRoutedServices }
      * 
      */
@@ -546,6 +554,14 @@ public class ObjectFactory {
      */
     public XMLElementLinkLengthType createXMLElementLinkLengthType() {
         return new XMLElementLinkLengthType();
+    }
+
+    /**
+     * Create an instance of {@link CustomPropertiesType.EntryElement }
+     * 
+     */
+    public CustomPropertiesType.EntryElement createCustomPropertiesTypeEntryElement() {
+        return new CustomPropertiesType.EntryElement();
     }
 
     /**
