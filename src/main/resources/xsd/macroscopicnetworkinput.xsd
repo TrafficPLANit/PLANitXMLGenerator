@@ -394,6 +394,13 @@
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
+							<xs:element name="custom" minOccurs="0" maxOccurs="1" type="customPropertiesType">
+								<xs:annotation>
+									<xs:documentation>
+										Custom input properties for links are defined here (if any)
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
 							<!-- a link segment has a direction, at most two directions exist 
 								per link -->
 							<xs:element ref="linksegment" minOccurs="1"
@@ -574,6 +581,13 @@
 									<xs:documentation>
 										Each node should have a location via a
 										gml:Point definition based on the gml xsd schema
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="custom" minOccurs="0" maxOccurs="1" type="customPropertiesType">
+								<xs:annotation>
+									<xs:documentation>
+										Custom input properties for nodes are defined here (if any)
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>

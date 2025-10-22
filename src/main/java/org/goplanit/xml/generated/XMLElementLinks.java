@@ -35,6 +35,7 @@ import net.opengis.gml.LineStringType;
  *                   &lt;sequence&gt;
  *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *                     &lt;element ref="{http://www.opengis.net/gml}LineString" minOccurs="0"/&gt;
+ *                     &lt;element name="custom" type="{}customPropertiesType" minOccurs="0"/&gt;
  *                     &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
  *                     &lt;element name="length" type="{}linkLengthType" minOccurs="0"/&gt;
  *                   &lt;/sequence&gt;
@@ -110,6 +111,7 @@ public class XMLElementLinks
      *       &lt;sequence&gt;
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
      *         &lt;element ref="{http://www.opengis.net/gml}LineString" minOccurs="0"/&gt;
+     *         &lt;element name="custom" type="{}customPropertiesType" minOccurs="0"/&gt;
      *         &lt;element ref="{}linksegment" maxOccurs="2"/&gt;
      *         &lt;element name="length" type="{}linkLengthType" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
@@ -128,6 +130,7 @@ public class XMLElementLinks
     @XmlType(name = "", propOrder = {
         "name",
         "lineString",
+        "custom",
         "linksegment",
         "length"
     })
@@ -140,6 +143,7 @@ public class XMLElementLinks
         protected String name;
         @XmlElement(name = "LineString", namespace = "http://www.opengis.net/gml")
         protected LineStringType lineString;
+        protected CustomPropertiesType custom;
         @XmlElement(required = true)
         protected List<XMLElementLinkSegment> linksegment;
         protected XMLElementLinkLengthType length;
@@ -202,6 +206,30 @@ public class XMLElementLinks
          */
         public void setLineString(LineStringType value) {
             this.lineString = value;
+        }
+
+        /**
+         * Gets the value of the custom property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CustomPropertiesType }
+         *     
+         */
+        public CustomPropertiesType getCustom() {
+            return custom;
+        }
+
+        /**
+         * Sets the value of the custom property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CustomPropertiesType }
+         *     
+         */
+        public void setCustom(CustomPropertiesType value) {
+            this.custom = value;
         }
 
         /**
