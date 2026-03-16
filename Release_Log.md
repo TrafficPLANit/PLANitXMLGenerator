@@ -2,6 +2,10 @@
 
 PLANitXMLGenerator release log.
 
+## 0.5.0
+* #29 Support custom input properties (partially done; on links and nodes only currently)
+* #28 Support milliseconds as a time unit
+
 ## 0.4.0
 
 * [GENERAL] Completed support for mapping PLANit to and from XML for service network and routed services 
