@@ -15,7 +15,8 @@ import net.opengis.gml.PolygonType;
 
 /**
  * 
- * 				Zones are the geographical areas for which we construct travel demand which are loaded onto the network at a single point (Centroid)
+ * 				Zones are the geographical areas for which we construct travel demand which are loaded onto the
+ * 				network at a single point (Centroid)
  * 			
  * 
  * <p>Java class for zones element declaration.
@@ -169,7 +170,8 @@ public class XMLElementZones
 
         /**
          * 
-         * 										Each travel zone has at most a single centroid from which all travellers depart/arrive. 
+         * 										Each travel zone has at most a single centroid from which all travellers
+         * 										depart/arrive.
          * 									
          * 
          * @return
@@ -219,8 +221,10 @@ public class XMLElementZones
 
         /**
          * 
-         * 										Each travel zone has a geographical area in the form of a Polygon. We recommend not using an interior polygon as "islands"
-         * 										are generally not allowed in traffic assignment. Also zones should not overlap and instead be contiguous (reusing borders). 
+         * 										Each travel zone has a geographical area in the form of a Polygon.
+         * 										We recommend not using an interior polygon as "islands"
+         * 										are generally not allowed in traffic assignment. Also zones should not
+         * 										overlap and instead be contiguous (reusing borders).
          * 									
          * 
          * @return

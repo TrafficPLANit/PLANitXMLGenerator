@@ -13,8 +13,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Connectoids are the interface between supply and demand which are defined as a node (but in practice create virtual links (connectors)
- * 				between the centroid and physical road network). Here the physical node(s) that act as connectoids for this particular zoning are to be
+ * 				Connectoids are the interface between supply and demand which are defined as a node (but in
+ * 				practice create virtual links (connectors)
+ * 				between the centroid and physical road network). Here the physical node(s) that act as
+ * 				connectoids for this particular zoning are to be
  * 				defined here. 
  * 			
  * 

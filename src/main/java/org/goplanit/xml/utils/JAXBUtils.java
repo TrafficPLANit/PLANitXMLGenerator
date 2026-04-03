@@ -86,7 +86,8 @@ public class JAXBUtils {
 	 * @throws Exception thrown if the object is not of the correct class, or the
 	 *                   output file cannot be opened
 	 */
-	public static void generateXmlFileFromObject(final Object object, Class<?> clazz, final Path xmlFileLocation, final String noNameSpaceUri) throws Exception {
+	public static void generateXmlFileFromObject(
+			final Object object, Class<?> clazz, final Path xmlFileLocation, final String noNameSpaceUri) throws Exception {
     if (!clazz.isInstance(object)) {
       throw new RuntimeException("Trying to convert an object to XML which is not of class " + clazz.getName());
     }

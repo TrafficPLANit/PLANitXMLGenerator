@@ -10,7 +10,8 @@
 			<xs:element name="entryElement" minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>
-						Each entry is a single custom property with a key as its identifier and the content representing the value
+						Each entry is a single custom property with a key as its identifier and the content
+						representing the value
 					</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
@@ -30,8 +31,10 @@
 			<xs:element name="length" type="xs:double" minOccurs="0" maxOccurs="1">
 			  <xs:annotation>
 				  <xs:documentation>
-					Length can be used to override geometric length computed for connectoid based on zone and physical network (layer) connection.
-					When multiple zones are accessible be careful using this property since it will set the same length for all accessible zones.
+					Length can be used to override geometric length computed for connectoid based on zone and physical
+					  network (layer) connection.
+					When multiple zones are accessible be careful using this property since it will set the same
+					  length for all accessible zones.
 				  </xs:documentation>
 				</xs:annotation>
 			  </xs:element>
@@ -41,7 +44,8 @@
 		<xs:attribute name="modes" type="xs:string" use="optional">
 			<xs:annotation>
 				<xs:documentation>
-					Modes that are allowed to use this access point should be provided as a comma separated list of mode XML ids. When absent it is
+					Modes that are allowed to use this access point should be provided as a comma separated list of
+					mode XML ids. When absent it is
 					assumed all possible modes are allowed
 				</xs:documentation>
 			</xs:annotation>								
@@ -49,7 +53,8 @@
     <xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
       <xs:annotation>
         <xs:documentation>
-          Use type to provide additional information on how to interpret this connectoid (no functional use at this point)
+          Use type to provide additional information on how to interpret this connectoid (no functional use at
+			this point)
         </xs:documentation>
       </xs:annotation>        
     </xs:attribute>   		
@@ -118,7 +123,8 @@
 	<xs:attribute name="srsname" type="srsname" default="EPSG:4326">
 		<xs:annotation>
 			<xs:documentation>
-				Global definition of the spatial reference system used for all gml elements. Should comply with the srs naming conventions of such a string
+				Global definition of the spatial reference system used for all gml elements. Should comply with the
+				srs naming conventions of such a string
 			</xs:documentation>
 		</xs:annotation>
 	</xs:attribute>	
@@ -154,7 +160,8 @@
 				<xs:element ref="gml:Point" minOccurs="0" maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>
-							Each centroids geo spatial location determines its location (point of departure/arrival). It should fall within the zones
+							Each centroids geo spatial location determines its location (point of departure/arrival).
+							It should fall within the zones
 							geo spatial area (if defined). 
 						</xs:documentation>
 					</xs:annotation>				
