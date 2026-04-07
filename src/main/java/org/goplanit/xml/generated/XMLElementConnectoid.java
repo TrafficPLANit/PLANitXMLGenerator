@@ -11,8 +11,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * 
- * 				Each "regular" OD connectoid represents a potential point of exit/entry from/to the physical network coming from the zone/centroid. There
- * 				must be at minimum one connectoid to be able to leave/enter the zone. Each regular connectoid attaches by means of a node XML id reference 
+ * 				Each "regular" OD connectoid represents a potential point of exit/entry from/to the physical
+ * 				network coming from the zone/centroid. There
+ * 				must be at minimum one connectoid to be able to leave/enter the zone. Each regular connectoid
+ * 				attaches by means of a node XML id reference
  * 			
  * 
  * <p>Java class for connectoid element declaration.

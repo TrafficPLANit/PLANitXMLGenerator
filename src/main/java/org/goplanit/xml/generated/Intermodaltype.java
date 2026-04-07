@@ -75,8 +75,9 @@ public class Intermodaltype
 
     /**
      * 
-     * 	            transfer zone access elements define how transfer zones can be accessed via different modes from different layers
-     * 	            linking layer specific infrastructure to the transfer zones which exist between network layers.
+     * 	            transfer zone access elements define how transfer zones can be accessed via different modes from
+     * 				  different layers linking layer specific infrastructure to the transfer zones which exist
+     * 				  between network layers. For now we only support all zones accessing the same network layer
      * 	          
      * 
      * @return
@@ -102,8 +103,8 @@ public class Intermodaltype
 
     /**
      * 
-     * 	            Transfer zone groups allow one to group multiple transfer zones to indicate they logically belong together. For
-     * 	            example to group various platforms on a station. This is optional. 
+     * 	            Transfer zone groups allow one to group multiple transfer zones to indicate they logically belong
+     * 				  together. For example to group various platforms on a station. This is optional.
      * 	          
      * 
      * @return

@@ -77,7 +77,8 @@ public class XMLElementCentroid
 
     /**
      * 
-     * 							Each centroids geo spatial location determines its location (point of departure/arrival). It should fall within the zones
+     * 							Each centroids geo spatial location determines its location (point of departure/arrival).
+     * 							It should fall within the zones
      * 							geo spatial area (if defined). 
      * 						
      * 

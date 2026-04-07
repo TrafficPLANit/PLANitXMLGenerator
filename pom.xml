@@ -11,8 +11,9 @@
 
 	<groupId>org.goplanit.xml</groupId>
 	<artifactId>planit-xmlgenerator</artifactId>
-	<description>Generate XML java files from xsd schemas to be used by PLANitIO to convert XML based inputs into PLANit memory model. This is a seperate project
-		to ensure that only when the xsd schemas change a recompilation of the generated XMLs is required.
+	<description>Generate XML java files from xsd schemas to be used by PLANitIO to convert XML based inputs into
+		PLANit memory model. This is a separate project to ensure that only when the xsd schemas change a
+		recompilation of the generated XMLs is required.
 		Conversely, whenever business logic in PLANitIO changes no update of the generated classes will be necessary.
 	</description>
 	<packaging>jar</packaging>

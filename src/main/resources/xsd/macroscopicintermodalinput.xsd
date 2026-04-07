@@ -29,7 +29,7 @@
         the chosen node location is downstream for transfer connectoids that reference a link segment
         however, in case all routes start on the upstream end of a link segment that has NO other incoming
         regular link segments we cannot identify this node properly. Only in this special case, use this location
-        type to indicate that the upstream node of the reference link segment is the point of access for cmomencing
+        type to indicate that the upstream node of the reference link segment is the point of access for commencing
         pt lines.         
       </xs:documentation>
     </xs:annotation>
@@ -56,16 +56,17 @@
 	      <xs:element ref="transferzoneaccess" minOccurs="1" maxOccurs="1" >
 	        <xs:annotation>
 	          <xs:documentation>
-	            transfer zone access elements define how transfer zones can be accessed via different modes from different layers
-	            linking layer specific infrastructure to the transfer zones which exist between network layers.
+	            transfer zone access elements define how transfer zones can be accessed via different modes from
+				  different layers linking layer specific infrastructure to the transfer zones which exist
+				  between network layers. For now we only support all zones accessing the same network layer
 	          </xs:documentation>
 	        </xs:annotation>
-	      </xs:element>
+		  </xs:element>
 	      <xs:element ref="transferzonegroups" minOccurs="0" maxOccurs="1" >
 	        <xs:annotation>
 	          <xs:documentation>
-	            Transfer zone groups allow one to group multiple transfer zones to indicate they logically belong together. For
-	            example to group various platforms on a station. This is optional. 
+	            Transfer zone groups allow one to group multiple transfer zones to indicate they logically belong
+				  together. For example to group various platforms on a station. This is optional.
 	          </xs:documentation>
 	        </xs:annotation>
 	      </xs:element>           
@@ -94,9 +95,11 @@
 						<xs:annotation>
 							<xs:documentation>
 								each transfer zone can have a human readable platform code, or codes, e.g. "4,5". This
-								does not necessarily coincide with the name of the transfer zone, nor does it have to be present. However, by explicitly
-								allowing for such platform codes it provides for a means to map more easily between formats and have a more human readable
-								representation of this concept. It is expected that the string is comman seaprated in case multiple entries are present.
+								does not necessarily coincide with the name of the transfer zone, nor does it have to
+								be present. However, by explicitly allowing for such platform codes it provides for a
+								means to map more easily between formats and have a more human readable representation
+								of this concept. It is expected that the string is comma separated in case
+								multiple entries are present.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -112,9 +115,10 @@
 			        <xs:choice minOccurs="0" maxOccurs="1">
 			          <xs:annotation>
 				            <xs:documentation>
-				              Each transfer zone can additional define a geographical area that it represents (e.g., train platform), but
-				              this is entirely optional. Alternatively it can also represent simply a stop pole (which can be located via
-				              the centroid only). If it is a platform it can either be a polygon or a line(string), both of which are supported.
+				              Each transfer zone can additional define a geographical area that it represents
+								(e.g., train platform), but this is entirely optional. Alternatively it can also
+								represent simply a stop pole (which can be located via the centroid only). If it is
+								a platform it can either be a polygon or a line(string), both of which are supported.
 				            </xs:documentation>
 				          </xs:annotation> 			        
 			     		<xs:element ref="gml:LineString" />	            
@@ -141,8 +145,8 @@
 				<xs:element name="connectoid" minOccurs="1" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>
-							Instance of a transfer zone access point known as a connectoid, this is where we connect a network layer and one
-							or more of its modes to a transfer zone
+							Instance of a transfer zone access point known as a connectoid, this is where we connect
+							a network layer and oneor more of its modes to a transfer zone
 						</xs:documentation>
 					</xs:annotation>
 			    <xs:complexType>
@@ -151,8 +155,9 @@
 			          <xs:attribute name="tzrefs" type="xs:string" use="required">
 			            <xs:annotation>
 			              <xs:documentation>
-			                transfer zone references should be provided as a comma separated list of transfer zone XML ids, reflecting the zones accessible
-			                from this access point. This is needed because a transfer connectoid might access multiple transfer zones.
+			                transfer zone references should be provided as a comma separated list of transfer zone
+							  XML ids, reflecting the zones accessible from this access point. This is needed because
+							  a transfer connectoid might access multiple transfer zones.
 			              </xs:documentation>
 			            </xs:annotation>              
 			          </xs:attribute>
@@ -177,6 +182,8 @@
 			    </xs:complexType>					
 				</xs:element>
 			</xs:sequence>
+			<xs:attribute name="network_ref" type="xs:string" />
+			<xs:attribute name="network_layer_ref" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>			
 	

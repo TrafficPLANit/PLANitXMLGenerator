@@ -191,7 +191,8 @@
 						<xs:attribute name="time" type="xs:string" use="required">
 							<xs:annotation>
 								<xs:documentation>
-									The absolute within day departure time in hh::mm:ss format, because we allow the hours to
+									The absolute within day departure time in hh::mm:ss format, because we allow the
+									hours to
 									exceed beyond midnight, we do not enforce a time but instead parse it as a string
 								</xs:documentation>
 							</xs:annotation>
@@ -236,7 +237,8 @@
 						<xs:attribute name="dwelltime" type="xs:time" use="optional">
 							<xs:annotation>
 								<xs:documentation>
-									Override default service dwell time (hh:mm:ss) for the end point of this leg. If no dwell time
+									Override default service dwell time (hh:mm:ss) for the end point of this leg.
+									If no dwell time
 									is provided, and neither a default exists for the trip, 00:00:00 is adopted
 								</xs:documentation>
 							</xs:annotation>

@@ -131,8 +131,10 @@ public class XMLElementMacroscopicZoning
 
     /**
      * 
-     * 	            Spatial reference system used for this zoning. It can be different to the network it is used on but it is recommended to be the same. When different the gml elements in this xml
-     * 	            are parsed according to the provided srs but will internally be converted into the "dominant" project srs which is the one provided on the infrastructure element
+     * 	            Spatial reference system used for this zoning. It can be different to the network it is used on
+     * 				  but it is recommended to be the same. When different the gml elements in this xml
+     * 	            are parsed according to the provided srs but will internally be converted into the "dominant"
+     * 				  project srs which is the one provided on the infrastructure element
      * 	          
      * 
      * @return
