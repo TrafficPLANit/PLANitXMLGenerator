@@ -55,21 +55,22 @@
 				<xs:complexType>
 					<xs:attribute name="ref" type="xs:string" use="required"/>
 					<xs:attribute name="lengthkm" type="xs:decimal" use="optional"/>
+					<xs:attribute name="noderef" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>
+								Reference to the node that acts as the access point for the zone.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 					<xs:attribute name="lsrefs" type="xs:string" use="optional">
 						<xs:annotation>
 							<xs:documentation>
-								only used for directional connectoids, ignored for ODs
+								when absent all mode supporting entry link segments into the node are allowed, otherwise
+								use this subset
 							</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
 					<xs:attribute name="modes" type="xs:string" use="optional"/>
-					<xs:attribute name="loc" type="connectoidnodelocationtype" use="optional" default="downstream">
-						<xs:annotation>
-							<xs:documentation>
-								only relevant for link segment referencing entries otherwise not used
-							</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>

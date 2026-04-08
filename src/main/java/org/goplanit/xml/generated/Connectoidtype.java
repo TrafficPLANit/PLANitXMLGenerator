@@ -35,9 +35,9 @@ import javax.xml.bind.annotation.XmlType;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                 &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+ *                 &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;attribute name="loc" type="{}connectoidnodelocationtype" default="downstream" /&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;
@@ -219,9 +219,9 @@ public class Connectoidtype
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
+     *       &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
-     *       &lt;attribute name="loc" type="{}connectoidnodelocationtype" default="downstream" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -240,12 +240,12 @@ public class Connectoidtype
         protected String ref;
         @XmlAttribute(name = "lengthkm")
         protected BigDecimal lengthkm;
+        @XmlAttribute(name = "noderef", required = true)
+        protected String noderef;
         @XmlAttribute(name = "lsrefs")
         protected String lsrefs;
         @XmlAttribute(name = "modes")
         protected String modes;
-        @XmlAttribute(name = "loc")
-        protected Connectoidnodelocationtype loc;
 
         /**
          * Gets the value of the ref property.
@@ -296,6 +296,30 @@ public class Connectoidtype
         }
 
         /**
+         * Gets the value of the noderef property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getNoderef() {
+            return noderef;
+        }
+
+        /**
+         * Sets the value of the noderef property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setNoderef(String value) {
+            this.noderef = value;
+        }
+
+        /**
          * Gets the value of the lsrefs property.
          * 
          * @return
@@ -341,34 +365,6 @@ public class Connectoidtype
          */
         public void setModes(String value) {
             this.modes = value;
-        }
-
-        /**
-         * Gets the value of the loc property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Connectoidnodelocationtype }
-         *     
-         */
-        public Connectoidnodelocationtype getLoc() {
-            if (loc == null) {
-                return Connectoidnodelocationtype.DOWNSTREAM;
-            } else {
-                return loc;
-            }
-        }
-
-        /**
-         * Sets the value of the loc property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Connectoidnodelocationtype }
-         *     
-         */
-        public void setLoc(Connectoidnodelocationtype value) {
-            this.loc = value;
         }
 
     }
