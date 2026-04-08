@@ -61,6 +61,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Connectoidtype }
+     * 
+     */
+    public Connectoidtype createConnectoidtype() {
+        return new Connectoidtype();
+    }
+
+    /**
      * Create an instance of {@link CustomPropertiesType }
      * 
      */
@@ -525,14 +533,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Connectoidtype }
-     * 
-     */
-    public Connectoidtype createConnectoidtype() {
-        return new Connectoidtype();
-    }
-
-    /**
      * Create an instance of {@link XMLElementUnrestrictedDuration }
      * 
      */
@@ -554,6 +554,14 @@ public class ObjectFactory {
      */
     public XMLElementLinkLengthType createXMLElementLinkLengthType() {
         return new XMLElementLinkLengthType();
+    }
+
+    /**
+     * Create an instance of {@link Connectoidtype.Accesszone }
+     * 
+     */
+    public Connectoidtype.Accesszone createConnectoidtypeAccesszone() {
+        return new Connectoidtype.Accesszone();
     }
 
     /**
