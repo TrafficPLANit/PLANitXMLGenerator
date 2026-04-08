@@ -3,7 +3,23 @@
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml">
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
-	
+
+	<xs:simpleType name="connectoidnodelocationtype">
+		<xs:annotation>
+			<xs:documentation>
+				the chosen node location is downstream for transfer connectoids that reference a link segment
+				however, in case all routes start on the upstream end of a link segment that has NO other incoming
+				regular link segments we cannot identify this node properly. Only in this special case, use this location
+				type to indicate that the upstream node of the reference link segment is the point of access for commencing
+				pt lines.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="upstream" />
+			<xs:enumeration value="downstream" />
+		</xs:restriction>
+	</xs:simpleType>
+
 	<!-- COMPLEX TYPES -->
 	<xs:complexType name="customPropertiesType">
 		<xs:sequence>
@@ -39,8 +55,21 @@
 				<xs:complexType>
 					<xs:attribute name="ref" type="xs:string" use="required"/>
 					<xs:attribute name="lengthkm" type="xs:decimal" use="optional"/>
-					<xs:attribute name="lsrefs" type="xs:string" use="optional"/>
+					<xs:attribute name="lsrefs" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>
+								only used for directional connectoids, ignored for ODs
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 					<xs:attribute name="modes" type="xs:string" use="optional"/>
+					<xs:attribute name="loc" type="connectoidnodelocationtype" use="optional" default="downstream">
+						<xs:annotation>
+							<xs:documentation>
+								only relevant for link segment referencing entries otherwise not used
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>

@@ -22,23 +22,7 @@
 			<xs:enumeration value="none" />
 		</xs:restriction>
 	</xs:simpleType>
-		
-  <xs:simpleType name="connectoidnodelocationtype">
-    <xs:annotation>
-      <xs:documentation>
-        the chosen node location is downstream for transfer connectoids that reference a link segment
-        however, in case all routes start on the upstream end of a link segment that has NO other incoming
-        regular link segments we cannot identify this node properly. Only in this special case, use this location
-        type to indicate that the upstream node of the reference link segment is the point of access for commencing
-        pt lines.         
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="upstream" />
-      <xs:enumeration value="downstream" />
-    </xs:restriction>
-  </xs:simpleType>		
-		
+
 	<!-- Simple elements -->
 	
 	<!-- Complex elements -->
@@ -151,33 +135,7 @@
 					</xs:annotation>
 			    <xs:complexType>
 			      <xs:complexContent>
-			        <xs:extension base="connectoidtype">
-			          <xs:attribute name="tzrefs" type="xs:string" use="required">
-			            <xs:annotation>
-			              <xs:documentation>
-			                transfer zone references should be provided as a comma separated list of transfer zone
-							  XML ids, reflecting the zones accessible from this access point. This is needed because
-							  a transfer connectoid might access multiple transfer zones.
-			              </xs:documentation>
-			            </xs:annotation>              
-			          </xs:attribute>
-			          <xs:attribute name="lsref" type="xs:string" use="required">
-			            <xs:annotation>
-			              <xs:documentation>
-			                link segment reference should provide which link segment this access point resides on. In case the underlying usage is node based, 
-			                the downstream node of the link segment will be utilised
-			              </xs:documentation>
-			            </xs:annotation>              
-			          </xs:attribute>   
-			          <xs:attribute name="loc" type="connectoidnodelocationtype" use="optional" default="downstream">
-			            <xs:annotation>
-			              <xs:documentation>
-			                link segment reference should provide which link segment this access point resides on. In case the underlying usage is node based, 
-			                the downstream node of the link segment will be utilised
-			              </xs:documentation>
-			            </xs:annotation>              
-			          </xs:attribute>                             
-			        </xs:extension>
+			        <xs:extension base="connectoidtype"/>
 			      </xs:complexContent>        
 			    </xs:complexType>					
 				</xs:element>

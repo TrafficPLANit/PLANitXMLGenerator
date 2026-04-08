@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
  *                 &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="loc" type="{}connectoidnodelocationtype" default="downstream" /&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;
@@ -220,6 +221,7 @@ public class Connectoidtype
      *       &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
      *       &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="loc" type="{}connectoidnodelocationtype" default="downstream" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -242,6 +244,8 @@ public class Connectoidtype
         protected String lsrefs;
         @XmlAttribute(name = "modes")
         protected String modes;
+        @XmlAttribute(name = "loc")
+        protected Connectoidnodelocationtype loc;
 
         /**
          * Gets the value of the ref property.
@@ -337,6 +341,34 @@ public class Connectoidtype
          */
         public void setModes(String value) {
             this.modes = value;
+        }
+
+        /**
+         * Gets the value of the loc property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Connectoidnodelocationtype }
+         *     
+         */
+        public Connectoidnodelocationtype getLoc() {
+            if (loc == null) {
+                return Connectoidnodelocationtype.DOWNSTREAM;
+            } else {
+                return loc;
+            }
+        }
+
+        /**
+         * Sets the value of the loc property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Connectoidnodelocationtype }
+         *     
+         */
+        public void setLoc(Connectoidnodelocationtype value) {
+            this.loc = value;
         }
 
     }
