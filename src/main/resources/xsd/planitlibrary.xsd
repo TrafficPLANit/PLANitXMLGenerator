@@ -55,13 +55,6 @@
 				<xs:complexType>
 					<xs:attribute name="ref" type="xs:string" use="required"/>
 					<xs:attribute name="lengthkm" type="xs:decimal" use="optional"/>
-					<xs:attribute name="noderef" type="xs:string" use="required">
-						<xs:annotation>
-							<xs:documentation>
-								Reference to the node that acts as the access point for the zone.
-							</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
 					<xs:attribute name="lsrefs" type="xs:string" use="optional">
 						<xs:annotation>
 							<xs:documentation>
@@ -77,6 +70,13 @@
 		<xs:attribute name="id" type="xs:string" use="required"/>
 		<xs:attribute name="externalid" type="xs:string" use="optional"/>
 		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="noderef" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Reference to the node that acts as the access point for the zone.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
 			<xs:annotation>
 				<xs:documentation>

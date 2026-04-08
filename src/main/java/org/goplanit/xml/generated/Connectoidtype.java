@@ -35,7 +35,6 @@ import javax.xml.bind.annotation.XmlType;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                 &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
- *                 &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *               &lt;/restriction&gt;
@@ -46,6 +45,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="type" type="{}connectoidtypetype" default="none" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -75,6 +75,8 @@ public class Connectoidtype
     protected String externalid;
     @XmlAttribute(name = "name")
     protected String name;
+    @XmlAttribute(name = "noderef", required = true)
+    protected String noderef;
     @XmlAttribute(name = "type")
     protected Connectoidtypetype type;
 
@@ -180,6 +182,30 @@ public class Connectoidtype
     }
 
     /**
+     * Gets the value of the noderef property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNoderef() {
+        return noderef;
+    }
+
+    /**
+     * Sets the value of the noderef property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNoderef(String value) {
+        this.noderef = value;
+    }
+
+    /**
      * Gets the value of the type property.
      * 
      * @return
@@ -219,7 +245,6 @@ public class Connectoidtype
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
-     *       &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *     &lt;/restriction&gt;
@@ -240,8 +265,6 @@ public class Connectoidtype
         protected String ref;
         @XmlAttribute(name = "lengthkm")
         protected BigDecimal lengthkm;
-        @XmlAttribute(name = "noderef", required = true)
-        protected String noderef;
         @XmlAttribute(name = "lsrefs")
         protected String lsrefs;
         @XmlAttribute(name = "modes")
@@ -293,30 +316,6 @@ public class Connectoidtype
          */
         public void setLengthkm(BigDecimal value) {
             this.lengthkm = value;
-        }
-
-        /**
-         * Gets the value of the noderef property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getNoderef() {
-            return noderef;
-        }
-
-        /**
-         * Sets the value of the noderef property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setNoderef(String value) {
-            this.noderef = value;
         }
 
         /**
