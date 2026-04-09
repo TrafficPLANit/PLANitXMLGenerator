@@ -50,8 +50,9 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<!-- One or more access zone elements -->
-			<xs:element name="accesszone" minOccurs="1" maxOccurs="unbounded">
+			<!-- zero or more access zone elements as for OD connectoid we currently have inverted this setup
+			 and do not use this, but for transfer zones it is mandatory to have at least one-->
+			<xs:element name="accesszone" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:attribute name="ref" type="xs:string" use="required"/>
 					<xs:attribute name="lengthkm" type="xs:decimal" use="optional"/>
