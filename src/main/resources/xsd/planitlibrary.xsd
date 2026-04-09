@@ -64,6 +64,14 @@
 						</xs:annotation>
 					</xs:attribute>
 					<xs:attribute name="modes" type="xs:string" use="optional"/>
+					<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
+						<xs:annotation>
+							<xs:documentation>
+								Use type to provide additional information on how to interpret this connectoid
+								(no functional use at this point)
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
@@ -74,14 +82,6 @@
 			<xs:annotation>
 				<xs:documentation>
 					Reference to the node that acts as the access point for the zone.
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
-			<xs:annotation>
-				<xs:documentation>
-					Use type to provide additional information on how to interpret this connectoid
-					(no functional use at this point)
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>

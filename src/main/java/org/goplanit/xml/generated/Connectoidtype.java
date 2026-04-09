@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
  *                 &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="type" type="{}connectoidtypetype" default="none" /&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;
@@ -46,7 +47,6 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="type" type="{}connectoidtypetype" default="none" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -77,8 +77,6 @@ public class Connectoidtype
     protected String name;
     @XmlAttribute(name = "noderef", required = true)
     protected String noderef;
-    @XmlAttribute(name = "type")
-    protected Connectoidtypetype type;
 
     /**
      * Gets the value of the accesszone property.
@@ -205,34 +203,6 @@ public class Connectoidtype
         this.noderef = value;
     }
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Connectoidtypetype }
-     *     
-     */
-    public Connectoidtypetype getType() {
-        if (type == null) {
-            return Connectoidtypetype.NONE;
-        } else {
-            return type;
-        }
-    }
-
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Connectoidtypetype }
-     *     
-     */
-    public void setType(Connectoidtypetype value) {
-        this.type = value;
-    }
-
 
     /**
      * <p>Java class for anonymous complex type.
@@ -247,6 +217,7 @@ public class Connectoidtype
      *       &lt;attribute name="lengthkm" type="{http://www.w3.org/2001/XMLSchema}decimal" /&gt;
      *       &lt;attribute name="lsrefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
      *       &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+     *       &lt;attribute name="type" type="{}connectoidtypetype" default="none" /&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
@@ -269,6 +240,8 @@ public class Connectoidtype
         protected String lsrefs;
         @XmlAttribute(name = "modes")
         protected String modes;
+        @XmlAttribute(name = "type")
+        protected Connectoidtypetype type;
 
         /**
          * Gets the value of the ref property.
@@ -364,6 +337,34 @@ public class Connectoidtype
          */
         public void setModes(String value) {
             this.modes = value;
+        }
+
+        /**
+         * Gets the value of the type property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Connectoidtypetype }
+         *     
+         */
+        public Connectoidtypetype getType() {
+            if (type == null) {
+                return Connectoidtypetype.NONE;
+            } else {
+                return type;
+            }
+        }
+
+        /**
+         * Sets the value of the type property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Connectoidtypetype }
+         *     
+         */
+        public void setType(Connectoidtypetype value) {
+            this.type = value;
         }
 
     }
