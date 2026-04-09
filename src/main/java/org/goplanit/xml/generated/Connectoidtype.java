@@ -8,7 +8,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
@@ -29,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="accesszone" maxOccurs="unbounded"&gt;
+ *         &lt;element name="accesszone" maxOccurs="unbounded" minOccurs="0"&gt;
  *           &lt;complexType&gt;
  *             &lt;complexContent&gt;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
@@ -67,7 +66,6 @@ public class Connectoidtype
 {
 
     private final static long serialVersionUID = -1L;
-    @XmlElement(required = true)
     protected List<Connectoidtype.Accesszone> accesszone;
     @XmlAttribute(name = "id", required = true)
     protected String id;
