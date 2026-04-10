@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *         &lt;attribute name="type" type="{}connectoidtypetype" default="none" /&gt;
  *       &lt;/extension&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -55,6 +56,8 @@ public class XMLElementConnectoid
     protected BigDecimal length;
     @XmlAttribute(name = "modes")
     protected String modes;
+    @XmlAttribute(name = "type")
+    protected Connectoidtypetype type;
 
     /**
      * Gets the value of the length property.
@@ -102,6 +105,34 @@ public class XMLElementConnectoid
      */
     public void setModes(String value) {
         this.modes = value;
+    }
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Connectoidtypetype }
+     *     
+     */
+    public Connectoidtypetype getType() {
+        if (type == null) {
+            return Connectoidtypetype.NONE;
+        } else {
+            return type;
+        }
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Connectoidtypetype }
+     *     
+     */
+    public void setType(Connectoidtypetype value) {
+        this.type = value;
     }
 
 }

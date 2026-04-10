@@ -39,6 +39,7 @@
 						<xs:element name="length" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
 					</xs:sequence>
 					<xs:attribute name="modes" type="xs:string" use="optional"/>
+					<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>				
