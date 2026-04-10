@@ -2,6 +2,7 @@
 package org.goplanit.xml.generated;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;complexContent&gt;
  *       &lt;extension base="{}connectoidtype"&gt;
  *         &lt;sequence&gt;
- *           &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}decimal" maxOccurs="0" minOccurs="0"/&gt;
+ *           &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="modes" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;/extension&gt;
@@ -41,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "", propOrder = {
+    "length"
+})
 @XmlRootElement(name = "connectoid")
 public class XMLElementConnectoid
     extends Connectoidtype
@@ -49,8 +52,33 @@ public class XMLElementConnectoid
 {
 
     private final static long serialVersionUID = -1L;
+    protected BigDecimal length;
     @XmlAttribute(name = "modes")
     protected String modes;
+
+    /**
+     * Gets the value of the length property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getLength() {
+        return length;
+    }
+
+    /**
+     * Sets the value of the length property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setLength(BigDecimal value) {
+        this.length = value;
+    }
 
     /**
      * Gets the value of the modes property.
