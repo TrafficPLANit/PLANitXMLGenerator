@@ -1,0 +1,130 @@
+<jaxb:bindings version="1.0" 
+               xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               jaxb:extensionBindingPrefixes="xjc">
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.goplanit.xml.generated.v1.gml"/>
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/smil/smil20.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.goplanit.xml.generated.v1.gml.smil"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings node="//xs:element[@name='set']">
+            <jaxb:factoryMethod name="Smil20SetElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animate']">
+            <jaxb:factoryMethod name="Smil20AnimateElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animateColor']">
+            <jaxb:factoryMethod name="Smil20AnimateColorElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animateMotion']">
+            <jaxb:factoryMethod name="Smil20AnimateMotionElement"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryPrimitives.xsd" node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='_Solid']">
+            <jaxb:factoryMethod name="ASolidElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="xs:element[@name='Arc']">
+            <jaxb:factoryMethod name="GmlArc"/>
+        </jaxb:bindings>
+<jaxb:bindings node="//xs:element[@name='rows']">
+        <jaxb:property name="GmlRows"/>
+    </jaxb:bindings>
+    </jaxb:bindings>
+
+<jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryAggregates.xsd" node="/xs:schema">
+    <jaxb:bindings node="xs:element[@name='geometryMembers']">
+        <jaxb:property name="GmlGeometryMembers"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="xs:element[@name='pointMembers']">
+            <jaxb:property name="GmlPointMembers"/>
+        </jaxb:bindings>
+    <jaxb:bindings node="xs:element[@name='curveMembers']">
+        <jaxb:property name="GmlCurveMembers"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="xs:element[@name='surfaceMembers']">
+        <jaxb:property name="GmlSurfaceMembers"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//xs:element[@name='solidMembers']">
+            <jaxb:property name="GmlSolidMembers"/>
+    </jaxb:bindings>
+</jaxb:bindings>
+
+<jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/topology.xsd" node="/xs:schema">
+    <jaxb:bindings node="xs:element[@name='topoPrimitiveMembers']">
+        <jaxb:property name="GmlTopoPrimitiveMembers"/>
+    </jaxb:bindings>
+</jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryBasic0d1d.xsd" node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='_Curve']">
+            <jaxb:factoryMethod name="AbstractCurveElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="xs:element[@name='_Geometry']">
+            <jaxb:factoryMethod name="AbstractGeometryElement"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/smil/smil20-language.xsd">
+        <jaxb:bindings node="//xs:element[@name='set']">
+            <jaxb:factoryMethod name="Smil20LangSetElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animate']">
+            <jaxb:factoryMethod name="Smil20LangAnimateElement"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gmlBase.xsd" node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='members']">
+            <jaxb:property name="GmlMembers"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd" node="/xs:schema">
+        <jaxb:bindings node="xs:element[@name='featureMembers']">
+            <jaxb:property name="GmlFeatureMembers"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+<jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/valueObjects.xsd" node="/xs:schema">
+    <jaxb:bindings node="xs:element[@name='valueComponents']">
+        <jaxb:property name="GmlValueComponents"/>
+    </jaxb:bindings>
+</jaxb:bindings>
+
+	<jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/feature.xsd" node="/xs:schema">
+		<jaxb:bindings node="xs:element[@name='_FeatureCollection']">
+			<jaxb:factoryMethod name="AFeatureCollectionElement"/>
+		</jaxb:bindings>
+		<jaxb:bindings node="xs:complexType[@name='FeaturePropertyType']/xs:sequence/xs:element[@ref='gml:_Feature']">
+		</jaxb:bindings>
+		<jaxb:bindings node="xs:complexType[@name='FeatureArrayPropertyType']/xs:sequence/xs:element[@ref='gml:_Feature']">
+		</jaxb:bindings>
+	</jaxb:bindings>
+
+	<jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryBasic2d.xsd" node="/xs:schema">
+		<jaxb:bindings node="xs:element[@name='_Surface']">
+			<jaxb:factoryMethod name="ASurfaceElement"/>
+		</jaxb:bindings>
+		<jaxb:bindings node="xs:element[@name='_Ring']">
+			<jaxb:factoryMethod name="ARingElement"/>
+		</jaxb:bindings>
+	</jaxb:bindings>
+
+	<jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/defaultStyle.xsd" node="/xs:schema">
+		<jaxb:bindings node="xs:element[@name='_Style']">
+			<jaxb:factoryMethod name="AStyleElement"/>
+		</jaxb:bindings>
+	</jaxb:bindings>
+
+
+
+</jaxb:bindings>

@@ -1,0 +1,80 @@
+<jaxb:bindings version="2.1"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name = 'infrastructurelayers']">
+		<jaxb:class name="XMLElementInfrastructureLayers" />
+	</jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:element[@name = 'layer']">
+    <jaxb:class name="XMLElementInfrastructureLayer" />
+  </jaxb:bindings>	
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name = 'configuration']">
+		<jaxb:class name="XMLElementConfiguration" />
+	</jaxb:bindings>
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name = 'layerconfiguration']">
+		<jaxb:class name="XMLElementLayerConfiguration" />
+	</jaxb:bindings>	
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:complexType[@name ='linkLengthType']">
+		<jaxb:class name="XMLElementLinkLengthType" />
+	</jaxb:bindings>
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name ='links']">
+		<jaxb:class name="XMLElementLinks" />
+	</jaxb:bindings>
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name ='linksegmenttypes']">
+		<jaxb:class name="XMLElementLinkSegmentTypes" />
+	</jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:element[@name ='linksegmenttype']">
+    <jaxb:class name="XMLElementLinkSegmentType" />
+  </jaxb:bindings>	
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name ='linksegment']">
+		<jaxb:class name="XMLElementLinkSegment" />
+	</jaxb:bindings>
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="//xs:element[@name ='macroscopicnetwork']">
+		<jaxb:class name="XMLElementMacroscopicNetwork" />
+	</jaxb:bindings>
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="/xs:schema/xs:element[@name ='modes']">
+		<jaxb:class name="XMLElementModes" />
+	</jaxb:bindings>	
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+		node="xs:element[@name ='nodes']">
+		<jaxb:class name="XMLElementNodes" />
+	</jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="xs:element[@name ='physicalfeatures']">
+    <jaxb:class name="XMLElementPhysicalFeatures" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="xs:element[@name ='usabilityfeatures']">
+    <jaxb:class name="XMLElementUsabilityFeatures" />
+  </jaxb:bindings>    	
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:element[@name ='accessgroup']">
+    <jaxb:class name="XMLElementAccessGroup" />
+  </jaxb:bindings>
+</jaxb:bindings>

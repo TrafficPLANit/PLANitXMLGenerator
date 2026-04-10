@@ -3,7 +3,7 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
 	<jaxb:bindings
-		schemaLocation="../xsd/planitlibrary.xsd"
+		schemaLocation="../../xsd/v2/planitlibrary.xsd"
 		node="//xs:element[@name='centroid']">
 		<jaxb:class name="XMLElementCentroid" />
 	</jaxb:bindings>

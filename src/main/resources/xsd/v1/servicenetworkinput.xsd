@@ -1,6 +1,8 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:gml="http://www.opengis.net/gml">
-	<xs:include schemaLocation="planitlibrary.xsd" />
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+		   targetNamespace="http://goplanit.org/v1"
+		   xmlns="http://goplanit.org/v1"
+		   elementFormDefault="qualified">
+	<xs:include schemaLocation="./planitlibrary.xsd" />
 		
 	<!-- Complex types -->
 	<xs:element name="leg">

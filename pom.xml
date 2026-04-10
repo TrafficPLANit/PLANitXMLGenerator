@@ -65,20 +65,57 @@
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<version>${maven.jaxb2.plugin.version}</version>
 				<configuration>
+					<extension>true</extension>
 					<args>
 						<arg>-XautoNameResolution</arg>
 					</args>
-					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
-					<bindingDirectory>src/main/resources/xjb</bindingDirectory>
-					<generateDirectory>src/main/java</generateDirectory>
-					<noFileHeader>true</noFileHeader>
-				</configuration>
+					</configuration>
 				<executions>
-					<execution>
-						<id>generate</id>
+						<execution>
+						<id>generate-v1</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/xsd/v1</schemaDirectory>
+							<bindingDirectory>src/main/resources/xjb/v1</bindingDirectory>
+							<generatePackage>org.goplanit.xml.generated.v1</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-v1</generateDirectory>
+							<noFileHeader>true</noFileHeader>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-v2</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/xsd/v2</schemaDirectory>
+							<bindingDirectory>src/main/resources/xjb/v2</bindingDirectory>
+							<generatePackage>org.goplanit.xml.generated.v2</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-v2</generateDirectory>
+							<noFileHeader>true</noFileHeader>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.5.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals><goal>add-source</goal></goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/xjc-v1</source>
+								<source>${project.build.directory}/generated-sources/xjc-v2</source>
+							</sources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml">
-<xs:include schemaLocation="planitlibrary.xsd" />
-<xs:include schemaLocation="macroscopicintermodalinput.xsd" />
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+		   targetNamespace="http://goplanit.org/v2"
+		   xmlns="http://goplanit.org/v2"
+		   elementFormDefault="qualified">
+<xs:include schemaLocation="./planitlibrary.xsd" />
+<xs:include schemaLocation="./macroscopicintermodalinput.xsd" />
 <xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
 
 	<xs:element name="connectoids">
@@ -46,7 +49,7 @@
 	</xs:element>
 
 	<!-- Root element -->
-	<xs:element name="macroscopiczoning">
+	<xs:element name="macroscopiczoning" xmlns="http://goplanit.org/v2">
 		<xs:complexType>
 			<xs:sequence>
 			  <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />

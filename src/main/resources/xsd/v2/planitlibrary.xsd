@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This XSD contains common definitions which are used by all the other XSD files -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+		   targetNamespace="http://goplanit.org/v2"
+		   xmlns="http://goplanit.org/v2"
+		   elementFormDefault="qualified">
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+
+	<xs:simpleType name="connectoidnodelocationtype">
+		<xs:annotation>
+			<xs:documentation>
+				the chosen node location is downstream for transfer connectoids that reference a link segment
+				however, in case all routes start on the upstream end of a link segment that has NO other incoming
+				regular link segments we cannot identify this node properly. Only in this special case, use this location
+				type to indicate that the upstream node of the reference link segment is the point of access for commencing
+				pt lines.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="upstream" />
+			<xs:enumeration value="downstream" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- COMPLEX TYPES -->
+	<xs:complexType name="customPropertiesType">
+		<xs:sequence>
+			<xs:element name="entryElement" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Each entry is a single custom property with a key as its identifier and the content
+						representing the value
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string"> <!-- contains the value content -->
+							<xs:attribute name="keyAttribute" type="xs:string" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="connectoidtype">
+		<xs:annotation>
+			<xs:documentation>
+				Length can be used to override geometric length computed for connectoid based on zone and physical
+				network (layer) connection.
+				When multiple zones are accessible each one gets its own access zone element
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- zero or more access zone elements as for OD connectoid we currently have inverted this setup
+			 and do not use this, but for transfer zones it is mandatory to have at least one-->
+			<xs:element name="accesszone" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+					<xs:attribute name="lengthkm" type="xs:decimal" use="optional"/>
+					<xs:attribute name="lsrefs" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>
+								when absent all mode supporting entry link segments into the node are allowed, otherwise
+								use this subset
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="modes" type="xs:string" use="optional"/>
+					<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
+						<xs:annotation>
+							<xs:documentation>
+								Use type to provide additional information on how to interpret this connectoid
+								(no functional use at this point)
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional"/>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="noderef" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Reference to the node that acts as the access point for the zone.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- SIMPLE TYPES -->
+	
+  <xs:simpleType name="direction">
+    <xs:annotation>
+      <xs:documentation>
+        Choice between direction from a->b, or b->a
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="a_b" />
+      <xs:enumeration value="b_a" />
+    </xs:restriction>
+  </xs:simpleType>	
+	
+	<xs:simpleType name="connectoidtypetype">
+    <xs:annotation>
+      <xs:documentation>
+        types of connectoid types
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+    <xs:enumeration value="none" />
+      <xs:enumeration value="pt_veh_stop" />
+      <xs:enumeration value="traveller_access" />
+      <xs:enumeration value="unknown" />
+    </xs:restriction>
+  </xs:simpleType>  
+	
+	<xs:simpleType name="lengthUnit">
+		<xs:annotation>
+			<xs:documentation>
+				Choice between km (kilometres), m (metres)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="km" />
+			<xs:enumeration value="m" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="timeUnit">
+		<xs:annotation>
+			<xs:documentation>
+				Choice between h (hours), min (minutes), s (seconds), ms (milliseconds)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="h" />
+			<xs:enumeration value="min" />
+			<xs:enumeration value="s" />
+			<xs:enumeration value="ms" />
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	<xs:simpleType name="srsname">	
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	<!-- SIMPLE ATTRIBUTES-->
+	<xs:attribute name="srsname" type="srsname" default="EPSG:4326">
+		<xs:annotation>
+			<xs:documentation>
+				Global definition of the spatial reference system used for all gml elements. Should comply with the
+				srs naming conventions of such a string
+			</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>	
+	
+	<xs:attribute name="ds" type="xs:string" default=",">
+		<xs:annotation>
+			<xs:documentation>
+				Destination separator, i.e., the separator after the end of each cell.
+			</xs:documentation>
+		</xs:annotation> 								
+	</xs:attribute>
+	
+	<xs:attribute name="os" type="xs:string" default=",">
+		<xs:annotation>
+			<xs:documentation>
+				Origin separator, i.e., the separator after the end of each row.
+			</xs:documentation>
+		</xs:annotation> 		      					
+	</xs:attribute>	
+	
+	
+	<!-- ELEMENTS -->
+	
+	<xs:element name="centroid">
+		<xs:annotation>
+			<xs:documentation>
+				Centroid is a point of departure and/or arrival of travellers from/to a zone. 
+			</xs:documentation>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" minOccurs="0" />
+				<xs:element ref="gml:Point" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Each centroids geospatial location determines its location (point of departure/arrival).
+							It should fall within the zones
+							geospatial area (if defined).
+						</xs:documentation>
+					</xs:annotation>				
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>		
+	
+</xs:schema>

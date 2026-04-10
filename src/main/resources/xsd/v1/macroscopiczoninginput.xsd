@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+		   targetNamespace="http://goplanit.org/v1"
+		   xmlns="http://goplanit.org/v1"
+		   elementFormDefault="qualified">
+<xs:include schemaLocation="./planitlibrary.xsd" />
+<xs:include schemaLocation="./macroscopicintermodalinput.xsd" />
+<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+
+	<xs:element name="connectoids">
+		<xs:annotation>
+			<xs:documentation>
+				Connectoids are the interface between supply and demand which are defined as a node (but in
+				practice create virtual links (connectors)
+				between the centroid and physical road network). Here the physical node(s) that act as
+				connectoids for this particular zoning are to be
+				defined here. 
+			</xs:documentation>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:element ref="connectoid"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="connectoid">
+		<xs:annotation>
+			<xs:documentation>
+				Each "regular" OD connectoid represents a potential point of exit/entry from/to the physical
+				network coming from the zone/centroid. There
+				must be at minimum one connectoid to be able to leave/enter the zone. Each regular connectoid
+				attaches by means of a node XML id reference. we reuse connectoid type but since it is inverted and
+				zone already known we do not have access zone entries here, instead we supplement with a single length
+				element and modes. this is to be changed in future
+			</xs:documentation>
+		</xs:annotation>				
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="connectoidtype">
+					<xs:sequence>
+						<xs:element name="length" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+					<xs:attribute name="modes" type="xs:string" use="optional"/>
+					<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>				
+	</xs:element>
+
+	<!-- Root element -->
+	<xs:element name="macroscopiczoning">
+		<xs:complexType>
+			<xs:sequence>
+			  <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="zones" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="intermodal" type="intermodaltype" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Optional inclusion of intermodal transfer zones that allow for partial routes transferring
+							at transfer zones (not starting/ending). Since the concept
+							of transfer zones is a generalisation of regular "OD" zones, it is only logical to include
+							the defintion within the overarching zoning description
+						</xs:documentation>
+					</xs:annotation>				
+				</xs:element>
+			</xs:sequence>
+     		<xs:attribute ref="srsname" use="required">
+	        <xs:annotation>
+	          <xs:documentation>
+	            Spatial reference system used for this zoning. It can be different to the network it is used on
+				  but it is recommended to be the same. When different the gml elements in this xml
+	            are parsed according to the provided srs but will internally be converted into the "dominant"
+				  project srs which is the one provided on the infrastructure element
+	          </xs:documentation>
+	        </xs:annotation>      
+      </xs:attribute>			
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="zones">
+		<xs:annotation>
+			<xs:documentation>
+				Zones are the geographical areas for which we construct travel demand which are loaded onto the
+				network at a single point (Centroid)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="zone" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element ref="centroid" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										Each travel zone has at most a single centroid from which all travellers
+										depart/arrive.
+									</xs:documentation>
+								</xs:annotation>							
+							</xs:element>
+							<xs:element ref="connectoids"/>
+							<xs:element ref="gml:Polygon" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										Each travel zone has a geographical area in the form of a Polygon.
+										We recommend not using an interior polygon as "islands"
+										are generally not allowed in traffic assignment. Also zones should not
+										overlap and instead be contiguous (reusing borders).
+									</xs:documentation>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string" use="required" />
+						<xs:attribute name="externalid" type="xs:string" use="optional"/>						
+					</xs:complexType>
+				</xs:element>				
+			</xs:sequence>			
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

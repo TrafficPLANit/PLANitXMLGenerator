@@ -3,49 +3,49 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		
 	<jaxb:bindings
-		schemaLocation="../xsd/routedservicesinput.xsd"
+		schemaLocation="../../xsd/v1/routedservicesinput.xsd"
 		node="//xs:element[@name = 'reltimings']">
 		<jaxb:class name="XMLElementRelativeTimings" />
 	</jaxb:bindings>			
 
 	<jaxb:bindings
-		schemaLocation="../xsd/routedservicesinput.xsd"
+		schemaLocation="../../xsd/v1/routedservicesinput.xsd"
 		node="//xs:element[@name = 'routedservices']">
 		<jaxb:class name="XMLElementRoutedServices" />
 	</jaxb:bindings>
 	
   <jaxb:bindings
-    schemaLocation="../xsd/routedservicesinput.xsd"
+    schemaLocation="../../xsd/v1/routedservicesinput.xsd"
     node="//xs:element[@name = 'servicelayer']">
     <jaxb:class name="XMLElementRoutedServicesLayer" />
   </jaxb:bindings>	
 		
 	<jaxb:bindings
-		schemaLocation="../xsd/routedservicesinput.xsd"
+		schemaLocation="../../xsd/v1/routedservicesinput.xsd"
 		node="//xs:element[@name = 'service']">
 		<jaxb:class name="XMLElementService" />
 	</jaxb:bindings>			
 	
 	<jaxb:bindings
-		schemaLocation="../xsd/routedservicesinput.xsd"
+		schemaLocation="../../xsd/v1/routedservicesinput.xsd"
 		node="//xs:element[@name = 'services']">
 		<jaxb:class name="XMLElementServices" />
 	</jaxb:bindings>			
 	
 	<jaxb:bindings
-		schemaLocation="../xsd/routedservicesinput.xsd"
+		schemaLocation="../../xsd/v1/routedservicesinput.xsd"
 		node="//xs:element[@name = 'trip']">
 		<jaxb:class name="XMLElementRoutedTrip" />
 	</jaxb:bindings>
 	
 	<jaxb:bindings
-		schemaLocation="../xsd/routedservicesinput.xsd"
+		schemaLocation="../../xsd/v1/routedservicesinput.xsd"
 		node="//xs:element[@name = 'trips']">
 		<jaxb:class name="XMLElementRoutedTrips" />
 	</jaxb:bindings>
 	
   <jaxb:bindings
-    schemaLocation="../xsd/routedservicesinput.xsd"
+    schemaLocation="../../xsd/v1/routedservicesinput.xsd"
     node="//xs:element[@name = 'departures']">
     <jaxb:class name="XMLElementDepartures" />
   </jaxb:bindings>	

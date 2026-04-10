@@ -4,9 +4,9 @@
 
 	<!-- Only refer to one input XSD file, JAXB looks through all XSD files 
 		in the directory with default namespace -->
-	<jaxb:bindings	schemaLocation="../xsd/macroscopicinput.xsd">
+	<jaxb:bindings	schemaLocation="../../xsd/v1/macroscopicinput.xsd">
 		<jaxb:schemaBindings>
-			<jaxb:package name="org.goplanit.xml.generated" />
+			<jaxb:package name="org.goplanit.xml.generated.v1" />
 		</jaxb:schemaBindings>
 	</jaxb:bindings>
 
