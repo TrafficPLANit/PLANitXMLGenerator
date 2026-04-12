@@ -45,52 +45,33 @@
 	</xs:complexType>
 
 	<xs:complexType name="connectoidtype">
-		<xs:annotation>
-			<xs:documentation>
-				Length can be used to override geometric length computed for connectoid based on zone and physical
-				network (layer) connection.
-				When multiple zones are accessible each one gets its own access zone element
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
-			<!-- zero or more access zone elements as for OD connectoid we currently have inverted this setup
-			 and do not use this, but for transfer zones it is mandatory to have at least one-->
-			<xs:element name="accesszone" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:attribute name="ref" type="xs:string" use="required"/>
-					<xs:attribute name="lengthkm" type="xs:decimal" use="optional"/>
-					<xs:attribute name="lsrefs" type="xs:string" use="optional">
-						<xs:annotation>
-							<xs:documentation>
-								when absent all mode supporting entry link segments into the node are allowed, otherwise
-								use this subset
-							</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
-					<xs:attribute name="modes" type="xs:string" use="optional"/>
-					<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
-						<xs:annotation>
-							<xs:documentation>
-								Use type to provide additional information on how to interpret this connectoid
-								(no functional use at this point)
-							</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
-				</xs:complexType>
+			<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="length" type="xs:double" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Length can be used to override geometric length computed for connectoid based on zone and physical network (layer) connection. When multiple zones are accessible be careful using this property since it will set the same length for all accessible zones.
+					</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string" use="required"/>
 		<xs:attribute name="externalid" type="xs:string" use="optional"/>
-		<xs:attribute name="name" type="xs:string" use="optional"/>
-		<xs:attribute name="noderef" type="xs:string" use="required">
+		<xs:attribute name="modes" type="xs:string" use="optional">
 			<xs:annotation>
 				<xs:documentation>
-					Reference to the node that acts as the access point for the zone.
+					Modes that are allowed to use this access point should be provided as a comma separated list of mode XML ids. When absent it is assumed all possible modes are allowed
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none">
+			<xs:annotation>
+				<xs:documentation>
+					Use type to provide additional information on how to interpret this connectoid (no functional use at this point)
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
-
 	<!-- SIMPLE TYPES -->
 	
   <xs:simpleType name="direction">

@@ -118,8 +118,8 @@
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
-	</xs:element>	
-	
+	</xs:element>
+
 	<xs:element name="transferzoneaccess">
 		<xs:annotation>
 			<xs:documentation>
@@ -132,20 +132,49 @@
 					<xs:annotation>
 						<xs:documentation>
 							Instance of a transfer zone access point known as a connectoid, this is where we connect
-							a network layer and oneor more of its modes to a transfer zone
+							a network layer and one or more of its modes to a transfer zone
 						</xs:documentation>
 					</xs:annotation>
-			    <xs:complexType>
-			      <xs:complexContent>
-			        <xs:extension base="connectoidtype"/>
-			      </xs:complexContent>        
-			    </xs:complexType>					
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="connectoidtype">
+								<xs:attribute name="tzrefs" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>
+											transfer zone references should be provided as a comma separated list
+											of transfer zone XML ids, reflecting the zones accessible from
+											this access point. This is needed because a transfer connectoid might
+											access multiple transfer zones.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="lsref" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>
+											link segment reference should provide which link segment this access
+											point resides on. In case the underlying usage is node based, the
+											downstream node of the link segment will be utilised
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="loc" type="connectoidnodelocationtype" use="optional" default="downstream">
+									<xs:annotation>
+										<xs:documentation>
+											link segment reference should provide which link segment this access
+											point resides on. In case the underlying usage is node based, the
+											downstream node of the link segment will be utilised
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="network_ref" type="xs:string" />
+			<xs:attribute name="network_ref" type="xs:string"/>
 			<xs:attribute name="network_layer_ref" type="xs:string"/>
 		</xs:complexType>
-	</xs:element>			
+	</xs:element>
 	
 	<xs:element name="transferzonegroups">
 		<xs:annotation>

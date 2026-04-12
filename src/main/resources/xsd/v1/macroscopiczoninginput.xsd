@@ -23,29 +23,28 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	
+
 	<xs:element name="connectoid">
 		<xs:annotation>
 			<xs:documentation>
 				Each "regular" OD connectoid represents a potential point of exit/entry from/to the physical
-				network coming from the zone/centroid. There
-				must be at minimum one connectoid to be able to leave/enter the zone. Each regular connectoid
-				attaches by means of a node XML id reference. we reuse connectoid type but since it is inverted and
-				zone already known we do not have access zone entries here, instead we supplement with a single length
-				element and modes. this is to be changed in future
+				network coming from the zone/centroid. There must be at minimum one connectoid to be able to
+				leave/enter the zone. Each regular connectoid attaches by means of a node XML id reference
 			</xs:documentation>
-		</xs:annotation>				
+		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="connectoidtype">
-					<xs:sequence>
-						<xs:element name="length" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
-					</xs:sequence>
-					<xs:attribute name="modes" type="xs:string" use="optional"/>
-					<xs:attribute name="type" type="connectoidtypetype" use="optional" default="none"/>
+					<xs:attribute name="noderef" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>
+								Reference to the node that also acts as a connectoid for the zone.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 				</xs:extension>
 			</xs:complexContent>
-		</xs:complexType>				
+		</xs:complexType>
 	</xs:element>
 
 	<!-- Root element -->
