@@ -1,13 +1,16 @@
 package org.goplanit.xml.utils;
 
+import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.PropertyException;
+import jakarta.xml.bind.Unmarshaller;
 import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -39,12 +42,12 @@ public class JAXBUtils {
 	 * @throws Exception thrown if the input file fails the validation
 	 */
 	public static void validateXml(File xmlFileLocation, String schemaFileLocation) throws Exception {
-//		LOGGER.fine("validating " + xmlFileLocation.getAbsolutePath() + " against " + schemaFileLocation);
-//		String schemaLang = "http://www.w3.org/2001/XMLSchema";
-//		SchemaFactory factory = SchemaFactory.newInstance(schemaLang);
-//		Schema schema = factory.newSchema(new StreamSource(schemaFileLocation));
-//		Validator validator = schema.newValidator();
-//		validator.validate(new StreamSource(xmlFileLocation));
+		LOGGER.fine("validating " + xmlFileLocation.getAbsolutePath() + " against " + schemaFileLocation);
+		String schemaLang = "http://www.w3.org/2001/XMLSchema";
+		SchemaFactory factory = SchemaFactory.newInstance(schemaLang);
+		Schema schema = factory.newSchema(new StreamSource(schemaFileLocation));
+		Validator validator = schema.newValidator();
+		validator.validate(new StreamSource(xmlFileLocation));
 	}
 
 	/**
@@ -63,16 +66,15 @@ public class JAXBUtils {
 	 * @throws Exception thrown if the XML file is invalid or cannot be opened
 	 */
 	public static Object generateObjectFromXml(Class<?> clazz, File xmlFileLocation) throws Exception {
-//		FileReader fileReader = new FileReader(xmlFileLocation);
-//		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-//		XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
-//		JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-//		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-//		Object obj = unmarshaller.unmarshal(xmlStreamReader);
-//		xmlStreamReader.close();
-//		fileReader.close();
-//		return obj;
-		return null;
+		FileReader fileReader = new FileReader(xmlFileLocation);
+		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+		XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
+		JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		Object obj = unmarshaller.unmarshal(xmlStreamReader);
+		xmlStreamReader.close();
+		fileReader.close();
+		return obj;
 	}
 
 	/**
@@ -87,29 +89,25 @@ public class JAXBUtils {
 	 */
 	public static void generateXmlFileFromObject(
 			final Object object, Class<?> clazz, final Path xmlFileLocation, final String noNameSpaceUri) throws Exception {
-//    if (!clazz.isInstance(object)) {
-//      throw new RuntimeException("Trying to convert an object to XML which is not of class " + clazz.getName());
-//    }
-//
-//    OutputStream outputStream = new FileOutputStream(xmlFileLocation.toFile());
-//    try {
-//      JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-//      Marshaller marshaller = jaxbContext.createMarshaller();
-//
-//      /* ensure correct namespace prefixes are used when writing */
-//      setPlanitNamespacePrefixes(marshaller);
-//
-//      if(noNameSpaceUri != null && !noNameSpaceUri.isBlank()) {
-//        marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, noNameSpaceUri);
-//      }
-//
-//      marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-//      marshaller.marshal(object,outputStream);
-//    }catch(Exception e) {
-//      outputStream.close();
-//      throw e;
-//    }
-//    outputStream.close();
+
+		if (!clazz.isInstance(object)) {
+			throw new RuntimeException("Object is not of class " + clazz.getName());
+		}
+
+		// This automatically closes the stream even if an exception occurs
+		try (OutputStream outputStream = Files.newOutputStream(xmlFileLocation)) {
+			JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+			Marshaller marshaller = jaxbContext.createMarshaller();
+
+			setPlanitNamespacePrefixes(marshaller);
+
+			if (noNameSpaceUri != null && !noNameSpaceUri.isBlank()) {
+				marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, noNameSpaceUri);
+			}
+
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marshaller.marshal(object, outputStream);
+		}
 	}
 	
   /**
@@ -119,17 +117,17 @@ public class JAXBUtils {
    * @param marshaller to inject mapper on
    * @throws PropertyException thrown if error setting properties
    */
-  public static void setPlanitNamespacePrefixes(Marshaller marshaller) throws PropertyException {
+	public static void setPlanitNamespacePrefixes(Marshaller marshaller) throws PropertyException {
+		NamespacePrefixMapper mapper = new PlanitNamespacePrefixMapper();
 
-//    NamespacePrefixMapper mapper = new PlanitNamespacePrefixMapper();
-//    /* this package depends on the Java implementation, alternatively try
-//     * com.sun.xml.internal.bind.namespacePrefixMapper if this fails */
-//    try {
-//      marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", mapper);
-//    }catch(Exception e) {
-//      marshaller.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", mapper);
-//    }
-  }
+		try {
+			/* The modern Jakarta / Glassfish property key */
+			marshaller.setProperty("org.glassfish.jaxb.namespacePrefixMapper", mapper);
+		} catch (PropertyException e) {
+			/* Fallback for older environments, though unlikely in Jakarta 3.0+ */
+			marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", mapper);
+		}
+	}
 
   /** Create populated instance of class based from the first compatible potential files
    * 
@@ -140,19 +138,19 @@ public class JAXBUtils {
    */
   public static <T> T generateInstanceFromXml(Class<T> clazz, final File[] potentialXmlFileNames) {
     T result=null;
-//    for (int i = 0; i < potentialXmlFileNames.length; i++) {
-//      File currFileName = potentialXmlFileNames[i];
-//      if (result==null) {
-//        try {
-//          Object parsedXmlContent = JAXBUtils.generateObjectFromXml(clazz, currFileName);
-//          result = clazz.cast(parsedXmlContent);
-//					LOGGER.info("parsed file " + currFileName);
-//					break;
-//        } catch (final Exception e) {
-//          /* ok, just try next */
-//        }
-//      }
-//    }
+    for (int i = 0; i < potentialXmlFileNames.length; i++) {
+      File currFileName = potentialXmlFileNames[i];
+      if (result==null) {
+        try {
+          Object parsedXmlContent = JAXBUtils.generateObjectFromXml(clazz, currFileName);
+          result = clazz.cast(parsedXmlContent);
+					LOGGER.info("parsed file " + currFileName);
+					break;
+        } catch (final Exception e) {
+          /* ok, just try next */
+        }
+      }
+    }
     return result;
   }	
 	
