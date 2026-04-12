@@ -6,7 +6,7 @@
 
     <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd">
         <jaxb:schemaBindings>
-            <jaxb:package name="org.goplanit.xml.generated.v1.gml"/>
+            <jaxb:package name="net.opengis.gml"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
 

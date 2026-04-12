@@ -8,7 +8,7 @@
 
         <!-- for versioning avoiding clashes -->
         <jaxb:schemaBindings>
-          <jaxb:package name="org.goplanit.xml.generated.v2.org.w3.xlink"/>
+          <jaxb:package name="org.w3.xlink"/>
        </jaxb:schemaBindings>
 
 		<jaxb:bindings scd="/group::xlink:locatorModel/model::sequence/xlink:title">

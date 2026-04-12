@@ -83,9 +83,9 @@
 					<configuration>
 						<schemaDirectory>src/main/resources/xsd/v1</schemaDirectory>
 						<bindingDirectory>src/main/resources/xjb/v1</bindingDirectory>
-						<generatePackage>org.goplanit.xml.generated.v1</generatePackage>
 						<generateDirectory>${project.build.directory}/generated-sources/xjc-v1</generateDirectory>
 						<noFileHeader>true</noFileHeader>
+						<removeOldOutput>true</removeOldOutput>
 					</configuration>
 				</execution>
 				<execution>
@@ -99,6 +99,7 @@
 						<generatePackage>org.goplanit.xml.generated.v2</generatePackage>
 						<generateDirectory>${project.build.directory}/generated-sources/xjc-v2</generateDirectory>
 						<noFileHeader>true</noFileHeader>
+						<removeOldOutput>true</removeOldOutput>
 					</configuration>
 				</execution>
 			</executions>
