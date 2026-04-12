@@ -12,7 +12,7 @@
 
     <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/smil/smil20.xsd">
         <jaxb:schemaBindings>
-            <jaxb:package name="org.goplanit.xml.generated.v1.gml.smil"/>
+            <jaxb:package name="net.opengis.smil"/>
         </jaxb:schemaBindings>
         <jaxb:bindings node="//xs:element[@name='set']">
             <jaxb:factoryMethod name="Smil20SetElement"/>
