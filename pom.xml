@@ -75,6 +75,27 @@
 				</args>
 			</configuration>
 			<executions>
+					<execution>
+						<id>phase1-ogc-remote</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemas>
+								<schema>
+									<url>http://schemas.opengis.net/gml/3.1.1/base/gml.xsd</url>
+								</schema>
+							</schemas>
+							<bindingDirectory>src/main/resources/xjb/shared</bindingDirectory>
+							<generatePackage>net.opengis.gml</generatePackage>
+							<episode>true</episode>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-gml</generateDirectory>
+							<args>
+								<arg>-XautoNameResolution</arg>
+							</args>
+						</configuration>
+				</execution>
+
 				<execution>
 					<id>generate-v1</id>
 					<goals>
@@ -82,10 +103,25 @@
 					</goals>
 					<configuration>
 						<schemaDirectory>src/main/resources/xsd/v1</schemaDirectory>
-						<bindingDirectory>src/main/resources/xjb/v1</bindingDirectory>
+						<bindingDirectory>src/main/resources/xjb</bindingDirectory>
+						<bindings>
+							<binding>
+								<fileset>
+									<directory>${project.build.directory}/generated-sources/xjc-gml/META-INF</directory>
+									<includes>
+										<include>sun-jaxb.episode</include>
+									</includes>
+								</fileset>
+							</binding>
+						</bindings>
+						<bindingIncludes>
+							<include>v1/*.xjb</include>
+						</bindingIncludes>
+						<generatePackage>org.goplanit.xml.generated.v1</generatePackage>
 						<generateDirectory>${project.build.directory}/generated-sources/xjc-v1</generateDirectory>
-						<noFileHeader>true</noFileHeader>
-						<removeOldOutput>true</removeOldOutput>
+						<args>
+							<arg>-XautoNameResolution</arg>
+						</args>
 					</configuration>
 				</execution>
 				<execution>
@@ -95,11 +131,25 @@
 					</goals>
 					<configuration>
 						<schemaDirectory>src/main/resources/xsd/v2</schemaDirectory>
-						<bindingDirectory>src/main/resources/xjb/v2</bindingDirectory>
+						<bindingDirectory>src/main/resources/xjb</bindingDirectory>
+						<bindings>
+							<binding>
+								<fileset>
+									<directory>${project.build.directory}/generated-sources/xjc-gml/META-INF</directory>
+									<includes>
+										<include>sun-jaxb.episode</include>
+									</includes>
+								</fileset>
+							</binding>
+						</bindings>
+						<bindingIncludes>
+							<include>v2/*.xjb</include>
+						</bindingIncludes>
 						<generatePackage>org.goplanit.xml.generated.v2</generatePackage>
 						<generateDirectory>${project.build.directory}/generated-sources/xjc-v2</generateDirectory>
-						<noFileHeader>true</noFileHeader>
-						<removeOldOutput>true</removeOldOutput>
+						<args>
+							<arg>-XautoNameResolution</arg>
+						</args>
 					</configuration>
 				</execution>
 			</executions>
@@ -112,12 +162,15 @@
 				<executions>
 					<execution>
 						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals><goal>add-source</goal></goals>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
 						<configuration>
 							<sources>
 								<source>${project.build.directory}/generated-sources/xjc-v1</source>
 								<source>${project.build.directory}/generated-sources/xjc-v2</source>
+								<source>${project.build.directory}/generated-sources/xjc-gml</source>
 							</sources>
 						</configuration>
 					</execution>

@@ -1,4 +1,8 @@
-/target
+/target/lib
+/target/maven-archiver
+/target/maven-status
+/target/*.jar
+/target/classes
 /.classpath
 /.settings
 .project
