@@ -43,8 +43,8 @@ import org.w3c.dom.Element;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
  *       &lt;anyAttribute/&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -67,43 +67,46 @@ public class AnimateMotionType
     @XmlIDREF
     @XmlSchemaType(name = "IDREF")
     protected Object targetElement;
-    @XmlAttribute(name = "fill")
-    protected FillTimingAttrsType fill;
     @XmlAttribute(name = "syncBehavior")
     protected SyncBehaviorType syncBehavior;
     @XmlAttribute(name = "syncTolerance")
     protected String syncTolerance;
-    @XmlAttribute(name = "min")
-    protected String min;
-    @XmlAttribute(name = "max")
-    protected String max;
-    @XmlAttribute(name = "repeat")
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger repeat;
+    @XmlAttribute(name = "restart")
+    protected RestartTimingType restart;
+    @XmlAttribute(name = "fillDefault")
+    protected FillDefaultType fillDefault;
     @XmlAttribute(name = "repeatDur")
     protected String repeatDur;
     @XmlAttribute(name = "repeatCount")
     protected BigDecimal repeatCount;
+    @XmlAttribute(name = "repeat")
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger repeat;
+    @XmlAttribute(name = "min")
+    protected String min;
+    @XmlAttribute(name = "max")
+    protected String max;
     @XmlAttribute(name = "begin")
     protected String begin;
     @XmlAttribute(name = "end")
     protected String end;
     @XmlAttribute(name = "dur")
     protected String dur;
-    @XmlAttribute(name = "restartDefault")
-    protected RestartDefaultType restartDefault;
-    @XmlAttribute(name = "fillDefault")
-    protected FillDefaultType fillDefault;
+    @XmlAttribute(name = "fill")
+    protected FillTimingAttrsType fill;
     @XmlAttribute(name = "syncBehaviorDefault")
     protected SyncBehaviorDefaultType syncBehaviorDefault;
     @XmlAttribute(name = "syncToleranceDefault")
     protected String syncToleranceDefault;
-    @XmlAttribute(name = "restart")
-    protected RestartTimingType restart;
+    @XmlAttribute(name = "restartDefault")
+    protected RestartDefaultType restartDefault;
     @XmlAttribute(name = "skip-content")
     protected Boolean skipContent;
-    @XmlAttribute(name = "calcMode")
-    protected String calcMode;
+    @XmlAttribute(name = "alt")
+    protected String alt;
+    @XmlAttribute(name = "longdesc")
+    @XmlSchemaType(name = "anyURI")
+    protected String longdesc;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -141,11 +144,8 @@ public class AnimateMotionType
      */
     @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
     protected String lang;
-    @XmlAttribute(name = "alt")
-    protected String alt;
-    @XmlAttribute(name = "longdesc")
-    @XmlSchemaType(name = "anyURI")
-    protected String longdesc;
+    @XmlAttribute(name = "calcMode")
+    protected String calcMode;
     @XmlAnyAttribute
     private Map<QName, String> otherAttributes = new HashMap<>();
 
@@ -207,34 +207,6 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the fill property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public FillTimingAttrsType getFill() {
-        if (fill == null) {
-            return FillTimingAttrsType.DEFAULT;
-        } else {
-            return fill;
-        }
-    }
-
-    /**
-     * Sets the value of the fill property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public void setFill(FillTimingAttrsType value) {
-        this.fill = value;
-    }
-
-    /**
      * Gets the value of the syncBehavior property.
      * 
      * @return
@@ -287,75 +259,59 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the min property.
+     * Gets the value of the restart property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link RestartTimingType }
      *     
      */
-    public String getMin() {
-        return min;
+    public RestartTimingType getRestart() {
+        if (restart == null) {
+            return RestartTimingType.DEFAULT;
+        } else {
+            return restart;
+        }
     }
 
     /**
-     * Sets the value of the min property.
+     * Sets the value of the restart property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link RestartTimingType }
      *     
      */
-    public void setMin(String value) {
-        this.min = value;
+    public void setRestart(RestartTimingType value) {
+        this.restart = value;
     }
 
     /**
-     * Gets the value of the max property.
+     * Gets the value of the fillDefault property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link FillDefaultType }
      *     
      */
-    public String getMax() {
-        return max;
+    public FillDefaultType getFillDefault() {
+        if (fillDefault == null) {
+            return FillDefaultType.INHERIT;
+        } else {
+            return fillDefault;
+        }
     }
 
     /**
-     * Sets the value of the max property.
+     * Sets the value of the fillDefault property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link FillDefaultType }
      *     
      */
-    public void setMax(String value) {
-        this.max = value;
-    }
-
-    /**
-     * Gets the value of the repeat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getRepeat() {
-        return repeat;
-    }
-
-    /**
-     * Sets the value of the repeat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setRepeat(BigInteger value) {
-        this.repeat = value;
+    public void setFillDefault(FillDefaultType value) {
+        this.fillDefault = value;
     }
 
     /**
@@ -404,6 +360,78 @@ public class AnimateMotionType
      */
     public void setRepeatCount(BigDecimal value) {
         this.repeatCount = value;
+    }
+
+    /**
+     * Gets the value of the repeat property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getRepeat() {
+        return repeat;
+    }
+
+    /**
+     * Sets the value of the repeat property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setRepeat(BigInteger value) {
+        this.repeat = value;
+    }
+
+    /**
+     * Gets the value of the min property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMin() {
+        return min;
+    }
+
+    /**
+     * Sets the value of the min property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMin(String value) {
+        this.min = value;
+    }
+
+    /**
+     * Gets the value of the max property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMax() {
+        return max;
+    }
+
+    /**
+     * Sets the value of the max property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMax(String value) {
+        this.max = value;
     }
 
     /**
@@ -479,59 +507,31 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the restartDefault property.
+     * Gets the value of the fill property.
      * 
      * @return
      *     possible object is
-     *     {@link RestartDefaultType }
+     *     {@link FillTimingAttrsType }
      *     
      */
-    public RestartDefaultType getRestartDefault() {
-        if (restartDefault == null) {
-            return RestartDefaultType.INHERIT;
+    public FillTimingAttrsType getFill() {
+        if (fill == null) {
+            return FillTimingAttrsType.DEFAULT;
         } else {
-            return restartDefault;
+            return fill;
         }
     }
 
     /**
-     * Sets the value of the restartDefault property.
+     * Sets the value of the fill property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RestartDefaultType }
+     *     {@link FillTimingAttrsType }
      *     
      */
-    public void setRestartDefault(RestartDefaultType value) {
-        this.restartDefault = value;
-    }
-
-    /**
-     * Gets the value of the fillDefault property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FillDefaultType }
-     *     
-     */
-    public FillDefaultType getFillDefault() {
-        if (fillDefault == null) {
-            return FillDefaultType.INHERIT;
-        } else {
-            return fillDefault;
-        }
-    }
-
-    /**
-     * Sets the value of the fillDefault property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FillDefaultType }
-     *     
-     */
-    public void setFillDefault(FillDefaultType value) {
-        this.fillDefault = value;
+    public void setFill(FillTimingAttrsType value) {
+        this.fill = value;
     }
 
     /**
@@ -591,31 +591,31 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the restart property.
+     * Gets the value of the restartDefault property.
      * 
      * @return
      *     possible object is
-     *     {@link RestartTimingType }
+     *     {@link RestartDefaultType }
      *     
      */
-    public RestartTimingType getRestart() {
-        if (restart == null) {
-            return RestartTimingType.DEFAULT;
+    public RestartDefaultType getRestartDefault() {
+        if (restartDefault == null) {
+            return RestartDefaultType.INHERIT;
         } else {
-            return restart;
+            return restartDefault;
         }
     }
 
     /**
-     * Sets the value of the restart property.
+     * Sets the value of the restartDefault property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RestartTimingType }
+     *     {@link RestartDefaultType }
      *     
      */
-    public void setRestart(RestartTimingType value) {
-        this.restart = value;
+    public void setRestartDefault(RestartDefaultType value) {
+        this.restartDefault = value;
     }
 
     /**
@@ -647,31 +647,51 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the calcMode property.
+     * Gets the value of the alt property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCalcMode() {
-        if (calcMode == null) {
-            return "linear";
-        } else {
-            return calcMode;
-        }
+    public String getAlt() {
+        return alt;
     }
 
     /**
-     * Sets the value of the calcMode property.
+     * Sets the value of the alt property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCalcMode(String value) {
-        this.calcMode = value;
+    public void setAlt(String value) {
+        this.alt = value;
+    }
+
+    /**
+     * Gets the value of the longdesc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLongdesc() {
+        return longdesc;
+    }
+
+    /**
+     * Sets the value of the longdesc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLongdesc(String value) {
+        this.longdesc = value;
     }
 
     /**
@@ -772,51 +792,31 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the alt property.
+     * Gets the value of the calcMode property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAlt() {
-        return alt;
+    public String getCalcMode() {
+        if (calcMode == null) {
+            return "linear";
+        } else {
+            return calcMode;
+        }
     }
 
     /**
-     * Sets the value of the alt property.
+     * Sets the value of the calcMode property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAlt(String value) {
-        this.alt = value;
-    }
-
-    /**
-     * Gets the value of the longdesc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLongdesc() {
-        return longdesc;
-    }
-
-    /**
-     * Sets the value of the longdesc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLongdesc(String value) {
-        this.longdesc = value;
+    public void setCalcMode(String value) {
+        this.calcMode = value;
     }
 
     /**
