@@ -42,8 +42,8 @@ import org.w3c.dom.Element;
  *       &lt;/choice&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
  *       &lt;anyAttribute/&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -68,44 +68,6 @@ public class SetType
     protected Object targetElement;
     @XmlAttribute(name = "skip-content")
     protected Boolean skipContent;
-    @XmlAttribute(name = "syncBehavior")
-    protected SyncBehaviorType syncBehavior;
-    @XmlAttribute(name = "syncTolerance")
-    protected String syncTolerance;
-    @XmlAttribute(name = "restart")
-    protected RestartTimingType restart;
-    @XmlAttribute(name = "fillDefault")
-    protected FillDefaultType fillDefault;
-    @XmlAttribute(name = "repeatDur")
-    protected String repeatDur;
-    @XmlAttribute(name = "repeatCount")
-    protected BigDecimal repeatCount;
-    @XmlAttribute(name = "repeat")
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger repeat;
-    @XmlAttribute(name = "min")
-    protected String min;
-    @XmlAttribute(name = "max")
-    protected String max;
-    @XmlAttribute(name = "begin")
-    protected String begin;
-    @XmlAttribute(name = "end")
-    protected String end;
-    @XmlAttribute(name = "dur")
-    protected String dur;
-    @XmlAttribute(name = "fill")
-    protected FillTimingAttrsType fill;
-    @XmlAttribute(name = "syncBehaviorDefault")
-    protected SyncBehaviorDefaultType syncBehaviorDefault;
-    @XmlAttribute(name = "syncToleranceDefault")
-    protected String syncToleranceDefault;
-    @XmlAttribute(name = "restartDefault")
-    protected RestartDefaultType restartDefault;
-    @XmlAttribute(name = "alt")
-    protected String alt;
-    @XmlAttribute(name = "longdesc")
-    @XmlSchemaType(name = "anyURI")
-    protected String longdesc;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -143,6 +105,44 @@ public class SetType
      */
     @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
     protected String lang;
+    @XmlAttribute(name = "alt")
+    protected String alt;
+    @XmlAttribute(name = "longdesc")
+    @XmlSchemaType(name = "anyURI")
+    protected String longdesc;
+    @XmlAttribute(name = "syncBehaviorDefault")
+    protected SyncBehaviorDefaultType syncBehaviorDefault;
+    @XmlAttribute(name = "syncToleranceDefault")
+    protected String syncToleranceDefault;
+    @XmlAttribute(name = "begin")
+    protected String begin;
+    @XmlAttribute(name = "end")
+    protected String end;
+    @XmlAttribute(name = "dur")
+    protected String dur;
+    @XmlAttribute(name = "repeatDur")
+    protected String repeatDur;
+    @XmlAttribute(name = "repeatCount")
+    protected BigDecimal repeatCount;
+    @XmlAttribute(name = "repeat")
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger repeat;
+    @XmlAttribute(name = "min")
+    protected String min;
+    @XmlAttribute(name = "max")
+    protected String max;
+    @XmlAttribute(name = "fill")
+    protected FillTimingAttrsType fill;
+    @XmlAttribute(name = "syncBehavior")
+    protected SyncBehaviorType syncBehavior;
+    @XmlAttribute(name = "syncTolerance")
+    protected String syncTolerance;
+    @XmlAttribute(name = "restartDefault")
+    protected RestartDefaultType restartDefault;
+    @XmlAttribute(name = "fillDefault")
+    protected FillDefaultType fillDefault;
+    @XmlAttribute(name = "restart")
+    protected RestartTimingType restart;
     @XmlAnyAttribute
     private Map<QName, String> otherAttributes = new HashMap<>();
 
@@ -232,111 +232,276 @@ public class SetType
     }
 
     /**
-     * Gets the value of the syncBehavior property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SyncBehaviorType }
-     *     
-     */
-    public SyncBehaviorType getSyncBehavior() {
-        if (syncBehavior == null) {
-            return SyncBehaviorType.DEFAULT;
-        } else {
-            return syncBehavior;
-        }
-    }
-
-    /**
-     * Sets the value of the syncBehavior property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SyncBehaviorType }
-     *     
-     */
-    public void setSyncBehavior(SyncBehaviorType value) {
-        this.syncBehavior = value;
-    }
-
-    /**
-     * Gets the value of the syncTolerance property.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSyncTolerance() {
-        return syncTolerance;
+    public String getId() {
+        return id;
     }
 
     /**
-     * Sets the value of the syncTolerance property.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSyncTolerance(String value) {
-        this.syncTolerance = value;
+    public void setId(String value) {
+        this.id = value;
     }
 
     /**
-     * Gets the value of the restart property.
+     * Gets the value of the clazz property.
      * 
      * @return
      *     possible object is
-     *     {@link RestartTimingType }
+     *     {@link String }
      *     
      */
-    public RestartTimingType getRestart() {
-        if (restart == null) {
-            return RestartTimingType.DEFAULT;
+    public String getClazz() {
+        return clazz;
+    }
+
+    /**
+     * Sets the value of the clazz property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setClazz(String value) {
+        this.clazz = value;
+    }
+
+    /**
+     * &lt;pre&gt;
+     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h3&amp;gt;lang (as an attribute name)&amp;lt;/h3&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *        denotes an attribute whose value&amp;#13;
+     *        is a language code for the natural language of the content of&amp;#13;
+     *        any element; its value is inherited.  This name is reserved&amp;#13;
+     *        by virtue of its definition in the XML specification.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * &lt;pre&gt;
+     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h4&amp;gt;Notes&amp;lt;/h4&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *       Attempting to install the relevant ISO 2- and 3-letter&amp;#13;
+     *       codes as the enumerated possible values is probably never&amp;#13;
+     *       going to be a realistic possibility.  &amp;#13;
+     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *       See BCP 47 at &amp;lt;a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt"&amp;gt;&amp;#13;
+     *        http://www.rfc-editor.org/rfc/bcp/bcp47.txt&amp;lt;/a&amp;gt;&amp;#13;
+     *       and the IANA language subtag registry at&amp;#13;
+     *       &amp;lt;a href="http://www.iana.org/assignments/language-subtag-registry"&amp;gt;&amp;#13;
+     *        http://www.iana.org/assignments/language-subtag-registry&amp;lt;/a&amp;gt;&amp;#13;
+     *       for further information.&amp;#13;
+     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *       The union allows for the 'un-declaration' of xml:lang with&amp;#13;
+     *       the empty string.&amp;#13;
+     *      &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLang() {
+        return lang;
+    }
+
+    /**
+     * Sets the value of the lang property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     * @see #getLang()
+     */
+    public void setLang(String value) {
+        this.lang = value;
+    }
+
+    /**
+     * Gets the value of the alt property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAlt() {
+        return alt;
+    }
+
+    /**
+     * Sets the value of the alt property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAlt(String value) {
+        this.alt = value;
+    }
+
+    /**
+     * Gets the value of the longdesc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLongdesc() {
+        return longdesc;
+    }
+
+    /**
+     * Sets the value of the longdesc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLongdesc(String value) {
+        this.longdesc = value;
+    }
+
+    /**
+     * Gets the value of the syncBehaviorDefault property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SyncBehaviorDefaultType }
+     *     
+     */
+    public SyncBehaviorDefaultType getSyncBehaviorDefault() {
+        if (syncBehaviorDefault == null) {
+            return SyncBehaviorDefaultType.INHERIT;
         } else {
-            return restart;
+            return syncBehaviorDefault;
         }
     }
 
     /**
-     * Sets the value of the restart property.
+     * Sets the value of the syncBehaviorDefault property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RestartTimingType }
+     *     {@link SyncBehaviorDefaultType }
      *     
      */
-    public void setRestart(RestartTimingType value) {
-        this.restart = value;
+    public void setSyncBehaviorDefault(SyncBehaviorDefaultType value) {
+        this.syncBehaviorDefault = value;
     }
 
     /**
-     * Gets the value of the fillDefault property.
+     * Gets the value of the syncToleranceDefault property.
      * 
      * @return
      *     possible object is
-     *     {@link FillDefaultType }
+     *     {@link String }
      *     
      */
-    public FillDefaultType getFillDefault() {
-        if (fillDefault == null) {
-            return FillDefaultType.INHERIT;
+    public String getSyncToleranceDefault() {
+        if (syncToleranceDefault == null) {
+            return "inherit";
         } else {
-            return fillDefault;
+            return syncToleranceDefault;
         }
     }
 
     /**
-     * Sets the value of the fillDefault property.
+     * Sets the value of the syncToleranceDefault property.
      * 
      * @param value
      *     allowed object is
-     *     {@link FillDefaultType }
+     *     {@link String }
      *     
      */
-    public void setFillDefault(FillDefaultType value) {
-        this.fillDefault = value;
+    public void setSyncToleranceDefault(String value) {
+        this.syncToleranceDefault = value;
+    }
+
+    /**
+     * Gets the value of the begin property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBegin() {
+        return begin;
+    }
+
+    /**
+     * Sets the value of the begin property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBegin(String value) {
+        this.begin = value;
+    }
+
+    /**
+     * Gets the value of the end property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEnd() {
+        return end;
+    }
+
+    /**
+     * Sets the value of the end property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEnd(String value) {
+        this.end = value;
+    }
+
+    /**
+     * Gets the value of the dur property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDur() {
+        return dur;
+    }
+
+    /**
+     * Sets the value of the dur property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDur(String value) {
+        this.dur = value;
     }
 
     /**
@@ -460,78 +625,6 @@ public class SetType
     }
 
     /**
-     * Gets the value of the begin property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBegin() {
-        return begin;
-    }
-
-    /**
-     * Sets the value of the begin property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBegin(String value) {
-        this.begin = value;
-    }
-
-    /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEnd(String value) {
-        this.end = value;
-    }
-
-    /**
-     * Gets the value of the dur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDur() {
-        return dur;
-    }
-
-    /**
-     * Sets the value of the dur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDur(String value) {
-        this.dur = value;
-    }
-
-    /**
      * Gets the value of the fill property.
      * 
      * @return
@@ -560,59 +653,55 @@ public class SetType
     }
 
     /**
-     * Gets the value of the syncBehaviorDefault property.
+     * Gets the value of the syncBehavior property.
      * 
      * @return
      *     possible object is
-     *     {@link SyncBehaviorDefaultType }
+     *     {@link SyncBehaviorType }
      *     
      */
-    public SyncBehaviorDefaultType getSyncBehaviorDefault() {
-        if (syncBehaviorDefault == null) {
-            return SyncBehaviorDefaultType.INHERIT;
+    public SyncBehaviorType getSyncBehavior() {
+        if (syncBehavior == null) {
+            return SyncBehaviorType.DEFAULT;
         } else {
-            return syncBehaviorDefault;
+            return syncBehavior;
         }
     }
 
     /**
-     * Sets the value of the syncBehaviorDefault property.
+     * Sets the value of the syncBehavior property.
      * 
      * @param value
      *     allowed object is
-     *     {@link SyncBehaviorDefaultType }
+     *     {@link SyncBehaviorType }
      *     
      */
-    public void setSyncBehaviorDefault(SyncBehaviorDefaultType value) {
-        this.syncBehaviorDefault = value;
+    public void setSyncBehavior(SyncBehaviorType value) {
+        this.syncBehavior = value;
     }
 
     /**
-     * Gets the value of the syncToleranceDefault property.
+     * Gets the value of the syncTolerance property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSyncToleranceDefault() {
-        if (syncToleranceDefault == null) {
-            return "inherit";
-        } else {
-            return syncToleranceDefault;
-        }
+    public String getSyncTolerance() {
+        return syncTolerance;
     }
 
     /**
-     * Sets the value of the syncToleranceDefault property.
+     * Sets the value of the syncTolerance property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSyncToleranceDefault(String value) {
-        this.syncToleranceDefault = value;
+    public void setSyncTolerance(String value) {
+        this.syncTolerance = value;
     }
 
     /**
@@ -644,148 +733,59 @@ public class SetType
     }
 
     /**
-     * Gets the value of the alt property.
+     * Gets the value of the fillDefault property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link FillDefaultType }
      *     
      */
-    public String getAlt() {
-        return alt;
+    public FillDefaultType getFillDefault() {
+        if (fillDefault == null) {
+            return FillDefaultType.INHERIT;
+        } else {
+            return fillDefault;
+        }
     }
 
     /**
-     * Sets the value of the alt property.
+     * Sets the value of the fillDefault property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link FillDefaultType }
      *     
      */
-    public void setAlt(String value) {
-        this.alt = value;
+    public void setFillDefault(FillDefaultType value) {
+        this.fillDefault = value;
     }
 
     /**
-     * Gets the value of the longdesc property.
+     * Gets the value of the restart property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link RestartTimingType }
      *     
      */
-    public String getLongdesc() {
-        return longdesc;
+    public RestartTimingType getRestart() {
+        if (restart == null) {
+            return RestartTimingType.DEFAULT;
+        } else {
+            return restart;
+        }
     }
 
     /**
-     * Sets the value of the longdesc property.
+     * Sets the value of the restart property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link RestartTimingType }
      *     
      */
-    public void setLongdesc(String value) {
-        this.longdesc = value;
-    }
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the clazz property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getClazz() {
-        return clazz;
-    }
-
-    /**
-     * Sets the value of the clazz property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setClazz(String value) {
-        this.clazz = value;
-    }
-
-    /**
-     * &lt;pre&gt;
-     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h3&amp;gt;lang (as an attribute name)&amp;lt;/h3&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *        denotes an attribute whose value&amp;#13;
-     *        is a language code for the natural language of the content of&amp;#13;
-     *        any element; its value is inherited.  This name is reserved&amp;#13;
-     *        by virtue of its definition in the XML specification.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
-     * &lt;/pre&gt;
-     * 
-     * &lt;pre&gt;
-     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h4&amp;gt;Notes&amp;lt;/h4&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *       Attempting to install the relevant ISO 2- and 3-letter&amp;#13;
-     *       codes as the enumerated possible values is probably never&amp;#13;
-     *       going to be a realistic possibility.  &amp;#13;
-     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *       See BCP 47 at &amp;lt;a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt"&amp;gt;&amp;#13;
-     *        http://www.rfc-editor.org/rfc/bcp/bcp47.txt&amp;lt;/a&amp;gt;&amp;#13;
-     *       and the IANA language subtag registry at&amp;#13;
-     *       &amp;lt;a href="http://www.iana.org/assignments/language-subtag-registry"&amp;gt;&amp;#13;
-     *        http://www.iana.org/assignments/language-subtag-registry&amp;lt;/a&amp;gt;&amp;#13;
-     *       for further information.&amp;#13;
-     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *       The union allows for the 'un-declaration' of xml:lang with&amp;#13;
-     *       the empty string.&amp;#13;
-     *      &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
-     * &lt;/pre&gt;
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLang() {
-        return lang;
-    }
-
-    /**
-     * Sets the value of the lang property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     * @see #getLang()
-     */
-    public void setLang(String value) {
-        this.lang = value;
+    public void setRestart(RestartTimingType value) {
+        this.restart = value;
     }
 
     /**

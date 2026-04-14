@@ -3,13 +3,7 @@
                xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                jaxb:extensionBindingPrefixes="xjc">
-	
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/macroscopicintermodalinput.xsd"
-		node="//xs:element[@name = 'macroscopicintermodal']">
-		<jaxb:class name="XMLElementMacroscopicIntermodal" />
-	</jaxb:bindings>
-	
+
   <jaxb:bindings
     schemaLocation="../../xsd/v2/macroscopicintermodalinput.xsd"
     node="//xs:element[@name = 'transferzoneaccess']">

@@ -372,13 +372,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementMacroscopicIntermodal }
+     * Create an instance of {@link Macroscopicintermodal }
      * 
      * @return
-     *     the new instance of {@link XMLElementMacroscopicIntermodal }
+     *     the new instance of {@link Macroscopicintermodal }
      */
-    public XMLElementMacroscopicIntermodal createXMLElementMacroscopicIntermodal() {
-        return new XMLElementMacroscopicIntermodal();
+    public Macroscopicintermodal createMacroscopicintermodal() {
+        return new Macroscopicintermodal();
     }
 
     /**
@@ -689,16 +689,6 @@ public class ObjectFactory {
      */
     public XMLElementLinkLengthType createXMLElementLinkLengthType() {
         return new XMLElementLinkLengthType();
-    }
-
-    /**
-     * Create an instance of {@link Macroscopicintermodal }
-     * 
-     * @return
-     *     the new instance of {@link Macroscopicintermodal }
-     */
-    public Macroscopicintermodal createMacroscopicintermodal() {
-        return new Macroscopicintermodal();
     }
 
     /**

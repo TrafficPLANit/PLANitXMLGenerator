@@ -42,9 +42,9 @@ import org.w3c.dom.Element;
  *       &lt;/choice&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
  *       &lt;anyAttribute/&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -67,14 +67,16 @@ public class AnimateMotionType
     @XmlIDREF
     @XmlSchemaType(name = "IDREF")
     protected Object targetElement;
-    @XmlAttribute(name = "syncBehavior")
-    protected SyncBehaviorType syncBehavior;
-    @XmlAttribute(name = "syncTolerance")
-    protected String syncTolerance;
-    @XmlAttribute(name = "restart")
-    protected RestartTimingType restart;
-    @XmlAttribute(name = "fillDefault")
-    protected FillDefaultType fillDefault;
+    @XmlAttribute(name = "syncBehaviorDefault")
+    protected SyncBehaviorDefaultType syncBehaviorDefault;
+    @XmlAttribute(name = "syncToleranceDefault")
+    protected String syncToleranceDefault;
+    @XmlAttribute(name = "begin")
+    protected String begin;
+    @XmlAttribute(name = "end")
+    protected String end;
+    @XmlAttribute(name = "dur")
+    protected String dur;
     @XmlAttribute(name = "repeatDur")
     protected String repeatDur;
     @XmlAttribute(name = "repeatCount")
@@ -86,27 +88,18 @@ public class AnimateMotionType
     protected String min;
     @XmlAttribute(name = "max")
     protected String max;
-    @XmlAttribute(name = "begin")
-    protected String begin;
-    @XmlAttribute(name = "end")
-    protected String end;
-    @XmlAttribute(name = "dur")
-    protected String dur;
     @XmlAttribute(name = "fill")
     protected FillTimingAttrsType fill;
-    @XmlAttribute(name = "syncBehaviorDefault")
-    protected SyncBehaviorDefaultType syncBehaviorDefault;
-    @XmlAttribute(name = "syncToleranceDefault")
-    protected String syncToleranceDefault;
+    @XmlAttribute(name = "syncBehavior")
+    protected SyncBehaviorType syncBehavior;
+    @XmlAttribute(name = "syncTolerance")
+    protected String syncTolerance;
     @XmlAttribute(name = "restartDefault")
     protected RestartDefaultType restartDefault;
-    @XmlAttribute(name = "skip-content")
-    protected Boolean skipContent;
-    @XmlAttribute(name = "alt")
-    protected String alt;
-    @XmlAttribute(name = "longdesc")
-    @XmlSchemaType(name = "anyURI")
-    protected String longdesc;
+    @XmlAttribute(name = "fillDefault")
+    protected FillDefaultType fillDefault;
+    @XmlAttribute(name = "restart")
+    protected RestartTimingType restart;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -144,8 +137,15 @@ public class AnimateMotionType
      */
     @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
     protected String lang;
+    @XmlAttribute(name = "alt")
+    protected String alt;
+    @XmlAttribute(name = "longdesc")
+    @XmlSchemaType(name = "anyURI")
+    protected String longdesc;
     @XmlAttribute(name = "calcMode")
     protected String calcMode;
+    @XmlAttribute(name = "skip-content")
+    protected Boolean skipContent;
     @XmlAnyAttribute
     private Map<QName, String> otherAttributes = new HashMap<>();
 
@@ -207,111 +207,131 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the syncBehavior property.
+     * Gets the value of the syncBehaviorDefault property.
      * 
      * @return
      *     possible object is
-     *     {@link SyncBehaviorType }
+     *     {@link SyncBehaviorDefaultType }
      *     
      */
-    public SyncBehaviorType getSyncBehavior() {
-        if (syncBehavior == null) {
-            return SyncBehaviorType.DEFAULT;
+    public SyncBehaviorDefaultType getSyncBehaviorDefault() {
+        if (syncBehaviorDefault == null) {
+            return SyncBehaviorDefaultType.INHERIT;
         } else {
-            return syncBehavior;
+            return syncBehaviorDefault;
         }
     }
 
     /**
-     * Sets the value of the syncBehavior property.
+     * Sets the value of the syncBehaviorDefault property.
      * 
      * @param value
      *     allowed object is
-     *     {@link SyncBehaviorType }
+     *     {@link SyncBehaviorDefaultType }
      *     
      */
-    public void setSyncBehavior(SyncBehaviorType value) {
-        this.syncBehavior = value;
+    public void setSyncBehaviorDefault(SyncBehaviorDefaultType value) {
+        this.syncBehaviorDefault = value;
     }
 
     /**
-     * Gets the value of the syncTolerance property.
+     * Gets the value of the syncToleranceDefault property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSyncTolerance() {
-        return syncTolerance;
+    public String getSyncToleranceDefault() {
+        if (syncToleranceDefault == null) {
+            return "inherit";
+        } else {
+            return syncToleranceDefault;
+        }
     }
 
     /**
-     * Sets the value of the syncTolerance property.
+     * Sets the value of the syncToleranceDefault property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSyncTolerance(String value) {
-        this.syncTolerance = value;
+    public void setSyncToleranceDefault(String value) {
+        this.syncToleranceDefault = value;
     }
 
     /**
-     * Gets the value of the restart property.
+     * Gets the value of the begin property.
      * 
      * @return
      *     possible object is
-     *     {@link RestartTimingType }
+     *     {@link String }
      *     
      */
-    public RestartTimingType getRestart() {
-        if (restart == null) {
-            return RestartTimingType.DEFAULT;
-        } else {
-            return restart;
-        }
+    public String getBegin() {
+        return begin;
     }
 
     /**
-     * Sets the value of the restart property.
+     * Sets the value of the begin property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RestartTimingType }
+     *     {@link String }
      *     
      */
-    public void setRestart(RestartTimingType value) {
-        this.restart = value;
+    public void setBegin(String value) {
+        this.begin = value;
     }
 
     /**
-     * Gets the value of the fillDefault property.
+     * Gets the value of the end property.
      * 
      * @return
      *     possible object is
-     *     {@link FillDefaultType }
+     *     {@link String }
      *     
      */
-    public FillDefaultType getFillDefault() {
-        if (fillDefault == null) {
-            return FillDefaultType.INHERIT;
-        } else {
-            return fillDefault;
-        }
+    public String getEnd() {
+        return end;
     }
 
     /**
-     * Sets the value of the fillDefault property.
+     * Sets the value of the end property.
      * 
      * @param value
      *     allowed object is
-     *     {@link FillDefaultType }
+     *     {@link String }
      *     
      */
-    public void setFillDefault(FillDefaultType value) {
-        this.fillDefault = value;
+    public void setEnd(String value) {
+        this.end = value;
+    }
+
+    /**
+     * Gets the value of the dur property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDur() {
+        return dur;
+    }
+
+    /**
+     * Sets the value of the dur property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDur(String value) {
+        this.dur = value;
     }
 
     /**
@@ -435,78 +455,6 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the begin property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBegin() {
-        return begin;
-    }
-
-    /**
-     * Sets the value of the begin property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBegin(String value) {
-        this.begin = value;
-    }
-
-    /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEnd(String value) {
-        this.end = value;
-    }
-
-    /**
-     * Gets the value of the dur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDur() {
-        return dur;
-    }
-
-    /**
-     * Sets the value of the dur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDur(String value) {
-        this.dur = value;
-    }
-
-    /**
      * Gets the value of the fill property.
      * 
      * @return
@@ -535,59 +483,55 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the syncBehaviorDefault property.
+     * Gets the value of the syncBehavior property.
      * 
      * @return
      *     possible object is
-     *     {@link SyncBehaviorDefaultType }
+     *     {@link SyncBehaviorType }
      *     
      */
-    public SyncBehaviorDefaultType getSyncBehaviorDefault() {
-        if (syncBehaviorDefault == null) {
-            return SyncBehaviorDefaultType.INHERIT;
+    public SyncBehaviorType getSyncBehavior() {
+        if (syncBehavior == null) {
+            return SyncBehaviorType.DEFAULT;
         } else {
-            return syncBehaviorDefault;
+            return syncBehavior;
         }
     }
 
     /**
-     * Sets the value of the syncBehaviorDefault property.
+     * Sets the value of the syncBehavior property.
      * 
      * @param value
      *     allowed object is
-     *     {@link SyncBehaviorDefaultType }
+     *     {@link SyncBehaviorType }
      *     
      */
-    public void setSyncBehaviorDefault(SyncBehaviorDefaultType value) {
-        this.syncBehaviorDefault = value;
+    public void setSyncBehavior(SyncBehaviorType value) {
+        this.syncBehavior = value;
     }
 
     /**
-     * Gets the value of the syncToleranceDefault property.
+     * Gets the value of the syncTolerance property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSyncToleranceDefault() {
-        if (syncToleranceDefault == null) {
-            return "inherit";
-        } else {
-            return syncToleranceDefault;
-        }
+    public String getSyncTolerance() {
+        return syncTolerance;
     }
 
     /**
-     * Sets the value of the syncToleranceDefault property.
+     * Sets the value of the syncTolerance property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSyncToleranceDefault(String value) {
-        this.syncToleranceDefault = value;
+    public void setSyncTolerance(String value) {
+        this.syncTolerance = value;
     }
 
     /**
@@ -619,79 +563,59 @@ public class AnimateMotionType
     }
 
     /**
-     * Gets the value of the skipContent property.
+     * Gets the value of the fillDefault property.
      * 
      * @return
      *     possible object is
-     *     {@link Boolean }
+     *     {@link FillDefaultType }
      *     
      */
-    public boolean isSkipContent() {
-        if (skipContent == null) {
-            return true;
+    public FillDefaultType getFillDefault() {
+        if (fillDefault == null) {
+            return FillDefaultType.INHERIT;
         } else {
-            return skipContent;
+            return fillDefault;
         }
     }
 
     /**
-     * Sets the value of the skipContent property.
+     * Sets the value of the fillDefault property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Boolean }
+     *     {@link FillDefaultType }
      *     
      */
-    public void setSkipContent(Boolean value) {
-        this.skipContent = value;
+    public void setFillDefault(FillDefaultType value) {
+        this.fillDefault = value;
     }
 
     /**
-     * Gets the value of the alt property.
+     * Gets the value of the restart property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link RestartTimingType }
      *     
      */
-    public String getAlt() {
-        return alt;
+    public RestartTimingType getRestart() {
+        if (restart == null) {
+            return RestartTimingType.DEFAULT;
+        } else {
+            return restart;
+        }
     }
 
     /**
-     * Sets the value of the alt property.
+     * Sets the value of the restart property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link RestartTimingType }
      *     
      */
-    public void setAlt(String value) {
-        this.alt = value;
-    }
-
-    /**
-     * Gets the value of the longdesc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLongdesc() {
-        return longdesc;
-    }
-
-    /**
-     * Sets the value of the longdesc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLongdesc(String value) {
-        this.longdesc = value;
+    public void setRestart(RestartTimingType value) {
+        this.restart = value;
     }
 
     /**
@@ -792,6 +716,54 @@ public class AnimateMotionType
     }
 
     /**
+     * Gets the value of the alt property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAlt() {
+        return alt;
+    }
+
+    /**
+     * Sets the value of the alt property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAlt(String value) {
+        this.alt = value;
+    }
+
+    /**
+     * Gets the value of the longdesc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLongdesc() {
+        return longdesc;
+    }
+
+    /**
+     * Sets the value of the longdesc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLongdesc(String value) {
+        this.longdesc = value;
+    }
+
+    /**
      * Gets the value of the calcMode property.
      * 
      * @return
@@ -817,6 +789,34 @@ public class AnimateMotionType
      */
     public void setCalcMode(String value) {
         this.calcMode = value;
+    }
+
+    /**
+     * Gets the value of the skipContent property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isSkipContent() {
+        if (skipContent == null) {
+            return true;
+        } else {
+            return skipContent;
+        }
+    }
+
+    /**
+     * Sets the value of the skipContent property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setSkipContent(Boolean value) {
+        this.skipContent = value;
     }
 
     /**

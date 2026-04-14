@@ -50,6 +50,12 @@
 			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
 
+		<!-- XML versioning wrapping -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -65,96 +71,123 @@
 
 		<plugins>
 			<plugin>
-			<groupId>org.jvnet.jaxb</groupId>
-			<artifactId>jaxb-maven-plugin</artifactId>
-			<version>4.0.12</version>
-			<configuration>
-				<extension>true</extension>
-				<args>
-					<arg>-XautoNameResolution</arg>
-				</args>
-			</configuration>
-			<executions>
+
+				<!-- make sure dirs exist so they can be marked as source dirs later for IDE -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
 					<execution>
-						<id>phase1-ogc-remote</id>
+						<id>create-generated-dirs</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<mkdir dir="${project.build.directory}/generated-sources/xjc-v1" />
+								<mkdir dir="${project.build.directory}/generated-sources/xjc-v2" />
+								<mkdir dir="${project.build.directory}/generated-sources/xjc-gml" />
+								<mkdir dir="${project.build.directory}/generated-sources/annotations" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- generate JAXB XML generated classes in versioned way and pulling in GML -->
+			<plugin>
+				<groupId>org.jvnet.jaxb</groupId>
+				<artifactId>jaxb-maven-plugin</artifactId>
+				<version>4.0.12</version>
+				<configuration>
+					<extension>true</extension>
+					<args>
+						<arg>-XautoNameResolution</arg>
+					</args>
+				</configuration>
+				<executions>
+						<execution>
+							<id>phase1-ogc-remote</id>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+							<configuration>
+								<schemas>
+									<schema>
+										<url>http://schemas.opengis.net/gml/3.1.1/base/gml.xsd</url>
+									</schema>
+								</schemas>
+								<bindingDirectory>src/main/resources/xjb/shared</bindingDirectory>
+								<generatePackage>net.opengis.gml</generatePackage>
+								<episode>true</episode>
+								<generateDirectory>${project.build.directory}/generated-sources/xjc-gml</generateDirectory>
+								<args>
+									<arg>-XautoNameResolution</arg>
+								</args>
+							</configuration>
+					</execution>
+
+					<execution>
+						<id>generate-v1</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<schemas>
-								<schema>
-									<url>http://schemas.opengis.net/gml/3.1.1/base/gml.xsd</url>
-								</schema>
-							</schemas>
-							<bindingDirectory>src/main/resources/xjb/shared</bindingDirectory>
-							<generatePackage>net.opengis.gml</generatePackage>
-							<episode>true</episode>
-							<generateDirectory>${project.build.directory}/generated-sources/xjc-gml</generateDirectory>
+							<schemaDirectory>src/main/resources/xsd/v1</schemaDirectory>
+							<bindingDirectory>src/main/resources/xjb</bindingDirectory>
+							<bindings>
+								<binding>
+									<fileset>
+										<directory>${project.build.directory}/generated-sources/xjc-gml/META-INF</directory>
+										<includes>
+											<include>sun-jaxb.episode</include>
+										</includes>
+									</fileset>
+								</binding>
+							</bindings>
+							<bindingIncludes>
+								<include>v1/*.xjb</include>
+							</bindingIncludes>
+							<generatePackage>org.goplanit.xml.generated.v1</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-v1</generateDirectory>
 							<args>
 								<arg>-XautoNameResolution</arg>
 							</args>
 						</configuration>
-				</execution>
+					</execution>
+					<execution>
+						<id>generate-v2</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/xsd/v2</schemaDirectory>
+							<bindingDirectory>src/main/resources/xjb</bindingDirectory>
+							<bindings>
+								<binding>
+									<fileset>
+										<directory>${project.build.directory}/generated-sources/xjc-gml/META-INF</directory>
+										<includes>
+											<include>sun-jaxb.episode</include>
+										</includes>
+									</fileset>
+								</binding>
+							</bindings>
+							<bindingIncludes>
+								<include>v2/*.xjb</include>
+							</bindingIncludes>
+							<generatePackage>org.goplanit.xml.generated.v2</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-v2</generateDirectory>
+							<args>
+								<arg>-XautoNameResolution</arg>
+							</args>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-				<execution>
-					<id>generate-v1</id>
-					<goals>
-						<goal>generate</goal>
-					</goals>
-					<configuration>
-						<schemaDirectory>src/main/resources/xsd/v1</schemaDirectory>
-						<bindingDirectory>src/main/resources/xjb</bindingDirectory>
-						<bindings>
-							<binding>
-								<fileset>
-									<directory>${project.build.directory}/generated-sources/xjc-gml/META-INF</directory>
-									<includes>
-										<include>sun-jaxb.episode</include>
-									</includes>
-								</fileset>
-							</binding>
-						</bindings>
-						<bindingIncludes>
-							<include>v1/*.xjb</include>
-						</bindingIncludes>
-						<generatePackage>org.goplanit.xml.generated.v1</generatePackage>
-						<generateDirectory>${project.build.directory}/generated-sources/xjc-v1</generateDirectory>
-						<args>
-							<arg>-XautoNameResolution</arg>
-						</args>
-					</configuration>
-				</execution>
-				<execution>
-					<id>generate-v2</id>
-					<goals>
-						<goal>generate</goal>
-					</goals>
-					<configuration>
-						<schemaDirectory>src/main/resources/xsd/v2</schemaDirectory>
-						<bindingDirectory>src/main/resources/xjb</bindingDirectory>
-						<bindings>
-							<binding>
-								<fileset>
-									<directory>${project.build.directory}/generated-sources/xjc-gml/META-INF</directory>
-									<includes>
-										<include>sun-jaxb.episode</include>
-									</includes>
-								</fileset>
-							</binding>
-						</bindings>
-						<bindingIncludes>
-							<include>v2/*.xjb</include>
-						</bindingIncludes>
-						<generatePackage>org.goplanit.xml.generated.v2</generatePackage>
-						<generateDirectory>${project.build.directory}/generated-sources/xjc-v2</generateDirectory>
-						<args>
-							<arg>-XautoNameResolution</arg>
-						</args>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-
+			<!-- populate in correct spot -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -175,6 +208,24 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<!-- wrap common versioned classes into version agnostic classes for usage -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${maven.compiler.java.version}</source>
+					<target>${maven.compiler.java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${org.mapstruct.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 			</plugin>
 
 			<plugin>
