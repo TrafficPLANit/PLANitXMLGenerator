@@ -33,34 +33,6 @@ public class JAXBUtils {
   private static final Logger LOGGER = Logger.getLogger(JAXBUtils.class.getCanonicalName());
 
 	/**
-	 * Unmarshals an XML file and automatically normalizes it to the V2 model
-	 * if it happens to be a V1 file.
-	 * * @param xmlFileLocation the file to parse
-	 * @return A V2 PLANit object, regardless of whether the source was V1 or V2
-	 */
-	public static Object unmarshalAndNormalize(
-			File xmlFileLocation, Class<?> v1RootElementClzz, Class<?> v2RootElementClzz ) throws Exception {
-
-		// 1. Create a context that knows about BOTH V1 and V2 root elements
-		// This is necessary so the unmarshaller can recognize either version.
-		JAXBContext jaxbContext = JAXBContext.newInstance(v1RootElementClzz, v2RootElementClzz);
-
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
-		// Use a stream to be safe with file handles
-		try (FileReader fileReader = new FileReader(xmlFileLocation)) {
-			XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-			XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
-
-			Object rawObject = unmarshaller.unmarshal(xmlStreamReader);
-			xmlStreamReader.close();
-
-			// 2. Pass to the normalization logic
-			return normalizeToV2(rawObject);
-		}
-	}
-
-	/**
 	 * Normalizes a raw JAXB object to V2.
 	 *
 	 * @param rawPlanitXmlObjectOfSomeVersion the Xml raw object of some version
@@ -179,66 +151,6 @@ public class JAXBUtils {
 		validator.validate(new StreamSource(xmlFileLocation));
 	}
 
-	/**
-	 * Generates a Java object populated with the data from an XML input file.
-	 * 
-	 * This method creates a JAXB Unmarshaller object which it uses to populate the
-	 * Java class.
-	 * 
-	 * The output object will be of a generated class, created from the same XSD
-	 * file which is used to validate the input XML file.
-	 * 
-	 * @param clazz           Class of the object to be populated
-	 * @param xmlFileLocation location of the input XML file
-	 * @return an instance of the output class, populated with the data from the XML
-	 *         file.
-	 * @throws Exception thrown if the XML file is invalid or cannot be opened
-	 */
-	public static Object generateObjectFromXml(Class<?> clazz, File xmlFileLocation) throws Exception {
-		FileReader fileReader = new FileReader(xmlFileLocation);
-		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-		XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
-		JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		Object obj = unmarshaller.unmarshal(xmlStreamReader);
-		xmlStreamReader.close();
-		fileReader.close();
-		return obj;
-	}
-
-	/**
-	 * Creates an XML output file populated with data from an Object
-	 * 
-	 * @param object input object containing the data to be written to the XML file
-	 * @param clazz Class of the object containing the data
-	 * @param xmlFileLocation location of the output XML file
-	 * @param noNameSpaceUri the namespace uri to use for the default namespace schema (no prefix), not used when null 
-	 * @throws Exception thrown if the object is not of the correct class, or the
-	 *                   output file cannot be opened
-	 */
-	public static void generateXmlFileFromObject(
-			final Object object, Class<?> clazz, final Path xmlFileLocation, final String noNameSpaceUri) throws Exception {
-
-		if (!clazz.isInstance(object)) {
-			throw new RuntimeException("Object is not of class " + clazz.getName());
-		}
-
-		// This automatically closes the stream even if an exception occurs
-		try (OutputStream outputStream = Files.newOutputStream(xmlFileLocation)) {
-			JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-			Marshaller marshaller = jaxbContext.createMarshaller();
-
-			setPlanitNamespacePrefixes(marshaller);
-
-			if (noNameSpaceUri != null && !noNameSpaceUri.isBlank()) {
-				marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, noNameSpaceUri);
-			}
-
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			marshaller.marshal(object, outputStream);
-		}
-	}
-	
   /**
    * Let any marshaller use the PLANit preferred prefixes for namespaces that it uses. the namespaces used
    * are based on a custom implementation of a NamespacePrefixMapper {@link PlanitNamespacePrefixMapper}
@@ -258,21 +170,26 @@ public class JAXBUtils {
 		}
 	}
 
-  /** Create populated instance of class based from the first compatible potential files
+  /** Create populated instance of class based from the first compatible potential files and return normalised
+   * latest version
    * 
-   * @param <T> raw XML to find
-   * @param clazz of type T
+   * @param <LATEST> raw XML to find
+   * @param clazzV2 of type LATEST
+   * @param clazzV1 of type LEGACY
    * @param potentialXmlFileNames to search among
    * @return parsed result, null if not found
    */
-  public static <T> T generateInstanceFromXml(Class<T> clazz, final File[] potentialXmlFileNames) {
-    T result=null;
+  public static <LATEST, LEGACY> LATEST generateInstanceFromXml(
+		  final File[] potentialXmlFileNames, Class<LATEST> clazzV2, Class<LEGACY> clazzV1) {
+    LATEST result=null;
     for (int i = 0; i < potentialXmlFileNames.length; i++) {
       File currFileName = potentialXmlFileNames[i];
       if (result==null) {
         try {
-          Object parsedXmlContent = JAXBUtils.generateObjectFromXml(clazz, currFileName);
-          result = clazz.cast(parsedXmlContent);
+			Object parsedXmlContent = JAXBUtils.unmarshalAndNormalize(currFileName, clazzV2, clazzV1);
+          	//Object parsedXmlContent = JAXBUtils.generateObjectFromXml(clazz, currFileName);
+
+			result = clazzV2.cast(parsedXmlContent);
 					LOGGER.info("parsed file " + currFileName);
 					break;
         } catch (final Exception e) {
@@ -281,6 +198,146 @@ public class JAXBUtils {
       }
     }
     return result;
-  }	
+  }
+
+	/**
+	 * Unmarshalls an XML file and automatically normalizes it to the V2 model
+	 * if it happens to be a V1 file.
+	 * * @param xmlFileLocation the file to parse
+	 * @return A V2 PLANit object, regardless of whether the source was V1 or V2
+	 */
+	public static Object unmarshalAndNormalize(
+			File xmlFileLocation, Class<?> v1RootElementClzz, Class<?> v2RootElementClzz ) throws Exception {
+
+		// 1. Create a context that knows about BOTH V1 and V2 root elements
+		// This is necessary so the unmarshaller can recognize either version.
+		JAXBContext jaxbContext = JAXBContext.newInstance(v1RootElementClzz, v2RootElementClzz);
+
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+		// Use a stream to be safe with file handles
+		try (FileReader fileReader = new FileReader(xmlFileLocation)) {
+			XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+			XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
+
+			Object rawObject = unmarshaller.unmarshal(xmlStreamReader);
+			xmlStreamReader.close();
+
+			// 2. Pass to the normalization logic
+			return normalizeToV2(rawObject);
+		}
+	}
+
+	// todo remove once confirmed it is replaced by unmarshalAndNormalize
+//	/**
+//	 * Generates a Java object populated with the data from an XML input file.
+//	 *
+//	 * This method creates a JAXB Unmarshaller object which it uses to populate the
+//	 * Java class.
+//	 *
+//	 * The output object will be of a generated class, created from the same XSD
+//	 * file which is used to validate the input XML file.
+//	 *
+//	 * @param clazz           Class of the object to be populated
+//	 * @param xmlFileLocation location of the input XML file
+//	 * @return an instance of the output class, populated with the data from the XML
+//	 *         file.
+//	 * @throws Exception thrown if the XML file is invalid or cannot be opened
+//	 */
+//	public static Object generateObjectFromXml(Class<?> clazz, File xmlFileLocation) throws Exception {
+//		FileReader fileReader = new FileReader(xmlFileLocation);
+//		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+//		XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
+//		JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+//		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+//		Object obj = unmarshaller.unmarshal(xmlStreamReader);
+//		xmlStreamReader.close();
+//		fileReader.close();
+//		return obj;
+//	}
+
+	/**
+	 * Marshalls a v2 XML (root) element  to XML file
+	 *
+	 * @param latestVersionObject input object containing the data to be written to the XML file
+	 * @param expectedVersionedClazz Class of the object containing the data
+	 * @param xmlFileLocation location of the output XML file
+	 * @param noNameSpaceUri the namespace uri to use for the default namespace schema (no prefix), not used when null
+	 * @throws Exception thrown if the object is not of the correct class, or the
+	 *                   output file cannot be opened
+	 */
+	public static <T> void marshalAndNormalize(
+			final Object latestVersionObject,
+			Class<T> expectedVersionedClazz,
+			final Path xmlFileLocation,
+			final String noNameSpaceUri) throws Exception {
+
+		if (latestVersionObject == null) {
+			throw new IllegalArgumentException("Cannot marshal a null object.");
+		}
+
+		// 1. Double check we are actually dealing with a V2 object
+		// If your logic somehow still has V1 objects in memory,
+		// we normalize them one last time before saving.
+		Object objectToMarshal = latestVersionObject;
+		if (!(expectedVersionedClazz.isInstance(latestVersionObject))) {
+			LOGGER.info("Object to marshal is not an instance of " + expectedVersionedClazz.getName() +
+					". Attempting final normalization...");
+			objectToMarshal = normalizeToV2(latestVersionObject);
+		}
+
+		// 2. Use the existing marshalling logic standardizing on V2
+		try (OutputStream outputStream = Files.newOutputStream(xmlFileLocation)) {
+			// We only need the V2 class here because we are persisting to V2
+			JAXBContext jaxbContext = JAXBContext.newInstance(expectedVersionedClazz);
+			Marshaller marshaller = jaxbContext.createMarshaller();
+
+			// Use your existing prefix mapper for consistent XML output
+			setPlanitNamespacePrefixes(marshaller);
+
+			if (noNameSpaceUri != null && !noNameSpaceUri.isBlank()) {
+				marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, noNameSpaceUri);
+			}
+
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+			// Final sanity check for Windows paths / encoding issues
+			marshaller.marshal(objectToMarshal, outputStream);
+		}
+	}
+
+	// todo remove once confirmed it is replaced by marshalAndNormalize
+//	/**
+//	 * Creates an XML output file populated with data from an Object
+//	 *
+//	 * @param object input object containing the data to be written to the XML file
+//	 * @param clazz Class of the object containing the data
+//	 * @param xmlFileLocation location of the output XML file
+//	 * @param noNameSpaceUri the namespace uri to use for the default namespace schema (no prefix), not used when null
+//	 * @throws Exception thrown if the object is not of the correct class, or the
+//	 *                   output file cannot be opened
+//	 */
+//	public static void generateXmlFileFromObject(
+//			final Object object, Class<?> clazz, final Path xmlFileLocation, final String noNameSpaceUri) throws Exception {
+//
+//		if (!clazz.isInstance(object)) {
+//			throw new RuntimeException("Object is not of class " + clazz.getName());
+//		}
+//
+//		// This automatically closes the stream even if an exception occurs
+//		try (OutputStream outputStream = Files.newOutputStream(xmlFileLocation)) {
+//			JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+//			Marshaller marshaller = jaxbContext.createMarshaller();
+//
+//			setPlanitNamespacePrefixes(marshaller);
+//
+//			if (noNameSpaceUri != null && !noNameSpaceUri.isBlank()) {
+//				marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, noNameSpaceUri);
+//			}
+//
+//			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+//			marshaller.marshal(object, outputStream);
+//		}
+//	}
 	
 }
