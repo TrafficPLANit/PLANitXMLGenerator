@@ -5,14 +5,8 @@ import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.PropertyException;
 import jakarta.xml.bind.Unmarshaller;
 import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.logging.Logger;
+import org.goplanit.xml.generated.v2.*;
+import org.goplanit.xml.mapstruct.PlanitVersionNormalizationMapper;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
@@ -20,6 +14,12 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+import java.io.File;
+import java.io.FileReader;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.logging.Logger;
 
 /**
  * Utility methods for parsing XML data
@@ -30,7 +30,136 @@ import javax.xml.validation.Validator;
 public class JAXBUtils {
     
   /** the logger */
-  public static final Logger LOGGER = Logger.getLogger(JAXBUtils.class.getCanonicalName());   
+  private static final Logger LOGGER = Logger.getLogger(JAXBUtils.class.getCanonicalName());
+
+	/**
+	 * Unmarshals an XML file and automatically normalizes it to the V2 model
+	 * if it happens to be a V1 file.
+	 * * @param xmlFileLocation the file to parse
+	 * @return A V2 PLANit object, regardless of whether the source was V1 or V2
+	 */
+	public static Object unmarshalAndNormalize(
+			File xmlFileLocation, Class<?> v1RootElementClzz, Class<?> v2RootElementClzz ) throws Exception {
+
+		// 1. Create a context that knows about BOTH V1 and V2 root elements
+		// This is necessary so the unmarshaller can recognize either version.
+		JAXBContext jaxbContext = JAXBContext.newInstance(v1RootElementClzz, v2RootElementClzz);
+
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+		// Use a stream to be safe with file handles
+		try (FileReader fileReader = new FileReader(xmlFileLocation)) {
+			XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+			XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
+
+			Object rawObject = unmarshaller.unmarshal(xmlStreamReader);
+			xmlStreamReader.close();
+
+			// 2. Pass to the normalization logic
+			return normalizeToV2(rawObject);
+		}
+	}
+
+	/**
+	 * Normalizes a raw JAXB object to V2.
+	 *
+	 * @param rawPlanitXmlObjectOfSomeVersion the Xml raw object of some version
+	 */
+	private static Object normalizeToV2(Object rawPlanitXmlObjectOfSomeVersion) {
+		// overarching PLANitInput (combined)
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementPLANit) {
+				// MapStruct 'default' method returns the same reference (Zero memory cost)
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel((XMLElementPLANit)rawPlanitXmlObjectOfSomeVersion);
+			}
+			if (rawPlanitXmlObjectOfSomeVersion instanceof org.goplanit.xml.generated.v1.XMLElementPLANit) {
+				LOGGER.info("Legacy V1 XML detected. Normalizing to V2...");
+				// MapStruct performs the conversion to V2
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(org.goplanit.xml.generated.v1.XMLElementPLANit) rawPlanitXmlObjectOfSomeVersion);
+			}
+		}
+		// .. same for other top level candidates
+
+		// intermodal
+		// route service
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof Macroscopicintermodal) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(Macroscopicintermodal)rawPlanitXmlObjectOfSomeVersion);
+			}
+			if (rawPlanitXmlObjectOfSomeVersion instanceof org.goplanit.xml.generated.v1.Macroscopicintermodal) {
+				LOGGER.info("Legacy V1 XML intermodal (combined network and zoning with pt) detected." +
+						" Normalizing to V2...");
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(org.goplanit.xml.generated.v1.Macroscopicintermodal) rawPlanitXmlObjectOfSomeVersion);
+			}
+		}
+
+		// network
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementMacroscopicNetwork) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(XMLElementMacroscopicNetwork)rawPlanitXmlObjectOfSomeVersion);
+			}
+			if (rawPlanitXmlObjectOfSomeVersion instanceof org.goplanit.xml.generated.v1.XMLElementMacroscopicNetwork) {
+				LOGGER.info("Legacy V1 XML network detected. Normalizing to V2...");
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(org.goplanit.xml.generated.v1.XMLElementMacroscopicNetwork) rawPlanitXmlObjectOfSomeVersion);
+			}
+		}
+		//zoning
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementMacroscopicZoning) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(XMLElementMacroscopicZoning)rawPlanitXmlObjectOfSomeVersion);
+			}
+			if (rawPlanitXmlObjectOfSomeVersion instanceof org.goplanit.xml.generated.v1.XMLElementMacroscopicZoning) {
+				LOGGER.info("Legacy V1 XML zoning detected. Normalizing to V2...");
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(org.goplanit.xml.generated.v1.XMLElementMacroscopicZoning) rawPlanitXmlObjectOfSomeVersion);
+			}
+		}
+		// Demands
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementMacroscopicDemand) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(XMLElementMacroscopicDemand)rawPlanitXmlObjectOfSomeVersion);
+			}
+			if (rawPlanitXmlObjectOfSomeVersion instanceof org.goplanit.xml.generated.v1.XMLElementMacroscopicDemand) {
+				LOGGER.info("Legacy V1 XML demands detected. Normalizing to V2...");
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(org.goplanit.xml.generated.v1.XMLElementMacroscopicDemand) rawPlanitXmlObjectOfSomeVersion);
+			}
+		}
+		// service network
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementServiceNetwork) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(XMLElementServiceNetwork)rawPlanitXmlObjectOfSomeVersion);
+			}
+			if (rawPlanitXmlObjectOfSomeVersion instanceof org.goplanit.xml.generated.v1.XMLElementServiceNetwork) {
+				LOGGER.info("Legacy V1 XML service network detected. Normalizing to V2...");
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(org.goplanit.xml.generated.v1.XMLElementServiceNetwork) rawPlanitXmlObjectOfSomeVersion);
+			}
+		}
+		// route service
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementRoutedServices) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(XMLElementRoutedServices)rawPlanitXmlObjectOfSomeVersion);
+			}
+			if (rawPlanitXmlObjectOfSomeVersion instanceof org.goplanit.xml.generated.v1.XMLElementRoutedServices) {
+				LOGGER.info("Legacy V1 XML routed services detected. Normalizing to V2...");
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(org.goplanit.xml.generated.v1.XMLElementRoutedServices) rawPlanitXmlObjectOfSomeVersion);
+			}
+		}
+
+		throw new IllegalArgumentException("Unsupported PLANit XML root type: " +
+				rawPlanitXmlObjectOfSomeVersion.getClass().getName());
+	}
   
 	/**
 	 * Method to validate an XML input file against an XSD schema using Java XML

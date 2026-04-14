@@ -4,6 +4,11 @@ import org.goplanit.xml.generated.v2.ObjectFactory;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * Uses MapStruct lbrary to expose functionality to map all legacy versions to the most recent version which then will
+ * be used in PLANitIO for actual parsing. This way the business logic will never rely on legacy version for the
+ * conversion for the memory model while still being able to parse older versions
+ */
 @Mapper(uses = {ObjectFactory.class, PolymorphicResolver.class})
 public interface PlanitVersionNormalizationMapper {
     PlanitVersionNormalizationMapper INSTANCE = Mappers.getMapper(PlanitVersionNormalizationMapper.class);
@@ -27,6 +32,21 @@ public interface PlanitVersionNormalizationMapper {
     {
         return source;
     }
+    default org.goplanit.xml.generated.v2.XMLElementServiceNetwork toModel(
+            org.goplanit.xml.generated.v2.XMLElementServiceNetwork source)
+    {
+        return source;
+    }
+    default org.goplanit.xml.generated.v2.XMLElementRoutedServices toModel(
+            org.goplanit.xml.generated.v2.XMLElementRoutedServices source)
+    {
+        return source;
+    }
+    default org.goplanit.xml.generated.v2.Macroscopicintermodal toModel(
+            org.goplanit.xml.generated.v2.Macroscopicintermodal source)
+    {
+        return source;
+    }
 
     // --- Entry Points for V1 ---
     // Repeat for V1 package...
@@ -38,4 +58,10 @@ public interface PlanitVersionNormalizationMapper {
             org.goplanit.xml.generated.v1.XMLElementMacroscopicDemand source);
     org.goplanit.xml.generated.v2.XMLElementMacroscopicZoning toModel(
             org.goplanit.xml.generated.v1.XMLElementMacroscopicZoning source);
+    org.goplanit.xml.generated.v2.XMLElementServiceNetwork toModel(
+            org.goplanit.xml.generated.v1.XMLElementServiceNetwork source);
+    org.goplanit.xml.generated.v2.XMLElementRoutedServices toModel(
+            org.goplanit.xml.generated.v1.XMLElementRoutedServices source);
+    org.goplanit.xml.generated.v2.Macroscopicintermodal toModel(
+            org.goplanit.xml.generated.v1.Macroscopicintermodal source);
 }
