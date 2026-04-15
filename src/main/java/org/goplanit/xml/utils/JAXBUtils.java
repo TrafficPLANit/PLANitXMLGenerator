@@ -21,6 +21,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import static org.goplanit.xml.utils.PlanitNamespacePrefixMapper.NAMESPACE_V1_URI;
+
 /**
  * Utility methods for parsing XML data
  * 
@@ -132,6 +134,27 @@ public class JAXBUtils {
 		throw new IllegalArgumentException("Unsupported PLANit XML root type: " +
 				rawPlanitXmlObjectOfSomeVersion.getClass().getName());
 	}
+
+	/**
+	 * Inject a versioned namespace uri to the root element if not present
+	 *
+	 * @param xmlStreamReader to alter
+	 * @param targetVersionNameSpace to inject
+	 */
+	public static void injectLegacyVersionIfMissing(XMLStreamReader xmlStreamReader, String targetVersionNameSpace) {
+		// This delegate "virtualizes" the namespace for legacy files
+		XMLStreamReader reader = new javax.xml.stream.util.StreamReaderDelegate(xmlStreamReader) {
+			@Override
+			public String getNamespaceURI() {
+				String uri = super.getNamespaceURI();
+				// If the file has no namespace, report it as V1 to JAXB
+				if (uri == null || uri.isEmpty()) {
+					return targetVersionNameSpace;
+				}
+				return uri;
+			}
+		};
+	}
   
 	/**
 	 * Method to validate an XML input file against an XSD schema using Java XML
@@ -171,7 +194,7 @@ public class JAXBUtils {
 	}
 
   /** Create populated instance of class based from the first compatible potential files and return normalised
-   * latest version
+   * latest versionz
    * 
    * @param <LATEST> raw XML to find
    * @param clazzV2 of type LATEST
@@ -220,6 +243,9 @@ public class JAXBUtils {
 			XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
 			XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(fileReader);
 
+			// default to NAMESPACE_V1_URI version if missing
+			injectLegacyVersionIfMissing(xmlStreamReader, NAMESPACE_V1_URI);
+
 			Object rawObject = unmarshaller.unmarshal(xmlStreamReader);
 			xmlStreamReader.close();
 
@@ -227,6 +253,7 @@ public class JAXBUtils {
 			return normalizeToV2(rawObject);
 		}
 	}
+
 
 	// todo remove once confirmed it is replaced by unmarshalAndNormalize
 //	/**
