@@ -42,7 +42,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *             &lt;/complexType&gt;
  *           &lt;/element&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute ref="{http://goplanit.org/v1}ds"/&gt;
+ *         &lt;attribute name="ds" type="{http://goplanit.org/v1}septype" default="," /&gt;
  *       &lt;/extension&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -68,11 +68,7 @@ public class XMLElementOdRowMatrix
      */
     @XmlElement(name = "odrow", required = true)
     protected List<Odrow> odrows;
-    /**
-     * Destination separator, i.e., the separator after the end of each cell.
-     * 
-     */
-    @XmlAttribute(name = "ds", namespace = "http://goplanit.org/v1")
+    @XmlAttribute(name = "ds")
     protected String ds;
 
     /**
@@ -110,7 +106,7 @@ public class XMLElementOdRowMatrix
     }
 
     /**
-     * Destination separator, i.e., the separator after the end of each cell.
+     * Gets the value of the ds property.
      * 
      * @return
      *     possible object is
@@ -132,7 +128,6 @@ public class XMLElementOdRowMatrix
      *     allowed object is
      *     {@link String }
      *     
-     * @see #getDs()
      */
     public void setDs(String value) {
         this.ds = value;

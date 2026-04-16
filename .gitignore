@@ -7,7 +7,6 @@
 /.settings
 .project
 /.idea
-/dependency-reduced-pom.xml
 /logs
 /bin
 /doc

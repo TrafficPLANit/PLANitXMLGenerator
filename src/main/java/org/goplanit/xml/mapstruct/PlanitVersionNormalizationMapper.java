@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
  * be used in PLANitIO for actual parsing. This way the business logic will never rely on legacy version for the
  * conversion for the memory model while still being able to parse older versions
  */
-@Mapper(uses = {ObjectFactory.class, PolymorphicResolver.class})
+@Mapper(uses = {ObjectFactory.class, PolymorphicResolver.class, TransferConnectoidV1ToV2Mapper.class})
 public interface PlanitVersionNormalizationMapper {
     PlanitVersionNormalizationMapper INSTANCE = Mappers.getMapper(PlanitVersionNormalizationMapper.class);
 
@@ -47,6 +47,11 @@ public interface PlanitVersionNormalizationMapper {
     {
         return source;
     }
+    default org.goplanit.xml.generated.v2.XMLElementMetadata toModel(
+        org.goplanit.xml.generated.v2.XMLElementMetadata source)
+    {
+        return source;
+    }
 
     // --- Entry Points for V1 ---
     // Repeat for V1 package...
@@ -64,4 +69,6 @@ public interface PlanitVersionNormalizationMapper {
             org.goplanit.xml.generated.v1.XMLElementRoutedServices source);
     org.goplanit.xml.generated.v2.Macroscopicintermodal toModel(
             org.goplanit.xml.generated.v1.Macroscopicintermodal source);
+    org.goplanit.xml.generated.v2.XMLElementMetadata toModel(
+        org.goplanit.xml.generated.v1.XMLElementMetadata source);
 }

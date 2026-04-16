@@ -24,8 +24,8 @@ import jakarta.xml.bind.annotation.XmlType;
  * &lt;complexType name="odmatrix"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;attribute ref="{http://goplanit.org/v1}timeperiodref use="required""/&gt;
- *       &lt;attribute ref="{http://goplanit.org/v1}userclassref"/&gt;
+ *       &lt;attribute name="timeperiodref" use="required" type="{http://goplanit.org/v1}timeperiodref" /&gt;
+ *       &lt;attribute name="userclassref" type="{http://goplanit.org/v1}userclassref" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -44,23 +44,13 @@ public class XMLElementOdMatrix implements Serializable
 {
 
     private static final long serialVersionUID = -1L;
-    /**
-     * Reference to the time period the item relates to
-     * 
-     */
-    @XmlAttribute(name = "timeperiodref", namespace = "http://goplanit.org/v1", required = true)
+    @XmlAttribute(name = "timeperiodref", required = true)
     protected String timeperiodref;
-    /**
-     * Reference to the user class the travel demand
-     * 				related to. Can be absent if only default user class/single user
-     * 				class exists.
-     * 
-     */
-    @XmlAttribute(name = "userclassref", namespace = "http://goplanit.org/v1")
+    @XmlAttribute(name = "userclassref")
     protected String userclassref;
 
     /**
-     * Reference to the time period the item relates to
+     * Gets the value of the timeperiodref property.
      * 
      * @return
      *     possible object is
@@ -78,16 +68,13 @@ public class XMLElementOdMatrix implements Serializable
      *     allowed object is
      *     {@link String }
      *     
-     * @see #getTimeperiodref()
      */
     public void setTimeperiodref(String value) {
         this.timeperiodref = value;
     }
 
     /**
-     * Reference to the user class the travel demand
-     * 				related to. Can be absent if only default user class/single user
-     * 				class exists.
+     * Gets the value of the userclassref property.
      * 
      * @return
      *     possible object is
@@ -105,7 +92,6 @@ public class XMLElementOdMatrix implements Serializable
      *     allowed object is
      *     {@link String }
      *     
-     * @see #getUserclassref()
      */
     public void setUserclassref(String value) {
         this.userclassref = value;

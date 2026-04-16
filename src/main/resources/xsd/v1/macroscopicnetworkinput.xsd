@@ -224,7 +224,7 @@
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string"
 				use="optional" />
-			<xs:attribute ref="srsname" use="optional">
+			<xs:attribute name="srsname" type="srsname" use="optional" default="EPSG:4326">
 				<xs:annotation>
 					<xs:documentation>
 						Spatial reference system chosen for
@@ -266,7 +266,7 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute ref="srsname" use="optional">
+			<xs:attribute name="srsname" type="srsname" use="optional" default="EPSG:4326">
 				<xs:annotation>
 					<xs:documentation>
 						Spatial reference system chosen for

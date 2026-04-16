@@ -4,8 +4,8 @@ import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper;
 
 public class PlanitNamespacePrefixMapper extends NamespacePrefixMapper {
 
-  public static final String NAMESPACE_V1_URI = "http://www.goplanit.org/v1";
-  public static final String NAMESPACE_V2_URI = "http://www.goplanit.org/v2";
+  public static final String NAMESPACE_V1_URI = "http://goplanit.org/v1";
+  public static final String NAMESPACE_V2_URI = "http://goplanit.org/v2";
 
   public static final String NAMESPACE_OPENGIS_URI = "http://www.opengis.net/gml";
   public static final String NAMESPACE_OPENGIS_PREFIX = "gml";
@@ -18,7 +18,7 @@ public class PlanitNamespacePrefixMapper extends NamespacePrefixMapper {
    * @param suggestion
    *      When the content tree has a suggestion for the prefix
    *      to the given namespaceUri, that suggestion is passed as a
-   *      parameter. Typicall this value comes from the QName.getPrefix
+   *      parameter. Typically this value comes from the QName.getPrefix
    *      to show the preference of the content tree. This parameter
    *      may be null, and this parameter may represent an already
    *      occupied prefix.

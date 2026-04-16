@@ -34,7 +34,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         &lt;sequence&gt;
  *           &lt;element ref="{http://goplanit.org/v2}layer" maxOccurs="unbounded"/&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute ref="{http://goplanit.org/v2}srsname"/&gt;
+ *         &lt;attribute name="srsname" use="required" type="{http://goplanit.org/v2}srsname" default="EPSG:4326" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -65,7 +65,7 @@ public class XMLElementInfrastructureLayers
      * 						infrastructure, if absent WGS84, i.e., epsg:4326, is assumed
      * 
      */
-    @XmlAttribute(name = "srsname", namespace = "http://goplanit.org/v2")
+    @XmlAttribute(name = "srsname", required = true)
     protected String srsname;
 
     /**

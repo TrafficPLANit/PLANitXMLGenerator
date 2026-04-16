@@ -31,7 +31,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *           &lt;element ref="{http://goplanit.org/v1}zones" minOccurs="0"/&gt;
  *           &lt;element name="intermodal" type="{http://goplanit.org/v1}intermodaltype" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
- *         &lt;attribute ref="{http://goplanit.org/v1}srsname use="required""/&gt;
+ *         &lt;attribute name="srsname" use="required" type="{http://goplanit.org/v1}srsname" default="EPSG:4326" /&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
  *   &lt;/complexType&gt;
@@ -75,7 +75,7 @@ public class XMLElementMacroscopicZoning
      * 				  project srs which is the one provided on the infrastructure element
      * 
      */
-    @XmlAttribute(name = "srsname", namespace = "http://goplanit.org/v1", required = true)
+    @XmlAttribute(name = "srsname", required = true)
     protected String srsname;
 
     /**

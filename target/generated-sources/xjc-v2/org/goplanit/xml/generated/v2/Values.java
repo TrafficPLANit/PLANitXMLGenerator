@@ -24,8 +24,8 @@ import jakarta.xml.bind.annotation.XmlValue;
  * &lt;complexType&gt;
  *   &lt;simpleContent&gt;
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;string"&gt;
- *       &lt;attribute ref="{http://goplanit.org/v2}os"/&gt;
- *       &lt;attribute ref="{http://goplanit.org/v2}ds"/&gt;
+ *       &lt;attribute name="os" type="{http://goplanit.org/v2}septype" default="," /&gt;
+ *       &lt;attribute name="ds" type="{http://goplanit.org/v2}septype" default="," /&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -44,17 +44,9 @@ public class Values
     private static final long serialVersionUID = -1L;
     @XmlValue
     protected String value;
-    /**
-     * Origin separator, i.e., the separator after the end of each row.
-     * 
-     */
-    @XmlAttribute(name = "os", namespace = "http://goplanit.org/v2")
+    @XmlAttribute(name = "os")
     protected String os;
-    /**
-     * Destination separator, i.e., the separator after the end of each cell.
-     * 
-     */
-    @XmlAttribute(name = "ds", namespace = "http://goplanit.org/v2")
+    @XmlAttribute(name = "ds")
     protected String ds;
 
     /**
@@ -82,7 +74,7 @@ public class Values
     }
 
     /**
-     * Origin separator, i.e., the separator after the end of each row.
+     * Gets the value of the os property.
      * 
      * @return
      *     possible object is
@@ -104,14 +96,13 @@ public class Values
      *     allowed object is
      *     {@link String }
      *     
-     * @see #getOs()
      */
     public void setOs(String value) {
         this.os = value;
     }
 
     /**
-     * Destination separator, i.e., the separator after the end of each cell.
+     * Gets the value of the ds property.
      * 
      * @return
      *     possible object is
@@ -133,7 +124,6 @@ public class Values
      *     allowed object is
      *     {@link String }
      *     
-     * @see #getDs()
      */
     public void setDs(String value) {
         this.ds = value;

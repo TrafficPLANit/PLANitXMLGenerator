@@ -40,11 +40,11 @@ import org.w3c.dom.Element;
  *       &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
  *         &lt;any processContents='lax' namespace='##other'/&gt;
  *       &lt;/choice&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
  *       &lt;anyAttribute/&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -63,8 +63,6 @@ public class AnimateColorType
 
     @XmlAnyElement(lax = true)
     protected List<Object> any;
-    @XmlAttribute(name = "skip-content")
-    protected Boolean skipContent;
     @XmlAttribute(name = "alt")
     protected String alt;
     @XmlAttribute(name = "longdesc")
@@ -113,39 +111,41 @@ public class AnimateColorType
     protected Object targetElement;
     @XmlAttribute(name = "calcMode")
     protected String calcMode;
-    @XmlAttribute(name = "repeatDur")
-    protected String repeatDur;
-    @XmlAttribute(name = "repeatCount")
-    protected BigDecimal repeatCount;
-    @XmlAttribute(name = "repeat")
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger repeat;
-    @XmlAttribute(name = "dur")
-    protected String dur;
     @XmlAttribute(name = "min")
     protected String min;
     @XmlAttribute(name = "max")
     protected String max;
+    @XmlAttribute(name = "repeatDur")
+    protected String repeatDur;
+    @XmlAttribute(name = "repeatCount")
+    protected BigDecimal repeatCount;
     @XmlAttribute(name = "begin")
     protected String begin;
     @XmlAttribute(name = "end")
     protected String end;
-    @XmlAttribute(name = "fillDefault")
-    protected FillDefaultType fillDefault;
-    @XmlAttribute(name = "restartDefault")
-    protected RestartDefaultType restartDefault;
+    @XmlAttribute(name = "dur")
+    protected String dur;
+    @XmlAttribute(name = "repeat")
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger repeat;
     @XmlAttribute(name = "fill")
     protected FillTimingAttrsType fill;
+    @XmlAttribute(name = "restartDefault")
+    protected RestartDefaultType restartDefault;
     @XmlAttribute(name = "syncBehavior")
     protected SyncBehaviorType syncBehavior;
     @XmlAttribute(name = "syncTolerance")
     protected String syncTolerance;
+    @XmlAttribute(name = "restart")
+    protected RestartTimingType restart;
+    @XmlAttribute(name = "fillDefault")
+    protected FillDefaultType fillDefault;
     @XmlAttribute(name = "syncBehaviorDefault")
     protected SyncBehaviorDefaultType syncBehaviorDefault;
     @XmlAttribute(name = "syncToleranceDefault")
     protected String syncToleranceDefault;
-    @XmlAttribute(name = "restart")
-    protected RestartTimingType restart;
+    @XmlAttribute(name = "skip-content")
+    protected Boolean skipContent;
     @XmlAnyAttribute
     private Map<QName, String> otherAttributes = new HashMap<>();
 
@@ -180,34 +180,6 @@ public class AnimateColorType
             any = new ArrayList<>();
         }
         return this.any;
-    }
-
-    /**
-     * Gets the value of the skipContent property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isSkipContent() {
-        if (skipContent == null) {
-            return true;
-        } else {
-            return skipContent;
-        }
-    }
-
-    /**
-     * Sets the value of the skipContent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setSkipContent(Boolean value) {
-        this.skipContent = value;
     }
 
     /**
@@ -408,102 +380,6 @@ public class AnimateColorType
     }
 
     /**
-     * Gets the value of the repeatDur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRepeatDur() {
-        return repeatDur;
-    }
-
-    /**
-     * Sets the value of the repeatDur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRepeatDur(String value) {
-        this.repeatDur = value;
-    }
-
-    /**
-     * Gets the value of the repeatCount property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getRepeatCount() {
-        return repeatCount;
-    }
-
-    /**
-     * Sets the value of the repeatCount property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setRepeatCount(BigDecimal value) {
-        this.repeatCount = value;
-    }
-
-    /**
-     * Gets the value of the repeat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getRepeat() {
-        return repeat;
-    }
-
-    /**
-     * Sets the value of the repeat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setRepeat(BigInteger value) {
-        this.repeat = value;
-    }
-
-    /**
-     * Gets the value of the dur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDur() {
-        return dur;
-    }
-
-    /**
-     * Sets the value of the dur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDur(String value) {
-        this.dur = value;
-    }
-
-    /**
      * Gets the value of the min property.
      * 
      * @return
@@ -549,6 +425,54 @@ public class AnimateColorType
      */
     public void setMax(String value) {
         this.max = value;
+    }
+
+    /**
+     * Gets the value of the repeatDur property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRepeatDur() {
+        return repeatDur;
+    }
+
+    /**
+     * Sets the value of the repeatDur property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRepeatDur(String value) {
+        this.repeatDur = value;
+    }
+
+    /**
+     * Gets the value of the repeatCount property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getRepeatCount() {
+        return repeatCount;
+    }
+
+    /**
+     * Sets the value of the repeatCount property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setRepeatCount(BigDecimal value) {
+        this.repeatCount = value;
     }
 
     /**
@@ -600,59 +524,51 @@ public class AnimateColorType
     }
 
     /**
-     * Gets the value of the fillDefault property.
+     * Gets the value of the dur property.
      * 
      * @return
      *     possible object is
-     *     {@link FillDefaultType }
+     *     {@link String }
      *     
      */
-    public FillDefaultType getFillDefault() {
-        if (fillDefault == null) {
-            return FillDefaultType.INHERIT;
-        } else {
-            return fillDefault;
-        }
+    public String getDur() {
+        return dur;
     }
 
     /**
-     * Sets the value of the fillDefault property.
+     * Sets the value of the dur property.
      * 
      * @param value
      *     allowed object is
-     *     {@link FillDefaultType }
+     *     {@link String }
      *     
      */
-    public void setFillDefault(FillDefaultType value) {
-        this.fillDefault = value;
+    public void setDur(String value) {
+        this.dur = value;
     }
 
     /**
-     * Gets the value of the restartDefault property.
+     * Gets the value of the repeat property.
      * 
      * @return
      *     possible object is
-     *     {@link RestartDefaultType }
+     *     {@link BigInteger }
      *     
      */
-    public RestartDefaultType getRestartDefault() {
-        if (restartDefault == null) {
-            return RestartDefaultType.INHERIT;
-        } else {
-            return restartDefault;
-        }
+    public BigInteger getRepeat() {
+        return repeat;
     }
 
     /**
-     * Sets the value of the restartDefault property.
+     * Sets the value of the repeat property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RestartDefaultType }
+     *     {@link BigInteger }
      *     
      */
-    public void setRestartDefault(RestartDefaultType value) {
-        this.restartDefault = value;
+    public void setRepeat(BigInteger value) {
+        this.repeat = value;
     }
 
     /**
@@ -681,6 +597,34 @@ public class AnimateColorType
      */
     public void setFill(FillTimingAttrsType value) {
         this.fill = value;
+    }
+
+    /**
+     * Gets the value of the restartDefault property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RestartDefaultType }
+     *     
+     */
+    public RestartDefaultType getRestartDefault() {
+        if (restartDefault == null) {
+            return RestartDefaultType.INHERIT;
+        } else {
+            return restartDefault;
+        }
+    }
+
+    /**
+     * Sets the value of the restartDefault property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RestartDefaultType }
+     *     
+     */
+    public void setRestartDefault(RestartDefaultType value) {
+        this.restartDefault = value;
     }
 
     /**
@@ -733,6 +677,62 @@ public class AnimateColorType
      */
     public void setSyncTolerance(String value) {
         this.syncTolerance = value;
+    }
+
+    /**
+     * Gets the value of the restart property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RestartTimingType }
+     *     
+     */
+    public RestartTimingType getRestart() {
+        if (restart == null) {
+            return RestartTimingType.DEFAULT;
+        } else {
+            return restart;
+        }
+    }
+
+    /**
+     * Sets the value of the restart property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RestartTimingType }
+     *     
+     */
+    public void setRestart(RestartTimingType value) {
+        this.restart = value;
+    }
+
+    /**
+     * Gets the value of the fillDefault property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FillDefaultType }
+     *     
+     */
+    public FillDefaultType getFillDefault() {
+        if (fillDefault == null) {
+            return FillDefaultType.INHERIT;
+        } else {
+            return fillDefault;
+        }
+    }
+
+    /**
+     * Sets the value of the fillDefault property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FillDefaultType }
+     *     
+     */
+    public void setFillDefault(FillDefaultType value) {
+        this.fillDefault = value;
     }
 
     /**
@@ -792,31 +792,31 @@ public class AnimateColorType
     }
 
     /**
-     * Gets the value of the restart property.
+     * Gets the value of the skipContent property.
      * 
      * @return
      *     possible object is
-     *     {@link RestartTimingType }
+     *     {@link Boolean }
      *     
      */
-    public RestartTimingType getRestart() {
-        if (restart == null) {
-            return RestartTimingType.DEFAULT;
+    public boolean isSkipContent() {
+        if (skipContent == null) {
+            return true;
         } else {
-            return restart;
+            return skipContent;
         }
     }
 
     /**
-     * Sets the value of the restart property.
+     * Sets the value of the skipContent property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RestartTimingType }
+     *     {@link Boolean }
      *     
      */
-    public void setRestart(RestartTimingType value) {
-        this.restart = value;
+    public void setSkipContent(Boolean value) {
+        this.skipContent = value;
     }
 
     /**
