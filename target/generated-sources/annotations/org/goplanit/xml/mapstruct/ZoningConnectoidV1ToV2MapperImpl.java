@@ -8,7 +8,7 @@ import org.goplanit.xml.generated.v2.XMLElementConnectoid;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-16T17:44:01+1000",
+    date = "2026-04-24T15:10:49+1000",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)"
 )
 public class ZoningConnectoidV1ToV2MapperImpl implements ZoningConnectoidV1ToV2Mapper {
@@ -29,8 +29,8 @@ public class ZoningConnectoidV1ToV2MapperImpl implements ZoningConnectoidV1ToV2M
         if ( source.getLength() != null ) {
             xMLElementConnectoid.setLength( BigDecimal.valueOf( source.getLength() ) );
         }
-        xMLElementConnectoid.setType( toV2Enum( source.getType() ) );
 
+        xMLElementConnectoid.setType( org.goplanit.xml.mapstruct.ConnectoidEnumMapper.map(source.getType()) );
         if ( xMLElementConnectoid.getAccesszones() != null ) {
             List<Accesszone> list = java.util.Collections.emptyList();
             if ( list != null ) {

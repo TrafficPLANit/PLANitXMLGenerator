@@ -38,7 +38,6 @@ import org.goplanit.xml.generated.v1.XMLElementTransferZoneGroups;
 import org.goplanit.xml.generated.v1.XMLElementUsabilityFeatures;
 import org.goplanit.xml.generated.v1.Zone;
 import org.goplanit.xml.generated.v2.Access;
-import org.goplanit.xml.generated.v2.Connectoidtypetype;
 import org.goplanit.xml.generated.v2.CustomPropertiesType;
 import org.goplanit.xml.generated.v2.Direction;
 import org.goplanit.xml.generated.v2.EntryElement;
@@ -94,7 +93,7 @@ import org.goplanit.xml.generated.v2.XMLElementZones;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-16T17:44:01+1000",
+    date = "2026-04-24T15:10:50+1000",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)"
 )
 public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormalizationMapper {
@@ -1019,28 +1018,6 @@ public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormal
         return xMLElementCentroid1;
     }
 
-    protected Connectoidtypetype connectoidtypetypeToConnectoidtypetype(org.goplanit.xml.generated.v1.Connectoidtypetype connectoidtypetype) {
-        if ( connectoidtypetype == null ) {
-            return null;
-        }
-
-        Connectoidtypetype connectoidtypetype1;
-
-        switch ( connectoidtypetype ) {
-            case NONE: connectoidtypetype1 = Connectoidtypetype.NONE;
-            break;
-            case PT_VEH_STOP: connectoidtypetype1 = Connectoidtypetype.PT_VEH_STOP;
-            break;
-            case TRAVELLER_ACCESS: connectoidtypetype1 = Connectoidtypetype.TRAVELLER_ACCESS;
-            break;
-            case UNKNOWN: connectoidtypetype1 = Connectoidtypetype.UNKNOWN;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + connectoidtypetype );
-        }
-
-        return connectoidtypetype1;
-    }
-
     protected XMLElementConnectoid xMLElementConnectoidToXMLElementConnectoid(org.goplanit.xml.generated.v1.XMLElementConnectoid xMLElementConnectoid) {
         if ( xMLElementConnectoid == null ) {
             return null;
@@ -1056,7 +1033,7 @@ public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormal
             xMLElementConnectoid1.setLength( BigDecimal.valueOf( xMLElementConnectoid.getLength() ) );
         }
         xMLElementConnectoid1.setModes( xMLElementConnectoid.getModes() );
-        xMLElementConnectoid1.setType( connectoidtypetypeToConnectoidtypetype( xMLElementConnectoid.getType() ) );
+        xMLElementConnectoid1.setType( ConnectoidEnumMapper.map( xMLElementConnectoid.getType() ) );
 
         return xMLElementConnectoid1;
     }

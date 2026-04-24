@@ -3,6 +3,7 @@ package org.goplanit.xml.mapstruct;
 import org.goplanit.xml.generated.v1.Connectoidnodelocationtype;
 import org.goplanit.xml.generated.v1.XMLElementTransferConnectoid;
 import org.goplanit.xml.generated.v2.Accesszone;
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -36,10 +37,13 @@ public interface TransferConnectoidV1ToV2Mapper {
   @Mapping(target = "id", source = "id")
   @Mapping(target = "externalid", source = "externalid")
   @Mapping(target = "name", source = "name")
-  org.goplanit.xml.generated.v2.XMLElementTransferConnectoid toV2(org.goplanit.xml.generated.v1.XMLElementTransferConnectoid source);
+  // We don't map 'type' to the target, but we tell MapStruct we handled the source 'type'
+  @BeanMapping(ignoreUnmappedSourceProperties = {"type", "length", "tzrefs", "lsref", "loc"}) // mismatched between v1 and v2 and handled manually --> tell mapstruct to not worry
+  org.goplanit.xml.generated.v2.XMLElementTransferConnectoid toV2(
+      org.goplanit.xml.generated.v1.XMLElementTransferConnectoid source);
 
   /**
-   * Depending on oeirentation we use a different placeholder string for parsing logic
+   * Depending on orientation we use a different placeholder string for parsing logic
    * @param v1 to use
    * @return result
    */
@@ -79,7 +83,7 @@ public interface TransferConnectoidV1ToV2Mapper {
 
           // --- Enum Type Conversion ---
           if (v1.getType() != null) {
-            az.setType(org.goplanit.xml.generated.v2.Connectoidtypetype.fromValue(v1.getType().value()));
+            az.setType(ConnectoidEnumMapper.map(v1.getType()));
           }
 
           return az;

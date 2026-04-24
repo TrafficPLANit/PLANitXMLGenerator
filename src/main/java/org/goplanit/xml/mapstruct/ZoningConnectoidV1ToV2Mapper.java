@@ -1,8 +1,7 @@
 package org.goplanit.xml.mapstruct;
 
 import org.goplanit.xml.generated.v2.Connectoidtypetype;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -24,15 +23,8 @@ public interface ZoningConnectoidV1ToV2Mapper {
   @Mapping(target = "noderef", source = "noderef")
   @Mapping(target = "modes", source = "modes")
   @Mapping(target = "length", source = "length") // Extension attribute in V2
-  @Mapping(target = "type", source = "type")     // Extension attribute in V2
+  @Mapping(target = "type", expression = "java(org.goplanit.xml.mapstruct.ConnectoidEnumMapper.map(source.getType()))")
   @Mapping(target = "accesszones", expression = "java(java.util.Collections.emptyList())")
   org.goplanit.xml.generated.v2.XMLElementConnectoid toV2(org.goplanit.xml.generated.v1.XMLElementConnectoid source);
 
-  /**
-   * Map the Enum between packages
-   */
-  default Connectoidtypetype toV2Enum(org.goplanit.xml.generated.v1.Connectoidtypetype source) {
-    if (source == null) return null;
-    return Connectoidtypetype.fromValue(source.value());
-  }
 }

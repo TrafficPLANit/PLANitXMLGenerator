@@ -112,10 +112,12 @@
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-    <xs:enumeration value="none" />
-      <xs:enumeration value="pt_veh_stop" />
-      <xs:enumeration value="traveller_access" />
-      <xs:enumeration value="unknown" />
+		<xs:enumeration value="none" />
+		<xs:enumeration value="access_egress" />
+		<xs:enumeration value="pt_veh_stop" />
+		<xs:enumeration value="access" />
+		<xs:enumeration value="egress" />
+		<xs:enumeration value="unknown" />
     </xs:restriction>
   </xs:simpleType>  
 	
