@@ -692,6 +692,26 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BanType }
+     * 
+     * @return
+     *     the new instance of {@link BanType }
+     */
+    public BanType createBanType() {
+        return new BanType();
+    }
+
+    /**
+     * Create an instance of {@link TurnsType }
+     * 
+     * @return
+     *     the new instance of {@link TurnsType }
+     */
+    public TurnsType createTurnsType() {
+        return new TurnsType();
+    }
+
+    /**
      * Create an instance of {@link Accesszone }
      * 
      * @return

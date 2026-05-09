@@ -220,6 +220,7 @@
 				<xs:element ref="layerconfiguration" />
 				<xs:element ref="nodes" />
 				<xs:element ref="links" />
+				<xs:element name="turns" type="turnsType" minOccurs="0" maxOccurs="1"/>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string"
@@ -603,6 +604,19 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
+	<!-- Definition of the 'ban' element -->
+	<xs:complexType name="banType">
+		<xs:attribute name="fromref" type="xs:string" use="required" />
+		<xs:attribute name="toref" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<!-- Definition of the 'turns' element -->
+	<xs:complexType name="turnsType">
+		<xs:sequence>
+			<xs:element name="ban" type="banType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
 
 	<!-- Root element -->
 	<xs:element name="macroscopicnetwork">

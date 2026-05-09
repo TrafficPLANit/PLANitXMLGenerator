@@ -23,9 +23,9 @@ import jakarta.xml.bind.annotation.XmlType;
  * &lt;complexType name="animateColorPrototype"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animValuesAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animNamedTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animAddAccumAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animValuesAttrs"/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -40,14 +40,6 @@ import jakarta.xml.bind.annotation.XmlType;
 })
 public class AnimateColorPrototype {
 
-    @XmlAttribute(name = "from")
-    protected String from;
-    @XmlAttribute(name = "by")
-    protected String by;
-    @XmlAttribute(name = "values")
-    protected String values;
-    @XmlAttribute(name = "to")
-    protected String to;
     @XmlAttribute(name = "attributeName", required = true)
     protected String attributeName;
     @XmlAttribute(name = "attributeType")
@@ -56,102 +48,14 @@ public class AnimateColorPrototype {
     protected String additive;
     @XmlAttribute(name = "accumulate")
     protected String accumulate;
-
-    /**
-     * Gets the value of the from property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getFrom() {
-        return from;
-    }
-
-    /**
-     * Sets the value of the from property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setFrom(String value) {
-        this.from = value;
-    }
-
-    /**
-     * Gets the value of the by property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBy() {
-        return by;
-    }
-
-    /**
-     * Sets the value of the by property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBy(String value) {
-        this.by = value;
-    }
-
-    /**
-     * Gets the value of the values property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getValues() {
-        return values;
-    }
-
-    /**
-     * Sets the value of the values property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setValues(String value) {
-        this.values = value;
-    }
-
-    /**
-     * Gets the value of the to property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTo() {
-        return to;
-    }
-
-    /**
-     * Sets the value of the to property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTo(String value) {
-        this.to = value;
-    }
+    @XmlAttribute(name = "from")
+    protected String from;
+    @XmlAttribute(name = "by")
+    protected String by;
+    @XmlAttribute(name = "values")
+    protected String values;
+    @XmlAttribute(name = "to")
+    protected String to;
 
     /**
      * Gets the value of the attributeName property.
@@ -259,6 +163,102 @@ public class AnimateColorPrototype {
      */
     public void setAccumulate(String value) {
         this.accumulate = value;
+    }
+
+    /**
+     * Gets the value of the from property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFrom() {
+        return from;
+    }
+
+    /**
+     * Sets the value of the from property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFrom(String value) {
+        this.from = value;
+    }
+
+    /**
+     * Gets the value of the by property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBy() {
+        return by;
+    }
+
+    /**
+     * Sets the value of the by property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBy(String value) {
+        this.by = value;
+    }
+
+    /**
+     * Gets the value of the values property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getValues() {
+        return values;
+    }
+
+    /**
+     * Sets the value of the values property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setValues(String value) {
+        this.values = value;
+    }
+
+    /**
+     * Gets the value of the to property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTo() {
+        return to;
+    }
+
+    /**
+     * Sets the value of the to property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTo(String value) {
+        this.to = value;
     }
 
 }

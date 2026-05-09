@@ -33,6 +33,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *           &lt;element ref="{http://goplanit.org/v2}layerconfiguration"/&gt;
  *           &lt;element ref="{http://goplanit.org/v2}nodes"/&gt;
  *           &lt;element ref="{http://goplanit.org/v2}links"/&gt;
+ *           &lt;element name="turns" type="{http://goplanit.org/v2}turnsType" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -50,7 +51,8 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "layerconfiguration",
     "nodes",
-    "links"
+    "links",
+    "turns"
 })
 @XmlRootElement(name = "layer")
 public class XMLElementInfrastructureLayer
@@ -77,6 +79,7 @@ public class XMLElementInfrastructureLayer
      */
     @XmlElement(required = true)
     protected XMLElementLinks links;
+    protected TurnsType turns;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -174,6 +177,30 @@ public class XMLElementInfrastructureLayer
      */
     public void setLinks(XMLElementLinks value) {
         this.links = value;
+    }
+
+    /**
+     * Gets the value of the turns property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TurnsType }
+     *     
+     */
+    public TurnsType getTurns() {
+        return turns;
+    }
+
+    /**
+     * Sets the value of the turns property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TurnsType }
+     *     
+     */
+    public void setTurns(TurnsType value) {
+        this.turns = value;
     }
 
     /**
