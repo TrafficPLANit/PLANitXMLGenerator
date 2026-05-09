@@ -23,6 +23,8 @@ import jakarta.xml.bind.annotation.XmlType;
  * &lt;complexType name="banType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="fromref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="toref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
@@ -39,10 +41,72 @@ public class BanType
 {
 
     private static final long serialVersionUID = -1L;
+    /**
+     * Mandatory unique identifier for the turn ban.
+     * 
+     */
+    @XmlAttribute(name = "id", required = true)
+    protected String id;
+    /**
+     * Optional identifier for cross-referencing with external databases.
+     * 
+     */
+    @XmlAttribute(name = "externalid")
+    protected String externalid;
     @XmlAttribute(name = "fromref", required = true)
     protected String fromref;
     @XmlAttribute(name = "toref", required = true)
     protected String toref;
+
+    /**
+     * Mandatory unique identifier for the turn ban.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     * @see #getId()
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
+
+    /**
+     * Optional identifier for cross-referencing with external databases.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getExternalid() {
+        return externalid;
+    }
+
+    /**
+     * Sets the value of the externalid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     * @see #getExternalid()
+     */
+    public void setExternalid(String value) {
+        this.externalid = value;
+    }
 
     /**
      * Gets the value of the fromref property.

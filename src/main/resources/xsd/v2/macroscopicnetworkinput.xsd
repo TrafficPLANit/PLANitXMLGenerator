@@ -607,6 +607,16 @@
 
 	<!-- Definition of the 'ban' element -->
 	<xs:complexType name="banType">
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Mandatory unique identifier for the turn ban.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Optional identifier for cross-referencing with external databases.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="fromref" type="xs:string" use="required" />
 		<xs:attribute name="toref" type="xs:string" use="required" />
 	</xs:complexType>
