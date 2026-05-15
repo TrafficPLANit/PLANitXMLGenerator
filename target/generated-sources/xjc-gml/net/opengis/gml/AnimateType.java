@@ -40,11 +40,11 @@ import org.w3c.dom.Element;
  *       &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
  *         &lt;any processContents='lax' namespace='##other'/&gt;
  *       &lt;/choice&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
  *       &lt;anyAttribute/&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -63,52 +63,6 @@ public class AnimateType
 
     @XmlAnyElement(lax = true)
     protected List<Object> any;
-    @XmlAttribute(name = "targetElement")
-    @XmlIDREF
-    @XmlSchemaType(name = "IDREF")
-    protected Object targetElement;
-    @XmlAttribute(name = "restartDefault")
-    protected RestartDefaultType restartDefault;
-    @XmlAttribute(name = "syncBehavior")
-    protected SyncBehaviorType syncBehavior;
-    @XmlAttribute(name = "syncTolerance")
-    protected String syncTolerance;
-    @XmlAttribute(name = "syncBehaviorDefault")
-    protected SyncBehaviorDefaultType syncBehaviorDefault;
-    @XmlAttribute(name = "syncToleranceDefault")
-    protected String syncToleranceDefault;
-    @XmlAttribute(name = "repeatDur")
-    protected String repeatDur;
-    @XmlAttribute(name = "repeatCount")
-    protected BigDecimal repeatCount;
-    @XmlAttribute(name = "repeat")
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger repeat;
-    @XmlAttribute(name = "min")
-    protected String min;
-    @XmlAttribute(name = "max")
-    protected String max;
-    @XmlAttribute(name = "dur")
-    protected String dur;
-    @XmlAttribute(name = "begin")
-    protected String begin;
-    @XmlAttribute(name = "end")
-    protected String end;
-    @XmlAttribute(name = "fillDefault")
-    protected FillDefaultType fillDefault;
-    @XmlAttribute(name = "restart")
-    protected RestartTimingType restart;
-    @XmlAttribute(name = "fill")
-    protected FillTimingAttrsType fill;
-    @XmlAttribute(name = "calcMode")
-    protected String calcMode;
-    @XmlAttribute(name = "skip-content")
-    protected Boolean skipContent;
-    @XmlAttribute(name = "alt")
-    protected String alt;
-    @XmlAttribute(name = "longdesc")
-    @XmlSchemaType(name = "anyURI")
-    protected String longdesc;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -146,6 +100,52 @@ public class AnimateType
      */
     @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
     protected String lang;
+    @XmlAttribute(name = "alt")
+    protected String alt;
+    @XmlAttribute(name = "longdesc")
+    @XmlSchemaType(name = "anyURI")
+    protected String longdesc;
+    @XmlAttribute(name = "repeat")
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger repeat;
+    @XmlAttribute(name = "min")
+    protected String min;
+    @XmlAttribute(name = "max")
+    protected String max;
+    @XmlAttribute(name = "begin")
+    protected String begin;
+    @XmlAttribute(name = "end")
+    protected String end;
+    @XmlAttribute(name = "repeatDur")
+    protected String repeatDur;
+    @XmlAttribute(name = "repeatCount")
+    protected BigDecimal repeatCount;
+    @XmlAttribute(name = "dur")
+    protected String dur;
+    @XmlAttribute(name = "fill")
+    protected FillTimingAttrsType fill;
+    @XmlAttribute(name = "restart")
+    protected RestartTimingType restart;
+    @XmlAttribute(name = "fillDefault")
+    protected FillDefaultType fillDefault;
+    @XmlAttribute(name = "restartDefault")
+    protected RestartDefaultType restartDefault;
+    @XmlAttribute(name = "syncBehavior")
+    protected SyncBehaviorType syncBehavior;
+    @XmlAttribute(name = "syncTolerance")
+    protected String syncTolerance;
+    @XmlAttribute(name = "syncBehaviorDefault")
+    protected SyncBehaviorDefaultType syncBehaviorDefault;
+    @XmlAttribute(name = "syncToleranceDefault")
+    protected String syncToleranceDefault;
+    @XmlAttribute(name = "skip-content")
+    protected Boolean skipContent;
+    @XmlAttribute(name = "targetElement")
+    @XmlIDREF
+    @XmlSchemaType(name = "IDREF")
+    protected Object targetElement;
+    @XmlAttribute(name = "calcMode")
+    protected String calcMode;
     @XmlAnyAttribute
     private Map<QName, String> otherAttributes = new HashMap<>();
 
@@ -183,27 +183,424 @@ public class AnimateType
     }
 
     /**
-     * Gets the value of the targetElement property.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getTargetElement() {
-        return targetElement;
+    public String getId() {
+        return id;
     }
 
     /**
-     * Sets the value of the targetElement property.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setTargetElement(Object value) {
-        this.targetElement = value;
+    public void setId(String value) {
+        this.id = value;
+    }
+
+    /**
+     * Gets the value of the clazz property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getClazz() {
+        return clazz;
+    }
+
+    /**
+     * Sets the value of the clazz property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setClazz(String value) {
+        this.clazz = value;
+    }
+
+    /**
+     * &lt;pre&gt;
+     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h3&amp;gt;lang (as an attribute name)&amp;lt;/h3&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *        denotes an attribute whose value&amp;#13;
+     *        is a language code for the natural language of the content of&amp;#13;
+     *        any element; its value is inherited.  This name is reserved&amp;#13;
+     *        by virtue of its definition in the XML specification.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * &lt;pre&gt;
+     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h4&amp;gt;Notes&amp;lt;/h4&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *       Attempting to install the relevant ISO 2- and 3-letter&amp;#13;
+     *       codes as the enumerated possible values is probably never&amp;#13;
+     *       going to be a realistic possibility.  &amp;#13;
+     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *       See BCP 47 at &amp;lt;a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt"&amp;gt;&amp;#13;
+     *        http://www.rfc-editor.org/rfc/bcp/bcp47.txt&amp;lt;/a&amp;gt;&amp;#13;
+     *       and the IANA language subtag registry at&amp;#13;
+     *       &amp;lt;a href="http://www.iana.org/assignments/language-subtag-registry"&amp;gt;&amp;#13;
+     *        http://www.iana.org/assignments/language-subtag-registry&amp;lt;/a&amp;gt;&amp;#13;
+     *       for further information.&amp;#13;
+     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
+     *       The union allows for the 'un-declaration' of xml:lang with&amp;#13;
+     *       the empty string.&amp;#13;
+     *      &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLang() {
+        return lang;
+    }
+
+    /**
+     * Sets the value of the lang property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     * @see #getLang()
+     */
+    public void setLang(String value) {
+        this.lang = value;
+    }
+
+    /**
+     * Gets the value of the alt property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAlt() {
+        return alt;
+    }
+
+    /**
+     * Sets the value of the alt property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAlt(String value) {
+        this.alt = value;
+    }
+
+    /**
+     * Gets the value of the longdesc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLongdesc() {
+        return longdesc;
+    }
+
+    /**
+     * Sets the value of the longdesc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLongdesc(String value) {
+        this.longdesc = value;
+    }
+
+    /**
+     * Gets the value of the repeat property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getRepeat() {
+        return repeat;
+    }
+
+    /**
+     * Sets the value of the repeat property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setRepeat(BigInteger value) {
+        this.repeat = value;
+    }
+
+    /**
+     * Gets the value of the min property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMin() {
+        return min;
+    }
+
+    /**
+     * Sets the value of the min property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMin(String value) {
+        this.min = value;
+    }
+
+    /**
+     * Gets the value of the max property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMax() {
+        return max;
+    }
+
+    /**
+     * Sets the value of the max property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMax(String value) {
+        this.max = value;
+    }
+
+    /**
+     * Gets the value of the begin property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBegin() {
+        return begin;
+    }
+
+    /**
+     * Sets the value of the begin property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBegin(String value) {
+        this.begin = value;
+    }
+
+    /**
+     * Gets the value of the end property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEnd() {
+        return end;
+    }
+
+    /**
+     * Sets the value of the end property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEnd(String value) {
+        this.end = value;
+    }
+
+    /**
+     * Gets the value of the repeatDur property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRepeatDur() {
+        return repeatDur;
+    }
+
+    /**
+     * Sets the value of the repeatDur property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRepeatDur(String value) {
+        this.repeatDur = value;
+    }
+
+    /**
+     * Gets the value of the repeatCount property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getRepeatCount() {
+        return repeatCount;
+    }
+
+    /**
+     * Sets the value of the repeatCount property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setRepeatCount(BigDecimal value) {
+        this.repeatCount = value;
+    }
+
+    /**
+     * Gets the value of the dur property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDur() {
+        return dur;
+    }
+
+    /**
+     * Sets the value of the dur property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDur(String value) {
+        this.dur = value;
+    }
+
+    /**
+     * Gets the value of the fill property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FillTimingAttrsType }
+     *     
+     */
+    public FillTimingAttrsType getFill() {
+        if (fill == null) {
+            return FillTimingAttrsType.DEFAULT;
+        } else {
+            return fill;
+        }
+    }
+
+    /**
+     * Sets the value of the fill property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FillTimingAttrsType }
+     *     
+     */
+    public void setFill(FillTimingAttrsType value) {
+        this.fill = value;
+    }
+
+    /**
+     * Gets the value of the restart property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RestartTimingType }
+     *     
+     */
+    public RestartTimingType getRestart() {
+        if (restart == null) {
+            return RestartTimingType.DEFAULT;
+        } else {
+            return restart;
+        }
+    }
+
+    /**
+     * Sets the value of the restart property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RestartTimingType }
+     *     
+     */
+    public void setRestart(RestartTimingType value) {
+        this.restart = value;
+    }
+
+    /**
+     * Gets the value of the fillDefault property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FillDefaultType }
+     *     
+     */
+    public FillDefaultType getFillDefault() {
+        if (fillDefault == null) {
+            return FillDefaultType.INHERIT;
+        } else {
+            return fillDefault;
+        }
+    }
+
+    /**
+     * Sets the value of the fillDefault property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FillDefaultType }
+     *     
+     */
+    public void setFillDefault(FillDefaultType value) {
+        this.fillDefault = value;
     }
 
     /**
@@ -343,310 +740,6 @@ public class AnimateType
     }
 
     /**
-     * Gets the value of the repeatDur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRepeatDur() {
-        return repeatDur;
-    }
-
-    /**
-     * Sets the value of the repeatDur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRepeatDur(String value) {
-        this.repeatDur = value;
-    }
-
-    /**
-     * Gets the value of the repeatCount property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getRepeatCount() {
-        return repeatCount;
-    }
-
-    /**
-     * Sets the value of the repeatCount property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setRepeatCount(BigDecimal value) {
-        this.repeatCount = value;
-    }
-
-    /**
-     * Gets the value of the repeat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getRepeat() {
-        return repeat;
-    }
-
-    /**
-     * Sets the value of the repeat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setRepeat(BigInteger value) {
-        this.repeat = value;
-    }
-
-    /**
-     * Gets the value of the min property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMin() {
-        return min;
-    }
-
-    /**
-     * Sets the value of the min property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMin(String value) {
-        this.min = value;
-    }
-
-    /**
-     * Gets the value of the max property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMax() {
-        return max;
-    }
-
-    /**
-     * Sets the value of the max property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMax(String value) {
-        this.max = value;
-    }
-
-    /**
-     * Gets the value of the dur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDur() {
-        return dur;
-    }
-
-    /**
-     * Sets the value of the dur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDur(String value) {
-        this.dur = value;
-    }
-
-    /**
-     * Gets the value of the begin property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBegin() {
-        return begin;
-    }
-
-    /**
-     * Sets the value of the begin property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBegin(String value) {
-        this.begin = value;
-    }
-
-    /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEnd(String value) {
-        this.end = value;
-    }
-
-    /**
-     * Gets the value of the fillDefault property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FillDefaultType }
-     *     
-     */
-    public FillDefaultType getFillDefault() {
-        if (fillDefault == null) {
-            return FillDefaultType.INHERIT;
-        } else {
-            return fillDefault;
-        }
-    }
-
-    /**
-     * Sets the value of the fillDefault property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FillDefaultType }
-     *     
-     */
-    public void setFillDefault(FillDefaultType value) {
-        this.fillDefault = value;
-    }
-
-    /**
-     * Gets the value of the restart property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RestartTimingType }
-     *     
-     */
-    public RestartTimingType getRestart() {
-        if (restart == null) {
-            return RestartTimingType.DEFAULT;
-        } else {
-            return restart;
-        }
-    }
-
-    /**
-     * Sets the value of the restart property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RestartTimingType }
-     *     
-     */
-    public void setRestart(RestartTimingType value) {
-        this.restart = value;
-    }
-
-    /**
-     * Gets the value of the fill property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public FillTimingAttrsType getFill() {
-        if (fill == null) {
-            return FillTimingAttrsType.DEFAULT;
-        } else {
-            return fill;
-        }
-    }
-
-    /**
-     * Sets the value of the fill property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public void setFill(FillTimingAttrsType value) {
-        this.fill = value;
-    }
-
-    /**
-     * Gets the value of the calcMode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCalcMode() {
-        if (calcMode == null) {
-            return "linear";
-        } else {
-            return calcMode;
-        }
-    }
-
-    /**
-     * Sets the value of the calcMode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCalcMode(String value) {
-        this.calcMode = value;
-    }
-
-    /**
      * Gets the value of the skipContent property.
      * 
      * @return
@@ -675,148 +768,55 @@ public class AnimateType
     }
 
     /**
-     * Gets the value of the alt property.
+     * Gets the value of the targetElement property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Object }
+     *     
+     */
+    public Object getTargetElement() {
+        return targetElement;
+    }
+
+    /**
+     * Sets the value of the targetElement property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Object }
+     *     
+     */
+    public void setTargetElement(Object value) {
+        this.targetElement = value;
+    }
+
+    /**
+     * Gets the value of the calcMode property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAlt() {
-        return alt;
+    public String getCalcMode() {
+        if (calcMode == null) {
+            return "linear";
+        } else {
+            return calcMode;
+        }
     }
 
     /**
-     * Sets the value of the alt property.
+     * Sets the value of the calcMode property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAlt(String value) {
-        this.alt = value;
-    }
-
-    /**
-     * Gets the value of the longdesc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLongdesc() {
-        return longdesc;
-    }
-
-    /**
-     * Sets the value of the longdesc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLongdesc(String value) {
-        this.longdesc = value;
-    }
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the clazz property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getClazz() {
-        return clazz;
-    }
-
-    /**
-     * Sets the value of the clazz property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setClazz(String value) {
-        this.clazz = value;
-    }
-
-    /**
-     * &lt;pre&gt;
-     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h3&amp;gt;lang (as an attribute name)&amp;lt;/h3&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *        denotes an attribute whose value&amp;#13;
-     *        is a language code for the natural language of the content of&amp;#13;
-     *        any element; its value is inherited.  This name is reserved&amp;#13;
-     *        by virtue of its definition in the XML specification.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
-     * &lt;/pre&gt;
-     * 
-     * &lt;pre&gt;
-     * &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;lt;div xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema"&amp;gt;&amp;lt;h4&amp;gt;Notes&amp;lt;/h4&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *       Attempting to install the relevant ISO 2- and 3-letter&amp;#13;
-     *       codes as the enumerated possible values is probably never&amp;#13;
-     *       going to be a realistic possibility.  &amp;#13;
-     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *       See BCP 47 at &amp;lt;a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt"&amp;gt;&amp;#13;
-     *        http://www.rfc-editor.org/rfc/bcp/bcp47.txt&amp;lt;/a&amp;gt;&amp;#13;
-     *       and the IANA language subtag registry at&amp;#13;
-     *       &amp;lt;a href="http://www.iana.org/assignments/language-subtag-registry"&amp;gt;&amp;#13;
-     *        http://www.iana.org/assignments/language-subtag-registry&amp;lt;/a&amp;gt;&amp;#13;
-     *       for further information.&amp;#13;
-     *      &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#13;
-     *       The union allows for the 'un-declaration' of xml:lang with&amp;#13;
-     *       the empty string.&amp;#13;
-     *      &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
-     * &lt;/pre&gt;
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLang() {
-        return lang;
-    }
-
-    /**
-     * Sets the value of the lang property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     * @see #getLang()
-     */
-    public void setLang(String value) {
-        this.lang = value;
+    public void setCalcMode(String value) {
+        this.calcMode = value;
     }
 
     /**

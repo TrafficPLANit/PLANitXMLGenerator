@@ -40,9 +40,9 @@ import org.w3c.dom.Element;
  *       &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
  *         &lt;any processContents='lax' namespace='##other'/&gt;
  *       &lt;/choice&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
  *       &lt;anyAttribute/&gt;
  *     &lt;/extension&gt;
@@ -62,13 +62,12 @@ public class SetType
 
     @XmlAnyElement(lax = true)
     protected List<Object> any;
+    @XmlAttribute(name = "targetElement")
+    @XmlIDREF
+    @XmlSchemaType(name = "IDREF")
+    protected Object targetElement;
     @XmlAttribute(name = "skip-content")
     protected Boolean skipContent;
-    @XmlAttribute(name = "alt")
-    protected String alt;
-    @XmlAttribute(name = "longdesc")
-    @XmlSchemaType(name = "anyURI")
-    protected String longdesc;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -106,10 +105,34 @@ public class SetType
      */
     @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
     protected String lang;
-    @XmlAttribute(name = "targetElement")
-    @XmlIDREF
-    @XmlSchemaType(name = "IDREF")
-    protected Object targetElement;
+    @XmlAttribute(name = "alt")
+    protected String alt;
+    @XmlAttribute(name = "longdesc")
+    @XmlSchemaType(name = "anyURI")
+    protected String longdesc;
+    @XmlAttribute(name = "repeat")
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger repeat;
+    @XmlAttribute(name = "min")
+    protected String min;
+    @XmlAttribute(name = "max")
+    protected String max;
+    @XmlAttribute(name = "begin")
+    protected String begin;
+    @XmlAttribute(name = "end")
+    protected String end;
+    @XmlAttribute(name = "repeatDur")
+    protected String repeatDur;
+    @XmlAttribute(name = "repeatCount")
+    protected BigDecimal repeatCount;
+    @XmlAttribute(name = "dur")
+    protected String dur;
+    @XmlAttribute(name = "fill")
+    protected FillTimingAttrsType fill;
+    @XmlAttribute(name = "restart")
+    protected RestartTimingType restart;
+    @XmlAttribute(name = "fillDefault")
+    protected FillDefaultType fillDefault;
     @XmlAttribute(name = "restartDefault")
     protected RestartDefaultType restartDefault;
     @XmlAttribute(name = "syncBehavior")
@@ -120,29 +143,6 @@ public class SetType
     protected SyncBehaviorDefaultType syncBehaviorDefault;
     @XmlAttribute(name = "syncToleranceDefault")
     protected String syncToleranceDefault;
-    @XmlAttribute(name = "repeatDur")
-    protected String repeatDur;
-    @XmlAttribute(name = "repeatCount")
-    protected BigDecimal repeatCount;
-    @XmlAttribute(name = "repeat")
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger repeat;
-    @XmlAttribute(name = "min")
-    protected String min;
-    @XmlAttribute(name = "max")
-    protected String max;
-    @XmlAttribute(name = "dur")
-    protected String dur;
-    @XmlAttribute(name = "begin")
-    protected String begin;
-    @XmlAttribute(name = "end")
-    protected String end;
-    @XmlAttribute(name = "fillDefault")
-    protected FillDefaultType fillDefault;
-    @XmlAttribute(name = "restart")
-    protected RestartTimingType restart;
-    @XmlAttribute(name = "fill")
-    protected FillTimingAttrsType fill;
     @XmlAnyAttribute
     private Map<QName, String> otherAttributes = new HashMap<>();
 
@@ -180,6 +180,30 @@ public class SetType
     }
 
     /**
+     * Gets the value of the targetElement property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Object }
+     *     
+     */
+    public Object getTargetElement() {
+        return targetElement;
+    }
+
+    /**
+     * Sets the value of the targetElement property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Object }
+     *     
+     */
+    public void setTargetElement(Object value) {
+        this.targetElement = value;
+    }
+
+    /**
      * Gets the value of the skipContent property.
      * 
      * @return
@@ -205,54 +229,6 @@ public class SetType
      */
     public void setSkipContent(Boolean value) {
         this.skipContent = value;
-    }
-
-    /**
-     * Gets the value of the alt property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAlt() {
-        return alt;
-    }
-
-    /**
-     * Sets the value of the alt property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAlt(String value) {
-        this.alt = value;
-    }
-
-    /**
-     * Gets the value of the longdesc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLongdesc() {
-        return longdesc;
-    }
-
-    /**
-     * Sets the value of the longdesc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLongdesc(String value) {
-        this.longdesc = value;
     }
 
     /**
@@ -353,27 +329,327 @@ public class SetType
     }
 
     /**
-     * Gets the value of the targetElement property.
+     * Gets the value of the alt property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getTargetElement() {
-        return targetElement;
+    public String getAlt() {
+        return alt;
     }
 
     /**
-     * Sets the value of the targetElement property.
+     * Sets the value of the alt property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setTargetElement(Object value) {
-        this.targetElement = value;
+    public void setAlt(String value) {
+        this.alt = value;
+    }
+
+    /**
+     * Gets the value of the longdesc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLongdesc() {
+        return longdesc;
+    }
+
+    /**
+     * Sets the value of the longdesc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLongdesc(String value) {
+        this.longdesc = value;
+    }
+
+    /**
+     * Gets the value of the repeat property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getRepeat() {
+        return repeat;
+    }
+
+    /**
+     * Sets the value of the repeat property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setRepeat(BigInteger value) {
+        this.repeat = value;
+    }
+
+    /**
+     * Gets the value of the min property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMin() {
+        return min;
+    }
+
+    /**
+     * Sets the value of the min property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMin(String value) {
+        this.min = value;
+    }
+
+    /**
+     * Gets the value of the max property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMax() {
+        return max;
+    }
+
+    /**
+     * Sets the value of the max property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMax(String value) {
+        this.max = value;
+    }
+
+    /**
+     * Gets the value of the begin property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBegin() {
+        return begin;
+    }
+
+    /**
+     * Sets the value of the begin property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBegin(String value) {
+        this.begin = value;
+    }
+
+    /**
+     * Gets the value of the end property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEnd() {
+        return end;
+    }
+
+    /**
+     * Sets the value of the end property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEnd(String value) {
+        this.end = value;
+    }
+
+    /**
+     * Gets the value of the repeatDur property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRepeatDur() {
+        return repeatDur;
+    }
+
+    /**
+     * Sets the value of the repeatDur property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRepeatDur(String value) {
+        this.repeatDur = value;
+    }
+
+    /**
+     * Gets the value of the repeatCount property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getRepeatCount() {
+        return repeatCount;
+    }
+
+    /**
+     * Sets the value of the repeatCount property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setRepeatCount(BigDecimal value) {
+        this.repeatCount = value;
+    }
+
+    /**
+     * Gets the value of the dur property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDur() {
+        return dur;
+    }
+
+    /**
+     * Sets the value of the dur property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDur(String value) {
+        this.dur = value;
+    }
+
+    /**
+     * Gets the value of the fill property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FillTimingAttrsType }
+     *     
+     */
+    public FillTimingAttrsType getFill() {
+        if (fill == null) {
+            return FillTimingAttrsType.DEFAULT;
+        } else {
+            return fill;
+        }
+    }
+
+    /**
+     * Sets the value of the fill property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FillTimingAttrsType }
+     *     
+     */
+    public void setFill(FillTimingAttrsType value) {
+        this.fill = value;
+    }
+
+    /**
+     * Gets the value of the restart property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RestartTimingType }
+     *     
+     */
+    public RestartTimingType getRestart() {
+        if (restart == null) {
+            return RestartTimingType.DEFAULT;
+        } else {
+            return restart;
+        }
+    }
+
+    /**
+     * Sets the value of the restart property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RestartTimingType }
+     *     
+     */
+    public void setRestart(RestartTimingType value) {
+        this.restart = value;
+    }
+
+    /**
+     * Gets the value of the fillDefault property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FillDefaultType }
+     *     
+     */
+    public FillDefaultType getFillDefault() {
+        if (fillDefault == null) {
+            return FillDefaultType.INHERIT;
+        } else {
+            return fillDefault;
+        }
+    }
+
+    /**
+     * Sets the value of the fillDefault property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FillDefaultType }
+     *     
+     */
+    public void setFillDefault(FillDefaultType value) {
+        this.fillDefault = value;
     }
 
     /**
@@ -510,282 +786,6 @@ public class SetType
      */
     public void setSyncToleranceDefault(String value) {
         this.syncToleranceDefault = value;
-    }
-
-    /**
-     * Gets the value of the repeatDur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRepeatDur() {
-        return repeatDur;
-    }
-
-    /**
-     * Sets the value of the repeatDur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRepeatDur(String value) {
-        this.repeatDur = value;
-    }
-
-    /**
-     * Gets the value of the repeatCount property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getRepeatCount() {
-        return repeatCount;
-    }
-
-    /**
-     * Sets the value of the repeatCount property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setRepeatCount(BigDecimal value) {
-        this.repeatCount = value;
-    }
-
-    /**
-     * Gets the value of the repeat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getRepeat() {
-        return repeat;
-    }
-
-    /**
-     * Sets the value of the repeat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setRepeat(BigInteger value) {
-        this.repeat = value;
-    }
-
-    /**
-     * Gets the value of the min property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMin() {
-        return min;
-    }
-
-    /**
-     * Sets the value of the min property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMin(String value) {
-        this.min = value;
-    }
-
-    /**
-     * Gets the value of the max property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMax() {
-        return max;
-    }
-
-    /**
-     * Sets the value of the max property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMax(String value) {
-        this.max = value;
-    }
-
-    /**
-     * Gets the value of the dur property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDur() {
-        return dur;
-    }
-
-    /**
-     * Sets the value of the dur property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDur(String value) {
-        this.dur = value;
-    }
-
-    /**
-     * Gets the value of the begin property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBegin() {
-        return begin;
-    }
-
-    /**
-     * Sets the value of the begin property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBegin(String value) {
-        this.begin = value;
-    }
-
-    /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEnd(String value) {
-        this.end = value;
-    }
-
-    /**
-     * Gets the value of the fillDefault property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FillDefaultType }
-     *     
-     */
-    public FillDefaultType getFillDefault() {
-        if (fillDefault == null) {
-            return FillDefaultType.INHERIT;
-        } else {
-            return fillDefault;
-        }
-    }
-
-    /**
-     * Sets the value of the fillDefault property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FillDefaultType }
-     *     
-     */
-    public void setFillDefault(FillDefaultType value) {
-        this.fillDefault = value;
-    }
-
-    /**
-     * Gets the value of the restart property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RestartTimingType }
-     *     
-     */
-    public RestartTimingType getRestart() {
-        if (restart == null) {
-            return RestartTimingType.DEFAULT;
-        } else {
-            return restart;
-        }
-    }
-
-    /**
-     * Sets the value of the restart property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RestartTimingType }
-     *     
-     */
-    public void setRestart(RestartTimingType value) {
-        this.restart = value;
-    }
-
-    /**
-     * Gets the value of the fill property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public FillTimingAttrsType getFill() {
-        if (fill == null) {
-            return FillTimingAttrsType.DEFAULT;
-        } else {
-            return fill;
-        }
-    }
-
-    /**
-     * Sets the value of the fill property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public void setFill(FillTimingAttrsType value) {
-        this.fill = value;
     }
 
     /**
