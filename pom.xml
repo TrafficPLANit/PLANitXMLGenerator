@@ -45,6 +45,12 @@
 			<artifactId>jakarta.xml.bind-api</artifactId>
 		</dependency>
 
+		<!-- when running in Java versions >11 this is needed explicitly as it is no longer included by default -->
+		<dependency>
+			<groupId>com.sun.activation</groupId>
+			<artifactId>jakarta.activation</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
