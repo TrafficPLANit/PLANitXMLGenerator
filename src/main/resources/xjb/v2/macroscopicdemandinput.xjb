@@ -16,11 +16,6 @@
 	</jaxb:bindings>
 	<jaxb:bindings
 		schemaLocation="../../xsd/v2/macroscopicdemandinput.xsd"
-		node="//xs:element[@name='duration']">
-		<jaxb:class name="XMLElementDuration" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/macroscopicdemandinput.xsd"
 		node="//xs:element[@name='odcellbycellmatrix']">
 		<jaxb:class name="XMLElementOdCellByCellMatrix" />
 	</jaxb:bindings>
@@ -46,23 +41,18 @@
 	</jaxb:bindings>
 	<jaxb:bindings
 		schemaLocation="../../xsd/v2/macroscopicdemandinput.xsd"
-		node="//xs:element[@name='timeperiods']">
-		<jaxb:class name="XMLElementTimePeriods" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/macroscopicdemandinput.xsd"
 		node="//xs:element[@name='travellertypes']">
 		<jaxb:class name="XMLElementTravellerTypes" />
 	</jaxb:bindings>
 	<jaxb:bindings
 		schemaLocation="../../xsd/v2/macroscopicdemandinput.xsd"
-		node="//xs:complexType[@name='unrestrictedduration']">
-		<jaxb:class name="XMLElementUnrestrictedDuration" />
+		node="//xs:element[@name='userclasses']">
+		<jaxb:class name="XMLElementUserClasses" />
 	</jaxb:bindings>
 	<jaxb:bindings
 		schemaLocation="../../xsd/v2/macroscopicdemandinput.xsd"
-		node="//xs:element[@name='userclasses']">
-		<jaxb:class name="XMLElementUserClasses" />
+		node="//xs:element[@name='demandconfiguration']//xs:element[@name='timeperiods']">
+		<jaxb:class name="XMLElementTimePeriods" />
 	</jaxb:bindings>
 
 </jaxb:bindings>

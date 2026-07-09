@@ -4,7 +4,7 @@
                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                jaxb:extensionBindingPrefixes="xjc">
 
-	<!-- Only refer to one input XSD file, JAXB looks through all XSD files 
+	<!-- Only refer to one input XSD file, JAXB looks through all XSD files
 		in the directory with default namespace -->
 	<jaxb:bindings	schemaLocation="../../xsd/v2/macroscopicinput.xsd">
 		<jaxb:schemaBindings>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+		   targetNamespace="http://goplanit.org/v2"
+		   xmlns="http://goplanit.org/v2"
+		   elementFormDefault="qualified">
+	<xs:include schemaLocation="planitlibrary.xsd" />
+
+	<xs:element name="discretedemand" type="DiscreteDemandsType"/>
+
+	<xs:complexType name="DiscreteDemandsType">
+		<xs:annotation>
+			<xs:documentation>
+				Container block for all discrete demand configurations, aligning
+				with org.goplanit.demands.discrete.DiscreteDemands.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="externalid" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="timeperiods" type="TimePeriodsContainerType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="households" type="HouseholdsType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="persons" type="PersonsType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tours" type="ToursType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="trips" type="TripsType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- HOUSEHOLDS -->
+	<xs:complexType name="HouseholdsType">
+		<xs:sequence>
+			<xs:element name="household" type="HouseholdType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="HouseholdType">
+		<xs:annotation>
+			<xs:documentation>
+				Represents an individual household entry
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:string" use="required" />
+		<xs:attribute name="externalid" type="xs:string" use="optional" />
+		<xs:attribute name="zoneref" type="xs:string" use="optional"/>
+	</xs:complexType>
+
+	<!-- PERSONS -->
+
+	<xs:complexType name="PersonsType">
+		<xs:annotation>
+			<xs:documentation>
+				Container for Person elements mapping to org.goplanit.demands.discrete.person.Persons
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="person" type="PersonType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PersonType">
+		<xs:annotation>
+			<xs:documentation>
+				Represents an individual person entry
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schedule" type="ActivityScheduleType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional"/>
+		<xs:attribute name="hhref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>reference string targeting the parent Household id. Needed to map to zones
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- PERSON SCHEDULE -->
+
+	<xs:complexType name="ActivityScheduleType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="tourref">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+					<xs:attribute name="descr" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Human readable description for schedule debugging.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tripref">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+					<xs:attribute name="descr" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Human readable description for schedule debugging.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="init" type="xs:string" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="ToursType">
+		<xs:sequence>
+			<xs:element name="tour" type="TourType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TourType">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a reusable master tour configuration mapping to org.goplanit.demands.discrete.tour.Tour
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="subtour">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+					<xs:attribute name="descr" type="xs:string" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tourtrip">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+					<xs:attribute name="descr" type="xs:string" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional"/>
+		<xs:attribute name="descr" type="xs:string" use="optional"/>
+		<xs:attribute name="purp" type="xs:string" use="required"/>
+		<xs:attribute name="o" type="xs:string" use="required"/>
+		<xs:attribute name="d" type="xs:string" use="required"/>
+		<xs:attribute name="start_time" type="xs:time" use="optional"/>
+		<xs:attribute name="end_time" type="xs:time" use="optional"/>
+		<xs:attribute name="parentref" type="xs:string" use="optional"/>
+	</xs:complexType>
+
+	<!-- TRIPS -->
+
+	<xs:complexType name="TripsType">
+		<xs:sequence>
+			<xs:element name="trip" type="TripType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TripType">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a leaf-node master trip entry mapping to org.goplanit.demands.discrete.trip.Trip
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional"/>
+		<xs:attribute name="descr" type="xs:string" use="optional"/>
+		<xs:attribute name="purp" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The activity leg purpose motivating this trip segment.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mode" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The transport mode type used for this trip segment (e.g., car, train, walk).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="start_time" type="xs:time" use="optional">
+			<xs:annotation>
+				<xs:documentation>The exact moment of departure for this trip segment.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tourref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Required lookup reference back to the active parent Tour or sub-tour container.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="direction" type="TripDirectionType" use="optional" default="outbound"/>
+	</xs:complexType>
+
+	<xs:simpleType name="TripDirectionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="outbound"/>
+			<xs:enumeration value="inbound"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

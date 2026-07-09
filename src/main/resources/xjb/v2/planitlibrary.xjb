@@ -9,5 +9,17 @@
 		node="//xs:element[@name='centroid']">
 		<jaxb:class name="XMLElementCentroid" />
 	</jaxb:bindings>
-	
+
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/planitlibrary.xsd"
+		node="//xs:element[@name='duration']">
+		<jaxb:class name="XMLElementDuration" />
+	</jaxb:bindings>
+
+	<jaxb:bindings
+		schemaLocation="../../xsd/v2/planitlibrary.xsd"
+		node="//xs:complexType[@name='unrestrictedduration']">
+		<jaxb:class name="XMLElementUnrestrictedDuration" />
+	</jaxb:bindings>
+
 </jaxb:bindings>

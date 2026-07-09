@@ -28,7 +28,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         &lt;sequence&gt;
  *           &lt;element ref="{http://goplanit.org/v2}travellertypes" minOccurs="0"/&gt;
  *           &lt;element ref="{http://goplanit.org/v2}userclasses" minOccurs="0"/&gt;
- *           &lt;element ref="{http://goplanit.org/v2}timeperiods"/&gt;
+ *           &lt;element name="timeperiods" type="{http://goplanit.org/v2}TimePeriodsContainerType"/&gt;
  *         &lt;/sequence&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -81,7 +81,7 @@ public class XMLElementDemandConfiguration
      */
     protected XMLElementUserClasses userclasses;
     @XmlElement(required = true)
-    protected XMLElementTimePeriods timeperiods;
+    protected TimePeriodsContainerType timeperiods;
 
     /**
      * Traveller types available in this project. Note
@@ -158,10 +158,10 @@ public class XMLElementDemandConfiguration
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementTimePeriods }
+     *     {@link TimePeriodsContainerType }
      *     
      */
-    public XMLElementTimePeriods getTimeperiods() {
+    public TimePeriodsContainerType getTimeperiods() {
         return timeperiods;
     }
 
@@ -170,10 +170,10 @@ public class XMLElementDemandConfiguration
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementTimePeriods }
+     *     {@link TimePeriodsContainerType }
      *     
      */
-    public void setTimeperiods(XMLElementTimePeriods value) {
+    public void setTimeperiods(TimePeriodsContainerType value) {
         this.timeperiods = value;
     }
 

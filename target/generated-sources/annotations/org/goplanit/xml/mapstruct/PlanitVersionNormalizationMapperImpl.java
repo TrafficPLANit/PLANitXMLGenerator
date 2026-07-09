@@ -12,6 +12,7 @@ import org.goplanit.xml.generated.v1.Link;
 import org.goplanit.xml.generated.v1.MotorisationType;
 import org.goplanit.xml.generated.v1.Schedule;
 import org.goplanit.xml.generated.v1.Servicelayers;
+import org.goplanit.xml.generated.v1.Timeperiod;
 import org.goplanit.xml.generated.v1.TrackType;
 import org.goplanit.xml.generated.v1.Typevalues;
 import org.goplanit.xml.generated.v1.UsedToType;
@@ -48,8 +49,9 @@ import org.goplanit.xml.generated.v2.Mode;
 import org.goplanit.xml.generated.v2.Node;
 import org.goplanit.xml.generated.v2.ObjectFactory;
 import org.goplanit.xml.generated.v2.Servicenode;
+import org.goplanit.xml.generated.v2.TimePeriodType;
+import org.goplanit.xml.generated.v2.TimePeriodsContainerType;
 import org.goplanit.xml.generated.v2.TimeUnit;
-import org.goplanit.xml.generated.v2.Timeperiod;
 import org.goplanit.xml.generated.v2.Transferzonetype;
 import org.goplanit.xml.generated.v2.Travellertype;
 import org.goplanit.xml.generated.v2.Unitsvalues;
@@ -93,7 +95,7 @@ import org.goplanit.xml.generated.v2.XMLElementZones;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-15T13:01:56+1000",
+    date = "2026-07-09T14:26:58+1000",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.11 (Amazon.com Inc.)"
 )
 public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormalizationMapper {
@@ -915,50 +917,50 @@ public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormal
         return xMLElementDuration1;
     }
 
-    protected Timeperiod timeperiodToTimeperiod(org.goplanit.xml.generated.v1.Timeperiod timeperiod) {
+    protected TimePeriodType timeperiodToTimePeriodType(Timeperiod timeperiod) {
         if ( timeperiod == null ) {
             return null;
         }
 
-        Timeperiod timeperiod1 = objectFactory.createTimeperiod();
+        TimePeriodType timePeriodType = objectFactory.createTimePeriodType();
 
-        timeperiod1.setName( timeperiod.getName() );
-        timeperiod1.setStarttime( timeperiod.getStarttime() );
-        timeperiod1.setDuration( xMLElementDurationToXMLElementDuration( timeperiod.getDuration() ) );
-        timeperiod1.setId( timeperiod.getId() );
-        timeperiod1.setExternalid( timeperiod.getExternalid() );
+        timePeriodType.setName( timeperiod.getName() );
+        timePeriodType.setStarttime( timeperiod.getStarttime() );
+        timePeriodType.setDuration( xMLElementDurationToXMLElementDuration( timeperiod.getDuration() ) );
+        timePeriodType.setId( timeperiod.getId() );
+        timePeriodType.setExternalid( timeperiod.getExternalid() );
 
-        return timeperiod1;
+        return timePeriodType;
     }
 
-    protected List<Timeperiod> timeperiodListToTimeperiodList(List<org.goplanit.xml.generated.v1.Timeperiod> list) {
+    protected List<TimePeriodType> timeperiodListToTimePeriodTypeList(List<Timeperiod> list) {
         if ( list == null ) {
             return null;
         }
 
-        List<Timeperiod> list1 = new ArrayList<Timeperiod>( list.size() );
-        for ( org.goplanit.xml.generated.v1.Timeperiod timeperiod : list ) {
-            list1.add( timeperiodToTimeperiod( timeperiod ) );
+        List<TimePeriodType> list1 = new ArrayList<TimePeriodType>( list.size() );
+        for ( Timeperiod timeperiod : list ) {
+            list1.add( timeperiodToTimePeriodType( timeperiod ) );
         }
 
         return list1;
     }
 
-    protected org.goplanit.xml.generated.v2.XMLElementTimePeriods xMLElementTimePeriodsToXMLElementTimePeriods(XMLElementTimePeriods xMLElementTimePeriods) {
+    protected TimePeriodsContainerType xMLElementTimePeriodsToTimePeriodsContainerType(XMLElementTimePeriods xMLElementTimePeriods) {
         if ( xMLElementTimePeriods == null ) {
             return null;
         }
 
-        org.goplanit.xml.generated.v2.XMLElementTimePeriods xMLElementTimePeriods1 = objectFactory.createXMLElementTimePeriods();
+        TimePeriodsContainerType timePeriodsContainerType = objectFactory.createTimePeriodsContainerType();
 
-        if ( xMLElementTimePeriods1.getTimeperiods() != null ) {
-            List<Timeperiod> list = timeperiodListToTimeperiodList( xMLElementTimePeriods.getTimeperiods() );
+        if ( timePeriodsContainerType.getTimeperiods() != null ) {
+            List<TimePeriodType> list = timeperiodListToTimePeriodTypeList( xMLElementTimePeriods.getTimeperiods() );
             if ( list != null ) {
-                xMLElementTimePeriods1.getTimeperiods().addAll( list );
+                timePeriodsContainerType.getTimeperiods().addAll( list );
             }
         }
 
-        return xMLElementTimePeriods1;
+        return timePeriodsContainerType;
     }
 
     protected XMLElementDemandConfiguration xMLElementDemandConfigurationToXMLElementDemandConfiguration(org.goplanit.xml.generated.v1.XMLElementDemandConfiguration xMLElementDemandConfiguration) {
@@ -970,7 +972,7 @@ public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormal
 
         xMLElementDemandConfiguration1.setTravellertypes( xMLElementTravellerTypesToXMLElementTravellerTypes( xMLElementDemandConfiguration.getTravellertypes() ) );
         xMLElementDemandConfiguration1.setUserclasses( xMLElementUserClassesToXMLElementUserClasses( xMLElementDemandConfiguration.getUserclasses() ) );
-        xMLElementDemandConfiguration1.setTimeperiods( xMLElementTimePeriodsToXMLElementTimePeriods( xMLElementDemandConfiguration.getTimeperiods() ) );
+        xMLElementDemandConfiguration1.setTimeperiods( xMLElementTimePeriodsToTimePeriodsContainerType( xMLElementDemandConfiguration.getTimeperiods() ) );
 
         return xMLElementDemandConfiguration1;
     }

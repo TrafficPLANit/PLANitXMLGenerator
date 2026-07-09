@@ -23,9 +23,9 @@ import jakarta.xml.bind.annotation.XmlType;
  * &lt;complexType name="animateColorPrototype"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animNamedTargetAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animValuesAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animAddAccumAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animNamedTargetAttrs"/&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -40,6 +40,10 @@ import jakarta.xml.bind.annotation.XmlType;
 })
 public class AnimateColorPrototype {
 
+    @XmlAttribute(name = "attributeName", required = true)
+    protected String attributeName;
+    @XmlAttribute(name = "attributeType")
+    protected String attributeType;
     @XmlAttribute(name = "from")
     protected String from;
     @XmlAttribute(name = "by")
@@ -52,10 +56,58 @@ public class AnimateColorPrototype {
     protected String additive;
     @XmlAttribute(name = "accumulate")
     protected String accumulate;
-    @XmlAttribute(name = "attributeName", required = true)
-    protected String attributeName;
-    @XmlAttribute(name = "attributeType")
-    protected String attributeType;
+
+    /**
+     * Gets the value of the attributeName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttributeName() {
+        return attributeName;
+    }
+
+    /**
+     * Sets the value of the attributeName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttributeName(String value) {
+        this.attributeName = value;
+    }
+
+    /**
+     * Gets the value of the attributeType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAttributeType() {
+        if (attributeType == null) {
+            return "auto";
+        } else {
+            return attributeType;
+        }
+    }
+
+    /**
+     * Sets the value of the attributeType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAttributeType(String value) {
+        this.attributeType = value;
+    }
 
     /**
      * Gets the value of the from property.
@@ -207,58 +259,6 @@ public class AnimateColorPrototype {
      */
     public void setAccumulate(String value) {
         this.accumulate = value;
-    }
-
-    /**
-     * Gets the value of the attributeName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAttributeName() {
-        return attributeName;
-    }
-
-    /**
-     * Sets the value of the attributeName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAttributeName(String value) {
-        this.attributeName = value;
-    }
-
-    /**
-     * Gets the value of the attributeType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAttributeType() {
-        if (attributeType == null) {
-            return "auto";
-        } else {
-            return attributeType;
-        }
-    }
-
-    /**
-     * Sets the value of the attributeType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAttributeType(String value) {
-        this.attributeType = value;
     }
 
 }

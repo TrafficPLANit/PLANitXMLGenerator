@@ -7,94 +7,22 @@
 
 package org.goplanit.xml.generated.v2;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlType;
+import javax.xml.namespace.QName;
+import jakarta.xml.bind.JAXBElement;
 
-
-/**
- * &lt;p&gt;Java class for timeperiods element declaration&lt;/p&gt;.
- * 
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
- * 
- * &lt;pre&gt;{&#064;code
- * &lt;element name="timeperiods"&gt;
- *   &lt;complexType&gt;
- *     &lt;complexContent&gt;
- *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *         &lt;sequence&gt;
- *           &lt;element name="timeperiod" maxOccurs="unbounded"&gt;
- *             &lt;complexType&gt;
- *               &lt;complexContent&gt;
- *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                   &lt;sequence&gt;
- *                     &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *                     &lt;element ref="{http://goplanit.org/v2}starttime" minOccurs="0"/&gt;
- *                     &lt;element ref="{http://goplanit.org/v2}duration"/&gt;
- *                   &lt;/sequence&gt;
- *                   &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                   &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *                 &lt;/restriction&gt;
- *               &lt;/complexContent&gt;
- *             &lt;/complexType&gt;
- *           &lt;/element&gt;
- *         &lt;/sequence&gt;
- *       &lt;/restriction&gt;
- *     &lt;/complexContent&gt;
- *   &lt;/complexType&gt;
- * &lt;/element&gt;
- * }&lt;/pre&gt;
- * 
- * 
- */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "timeperiods"
-})
-@XmlRootElement(name = "timeperiods")
 public class XMLElementTimePeriods
-    implements Serializable
+    extends JAXBElement<TimePeriodsContainerType>
 {
 
     private static final long serialVersionUID = -1L;
-    @XmlElement(name = "timeperiod", required = true)
-    protected List<Timeperiod> timeperiods;
+    protected static final QName NAME = new QName("http://goplanit.org/v2", "timeperiods");
 
-    /**
-     * Gets the value of the timeperiods property.
-     * 
-     * <p>This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the timeperiods property.</p>
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * </p>
-     * <pre>
-     * getTimeperiods().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Timeperiod }
-     * </p>
-     * 
-     * 
-     * @return
-     *     The value of the timeperiods property.
-     */
-    public List<Timeperiod> getTimeperiods() {
-        if (timeperiods == null) {
-            timeperiods = new ArrayList<>();
-        }
-        return this.timeperiods;
+    public XMLElementTimePeriods(TimePeriodsContainerType value) {
+        super(NAME, ((Class<TimePeriodsContainerType> ) TimePeriodsContainerType.class), null, value);
+    }
+
+    public XMLElementTimePeriods() {
+        super(NAME, ((Class<TimePeriodsContainerType> ) TimePeriodsContainerType.class), null, null);
     }
 
 }

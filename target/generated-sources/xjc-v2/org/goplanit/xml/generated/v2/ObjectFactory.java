@@ -92,6 +92,26 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementDuration }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementDuration }
+     */
+    public XMLElementDuration createXMLElementDuration() {
+        return new XMLElementDuration();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementDiscreteDemand }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementDiscreteDemand }
+     */
+    public XMLElementDiscreteDemand createXMLElementDiscreteDemand() {
+        return new XMLElementDiscreteDemand();
+    }
+
+    /**
      * Create an instance of {@link XMLElementMacroscopicDemand }
      * 
      * @return
@@ -109,16 +129,6 @@ public class ObjectFactory {
      */
     public XMLElementDemandConfiguration createXMLElementDemandConfiguration() {
         return new XMLElementDemandConfiguration();
-    }
-
-    /**
-     * Create an instance of {@link XMLElementDuration }
-     * 
-     * @return
-     *     the new instance of {@link XMLElementDuration }
-     */
-    public XMLElementDuration createXMLElementDuration() {
-        return new XMLElementDuration();
     }
 
     /**
@@ -162,13 +172,23 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementTimePeriods }
+     * Create an instance of {@link Timeperiods }
      * 
      * @return
-     *     the new instance of {@link XMLElementTimePeriods }
+     *     the new instance of {@link Timeperiods }
      */
-    public XMLElementTimePeriods createXMLElementTimePeriods() {
-        return new XMLElementTimePeriods();
+    public Timeperiods createTimeperiods() {
+        return new Timeperiods();
+    }
+
+    /**
+     * Create an instance of {@link Timeperiod }
+     * 
+     * @return
+     *     the new instance of {@link Timeperiod }
+     */
+    public Timeperiod createTimeperiod() {
+        return new Timeperiod();
     }
 
     /**
@@ -672,6 +692,126 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TimePeriodType }
+     * 
+     * @return
+     *     the new instance of {@link TimePeriodType }
+     */
+    public TimePeriodType createTimePeriodType() {
+        return new TimePeriodType();
+    }
+
+    /**
+     * Create an instance of {@link TimePeriodsContainerType }
+     * 
+     * @return
+     *     the new instance of {@link TimePeriodsContainerType }
+     */
+    public TimePeriodsContainerType createTimePeriodsContainerType() {
+        return new TimePeriodsContainerType();
+    }
+
+    /**
+     * Create an instance of {@link Discretedemand }
+     * 
+     * @return
+     *     the new instance of {@link Discretedemand }
+     */
+    public Discretedemand createDiscretedemand() {
+        return new Discretedemand();
+    }
+
+    /**
+     * Create an instance of {@link HouseholdsType }
+     * 
+     * @return
+     *     the new instance of {@link HouseholdsType }
+     */
+    public HouseholdsType createHouseholdsType() {
+        return new HouseholdsType();
+    }
+
+    /**
+     * Create an instance of {@link HouseholdType }
+     * 
+     * @return
+     *     the new instance of {@link HouseholdType }
+     */
+    public HouseholdType createHouseholdType() {
+        return new HouseholdType();
+    }
+
+    /**
+     * Create an instance of {@link PersonsType }
+     * 
+     * @return
+     *     the new instance of {@link PersonsType }
+     */
+    public PersonsType createPersonsType() {
+        return new PersonsType();
+    }
+
+    /**
+     * Create an instance of {@link PersonType }
+     * 
+     * @return
+     *     the new instance of {@link PersonType }
+     */
+    public PersonType createPersonType() {
+        return new PersonType();
+    }
+
+    /**
+     * Create an instance of {@link ActivityScheduleType }
+     * 
+     * @return
+     *     the new instance of {@link ActivityScheduleType }
+     */
+    public ActivityScheduleType createActivityScheduleType() {
+        return new ActivityScheduleType();
+    }
+
+    /**
+     * Create an instance of {@link ToursType }
+     * 
+     * @return
+     *     the new instance of {@link ToursType }
+     */
+    public ToursType createToursType() {
+        return new ToursType();
+    }
+
+    /**
+     * Create an instance of {@link TourType }
+     * 
+     * @return
+     *     the new instance of {@link TourType }
+     */
+    public TourType createTourType() {
+        return new TourType();
+    }
+
+    /**
+     * Create an instance of {@link TripsType }
+     * 
+     * @return
+     *     the new instance of {@link TripsType }
+     */
+    public TripsType createTripsType() {
+        return new TripsType();
+    }
+
+    /**
+     * Create an instance of {@link TripType }
+     * 
+     * @return
+     *     the new instance of {@link TripType }
+     */
+    public TripType createTripType() {
+        return new TripType();
+    }
+
+    /**
      * Create an instance of {@link XMLElementOdMatrix }
      * 
      * @return
@@ -709,6 +849,46 @@ public class ObjectFactory {
      */
     public TurnsType createTurnsType() {
         return new TurnsType();
+    }
+
+    /**
+     * Create an instance of {@link Subtour }
+     * 
+     * @return
+     *     the new instance of {@link Subtour }
+     */
+    public Subtour createSubtour() {
+        return new Subtour();
+    }
+
+    /**
+     * Create an instance of {@link Tourtrip }
+     * 
+     * @return
+     *     the new instance of {@link Tourtrip }
+     */
+    public Tourtrip createTourtrip() {
+        return new Tourtrip();
+    }
+
+    /**
+     * Create an instance of {@link Tourref }
+     * 
+     * @return
+     *     the new instance of {@link Tourref }
+     */
+    public Tourref createTourref() {
+        return new Tourref();
+    }
+
+    /**
+     * Create an instance of {@link Tripref }
+     * 
+     * @return
+     *     the new instance of {@link Tripref }
+     */
+    public Tripref createTripref() {
+        return new Tripref();
     }
 
     /**
@@ -889,16 +1069,6 @@ public class ObjectFactory {
      */
     public Travellertype createTravellertype() {
         return new Travellertype();
-    }
-
-    /**
-     * Create an instance of {@link Timeperiod }
-     * 
-     * @return
-     *     the new instance of {@link Timeperiod }
-     */
-    public Timeperiod createTimeperiod() {
-        return new Timeperiod();
     }
 
     /**
@@ -1229,6 +1399,84 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementTrip }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementTrip }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "trip")
+    public XMLElementTrip createXMLElementTrip(TripType value) {
+        return new XMLElementTrip(value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTour }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementTour }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "tour")
+    public XMLElementTour createXMLElementTour(TourType value) {
+        return new XMLElementTour(value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementHousehold }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementHousehold }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "household")
+    public XMLElementHousehold createXMLElementHousehold(HouseholdType value) {
+        return new XMLElementHousehold(value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementHouseholds }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementHouseholds }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "households")
+    public XMLElementHouseholds createXMLElementHouseholds(HouseholdsType value) {
+        return new XMLElementHouseholds(value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTours }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementTours }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "tours")
+    public XMLElementTours createXMLElementTours(ToursType value) {
+        return new XMLElementTours(value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTrips }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementTrips }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "trips")
+    public XMLElementTrips createXMLElementTrips(TripsType value) {
+        return new XMLElementTrips(value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
      * 
      * @param value
@@ -1356,6 +1604,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Point", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricPrimitive")
     public JAXBElement<PointType> createPoint(PointType value) {
         return new JAXBElement<>(_Point_QNAME, PointType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTimePeriods }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementTimePeriods }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "timeperiods")
+    public XMLElementTimePeriods createXMLElementTimePeriods(TimePeriodsContainerType value) {
+        return new XMLElementTimePeriods(value);
     }
 
 }
