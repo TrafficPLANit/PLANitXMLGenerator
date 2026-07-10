@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * Uses MapStruct lbrary to expose functionality to map all legacy versions to the most recent version which then will
+ * Uses MapStruct library to expose functionality to map all legacy versions to the most recent version which then will
  * be used in PLANitIO for actual parsing. This way the business logic will never rely on legacy version for the
  * conversion for the memory model while still being able to parse older versions
  */
@@ -26,6 +26,10 @@ public interface PlanitVersionNormalizationMapper {
     }
     default org.goplanit.xml.generated.v2.XMLElementMacroscopicDemand toModel(
             org.goplanit.xml.generated.v2.XMLElementMacroscopicDemand source){
+        return source;
+    }
+    default org.goplanit.xml.generated.v2.XMLElementDiscreteDemand toModel(
+        org.goplanit.xml.generated.v2.XMLElementDiscreteDemand source){
         return source;
     }
     default org.goplanit.xml.generated.v2.XMLElementMacroscopicZoning toModel(

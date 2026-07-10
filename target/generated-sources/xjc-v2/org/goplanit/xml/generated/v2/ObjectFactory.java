@@ -712,33 +712,23 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Discretedemand }
+     * Create an instance of {@link XMLElementHouseholds }
      * 
      * @return
-     *     the new instance of {@link Discretedemand }
+     *     the new instance of {@link XMLElementHouseholds }
      */
-    public Discretedemand createDiscretedemand() {
-        return new Discretedemand();
+    public XMLElementHouseholds createXMLElementHouseholds() {
+        return new XMLElementHouseholds();
     }
 
     /**
-     * Create an instance of {@link HouseholdsType }
+     * Create an instance of {@link XMLElementHousehold }
      * 
      * @return
-     *     the new instance of {@link HouseholdsType }
+     *     the new instance of {@link XMLElementHousehold }
      */
-    public HouseholdsType createHouseholdsType() {
-        return new HouseholdsType();
-    }
-
-    /**
-     * Create an instance of {@link HouseholdType }
-     * 
-     * @return
-     *     the new instance of {@link HouseholdType }
-     */
-    public HouseholdType createHouseholdType() {
-        return new HouseholdType();
+    public XMLElementHousehold createXMLElementHousehold() {
+        return new XMLElementHousehold();
     }
 
     /**
@@ -772,43 +762,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ToursType }
+     * Create an instance of {@link XMLElementTours }
      * 
      * @return
-     *     the new instance of {@link ToursType }
+     *     the new instance of {@link XMLElementTours }
      */
-    public ToursType createToursType() {
-        return new ToursType();
+    public XMLElementTours createXMLElementTours() {
+        return new XMLElementTours();
     }
 
     /**
-     * Create an instance of {@link TourType }
+     * Create an instance of {@link XMLElementTour }
      * 
      * @return
-     *     the new instance of {@link TourType }
+     *     the new instance of {@link XMLElementTour }
      */
-    public TourType createTourType() {
-        return new TourType();
+    public XMLElementTour createXMLElementTour() {
+        return new XMLElementTour();
     }
 
     /**
-     * Create an instance of {@link TripsType }
+     * Create an instance of {@link XMLElementTrips }
      * 
      * @return
-     *     the new instance of {@link TripsType }
+     *     the new instance of {@link XMLElementTrips }
      */
-    public TripsType createTripsType() {
-        return new TripsType();
+    public XMLElementTrips createXMLElementTrips() {
+        return new XMLElementTrips();
     }
 
     /**
-     * Create an instance of {@link TripType }
+     * Create an instance of {@link XMLElementTrip }
      * 
      * @return
-     *     the new instance of {@link TripType }
+     *     the new instance of {@link XMLElementTrip }
      */
-    public TripType createTripType() {
-        return new TripType();
+    public XMLElementTrip createXMLElementTrip() {
+        return new XMLElementTrip();
     }
 
     /**
@@ -1396,84 +1386,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "stopcriterion")
     public JAXBElement<String> createStopcriterion(String value) {
         return new JAXBElement<>(_Stopcriterion_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementTrip }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementTrip }
-     */
-    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "trip")
-    public XMLElementTrip createXMLElementTrip(TripType value) {
-        return new XMLElementTrip(value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementTour }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementTour }
-     */
-    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "tour")
-    public XMLElementTour createXMLElementTour(TourType value) {
-        return new XMLElementTour(value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementHousehold }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementHousehold }
-     */
-    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "household")
-    public XMLElementHousehold createXMLElementHousehold(HouseholdType value) {
-        return new XMLElementHousehold(value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementHouseholds }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementHouseholds }
-     */
-    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "households")
-    public XMLElementHouseholds createXMLElementHouseholds(HouseholdsType value) {
-        return new XMLElementHouseholds(value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementTours }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementTours }
-     */
-    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "tours")
-    public XMLElementTours createXMLElementTours(ToursType value) {
-        return new XMLElementTours(value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementTrips }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementTrips }
-     */
-    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "trips")
-    public XMLElementTrips createXMLElementTrips(TripsType value) {
-        return new XMLElementTrips(value);
     }
 
     /**

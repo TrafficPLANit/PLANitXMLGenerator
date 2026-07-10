@@ -5,25 +5,25 @@
 		   elementFormDefault="qualified">
 	<xs:include schemaLocation="planitlibrary.xsd" />
 
-	<xs:element name="discretedemand" type="DiscreteDemandsType"/>
-
-	<xs:complexType name="DiscreteDemandsType">
-		<xs:annotation>
-			<xs:documentation>
-				Container block for all discrete demand configurations, aligning
-				with org.goplanit.demands.discrete.DiscreteDemands.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="externalid" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="timeperiods" type="TimePeriodsContainerType" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="households" type="HouseholdsType" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="persons" type="PersonsType" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="tours" type="ToursType" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="trips" type="TripsType" minOccurs="1" maxOccurs="1"/>
-		</xs:sequence>
-	</xs:complexType>
+	<xs:element name="discretedemand">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>
+					Container block for all discrete demand configurations, aligning
+					with org.goplanit.demands.discrete.DiscreteDemands.
+				</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="externalid" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="timeperiods" type="TimePeriodsContainerType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="households" type="HouseholdsType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="persons" type="PersonsType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="tours" type="ToursType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="trips" type="TripsType" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 
 	<!-- HOUSEHOLDS -->
 	<xs:complexType name="HouseholdsType">

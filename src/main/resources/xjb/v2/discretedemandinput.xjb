@@ -4,40 +4,36 @@
                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                jaxb:extensionBindingPrefixes="xjc">
 
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/discretedemandinput.xsd"
-		node="//xs:element[@name='discretedemand']">
-		<jaxb:class name="XMLElementDiscreteDemand" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/discretedemandinput.xsd"
-		node="//xs:element[@name='tours']">
-		<jaxb:class name="XMLElementTours" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/discretedemandinput.xsd"
-		node="//xs:element[@name='tour']">
-		<jaxb:class name="XMLElementTour" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/discretedemandinput.xsd"
-		node="//xs:element[@name='trips']">
-		<jaxb:class name="XMLElementTrips" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/discretedemandinput.xsd"
-		node="//xs:element[@name='trip']">
-		<jaxb:class name="XMLElementTrip" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/discretedemandinput.xsd"
-		node="//xs:element[@name='households']">
-		<jaxb:class name="XMLElementHouseholds" />
-	</jaxb:bindings>
-	<jaxb:bindings
-		schemaLocation="../../xsd/v2/discretedemandinput.xsd"
-		node="//xs:element[@name='household']">
-		<jaxb:class name="XMLElementHousehold" />
-	</jaxb:bindings>
+    <jaxb:bindings schemaLocation="../../xsd/v2/discretedemandinput.xsd"
+                   xmlns:p="http://goplanit.org/v2">
 
+       <jaxb:bindings node="//xs:element[@name='discretedemand']">
+          <jaxb:class name="XMLElementDiscreteDemand" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='HouseholdsType']">
+          <jaxb:class name="XMLElementHouseholds" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='HouseholdType']">
+          <jaxb:class name="XMLElementHousehold" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='ToursType']">
+          <jaxb:class name="XMLElementTours" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='TourType']">
+          <jaxb:class name="XMLElementTour" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='TripsType']">
+          <jaxb:class name="XMLElementTrips" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='TripType']">
+          <jaxb:class name="XMLElementTrip" />
+       </jaxb:bindings>
+
+    </jaxb:bindings>
 </jaxb:bindings>

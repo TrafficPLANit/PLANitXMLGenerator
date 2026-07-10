@@ -115,6 +115,15 @@ public class JAXBUtils {
 						(org.goplanit.xml.generated.v1.XMLElementMacroscopicDemand) rawPlanitXmlObjectOfSomeVersion);
 			}
 		}
+		//Discrete Demands
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementDiscreteDemand) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(XMLElementDiscreteDemand)rawPlanitXmlObjectOfSomeVersion);
+			}else{
+				LOGGER.info("Legacy V1 XML Discrete demands does not exist, should not happen");
+			}
+		}
 		// service network
 		{
 			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementServiceNetwork) {
@@ -155,6 +164,9 @@ public class JAXBUtils {
 			}
 		}
 
+		LOGGER.warning(String.format("Provided XML element (%s), not yet explicitly registered as recognised " +
+						"top-level PLANit XML when normalizing to current version",
+				rawPlanitXmlObjectOfSomeVersion.getClass().getName()));
 		throw new IllegalArgumentException("Unsupported PLANit XML root type: " +
 				rawPlanitXmlObjectOfSomeVersion.getClass().getName());
 	}
