@@ -13,6 +13,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
+import net.opengis.gml.MultiPolygonType;
 import net.opengis.gml.PolygonType;
 
 
@@ -29,7 +30,10 @@ import net.opengis.gml.PolygonType;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element ref="{http://goplanit.org/v2}centroid" minOccurs="0"/&gt;
  *         &lt;element ref="{http://goplanit.org/v2}connectoids"/&gt;
- *         &lt;element ref="{http://www.opengis.net/gml}Polygon" minOccurs="0"/&gt;
+ *         &lt;choice minOccurs="0"&gt;
+ *           &lt;element ref="{http://www.opengis.net/gml}Polygon"/&gt;
+ *           &lt;element ref="{http://www.opengis.net/gml}MultiPolygon"/&gt;
+ *         &lt;/choice&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -45,6 +49,7 @@ import net.opengis.gml.PolygonType;
     "name",
     "centroid",
     "connectoids",
+    "multiPolygon",
     "polygon"
 })
 public class Zone
@@ -70,12 +75,11 @@ public class Zone
     @XmlElement(required = true)
     protected XMLElementConnectoids connectoids;
     /**
-     * Each travel zone has a geographical area in the form of a Polygon.
-     * 										We recommend not using an interior polygon as "islands"
-     * 										are generally not allowed in traffic assignment. Also zones should not
-     * 										overlap and instead be contiguous (reusing borders).
+     * Deprecated with GML 3.0 and included for backwards compatibility with GML 2. Use the "MultiSurface" element instead.
      * 
      */
+    @XmlElement(name = "MultiPolygon", namespace = "http://www.opengis.net/gml")
+    protected MultiPolygonType multiPolygon;
     @XmlElement(name = "Polygon", namespace = "http://www.opengis.net/gml")
     protected PolygonType polygon;
     @XmlAttribute(name = "id", required = true)
@@ -163,10 +167,32 @@ public class Zone
     }
 
     /**
-     * Each travel zone has a geographical area in the form of a Polygon.
-     * 										We recommend not using an interior polygon as "islands"
-     * 										are generally not allowed in traffic assignment. Also zones should not
-     * 										overlap and instead be contiguous (reusing borders).
+     * Deprecated with GML 3.0 and included for backwards compatibility with GML 2. Use the "MultiSurface" element instead.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MultiPolygonType }
+     *     
+     */
+    public MultiPolygonType getMultiPolygon() {
+        return multiPolygon;
+    }
+
+    /**
+     * Sets the value of the multiPolygon property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MultiPolygonType }
+     *     
+     * @see #getMultiPolygon()
+     */
+    public void setMultiPolygon(MultiPolygonType value) {
+        this.multiPolygon = value;
+    }
+
+    /**
+     * Gets the value of the polygon property.
      * 
      * @return
      *     possible object is
@@ -184,7 +210,6 @@ public class Zone
      *     allowed object is
      *     {@link PolygonType }
      *     
-     * @see #getPolygon()
      */
     public void setPolygon(PolygonType value) {
         this.polygon = value;

@@ -100,16 +100,18 @@
 								</xs:annotation>							
 							</xs:element>
 							<xs:element ref="connectoids"/>
-							<xs:element ref="gml:Polygon" minOccurs="0">
+							<xs:choice minOccurs="0" maxOccurs="1">
 								<xs:annotation>
 									<xs:documentation>
-										Each travel zone has a geographical area in the form of a Polygon.
-										We recommend not using an interior polygon as "islands"
+										Each travel zone has a geographical area in the form of a Polygon
+										or a MultiPolygon. We recommend not using an interior polygon as "islands"
 										are generally not allowed in traffic assignment. Also zones should not
 										overlap and instead be contiguous (reusing borders).
 									</xs:documentation>
-								</xs:annotation>							
-							</xs:element>
+								</xs:annotation>
+								<xs:element ref="gml:Polygon"/>
+								<xs:element ref="gml:MultiPolygon"/>
+							</xs:choice>
 						</xs:sequence>
 						<xs:attribute name="id" type="xs:string" use="required" />
 						<xs:attribute name="externalid" type="xs:string" use="optional"/>						

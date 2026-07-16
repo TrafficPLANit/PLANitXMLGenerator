@@ -18,10 +18,12 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import net.opengis.gml.AbstractCurveType;
 import net.opengis.gml.AbstractGMLType;
+import net.opengis.gml.AbstractGeometricAggregateType;
 import net.opengis.gml.AbstractGeometricPrimitiveType;
 import net.opengis.gml.AbstractGeometryType;
 import net.opengis.gml.AbstractSurfaceType;
 import net.opengis.gml.LineStringType;
+import net.opengis.gml.MultiPolygonType;
 import net.opengis.gml.PointType;
 import net.opengis.gml.PolygonType;
 import org.goplanit.xml.bindings.TimeAdapter;
@@ -64,12 +66,14 @@ public class ObjectFactory {
     private static final QName _Smoothing_QNAME = new QName("http://goplanit.org/v2", "smoothing");
     private static final QName _Gapfunction_QNAME = new QName("http://goplanit.org/v2", "gapfunction");
     private static final QName _Stopcriterion_QNAME = new QName("http://goplanit.org/v2", "stopcriterion");
-    private static final QName _Polygon_QNAME = new QName("http://www.opengis.net/gml", "Polygon");
-    private static final QName _Surface_QNAME = new QName("http://www.opengis.net/gml", "_Surface");
-    private static final QName _GeometricPrimitive_QNAME = new QName("http://www.opengis.net/gml", "_GeometricPrimitive");
+    private static final QName _MultiPolygon_QNAME = new QName("http://www.opengis.net/gml", "MultiPolygon");
+    private static final QName _GeometricAggregate_QNAME = new QName("http://www.opengis.net/gml", "_GeometricAggregate");
     private static final QName _Geometry_QNAME = new QName("http://www.opengis.net/gml", "_Geometry");
     private static final QName _GML_QNAME = new QName("http://www.opengis.net/gml", "_GML");
     private static final QName _Object_QNAME = new QName("http://www.opengis.net/gml", "_Object");
+    private static final QName _Polygon_QNAME = new QName("http://www.opengis.net/gml", "Polygon");
+    private static final QName _Surface_QNAME = new QName("http://www.opengis.net/gml", "_Surface");
+    private static final QName _GeometricPrimitive_QNAME = new QName("http://www.opengis.net/gml", "_GeometricPrimitive");
     private static final QName _LineString_QNAME = new QName("http://www.opengis.net/gml", "LineString");
     private static final QName _Curve_QNAME = new QName("http://www.opengis.net/gml", "_Curve");
     private static final QName _Point_QNAME = new QName("http://www.opengis.net/gml", "Point");
@@ -1389,42 +1393,29 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link MultiPolygonType }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link MultiPolygonType }{@code >}
      */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Polygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Surface")
-    public JAXBElement<PolygonType> createPolygon(PolygonType value) {
-        return new JAXBElement<>(_Polygon_QNAME, PolygonType.class, null, value);
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "MultiPolygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricAggregate")
+    public JAXBElement<MultiPolygonType> createMultiPolygon(MultiPolygonType value) {
+        return new JAXBElement<>(_MultiPolygon_QNAME, MultiPolygonType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractGeometricAggregateType }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractGeometricAggregateType }{@code >}
      */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_Surface", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricPrimitive")
-    public JAXBElement<AbstractSurfaceType> createSurface(AbstractSurfaceType value) {
-        return new JAXBElement<>(_Surface_QNAME, AbstractSurfaceType.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_GeometricPrimitive", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Geometry")
-    public JAXBElement<AbstractGeometricPrimitiveType> createGeometricPrimitive(AbstractGeometricPrimitiveType value) {
-        return new JAXBElement<>(_GeometricPrimitive_QNAME, AbstractGeometricPrimitiveType.class, null, value);
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_GeometricAggregate", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Geometry")
+    public JAXBElement<AbstractGeometricAggregateType> createGeometricAggregate(AbstractGeometricAggregateType value) {
+        return new JAXBElement<>(_GeometricAggregate_QNAME, AbstractGeometricAggregateType.class, null, value);
     }
 
     /**
@@ -1464,6 +1455,45 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_Object")
     public JAXBElement<Object> createObject(Object value) {
         return new JAXBElement<>(_Object_QNAME, Object.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Polygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Surface")
+    public JAXBElement<PolygonType> createPolygon(PolygonType value) {
+        return new JAXBElement<>(_Polygon_QNAME, PolygonType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_Surface", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricPrimitive")
+    public JAXBElement<AbstractSurfaceType> createSurface(AbstractSurfaceType value) {
+        return new JAXBElement<>(_Surface_QNAME, AbstractSurfaceType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_GeometricPrimitive", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Geometry")
+    public JAXBElement<AbstractGeometricPrimitiveType> createGeometricPrimitive(AbstractGeometricPrimitiveType value) {
+        return new JAXBElement<>(_GeometricPrimitive_QNAME, AbstractGeometricPrimitiveType.class, null, value);
     }
 
     /**
