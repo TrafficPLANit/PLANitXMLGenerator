@@ -15,7 +15,6 @@ import org.goplanit.xml.generated.v1.Servicelayers;
 import org.goplanit.xml.generated.v1.Timeperiod;
 import org.goplanit.xml.generated.v1.TrackType;
 import org.goplanit.xml.generated.v1.Typevalues;
-import org.goplanit.xml.generated.v1.UsedToType;
 import org.goplanit.xml.generated.v1.Userclass;
 import org.goplanit.xml.generated.v1.VehicularType;
 import org.goplanit.xml.generated.v1.XMLElementCentroid;
@@ -95,7 +94,7 @@ import org.goplanit.xml.generated.v2.XMLElementZones;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-10T10:20:42+1000",
+    date = "2026-07-17T14:19:43+1000",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.11 (Amazon.com Inc.)"
 )
 public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormalizationMapper {
@@ -322,30 +321,6 @@ public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormal
         return xMLElementPhysicalFeatures1;
     }
 
-    protected org.goplanit.xml.generated.v2.UsedToType usedToTypeToUsedToType(UsedToType usedToType) {
-        if ( usedToType == null ) {
-            return null;
-        }
-
-        org.goplanit.xml.generated.v2.UsedToType usedToType1;
-
-        switch ( usedToType ) {
-            case PRIVATE: usedToType1 = org.goplanit.xml.generated.v2.UsedToType.PRIVATE;
-            break;
-            case PUBLIC: usedToType1 = org.goplanit.xml.generated.v2.UsedToType.PUBLIC;
-            break;
-            case RIDE_SHARE: usedToType1 = org.goplanit.xml.generated.v2.UsedToType.RIDE_SHARE;
-            break;
-            case HIGH_OCCUPANCY: usedToType1 = org.goplanit.xml.generated.v2.UsedToType.HIGH_OCCUPANCY;
-            break;
-            case GOODS: usedToType1 = org.goplanit.xml.generated.v2.UsedToType.GOODS;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + usedToType );
-        }
-
-        return usedToType1;
-    }
-
     protected org.goplanit.xml.generated.v2.XMLElementUsabilityFeatures xMLElementUsabilityFeaturesToXMLElementUsabilityFeatures(XMLElementUsabilityFeatures xMLElementUsabilityFeatures) {
         if ( xMLElementUsabilityFeatures == null ) {
             return null;
@@ -353,7 +328,7 @@ public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormal
 
         org.goplanit.xml.generated.v2.XMLElementUsabilityFeatures xMLElementUsabilityFeatures1 = objectFactory.createXMLElementUsabilityFeatures();
 
-        xMLElementUsabilityFeatures1.setUsedtotype( usedToTypeToUsedToType( xMLElementUsabilityFeatures.getUsedtotype() ) );
+        xMLElementUsabilityFeatures1.setUsedtotype( UseOfModeEnumMapper.map( xMLElementUsabilityFeatures.getUsedtotype() ) );
 
         return xMLElementUsabilityFeatures1;
     }

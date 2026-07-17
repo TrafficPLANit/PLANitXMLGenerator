@@ -18,21 +18,15 @@ import jakarta.xml.bind.annotation.XmlType;
 /**
  * Each mode can have a description(name) and pcu
  * 								value besides their unique identifier (id).
- * 								When no name is
- * 								given, the description is absent. When no pcu value
- * 								is defined
- * 								the default is adopted. When a predefined PLANit mode is used
+ * 								When no name is given, the description is absent. When no pcu value
+ * 								is defined the default is adopted. When a predefined PLANit mode is used
  * 								this is indicated with attribute predefined. For predefined
- * 								modes all features
- * 								are defined by defaults and therefore
+ * 								modes all features are defined by defaults and therefore
  * 								sub-elements need not be specified, if they are
- * 								they are ignored.
- * 								When the predefines attribute is missing, it is inferred from
- * 								the name. Note however
- * 								that if you use a custom mode with a
+ * 								they are ignored. When the predefines attribute is missing, it is inferred from
+ * 								the name. Note however that if you use a custom mode with a
  * 								predefined name, PLANit will then populate the mode with the
- * 								predefined
- * 								defaults instead of the specified ones.
+ * 								predefined defaults instead of the specified ones.
  * 
  * &lt;p&gt;Java class for anonymous complex type&lt;/p&gt;.
  * 

@@ -24,7 +24,9 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="private"/&gt;
  *     &lt;enumeration value="public"/&gt;
  *     &lt;enumeration value="ride_share"/&gt;
- *     &lt;enumeration value="high_occupancy"/&gt;
+ *     &lt;enumeration value="taxi"/&gt;
+ *     &lt;enumeration value="emergency"/&gt;
+ *     &lt;enumeration value="active"/&gt;
  *     &lt;enumeration value="goods"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
@@ -41,8 +43,12 @@ public enum UsedToType {
     PUBLIC("public"),
     @XmlEnumValue("ride_share")
     RIDE_SHARE("ride_share"),
-    @XmlEnumValue("high_occupancy")
-    HIGH_OCCUPANCY("high_occupancy"),
+    @XmlEnumValue("taxi")
+    TAXI("taxi"),
+    @XmlEnumValue("emergency")
+    EMERGENCY("emergency"),
+    @XmlEnumValue("active")
+    ACTIVE("active"),
     @XmlEnumValue("goods")
     GOODS("goods");
     private final String value;

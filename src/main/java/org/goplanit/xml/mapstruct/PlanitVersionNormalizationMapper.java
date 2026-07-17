@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
  * conversion for the memory model while still being able to parse older versions
  */
 @Mapper(uses = {ObjectFactory.class, PolymorphicResolver.class, TransferConnectoidV1ToV2Mapper.class,
-    ConnectoidEnumMapper.class})
+    ConnectoidEnumMapper.class, UseOfModeEnumMapper.class})
 public interface PlanitVersionNormalizationMapper {
     PlanitVersionNormalizationMapper INSTANCE = Mappers.getMapper(PlanitVersionNormalizationMapper.class);
 
