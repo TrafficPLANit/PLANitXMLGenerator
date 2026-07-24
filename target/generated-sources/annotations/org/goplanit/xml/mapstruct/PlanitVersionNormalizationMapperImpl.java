@@ -94,7 +94,7 @@ import org.goplanit.xml.generated.v2.XMLElementZones;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-17T14:19:43+1000",
+    date = "2026-07-24T10:51:34+1000",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.11 (Amazon.com Inc.)"
 )
 public class PlanitVersionNormalizationMapperImpl implements PlanitVersionNormalizationMapper {

@@ -23,8 +23,8 @@ import jakarta.xml.bind.annotation.XmlType;
  * &lt;complexType name="animateMotionPrototype"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animAddAccumAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animValuesAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animAddAccumAttrs"/&gt;
  *       &lt;attribute name="origin" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -42,10 +42,6 @@ public class AnimateMotionPrototype {
 
     @XmlAttribute(name = "origin")
     protected String origin;
-    @XmlAttribute(name = "additive")
-    protected String additive;
-    @XmlAttribute(name = "accumulate")
-    protected String accumulate;
     @XmlAttribute(name = "from")
     protected String from;
     @XmlAttribute(name = "by")
@@ -54,6 +50,10 @@ public class AnimateMotionPrototype {
     protected String values;
     @XmlAttribute(name = "to")
     protected String to;
+    @XmlAttribute(name = "additive")
+    protected String additive;
+    @XmlAttribute(name = "accumulate")
+    protected String accumulate;
 
     /**
      * Gets the value of the origin property.
@@ -77,62 +77,6 @@ public class AnimateMotionPrototype {
      */
     public void setOrigin(String value) {
         this.origin = value;
-    }
-
-    /**
-     * Gets the value of the additive property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAdditive() {
-        if (additive == null) {
-            return "replace";
-        } else {
-            return additive;
-        }
-    }
-
-    /**
-     * Sets the value of the additive property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAdditive(String value) {
-        this.additive = value;
-    }
-
-    /**
-     * Gets the value of the accumulate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAccumulate() {
-        if (accumulate == null) {
-            return "none";
-        } else {
-            return accumulate;
-        }
-    }
-
-    /**
-     * Sets the value of the accumulate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAccumulate(String value) {
-        this.accumulate = value;
     }
 
     /**
@@ -229,6 +173,62 @@ public class AnimateMotionPrototype {
      */
     public void setTo(String value) {
         this.to = value;
+    }
+
+    /**
+     * Gets the value of the additive property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAdditive() {
+        if (additive == null) {
+            return "replace";
+        } else {
+            return additive;
+        }
+    }
+
+    /**
+     * Sets the value of the additive property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAdditive(String value) {
+        this.additive = value;
+    }
+
+    /**
+     * Gets the value of the accumulate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAccumulate() {
+        if (accumulate == null) {
+            return "none";
+        } else {
+            return accumulate;
+        }
+    }
+
+    /**
+     * Sets the value of the accumulate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAccumulate(String value) {
+        this.accumulate = value;
     }
 
 }

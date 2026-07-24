@@ -32,6 +32,8 @@ import org.goplanit.xml.bindings.TimeAdapter;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="descr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="o" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="d" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="purp" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="mode" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="start_time" type="{http://www.w3.org/2001/XMLSchema}time" /&gt;
@@ -57,6 +59,18 @@ public class XMLElementTrip
     protected String externalid;
     @XmlAttribute(name = "descr")
     protected String descr;
+    /**
+     * The origin of this trip segment. Not required unless multi-trip leg portion of tour
+     * 
+     */
+    @XmlAttribute(name = "o")
+    protected String o;
+    /**
+     * The destination of this trip segment. Not required unless multi-trip leg portion of tour
+     * 
+     */
+    @XmlAttribute(name = "d")
+    protected String d;
     /**
      * The activity leg purpose motivating this trip segment.
      * 
@@ -156,6 +170,56 @@ public class XMLElementTrip
      */
     public void setDescr(String value) {
         this.descr = value;
+    }
+
+    /**
+     * The origin of this trip segment. Not required unless multi-trip leg portion of tour
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getO() {
+        return o;
+    }
+
+    /**
+     * Sets the value of the o property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     * @see #getO()
+     */
+    public void setO(String value) {
+        this.o = value;
+    }
+
+    /**
+     * The destination of this trip segment. Not required unless multi-trip leg portion of tour
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getD() {
+        return d;
+    }
+
+    /**
+     * Sets the value of the d property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     * @see #getD()
+     */
+    public void setD(String value) {
+        this.d = value;
     }
 
     /**

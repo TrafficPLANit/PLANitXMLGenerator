@@ -40,11 +40,11 @@ import org.w3c.dom.Element;
  *       &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
  *         &lt;any processContents='lax' namespace='##other'/&gt;
  *       &lt;/choice&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
- *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
  *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animTargetAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}CoreAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/Language}TimingAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}skipContentAttrs"/&gt;
+ *       &lt;attGroup ref="{http://www.w3.org/2001/SMIL20/}animModeAttrs"/&gt;
  *       &lt;anyAttribute/&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -63,6 +63,10 @@ public class AnimateType
 
     @XmlAnyElement(lax = true)
     protected List<Object> any;
+    @XmlAttribute(name = "targetElement")
+    @XmlIDREF
+    @XmlSchemaType(name = "IDREF")
+    protected Object targetElement;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -105,47 +109,43 @@ public class AnimateType
     @XmlAttribute(name = "longdesc")
     @XmlSchemaType(name = "anyURI")
     protected String longdesc;
-    @XmlAttribute(name = "calcMode")
-    protected String calcMode;
-    @XmlAttribute(name = "skip-content")
-    protected Boolean skipContent;
+    @XmlAttribute(name = "syncBehaviorDefault")
+    protected SyncBehaviorDefaultType syncBehaviorDefault;
+    @XmlAttribute(name = "syncToleranceDefault")
+    protected String syncToleranceDefault;
     @XmlAttribute(name = "restart")
     protected RestartTimingType restart;
-    @XmlAttribute(name = "fill")
-    protected FillTimingAttrsType fill;
     @XmlAttribute(name = "fillDefault")
     protected FillDefaultType fillDefault;
     @XmlAttribute(name = "restartDefault")
     protected RestartDefaultType restartDefault;
-    @XmlAttribute(name = "min")
-    protected String min;
-    @XmlAttribute(name = "max")
-    protected String max;
-    @XmlAttribute(name = "begin")
-    protected String begin;
-    @XmlAttribute(name = "end")
-    protected String end;
     @XmlAttribute(name = "repeat")
     @XmlSchemaType(name = "nonNegativeInteger")
     protected BigInteger repeat;
     @XmlAttribute(name = "dur")
     protected String dur;
+    @XmlAttribute(name = "min")
+    protected String min;
+    @XmlAttribute(name = "max")
+    protected String max;
     @XmlAttribute(name = "repeatDur")
     protected String repeatDur;
     @XmlAttribute(name = "repeatCount")
     protected BigDecimal repeatCount;
-    @XmlAttribute(name = "syncBehaviorDefault")
-    protected SyncBehaviorDefaultType syncBehaviorDefault;
-    @XmlAttribute(name = "syncToleranceDefault")
-    protected String syncToleranceDefault;
+    @XmlAttribute(name = "begin")
+    protected String begin;
+    @XmlAttribute(name = "end")
+    protected String end;
+    @XmlAttribute(name = "fill")
+    protected FillTimingAttrsType fill;
     @XmlAttribute(name = "syncBehavior")
     protected SyncBehaviorType syncBehavior;
     @XmlAttribute(name = "syncTolerance")
     protected String syncTolerance;
-    @XmlAttribute(name = "targetElement")
-    @XmlIDREF
-    @XmlSchemaType(name = "IDREF")
-    protected Object targetElement;
+    @XmlAttribute(name = "skip-content")
+    protected Boolean skipContent;
+    @XmlAttribute(name = "calcMode")
+    protected String calcMode;
     @XmlAnyAttribute
     private Map<QName, String> otherAttributes = new HashMap<>();
 
@@ -180,6 +180,30 @@ public class AnimateType
             any = new ArrayList<>();
         }
         return this.any;
+    }
+
+    /**
+     * Gets the value of the targetElement property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Object }
+     *     
+     */
+    public Object getTargetElement() {
+        return targetElement;
+    }
+
+    /**
+     * Sets the value of the targetElement property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Object }
+     *     
+     */
+    public void setTargetElement(Object value) {
+        this.targetElement = value;
     }
 
     /**
@@ -328,59 +352,59 @@ public class AnimateType
     }
 
     /**
-     * Gets the value of the calcMode property.
+     * Gets the value of the syncBehaviorDefault property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SyncBehaviorDefaultType }
+     *     
+     */
+    public SyncBehaviorDefaultType getSyncBehaviorDefault() {
+        if (syncBehaviorDefault == null) {
+            return SyncBehaviorDefaultType.INHERIT;
+        } else {
+            return syncBehaviorDefault;
+        }
+    }
+
+    /**
+     * Sets the value of the syncBehaviorDefault property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SyncBehaviorDefaultType }
+     *     
+     */
+    public void setSyncBehaviorDefault(SyncBehaviorDefaultType value) {
+        this.syncBehaviorDefault = value;
+    }
+
+    /**
+     * Gets the value of the syncToleranceDefault property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCalcMode() {
-        if (calcMode == null) {
-            return "linear";
+    public String getSyncToleranceDefault() {
+        if (syncToleranceDefault == null) {
+            return "inherit";
         } else {
-            return calcMode;
+            return syncToleranceDefault;
         }
     }
 
     /**
-     * Sets the value of the calcMode property.
+     * Sets the value of the syncToleranceDefault property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCalcMode(String value) {
-        this.calcMode = value;
-    }
-
-    /**
-     * Gets the value of the skipContent property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isSkipContent() {
-        if (skipContent == null) {
-            return true;
-        } else {
-            return skipContent;
-        }
-    }
-
-    /**
-     * Sets the value of the skipContent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setSkipContent(Boolean value) {
-        this.skipContent = value;
+    public void setSyncToleranceDefault(String value) {
+        this.syncToleranceDefault = value;
     }
 
     /**
@@ -409,34 +433,6 @@ public class AnimateType
      */
     public void setRestart(RestartTimingType value) {
         this.restart = value;
-    }
-
-    /**
-     * Gets the value of the fill property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public FillTimingAttrsType getFill() {
-        if (fill == null) {
-            return FillTimingAttrsType.DEFAULT;
-        } else {
-            return fill;
-        }
-    }
-
-    /**
-     * Sets the value of the fill property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FillTimingAttrsType }
-     *     
-     */
-    public void setFill(FillTimingAttrsType value) {
-        this.fill = value;
     }
 
     /**
@@ -496,102 +492,6 @@ public class AnimateType
     }
 
     /**
-     * Gets the value of the min property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMin() {
-        return min;
-    }
-
-    /**
-     * Sets the value of the min property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMin(String value) {
-        this.min = value;
-    }
-
-    /**
-     * Gets the value of the max property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMax() {
-        return max;
-    }
-
-    /**
-     * Sets the value of the max property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMax(String value) {
-        this.max = value;
-    }
-
-    /**
-     * Gets the value of the begin property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBegin() {
-        return begin;
-    }
-
-    /**
-     * Sets the value of the begin property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBegin(String value) {
-        this.begin = value;
-    }
-
-    /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEnd(String value) {
-        this.end = value;
-    }
-
-    /**
      * Gets the value of the repeat property.
      * 
      * @return
@@ -637,6 +537,54 @@ public class AnimateType
      */
     public void setDur(String value) {
         this.dur = value;
+    }
+
+    /**
+     * Gets the value of the min property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMin() {
+        return min;
+    }
+
+    /**
+     * Sets the value of the min property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMin(String value) {
+        this.min = value;
+    }
+
+    /**
+     * Gets the value of the max property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMax() {
+        return max;
+    }
+
+    /**
+     * Sets the value of the max property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMax(String value) {
+        this.max = value;
     }
 
     /**
@@ -688,59 +636,79 @@ public class AnimateType
     }
 
     /**
-     * Gets the value of the syncBehaviorDefault property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SyncBehaviorDefaultType }
-     *     
-     */
-    public SyncBehaviorDefaultType getSyncBehaviorDefault() {
-        if (syncBehaviorDefault == null) {
-            return SyncBehaviorDefaultType.INHERIT;
-        } else {
-            return syncBehaviorDefault;
-        }
-    }
-
-    /**
-     * Sets the value of the syncBehaviorDefault property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SyncBehaviorDefaultType }
-     *     
-     */
-    public void setSyncBehaviorDefault(SyncBehaviorDefaultType value) {
-        this.syncBehaviorDefault = value;
-    }
-
-    /**
-     * Gets the value of the syncToleranceDefault property.
+     * Gets the value of the begin property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSyncToleranceDefault() {
-        if (syncToleranceDefault == null) {
-            return "inherit";
-        } else {
-            return syncToleranceDefault;
-        }
+    public String getBegin() {
+        return begin;
     }
 
     /**
-     * Sets the value of the syncToleranceDefault property.
+     * Sets the value of the begin property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSyncToleranceDefault(String value) {
-        this.syncToleranceDefault = value;
+    public void setBegin(String value) {
+        this.begin = value;
+    }
+
+    /**
+     * Gets the value of the end property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEnd() {
+        return end;
+    }
+
+    /**
+     * Sets the value of the end property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEnd(String value) {
+        this.end = value;
+    }
+
+    /**
+     * Gets the value of the fill property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FillTimingAttrsType }
+     *     
+     */
+    public FillTimingAttrsType getFill() {
+        if (fill == null) {
+            return FillTimingAttrsType.DEFAULT;
+        } else {
+            return fill;
+        }
+    }
+
+    /**
+     * Sets the value of the fill property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FillTimingAttrsType }
+     *     
+     */
+    public void setFill(FillTimingAttrsType value) {
+        this.fill = value;
     }
 
     /**
@@ -796,27 +764,59 @@ public class AnimateType
     }
 
     /**
-     * Gets the value of the targetElement property.
+     * Gets the value of the skipContent property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link Boolean }
      *     
      */
-    public Object getTargetElement() {
-        return targetElement;
+    public boolean isSkipContent() {
+        if (skipContent == null) {
+            return true;
+        } else {
+            return skipContent;
+        }
     }
 
     /**
-     * Sets the value of the targetElement property.
+     * Sets the value of the skipContent property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link Boolean }
      *     
      */
-    public void setTargetElement(Object value) {
-        this.targetElement = value;
+    public void setSkipContent(Boolean value) {
+        this.skipContent = value;
+    }
+
+    /**
+     * Gets the value of the calcMode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCalcMode() {
+        if (calcMode == null) {
+            return "linear";
+        } else {
+            return calcMode;
+        }
+    }
+
+    /**
+     * Sets the value of the calcMode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCalcMode(String value) {
+        this.calcMode = value;
     }
 
     /**
