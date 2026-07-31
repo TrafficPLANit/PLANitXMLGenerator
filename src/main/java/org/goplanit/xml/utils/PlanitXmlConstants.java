@@ -14,10 +14,10 @@ public class PlanitXmlConstants {
   /** PLANit macroscopic zoning XML root element */
   public static final String XML_ROOT_MACROSCOPIC_ZONING = "macroscopiczoning";
 
-  /** PLANit infrastructure layers XML element */
+  /** PLANit infrastructure layers XML element  - used for streaming lookup */
   public static final String XML_ELEMENT_INFRASTRUCTURE_LAYERS = "infrastructurelayers";
 
-  /** PLANit CRS XML attribute */
+  /** PLANit CRS XML attribute - used for streaming lookup */
   public static final String XML_ATTRIBUTE_SRS_NAME = "srsname";
 
   /**
