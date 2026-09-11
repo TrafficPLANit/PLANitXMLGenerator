@@ -40,6 +40,7 @@ import org.goplanit.xml.bindings.TimeAdapter;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                 &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *                 &lt;attribute name="descr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *                 &lt;attribute name="role" type="{http://goplanit.org/v2}TourParticipantRoleType" default="primary" /&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;

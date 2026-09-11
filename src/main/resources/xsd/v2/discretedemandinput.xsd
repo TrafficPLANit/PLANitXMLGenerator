@@ -87,6 +87,11 @@
 							<xs:documentation>Human readable description for schedule debugging.</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
+					<xs:attribute name="role" type="TourParticipantRoleType" use="optional" default="primary">
+						<xs:annotation>
+							<xs:documentation>Role of this person on the referenced tour. Omitted means primary, i.e. the tour belongs to this person. A tour referenced by more than one person is a joint tour, which has exactly one primary participant.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="tripref">
@@ -120,6 +125,11 @@
 				<xs:complexType>
 					<xs:attribute name="ref" type="xs:string" use="required"/>
 					<xs:attribute name="descr" type="xs:string" use="optional"/>
+					<xs:attribute name="role" type="TourParticipantRoleType" use="optional" default="primary">
+						<xs:annotation>
+							<xs:documentation>Role of the participant on the referenced sub-tour, see tourref.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="tourtrip">
@@ -194,6 +204,20 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="outbound"/>
 			<xs:enumeration value="inbound"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TourParticipantRoleType">
+		<xs:annotation>
+			<xs:documentation>
+				The role a person takes on a tour they participate in, mapping to
+				org.goplanit.demands.discrete.tour.TourParticipantRole. It expresses who the tour belongs to rather than
+				who operates a vehicle, a joint tour being just as possible on foot or by public transport.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="primary"/>
+			<xs:enumeration value="accompanying"/>
 		</xs:restriction>
 	</xs:simpleType>
 

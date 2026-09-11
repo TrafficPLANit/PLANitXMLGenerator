@@ -25,6 +25,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="descr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="role" type="{http://goplanit.org/v2}TourParticipantRoleType" default="primary" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -42,6 +43,12 @@ public class Subtour implements Serializable
     protected String ref;
     @XmlAttribute(name = "descr")
     protected String descr;
+    /**
+     * Role of the participant on the referenced sub-tour, see tourref.
+     * 
+     */
+    @XmlAttribute(name = "role")
+    protected TourParticipantRoleType role;
 
     /**
      * Gets the value of the ref property.
@@ -89,6 +96,35 @@ public class Subtour implements Serializable
      */
     public void setDescr(String value) {
         this.descr = value;
+    }
+
+    /**
+     * Role of the participant on the referenced sub-tour, see tourref.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TourParticipantRoleType }
+     *     
+     */
+    public TourParticipantRoleType getRole() {
+        if (role == null) {
+            return TourParticipantRoleType.PRIMARY;
+        } else {
+            return role;
+        }
+    }
+
+    /**
+     * Sets the value of the role property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TourParticipantRoleType }
+     *     
+     * @see #getRole()
+     */
+    public void setRole(TourParticipantRoleType value) {
+        this.role = value;
     }
 
 }

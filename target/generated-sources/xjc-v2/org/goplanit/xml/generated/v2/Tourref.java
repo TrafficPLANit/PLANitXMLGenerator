@@ -25,6 +25,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="descr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="role" type="{http://goplanit.org/v2}TourParticipantRoleType" default="primary" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -46,6 +47,12 @@ public class Tourref implements Serializable
      */
     @XmlAttribute(name = "descr")
     protected String descr;
+    /**
+     * Role of this person on the referenced tour. Omitted means primary, i.e. the tour belongs to this person. A tour referenced by more than one person is a joint tour, which has exactly one primary participant.
+     * 
+     */
+    @XmlAttribute(name = "role")
+    protected TourParticipantRoleType role;
 
     /**
      * Gets the value of the ref property.
@@ -94,6 +101,35 @@ public class Tourref implements Serializable
      */
     public void setDescr(String value) {
         this.descr = value;
+    }
+
+    /**
+     * Role of this person on the referenced tour. Omitted means primary, i.e. the tour belongs to this person. A tour referenced by more than one person is a joint tour, which has exactly one primary participant.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TourParticipantRoleType }
+     *     
+     */
+    public TourParticipantRoleType getRole() {
+        if (role == null) {
+            return TourParticipantRoleType.PRIMARY;
+        } else {
+            return role;
+        }
+    }
+
+    /**
+     * Sets the value of the role property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TourParticipantRoleType }
+     *     
+     * @see #getRole()
+     */
+    public void setRole(TourParticipantRoleType value) {
+        this.role = value;
     }
 
 }
