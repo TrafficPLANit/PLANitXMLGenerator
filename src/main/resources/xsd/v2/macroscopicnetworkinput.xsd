@@ -223,6 +223,14 @@
 				<xs:element ref="nodes" />
 				<xs:element ref="links" />
 				<xs:element name="turns" type="turnsType" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="intersections" type="intersectionsType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Optional intersections of this layer: groups of nodes that together form a junction or
+							crossing, how each is controlled, and which link segments enter it and lie inside it
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string"
@@ -269,7 +277,7 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="srsname" type="srsname" use="required" default="EPSG:4326">
+			<xs:attribute name="srsname" type="srsname" use="optional" default="EPSG:4326">
 				<xs:annotation>
 					<xs:documentation>
 						Spatial reference system chosen for
@@ -621,6 +629,132 @@
 	<xs:complexType name="turnsType">
 		<xs:sequence>
 			<xs:element name="ban" type="banType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Simple types of the 'intersection' element -->
+	<xs:simpleType name="intersectionControlType">
+		<xs:annotation>
+			<xs:documentation>
+				How traffic at an intersection is controlled: signalised (traffic signals) or unsignalised
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="signalised" />
+			<xs:enumeration value="unsignalised" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="intersectionTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				Kind of intersection the control applies to: road traffic meeting at a junction, or a pedestrian
+				crossing
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="junction" />
+			<xs:enumeration value="crossing" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="intersectionTypeListType">
+		<xs:annotation>
+			<xs:documentation>
+				Space-separated list of one or more intersection kinds, e.g. "junction crossing"
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list itemType="intersectionTypeType" />
+			</xs:simpleType>
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="intersectionSegmentRoleType">
+		<xs:annotation>
+			<xs:documentation>
+				Role of the link segments listed by a segments element of an intersection: approach for the link
+				segments entering the intersection, internal for those inside it
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="approach" />
+			<xs:enumeration value="internal" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Definition of the 'segments' element of an intersection -->
+	<xs:complexType name="intersectionSegmentsType">
+		<xs:attribute name="type" type="intersectionSegmentRoleType" use="required">
+			<xs:annotation>
+				<xs:documentation>Role of the listed link segments in the intersection.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="refs" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the link segments of this layer with this role
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Definition of the 'intersection' element -->
+	<xs:complexType name="intersectionType">
+		<xs:sequence>
+			<!-- at most one entry per role (approach, internal), so at most two; the reader rejects a repeated role -->
+			<xs:element name="segments" type="intersectionSegmentsType" minOccurs="0" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>
+						Link segments of the intersection by role, at most one entry per role (approach, internal); a
+						repeated role is rejected when reading. An intersection may have no approach entry. Turns are
+						restricted only by the bans of the layer
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Mandatory unique identifier for the intersection.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Optional identifier for cross-referencing with external databases.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="noderefs" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the one or more nodes of this layer forming the intersection. A
+					node belongs to at most one intersection
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="control" type="intersectionControlType" use="required">
+			<xs:annotation>
+				<xs:documentation>How traffic at the intersection is controlled.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="types" type="intersectionTypeListType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Space-separated list of the kinds of the intersection, at least one, e.g. "junction crossing"
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Definition of the 'intersections' element -->
+	<xs:complexType name="intersectionsType">
+		<xs:sequence>
+			<xs:element name="intersection" type="intersectionType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An intersection of this layer.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 

@@ -846,6 +846,36 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementIntersectionSegments }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementIntersectionSegments }
+     */
+    public XMLElementIntersectionSegments createXMLElementIntersectionSegments() {
+        return new XMLElementIntersectionSegments();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementIntersection }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementIntersection }
+     */
+    public XMLElementIntersection createXMLElementIntersection() {
+        return new XMLElementIntersection();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementIntersections }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementIntersections }
+     */
+    public XMLElementIntersections createXMLElementIntersections() {
+        return new XMLElementIntersections();
+    }
+
+    /**
      * Create an instance of {@link Subtour }
      * 
      * @return

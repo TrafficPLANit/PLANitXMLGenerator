@@ -79,4 +79,24 @@
     node="//xs:element[@name ='accessgroup']">
     <jaxb:class name="XMLElementAccessGroup" />
   </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionsType']">
+    <jaxb:class name="XMLElementIntersections" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionType']">
+    <jaxb:class name="XMLElementIntersection" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionSegmentsType']">
+    <jaxb:class name="XMLElementIntersectionSegments" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:simpleType[@name ='intersectionControlType']">
+    <jaxb:typesafeEnumClass name="XMLElementIntersectionControlType" />
+  </jaxb:bindings>
 </jaxb:bindings>
