@@ -1,0 +1,26 @@
+package org.goplanit.xml.mapstruct;
+
+import javax.annotation.processing.Generated;
+import org.goplanit.xml.generated.v1.Odrow;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2026-09-25T17:56:03+1000",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.11 (Amazon.com Inc.)"
+)
+public class OdRowMatrixNestedElementsMapperImpl implements OdRowMatrixNestedElementsMapper {
+
+    @Override
+    public org.goplanit.xml.generated.v2.Odrow mapRow(Odrow source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        org.goplanit.xml.generated.v2.Odrow odrow = createOdrow();
+
+        odrow.setValue( source.getValue() );
+        odrow.setRef( source.getRef() );
+
+        return odrow;
+    }
+}
