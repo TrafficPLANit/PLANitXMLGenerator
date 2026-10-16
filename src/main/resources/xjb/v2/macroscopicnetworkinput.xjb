@@ -86,13 +86,53 @@
   </jaxb:bindings>
   <jaxb:bindings
     schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionBaseType']">
+    <jaxb:class name="XMLElementIntersectionBase" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
     node="//xs:complexType[@name ='intersectionType']">
     <jaxb:class name="XMLElementIntersection" />
   </jaxb:bindings>
   <jaxb:bindings
     schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
-    node="//xs:complexType[@name ='intersectionSegmentsType']">
-    <jaxb:class name="XMLElementIntersectionSegments" />
+    node="//xs:complexType[@name ='spatialIntersectionType']">
+    <jaxb:class name="XMLElementSpatialIntersection" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionApproachesType']">
+    <jaxb:class name="XMLElementIntersectionApproaches" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionApproachType']">
+    <jaxb:class name="XMLElementIntersectionApproach" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionInternalSegmentsType']">
+    <jaxb:class name="XMLElementIntersectionInternalSegments" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionInternalSignalSegmentsType']">
+    <jaxb:class name="XMLElementIntersectionInternalSignalSegments" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='intersectionInternalSignalSegmentType']">
+    <jaxb:class name="XMLElementIntersectionInternalSignalSegment" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='movementsType']">
+    <jaxb:class name="XMLElementMovements" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='movementType']">
+    <jaxb:class name="XMLElementMovement" />
   </jaxb:bindings>
   <jaxb:bindings
     schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"

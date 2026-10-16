@@ -15,15 +15,14 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * &lt;p&gt;Java class for intersectionSegmentsType complex type&lt;/p&gt;.
+ * &lt;p&gt;Java class for intersectionInternalSegmentsType complex type&lt;/p&gt;.
  * 
  * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
  * 
  * &lt;pre&gt;{&#064;code
- * &lt;complexType name="intersectionSegmentsType"&gt;
+ * &lt;complexType name="intersectionInternalSegmentsType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;attribute name="type" use="required" type="{http://goplanit.org/v2}intersectionSegmentRoleType" /&gt;
  *       &lt;attribute name="refs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -33,52 +32,23 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "intersectionSegmentsType")
-public class XMLElementIntersectionSegments
+@XmlType(name = "intersectionInternalSegmentsType")
+public class XMLElementIntersectionInternalSegments
     implements Serializable
 {
 
     private static final long serialVersionUID = -1L;
     /**
-     * Role of the listed link segments in the intersection.
-     * 
-     */
-    @XmlAttribute(name = "type", required = true)
-    protected IntersectionSegmentRoleType type;
-    /**
-     * Comma-separated list of the ids of the link segments of this layer with this role
+     * Comma-separated list of the ids of the link segments of this layer inside the intersection that
+     * 					have no signal standing on them
      * 
      */
     @XmlAttribute(name = "refs", required = true)
     protected String refs;
 
     /**
-     * Role of the listed link segments in the intersection.
-     * 
-     * @return
-     *     possible object is
-     *     {@link IntersectionSegmentRoleType }
-     *     
-     */
-    public IntersectionSegmentRoleType getType() {
-        return type;
-    }
-
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IntersectionSegmentRoleType }
-     *     
-     * @see #getType()
-     */
-    public void setType(IntersectionSegmentRoleType value) {
-        this.type = value;
-    }
-
-    /**
-     * Comma-separated list of the ids of the link segments of this layer with this role
+     * Comma-separated list of the ids of the link segments of this layer inside the intersection that
+     * 					have no signal standing on them
      * 
      * @return
      *     possible object is

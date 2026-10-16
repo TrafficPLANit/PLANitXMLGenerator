@@ -9,7 +9,10 @@ import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper;
 import org.goplanit.xml.generated.v2.*;
 import org.goplanit.xml.mapstruct.PlanitVersionNormalizationMapper;
 
+import javax.xml.namespace.QName;
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -20,6 +23,7 @@ import java.io.FileReader;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import static org.goplanit.xml.utils.PlanitNamespacePrefixMapper.NAMESPACE_V1_URI;
@@ -196,6 +200,48 @@ public class JAXBUtils {
 	}
   
 	/**
+	 * Raised when a file holds an element that was removed from the schema. Such an element would otherwise be skipped
+	 * silently, and the file read without its content
+	 */
+	public static class ElementRemovedFromSchemaException extends XMLStreamException {
+
+		/** generated UID */
+		private static final long serialVersionUID = -1880246436392398522L;
+
+		/**
+		 * Constructor
+		 *
+		 * @param message naming the removed element
+		 */
+		public ElementRemovedFromSchemaException(String message) {
+			super(message);
+		}
+	}
+
+	/**
+	 * Wrap a reader so it stops at an element removed from the schema, rather than letting JAXB skip it silently
+	 *
+	 * @param xmlStreamReader to wrap
+	 * @param elementsRemovedFromSchema names of the elements removed from the schema
+	 * @return the wrapped reader, which throws an {@link ElementRemovedFromSchemaException} at such an element
+	 */
+	public static XMLStreamReader wrapReaderToStopAtElementsRemovedFromSchema(
+			XMLStreamReader xmlStreamReader, Set<QName> elementsRemovedFromSchema) {
+		return new javax.xml.stream.util.StreamReaderDelegate(xmlStreamReader) {
+			@Override
+			public int next() throws XMLStreamException {
+				int event = super.next();
+				if (event == XMLStreamConstants.START_ELEMENT && elementsRemovedFromSchema.contains(getName())) {
+					throw new ElementRemovedFromSchemaException(String.format(
+							"Element %s at line %d was removed from the schema; write the file again in the current shape",
+							getName().getLocalPart(), getLocation().getLineNumber()));
+				}
+				return event;
+			}
+		};
+	}
+
+	/**
 	 * Method to validate an XML input file against an XSD schema using Java XML
 	 * Validator
 	 * 
@@ -247,18 +293,47 @@ public class JAXBUtils {
 			Class<LATEST> clazzV2,
 			Class<LEGACY> clazzV1,
 			@Nullable Runnable callbackIfLegacy) {
+		return generateInstanceFromXml(potentialXmlFileNames, clazzV2, clazzV1, callbackIfLegacy, Set.of());
+	}
+
+	/** Create populated instance of class based from the first compatible potential files and return normalised
+	 * latest version. A file holding an element removed from the schema stops the parsing
+	 *
+	 * @param <LATEST> raw XML to find
+	 * @param clazzV2 of type LATEST
+	 * @param clazzV1 of type LEGACY
+	 * @param potentialXmlFileNames to search among
+	 * @param callbackIfLegacy optional callback if legacy version
+	 * @param elementsRemovedFromSchema names of the elements removed from the schema, see
+	 *                                  {@link #wrapReaderToStopAtElementsRemovedFromSchema(XMLStreamReader, Set)}
+	 * @return parsed result, null if not found
+	 * @throws IllegalStateException when a file holds an element removed from the schema
+	 */
+	public static <LATEST, LEGACY> LATEST generateInstanceFromXml(
+			final File[] potentialXmlFileNames,
+			Class<LATEST> clazzV2,
+			Class<LEGACY> clazzV1,
+			@Nullable Runnable callbackIfLegacy,
+			Set<QName> elementsRemovedFromSchema) {
 
 		LATEST result=null;
 		for (int i = 0; i < potentialXmlFileNames.length; i++) {
 			File currFileName = potentialXmlFileNames[i];
 			if (result==null) {
 				try {
-					Object parsedXmlContent = JAXBUtils.unmarshalAndNormalize(currFileName, clazzV2, clazzV1, callbackIfLegacy);
+					Object parsedXmlContent = JAXBUtils.unmarshalAndNormalize(
+							currFileName, clazzV2, clazzV1, callbackIfLegacy, elementsRemovedFromSchema);
 
 					result = clazzV2.cast(parsedXmlContent);
 					LOGGER.info("parsed file " + currFileName);
 					break;
 				} catch (final Exception e) {
+					for (Throwable cause = e; cause != null; cause = cause.getCause()) {
+						if (cause instanceof ElementRemovedFromSchemaException) {
+							throw new IllegalStateException(
+									String.format("Unable to parse %s: %s", currFileName, cause.getMessage()), cause);
+						}
+					}
 					/* ok, just try next */
 					LOGGER.fine(String.format("Tried but failed to parse %s as %s",currFileName, clazzV2.getName()));
 				}
@@ -310,6 +385,28 @@ public class JAXBUtils {
 			Class<NEWEST> newestClassVersion,
 			Class<LEGACY> olderClassVersion,
 			@Nullable Runnable callbackIfLegacy) throws Exception {
+		return unmarshalAndNormalize(xmlFileLocation, newestClassVersion, olderClassVersion, callbackIfLegacy, Set.of());
+	}
+
+	/**
+	 * Unmarshalls an XML file and automatically normalizes it to the V2 model
+	 * if it happens to be a V1 file. It stops at an element removed from the schema.
+	 * @param <NEWEST> type of newest
+	 * @param <LEGACY>   type of legacy
+	 * @param xmlFileLocation the file to parse
+	 * @param newestClassVersion target version
+	 * @param olderClassVersion  potential older version we may encounter
+	 * @param callbackIfLegacy optional callback if legacy version
+	 * @param elementsRemovedFromSchema names of the elements removed from the schema, see
+	 *                                  {@link #wrapReaderToStopAtElementsRemovedFromSchema(XMLStreamReader, Set)}
+	 * @return A V2 PLANit object, regardless of whether the source was V1 or V2
+	 */
+	public static <NEWEST, LEGACY> NEWEST unmarshalAndNormalize(
+			File xmlFileLocation,
+			Class<NEWEST> newestClassVersion,
+			Class<LEGACY> olderClassVersion,
+			@Nullable Runnable callbackIfLegacy,
+			Set<QName> elementsRemovedFromSchema) throws Exception {
 
 		// 1. Create a context that knows about BOTH V1 and V2 root elements
 		// This is necessary so the unmarshaller can recognize either version.
@@ -324,6 +421,9 @@ public class JAXBUtils {
 
 			// default to NAMESPACE_V1_URI version if missing
 			var wrappedReader = wrapReaderWithInjectLegacyVersionIfMissing(xmlStreamReader, NAMESPACE_V1_URI);
+			if (!elementsRemovedFromSchema.isEmpty()) {
+				wrappedReader = wrapReaderToStopAtElementsRemovedFromSchema(wrappedReader, elementsRemovedFromSchema);
+			}
 			Object rawObject = unmarshaller.unmarshal(wrappedReader);
 
 			// JAXB nuance: unmarshal often returns JAXBElement wrapper when using StreamReaders

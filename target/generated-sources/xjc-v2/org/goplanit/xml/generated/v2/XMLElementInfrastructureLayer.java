@@ -34,6 +34,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *           &lt;element ref="{http://goplanit.org/v2}nodes"/&gt;
  *           &lt;element ref="{http://goplanit.org/v2}links"/&gt;
  *           &lt;element name="turns" type="{http://goplanit.org/v2}turnsType" minOccurs="0"/&gt;
+ *           &lt;element name="independentmovements" type="{http://goplanit.org/v2}movementsType" minOccurs="0"/&gt;
  *           &lt;element name="intersections" type="{http://goplanit.org/v2}intersectionsType" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -54,6 +55,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "nodes",
     "links",
     "turns",
+    "independentmovements",
     "intersections"
 })
 @XmlRootElement(name = "layer")
@@ -83,8 +85,14 @@ public class XMLElementInfrastructureLayer
     protected XMLElementLinks links;
     protected TurnsType turns;
     /**
-     * Optional intersections of this layer: groups of nodes that together form a junction or
-     * 							crossing, how each is controlled, and which link segments enter it and lie inside it
+     * Optional movements of this layer that belong to no intersection, each spanning more than one
+     * 							node and stored only because a ban is placed on it directly
+     * 
+     */
+    protected XMLElementMovements independentmovements;
+    /**
+     * Optional intersections of this layer: junctions or crossings, how each is controlled, and
+     * 							which link segments enter it and, for a spatial intersection, lie inside it
      * 
      */
     protected XMLElementIntersections intersections;
@@ -212,8 +220,34 @@ public class XMLElementInfrastructureLayer
     }
 
     /**
-     * Optional intersections of this layer: groups of nodes that together form a junction or
-     * 							crossing, how each is controlled, and which link segments enter it and lie inside it
+     * Optional movements of this layer that belong to no intersection, each spanning more than one
+     * 							node and stored only because a ban is placed on it directly
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLElementMovements }
+     *     
+     */
+    public XMLElementMovements getIndependentmovements() {
+        return independentmovements;
+    }
+
+    /**
+     * Sets the value of the independentmovements property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLElementMovements }
+     *     
+     * @see #getIndependentmovements()
+     */
+    public void setIndependentmovements(XMLElementMovements value) {
+        this.independentmovements = value;
+    }
+
+    /**
+     * Optional intersections of this layer: junctions or crossings, how each is controlled, and
+     * 							which link segments enter it and, for a spatial intersection, lie inside it
      * 
      * @return
      *     possible object is

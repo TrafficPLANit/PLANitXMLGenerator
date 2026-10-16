@@ -223,11 +223,19 @@
 				<xs:element ref="nodes" />
 				<xs:element ref="links" />
 				<xs:element name="turns" type="turnsType" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="independentmovements" type="movementsType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Optional movements of this layer that belong to no intersection, each spanning more than one
+							node and stored only because a ban is placed on it directly
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="intersections" type="intersectionsType" minOccurs="0" maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>
-							Optional intersections of this layer: groups of nodes that together form a junction or
-							crossing, how each is controlled, and which link segments enter it and lie inside it
+							Optional intersections of this layer: junctions or crossings, how each is controlled, and
+							which link segments enter it and, for a spatial intersection, lie inside it
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
@@ -621,8 +629,24 @@
 				<xs:documentation>Optional identifier for cross-referencing with external databases.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="fromref" type="xs:string" use="required" />
-		<xs:attribute name="toref" type="xs:string" use="required" />
+		<xs:attribute name="fromlsref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of the link segment of this layer the banned turn starts on.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tolsref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of the link segment of this layer the banned turn goes onto.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="moderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the modes the turn is banned for. When left out, the turn is
+					banned for every mode
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 
 	<!-- Definition of the 'turns' element -->
@@ -672,52 +696,83 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="intersectionSegmentRoleType">
-		<xs:annotation>
-			<xs:documentation>
-				Role of the link segments listed by a segments element of an intersection: approach for the link
-				segments entering the intersection, internal for those inside it
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="approach" />
-			<xs:enumeration value="internal" />
-		</xs:restriction>
-	</xs:simpleType>
-
-	<!-- Definition of the 'segments' element of an intersection -->
-	<xs:complexType name="intersectionSegmentsType">
-		<xs:attribute name="type" type="intersectionSegmentRoleType" use="required">
+	<!-- Definition of the 'approach' element of an intersection -->
+	<xs:complexType name="intersectionApproachType">
+		<xs:attribute name="ref" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation>Role of the listed link segments in the intersection.</xs:documentation>
+				<xs:documentation>Id of the link segment of this layer that enters the intersection.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="refs" type="xs:string" use="required">
+		<xs:attribute name="signal" type="xs:boolean" use="optional">
 			<xs:annotation>
 				<xs:documentation>
-					Comma-separated list of the ids of the link segments of this layer with this role
+					Whether the approach has a signal of its own. When left out, the approach follows the control of
+					the intersection, so it is only written where it differs: false at a signalised intersection, true
+					at an unsignalised one
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
 
-	<!-- Definition of the 'intersection' element -->
-	<xs:complexType name="intersectionType">
+	<!-- Definition of the 'approaches' element of an intersection -->
+	<xs:complexType name="intersectionApproachesType">
 		<xs:sequence>
-			<!-- at most one entry per role (approach, internal), so at most two; the reader rejects a repeated role -->
-			<xs:element name="segments" type="intersectionSegmentsType" minOccurs="0" maxOccurs="2">
+			<xs:element name="approach" type="intersectionApproachType" minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>
-						Link segments of the intersection by role, at most one entry per role (approach, internal); a
-						repeated role is rejected when reading. An intersection may have no approach entry. Turns are
-						restricted only by the bans of the layer
-					</xs:documentation>
+					<xs:documentation>A link segment entering the intersection.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Definition of the 'internalsegments' element of an intersection -->
+	<xs:complexType name="intersectionInternalSegmentsType">
+		<xs:attribute name="refs" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the link segments of this layer inside the intersection that
+					have no signal standing on them
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Definition of the 'internalsignalsegment' element of an intersection -->
+	<xs:complexType name="intersectionInternalSignalSegmentType">
+		<xs:attribute name="ref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Id of a link segment of this layer inside the intersection with a signal standing on it, such as a
+					stop line in a median
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Definition of the 'internalsignalsegments' element of an intersection -->
+	<xs:complexType name="intersectionInternalSignalSegmentsType">
+		<xs:sequence>
+			<xs:element name="internalsignalsegment" type="intersectionInternalSignalSegmentType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A link segment inside the intersection with a signal standing on it.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Definition of the 'movement' element, of a spatial intersection or independent -->
+	<xs:complexType name="movementType">
+		<xs:annotation>
+			<xs:documentation>
+				A movement from one link segment to another. Only a ban placed on the movement itself is written: a
+				movement without one can still be blocked by a banned turn at a member node of its intersection, or by
+				mode access
+			</xs:documentation>
+		</xs:annotation>
 		<xs:attribute name="id" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation>Mandatory unique identifier for the intersection.</xs:documentation>
+				<xs:documentation>Mandatory unique identifier for the movement.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="externalid" type="xs:string" use="optional">
@@ -725,14 +780,67 @@
 				<xs:documentation>Optional identifier for cross-referencing with external databases.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="noderefs" type="xs:string" use="required">
+		<xs:attribute name="fromlsref" type="xs:string" use="required">
 			<xs:annotation>
 				<xs:documentation>
-					Comma-separated list of the ids of the one or more nodes of this layer forming the intersection. A
-					node belongs to at most one intersection
+					Id of the link segment the movement starts on; for a movement of a spatial intersection one of its
+					approaches
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="tolsref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Id of the link segment the movement ends on; for a movement of a spatial intersection one leaving it
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="length" type="xs:double" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Length of the movement, from where its from segment ends to where its to segment starts, in km
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="directban" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					True when a ban is placed on the movement itself. Left out, there is none, unless bannedmoderefs is
+					given, which implies one
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="bannedmoderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the modes the direct ban is for. When left out, a direct ban is
+					for every mode
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Definition of the 'movements' element, of a spatial intersection or of the independent movements of a layer -->
+	<xs:complexType name="movementsType">
+		<xs:sequence>
+			<xs:element name="movement" type="movementType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A movement from one link segment to another.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- What both kinds of intersection have; each kind extends it. The id and externalid are declared by each kind, so
+	     they are written first: an element's own attributes are written before those of its base type -->
+	<xs:complexType name="intersectionBaseType" abstract="true">
+		<xs:sequence>
+			<xs:element name="approaches" type="intersectionApproachesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The link segments entering the intersection. An intersection may have none.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 		<xs:attribute name="control" type="intersectionControlType" use="required">
 			<xs:annotation>
 				<xs:documentation>How traffic at the intersection is controlled.</xs:documentation>
@@ -747,12 +855,99 @@
 		</xs:attribute>
 	</xs:complexType>
 
+	<!-- Definition of the 'intersection' element: a non-spatial intersection, on one node -->
+	<xs:complexType name="intersectionType">
+		<xs:complexContent>
+			<xs:extension base="intersectionBaseType">
+				<xs:attribute name="id" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Mandatory unique identifier for the intersection, unique over both kinds of intersection.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="externalid" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Optional identifier for cross-referencing with external databases.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="noderef" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Id of the node of this layer the intersection is on. A node belongs to at most one intersection
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- Definition of the 'spatialintersection' element: an intersection over several nodes -->
+	<xs:complexType name="spatialIntersectionType">
+		<xs:complexContent>
+			<xs:extension base="intersectionBaseType">
+				<xs:sequence>
+					<xs:element name="internalsegments" type="intersectionInternalSegmentsType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								The link segments inside the intersection without a signal. Each internal segment is listed
+								either here or under internalsignalsegments, not both
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="internalsignalsegments" type="intersectionInternalSignalSegmentsType" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The link segments inside the intersection with a signal standing on them.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="movements" type="movementsType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Every movement through the intersection: one for each approach and link segment leaving it that
+								its internal segments connect, banned or not, except the one back along the approach's own link
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="id" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Mandatory unique identifier for the intersection, unique over both kinds of intersection.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="externalid" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Optional identifier for cross-referencing with external databases.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="noderefs" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Comma-separated list of the ids of the two or more nodes of this layer forming the intersection. A
+							node belongs to at most one intersection
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
 	<!-- Definition of the 'intersections' element -->
 	<xs:complexType name="intersectionsType">
 		<xs:sequence>
 			<xs:element name="intersection" type="intersectionType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>An intersection of this layer.</xs:documentation>
+					<xs:documentation>
+						A non-spatial intersection of this layer, on one node. Every turn at its node is allowed unless
+						banned, see the turns of the layer
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spatialintersection" type="spatialIntersectionType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A spatial intersection of this layer, over several nodes.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>

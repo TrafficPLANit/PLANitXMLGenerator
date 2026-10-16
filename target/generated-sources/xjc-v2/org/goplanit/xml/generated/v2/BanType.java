@@ -25,8 +25,9 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="fromref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="toref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="fromlsref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="tolsref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="moderefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -53,10 +54,25 @@ public class BanType
      */
     @XmlAttribute(name = "externalid")
     protected String externalid;
-    @XmlAttribute(name = "fromref", required = true)
-    protected String fromref;
-    @XmlAttribute(name = "toref", required = true)
-    protected String toref;
+    /**
+     * Id of the link segment of this layer the banned turn starts on.
+     * 
+     */
+    @XmlAttribute(name = "fromlsref", required = true)
+    protected String fromlsref;
+    /**
+     * Id of the link segment of this layer the banned turn goes onto.
+     * 
+     */
+    @XmlAttribute(name = "tolsref", required = true)
+    protected String tolsref;
+    /**
+     * Comma-separated list of the ids of the modes the turn is banned for. When left out, the turn is
+     * 					banned for every mode
+     * 
+     */
+    @XmlAttribute(name = "moderefs")
+    protected String moderefs;
 
     /**
      * Mandatory unique identifier for the turn ban.
@@ -109,51 +125,79 @@ public class BanType
     }
 
     /**
-     * Gets the value of the fromref property.
+     * Id of the link segment of this layer the banned turn starts on.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFromref() {
-        return fromref;
+    public String getFromlsref() {
+        return fromlsref;
     }
 
     /**
-     * Sets the value of the fromref property.
+     * Sets the value of the fromlsref property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
+     * @see #getFromlsref()
      */
-    public void setFromref(String value) {
-        this.fromref = value;
+    public void setFromlsref(String value) {
+        this.fromlsref = value;
     }
 
     /**
-     * Gets the value of the toref property.
+     * Id of the link segment of this layer the banned turn goes onto.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getToref() {
-        return toref;
+    public String getTolsref() {
+        return tolsref;
     }
 
     /**
-     * Sets the value of the toref property.
+     * Sets the value of the tolsref property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
+     * @see #getTolsref()
      */
-    public void setToref(String value) {
-        this.toref = value;
+    public void setTolsref(String value) {
+        this.tolsref = value;
+    }
+
+    /**
+     * Comma-separated list of the ids of the modes the turn is banned for. When left out, the turn is
+     * 					banned for every mode
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getModerefs() {
+        return moderefs;
+    }
+
+    /**
+     * Sets the value of the moderefs property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     * @see #getModerefs()
+     */
+    public void setModerefs(String value) {
+        this.moderefs = value;
     }
 
 }

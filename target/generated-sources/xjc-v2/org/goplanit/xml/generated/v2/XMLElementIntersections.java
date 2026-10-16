@@ -27,6 +27,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="intersection" type="{http://goplanit.org/v2}intersectionType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="spatialintersection" type="{http://goplanit.org/v2}spatialIntersectionType" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,7 +38,8 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "intersectionsType", propOrder = {
-    "intersections"
+    "intersections",
+    "spatialintersections"
 })
 public class XMLElementIntersections
     implements Serializable
@@ -45,14 +47,22 @@ public class XMLElementIntersections
 
     private static final long serialVersionUID = -1L;
     /**
-     * An intersection of this layer.
+     * A non-spatial intersection of this layer, on one node. Every turn at its node is allowed unless
+     * 						banned, see the turns of the layer
      * 
      */
     @XmlElement(name = "intersection")
     protected List<XMLElementIntersection> intersections;
+    /**
+     * A spatial intersection of this layer, over several nodes.
+     * 
+     */
+    @XmlElement(name = "spatialintersection")
+    protected List<XMLElementSpatialIntersection> spatialintersections;
 
     /**
-     * An intersection of this layer.
+     * A non-spatial intersection of this layer, on one node. Every turn at its node is allowed unless
+     * 						banned, see the turns of the layer
      * 
      * Gets the value of the intersections property.
      * 
@@ -83,6 +93,40 @@ public class XMLElementIntersections
             intersections = new ArrayList<>();
         }
         return this.intersections;
+    }
+
+    /**
+     * A spatial intersection of this layer, over several nodes.
+     * 
+     * Gets the value of the spatialintersections property.
+     * 
+     * <p>This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the spatialintersections property.</p>
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * </p>
+     * <pre>
+     * getSpatialintersections().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link XMLElementSpatialIntersection }
+     * </p>
+     * 
+     * 
+     * @return
+     *     The value of the spatialintersections property.
+     */
+    public List<XMLElementSpatialIntersection> getSpatialintersections() {
+        if (spatialintersections == null) {
+            spatialintersections = new ArrayList<>();
+        }
+        return this.spatialintersections;
     }
 
 }

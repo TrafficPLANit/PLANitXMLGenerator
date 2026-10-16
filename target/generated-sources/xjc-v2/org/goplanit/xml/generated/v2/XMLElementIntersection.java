@@ -8,8 +8,6 @@
 package org.goplanit.xml.generated.v2;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -24,16 +22,11 @@ import jakarta.xml.bind.annotation.XmlType;
  * &lt;pre&gt;{&#064;code
  * &lt;complexType name="intersectionType"&gt;
  *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="segments" type="{http://goplanit.org/v2}intersectionSegmentsType" maxOccurs="2" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
+ *     &lt;extension base="{http://goplanit.org/v2}intersectionBaseType"&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="noderefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="control" use="required" type="{http://goplanit.org/v2}intersectionControlType" /&gt;
- *       &lt;attribute name="types" use="required" type="{http://goplanit.org/v2}intersectionTypeListType" /&gt;
- *     &lt;/restriction&gt;
+ *       &lt;attribute name="noderef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * }&lt;/pre&gt;
@@ -41,23 +34,15 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "intersectionType", propOrder = {
-    "segments"
-})
+@XmlType(name = "intersectionType")
 public class XMLElementIntersection
+    extends XMLElementIntersectionBase
     implements Serializable
 {
 
     private static final long serialVersionUID = -1L;
     /**
-     * Link segments of the intersection by role, at most one entry per role (approach, internal); a
-     * 						repeated role is rejected when reading. An intersection may have no approach entry. Turns are
-     * 						restricted only by the bans of the layer
-     * 
-     */
-    protected List<XMLElementIntersectionSegments> segments;
-    /**
-     * Mandatory unique identifier for the intersection.
+     * Mandatory unique identifier for the intersection, unique over both kinds of intersection.
      * 
      */
     @XmlAttribute(name = "id", required = true)
@@ -69,63 +54,14 @@ public class XMLElementIntersection
     @XmlAttribute(name = "externalid")
     protected String externalid;
     /**
-     * Comma-separated list of the ids of the one or more nodes of this layer forming the intersection. A
-     * 					node belongs to at most one intersection
+     * Id of the node of this layer the intersection is on. A node belongs to at most one intersection
      * 
      */
-    @XmlAttribute(name = "noderefs", required = true)
-    protected String noderefs;
-    /**
-     * How traffic at the intersection is controlled.
-     * 
-     */
-    @XmlAttribute(name = "control", required = true)
-    protected XMLElementIntersectionControlType control;
-    /**
-     * Space-separated list of the kinds of the intersection, at least one, e.g. "junction crossing"
-     * 
-     */
-    @XmlAttribute(name = "types", required = true)
-    protected List<IntersectionTypeType> types;
+    @XmlAttribute(name = "noderef", required = true)
+    protected String noderef;
 
     /**
-     * Link segments of the intersection by role, at most one entry per role (approach, internal); a
-     * 						repeated role is rejected when reading. An intersection may have no approach entry. Turns are
-     * 						restricted only by the bans of the layer
-     * 
-     * Gets the value of the segments property.
-     * 
-     * <p>This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the segments property.</p>
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * </p>
-     * <pre>
-     * getSegments().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementIntersectionSegments }
-     * </p>
-     * 
-     * 
-     * @return
-     *     The value of the segments property.
-     */
-    public List<XMLElementIntersectionSegments> getSegments() {
-        if (segments == null) {
-            segments = new ArrayList<>();
-        }
-        return this.segments;
-    }
-
-    /**
-     * Mandatory unique identifier for the intersection.
+     * Mandatory unique identifier for the intersection, unique over both kinds of intersection.
      * 
      * @return
      *     possible object is
@@ -175,88 +111,28 @@ public class XMLElementIntersection
     }
 
     /**
-     * Comma-separated list of the ids of the one or more nodes of this layer forming the intersection. A
-     * 					node belongs to at most one intersection
+     * Id of the node of this layer the intersection is on. A node belongs to at most one intersection
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNoderefs() {
-        return noderefs;
+    public String getNoderef() {
+        return noderef;
     }
 
     /**
-     * Sets the value of the noderefs property.
+     * Sets the value of the noderef property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
-     * @see #getNoderefs()
+     * @see #getNoderef()
      */
-    public void setNoderefs(String value) {
-        this.noderefs = value;
-    }
-
-    /**
-     * How traffic at the intersection is controlled.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLElementIntersectionControlType }
-     *     
-     */
-    public XMLElementIntersectionControlType getControl() {
-        return control;
-    }
-
-    /**
-     * Sets the value of the control property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLElementIntersectionControlType }
-     *     
-     * @see #getControl()
-     */
-    public void setControl(XMLElementIntersectionControlType value) {
-        this.control = value;
-    }
-
-    /**
-     * Space-separated list of the kinds of the intersection, at least one, e.g. "junction crossing"
-     * 
-     * Gets the value of the types property.
-     * 
-     * <p>This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the types property.</p>
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * </p>
-     * <pre>
-     * getTypes().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link IntersectionTypeType }
-     * </p>
-     * 
-     * 
-     * @return
-     *     The value of the types property.
-     */
-    public List<IntersectionTypeType> getTypes() {
-        if (types == null) {
-            types = new ArrayList<>();
-        }
-        return this.types;
+    public void setNoderef(String value) {
+        this.noderef = value;
     }
 
 }

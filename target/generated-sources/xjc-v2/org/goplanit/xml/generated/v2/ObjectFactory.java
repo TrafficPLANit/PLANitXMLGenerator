@@ -846,13 +846,73 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementIntersectionSegments }
+     * Create an instance of {@link XMLElementIntersectionApproach }
      * 
      * @return
-     *     the new instance of {@link XMLElementIntersectionSegments }
+     *     the new instance of {@link XMLElementIntersectionApproach }
      */
-    public XMLElementIntersectionSegments createXMLElementIntersectionSegments() {
-        return new XMLElementIntersectionSegments();
+    public XMLElementIntersectionApproach createXMLElementIntersectionApproach() {
+        return new XMLElementIntersectionApproach();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementIntersectionApproaches }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementIntersectionApproaches }
+     */
+    public XMLElementIntersectionApproaches createXMLElementIntersectionApproaches() {
+        return new XMLElementIntersectionApproaches();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementIntersectionInternalSegments }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementIntersectionInternalSegments }
+     */
+    public XMLElementIntersectionInternalSegments createXMLElementIntersectionInternalSegments() {
+        return new XMLElementIntersectionInternalSegments();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementIntersectionInternalSignalSegment }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementIntersectionInternalSignalSegment }
+     */
+    public XMLElementIntersectionInternalSignalSegment createXMLElementIntersectionInternalSignalSegment() {
+        return new XMLElementIntersectionInternalSignalSegment();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementIntersectionInternalSignalSegments }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementIntersectionInternalSignalSegments }
+     */
+    public XMLElementIntersectionInternalSignalSegments createXMLElementIntersectionInternalSignalSegments() {
+        return new XMLElementIntersectionInternalSignalSegments();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementMovement }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementMovement }
+     */
+    public XMLElementMovement createXMLElementMovement() {
+        return new XMLElementMovement();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementMovements }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementMovements }
+     */
+    public XMLElementMovements createXMLElementMovements() {
+        return new XMLElementMovements();
     }
 
     /**
@@ -863,6 +923,16 @@ public class ObjectFactory {
      */
     public XMLElementIntersection createXMLElementIntersection() {
         return new XMLElementIntersection();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSpatialIntersection }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSpatialIntersection }
+     */
+    public XMLElementSpatialIntersection createXMLElementSpatialIntersection() {
+        return new XMLElementSpatialIntersection();
     }
 
     /**
