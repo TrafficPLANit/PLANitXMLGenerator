@@ -1,4 +1,4 @@
-<macroscopicintermodal xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/macroscopicintermodalinput.xsd">
+<macroscopicintermodal xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/v2/macroscopicintermodalinput.xsd">
 	<!-- by using transfer zones this can be much more versatile than only defining this for PT, for example this would allow for modelling bikesharing where people
 	do things partly by a bikeshare bikes that can be accessed from different transferzones. Observe that a transfer zone by itself is mode agnostic, it just allows
 	for interfacing between different modes that connect to it. Brilliant! -->

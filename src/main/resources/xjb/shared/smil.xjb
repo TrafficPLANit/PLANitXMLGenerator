@@ -1,0 +1,43 @@
+<jaxb:bindings version="3.0"
+               xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               jaxb:extensionBindingPrefixes="xjc">
+
+    <!-- deal with brokenness in gml definitions and not playing nice with JAXB results  -->
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/smil/smil20.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.w3._2001.smil20"/>
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/smil/smil20-language.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.w3._2001.smil20.language"/>
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/smil/smil20.xsd">
+         <jaxb:bindings node="//xs:element[@name='set']">
+            <jaxb:factoryMethod name="Smil20SetElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animate']">
+            <jaxb:factoryMethod name="Smil20AnimateElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animateColor']">
+            <jaxb:factoryMethod name="Smil20AnimateColorElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animateMotion']">
+            <jaxb:factoryMethod name="Smil20AnimateMotionElement"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/smil/smil20-language.xsd">
+        <jaxb:bindings node="//xs:element[@name='set']">
+            <jaxb:factoryMethod name="Smil20LangSetElement"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='animate']">
+            <jaxb:factoryMethod name="Smil20LangAnimateElement"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+</jaxb:bindings>
