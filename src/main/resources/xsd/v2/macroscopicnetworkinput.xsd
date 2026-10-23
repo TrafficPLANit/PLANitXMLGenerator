@@ -696,6 +696,37 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="unitIntervalType">
+		<xs:annotation>
+			<xs:documentation>A number from 0 to 1, both included</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:double">
+			<xs:minInclusive value="0" />
+			<xs:maxInclusive value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Green ratio and saturation flow factor of a link segment entering or inside an intersection -->
+	<xs:attributeGroup name="segmentCapacityFactorAttributes">
+		<xs:attribute name="greenratio" type="unitIntervalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Share of the signal cycle in which traffic on the link segment has green, e.g. 0.44 for 40 s of
+					green in a 90 s cycle. 1 when left out
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="satflowfactor" type="unitIntervalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Saturation flow factor: share of the capacity of the link segment that discharges while it has
+					green, e.g. 0.5 for a minor road joining a signalised junction without a signal of its own. 1 when
+					left out
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
 	<!-- Definition of the 'approach' element of an intersection -->
 	<xs:complexType name="intersectionApproachType">
 		<xs:attribute name="ref" type="xs:string" use="required">
@@ -712,6 +743,7 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attributeGroup ref="segmentCapacityFactorAttributes" />
 	</xs:complexType>
 
 	<!-- Definition of the 'approaches' element of an intersection -->
@@ -747,6 +779,7 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attributeGroup ref="segmentCapacityFactorAttributes" />
 	</xs:complexType>
 
 	<!-- Definition of the 'internalsignalsegments' element of an intersection -->
@@ -815,6 +848,24 @@
 				<xs:documentation>
 					Comma-separated list of the ids of the modes the direct ban is for. When left out, a direct ban is
 					for every mode
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="greenratio" type="unitIntervalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Green ratio of the movement in place of that of its approach, e.g. 0.15 for a right turn on a short
+					arrow. When left out, the movement uses the green ratio of its approach; a value of 1 is still used
+					in place of the approach's
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="satflowfactor" type="unitIntervalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Saturation flow factor of the movement in place of that of its approach. When left out, the movement
+					uses the saturation flow factor of its approach; a value of 1 is still used in place of the
+					approach's
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>

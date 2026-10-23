@@ -23,6 +23,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * &lt;complexType name="intersectionApproachType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;attGroup ref="{http://goplanit.org/v2}segmentCapacityFactorAttributes"/&gt;
  *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="signal" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
  *     &lt;/restriction&gt;
@@ -53,6 +54,21 @@ public class XMLElementIntersectionApproach
      */
     @XmlAttribute(name = "signal")
     protected Boolean signal;
+    /**
+     * Share of the signal cycle in which traffic on the link segment has green, e.g. 0.44 for 40 s of
+     * 					green in a 90 s cycle. 1 when left out
+     * 
+     */
+    @XmlAttribute(name = "greenratio")
+    protected Double greenratio;
+    /**
+     * Saturation flow factor: share of the capacity of the link segment that discharges while it has
+     * 					green, e.g. 0.5 for a minor road joining a signalised junction without a signal of its own. 1 when
+     * 					left out
+     * 
+     */
+    @XmlAttribute(name = "satflowfactor")
+    protected Double satflowfactor;
 
     /**
      * Id of the link segment of this layer that enters the intersection.
@@ -104,6 +120,59 @@ public class XMLElementIntersectionApproach
      */
     public void setSignal(Boolean value) {
         this.signal = value;
+    }
+
+    /**
+     * Share of the signal cycle in which traffic on the link segment has green, e.g. 0.44 for 40 s of
+     * 					green in a 90 s cycle. 1 when left out
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getGreenratio() {
+        return greenratio;
+    }
+
+    /**
+     * Sets the value of the greenratio property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     * @see #getGreenratio()
+     */
+    public void setGreenratio(Double value) {
+        this.greenratio = value;
+    }
+
+    /**
+     * Saturation flow factor: share of the capacity of the link segment that discharges while it has
+     * 					green, e.g. 0.5 for a minor road joining a signalised junction without a signal of its own. 1 when
+     * 					left out
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getSatflowfactor() {
+        return satflowfactor;
+    }
+
+    /**
+     * Sets the value of the satflowfactor property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     * @see #getSatflowfactor()
+     */
+    public void setSatflowfactor(Double value) {
+        this.satflowfactor = value;
     }
 
 }

@@ -34,6 +34,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *       &lt;attribute name="length" use="required" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
  *       &lt;attribute name="directban" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
  *       &lt;attribute name="bannedmoderefs" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="greenratio" type="{http://goplanit.org/v2}unitIntervalType" /&gt;
+ *       &lt;attribute name="satflowfactor" type="{http://goplanit.org/v2}unitIntervalType" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -93,6 +95,22 @@ public class XMLElementMovement
      */
     @XmlAttribute(name = "bannedmoderefs")
     protected String bannedmoderefs;
+    /**
+     * Green ratio of the movement in place of that of its approach, e.g. 0.15 for a right turn on a short
+     * 					arrow. When left out, the movement uses the green ratio of its approach; a value of 1 is still used
+     * 					in place of the approach's
+     * 
+     */
+    @XmlAttribute(name = "greenratio")
+    protected Double greenratio;
+    /**
+     * Saturation flow factor of the movement in place of that of its approach. When left out, the movement
+     * 					uses the saturation flow factor of its approach; a value of 1 is still used in place of the
+     * 					approach's
+     * 
+     */
+    @XmlAttribute(name = "satflowfactor")
+    protected Double satflowfactor;
 
     /**
      * Mandatory unique identifier for the movement.
@@ -261,6 +279,60 @@ public class XMLElementMovement
      */
     public void setBannedmoderefs(String value) {
         this.bannedmoderefs = value;
+    }
+
+    /**
+     * Green ratio of the movement in place of that of its approach, e.g. 0.15 for a right turn on a short
+     * 					arrow. When left out, the movement uses the green ratio of its approach; a value of 1 is still used
+     * 					in place of the approach's
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getGreenratio() {
+        return greenratio;
+    }
+
+    /**
+     * Sets the value of the greenratio property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     * @see #getGreenratio()
+     */
+    public void setGreenratio(Double value) {
+        this.greenratio = value;
+    }
+
+    /**
+     * Saturation flow factor of the movement in place of that of its approach. When left out, the movement
+     * 					uses the saturation flow factor of its approach; a value of 1 is still used in place of the
+     * 					approach's
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getSatflowfactor() {
+        return satflowfactor;
+    }
+
+    /**
+     * Sets the value of the satflowfactor property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     * @see #getSatflowfactor()
+     */
+    public void setSatflowfactor(Double value) {
+        this.satflowfactor = value;
     }
 
 }
