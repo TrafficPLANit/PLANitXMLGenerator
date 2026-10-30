@@ -14,7 +14,7 @@ import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * Kind of intersection the control applies to: road traffic meeting at a junction, a pedestrian
- * 				crossing, or road traffic held back on its own by a ramp meter, which is then the only kind
+ * 				crossing, or road traffic held back on its own by a ramp meter
  * 
  * &lt;p&gt;Java class for intersectionTypeType&lt;/p&gt;.
  * 
