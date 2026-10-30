@@ -672,13 +672,14 @@
 	<xs:simpleType name="intersectionTypeType">
 		<xs:annotation>
 			<xs:documentation>
-				Kind of intersection the control applies to: road traffic meeting at a junction, or a pedestrian
-				crossing
+				Kind of intersection the control applies to: road traffic meeting at a junction, a pedestrian
+				crossing, or road traffic held back on its own by a ramp meter, which is then the only kind
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="junction" />
 			<xs:enumeration value="crossing" />
+			<xs:enumeration value="ramp_meter" />
 		</xs:restriction>
 	</xs:simpleType>
 

@@ -13,8 +13,8 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * Kind of intersection the control applies to: road traffic meeting at a junction, or a pedestrian
- * 				crossing
+ * Kind of intersection the control applies to: road traffic meeting at a junction, a pedestrian
+ * 				crossing, or road traffic held back on its own by a ramp meter, which is then the only kind
  * 
  * &lt;p&gt;Java class for intersectionTypeType&lt;/p&gt;.
  * 
@@ -24,6 +24,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
  *     &lt;enumeration value="junction"/&gt;
  *     &lt;enumeration value="crossing"/&gt;
+ *     &lt;enumeration value="ramp_meter"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * }&lt;/pre&gt;
@@ -36,7 +37,9 @@ public enum IntersectionTypeType {
     @XmlEnumValue("junction")
     JUNCTION("junction"),
     @XmlEnumValue("crossing")
-    CROSSING("crossing");
+    CROSSING("crossing"),
+    @XmlEnumValue("ramp_meter")
+    RAMP_METER("ramp_meter");
     private final String value;
 
     IntersectionTypeType(String v) {
