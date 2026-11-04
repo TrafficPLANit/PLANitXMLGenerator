@@ -161,6 +161,17 @@
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
 
+	<xs:simpleType name="NonNegativeIntType">
+		<xs:annotation>
+			<xs:documentation>
+				A whole number of 0 or more
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+
 	<!-- ELEMENTS -->
 	
 	<xs:element name="centroid">

@@ -41,6 +41,16 @@
 		<xs:attribute name="id" type="xs:string" use="required" />
 		<xs:attribute name="externalid" type="xs:string" use="optional" />
 		<xs:attribute name="zoneref" type="xs:string" use="optional"/>
+		<xs:attribute name="cars" type="NonNegativeIntType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Number of cars available to the household. Omitted means not known.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="yearlyincome" type="xs:double" use="optional">
+			<xs:annotation>
+				<xs:documentation>Yearly income of the household, in the currency of the model the demand comes from. Omitted means not known.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 
 	<!-- PERSONS -->
@@ -73,6 +83,31 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="age" type="NonNegativeIntType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Age in whole years. Omitted means not known.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sex" type="SexType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Sex of the person. Omitted means not known.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="employment" type="EmploymentStatusType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Whether the person works full-time, part-time or not at all. Omitted means not known.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="study" type="StudyStatusType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Whether the person is at school (preschool included), in tertiary education or not studying. Omitted means not known.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="carlicence" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Whether the person holds a licence to drive a car. Omitted means not known.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 
 	<!-- PERSON SCHEDULE -->
@@ -90,6 +125,11 @@
 					<xs:attribute name="role" type="TourParticipantRoleType" use="optional" default="primary">
 						<xs:annotation>
 							<xs:documentation>Role of this person on the referenced tour. Omitted means primary, i.e. the tour belongs to this person. A tour referenced by more than one person is a joint tour, which has exactly one primary participant.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="driver" type="xs:boolean" use="optional">
+						<xs:annotation>
+							<xs:documentation>Whether this person drives the referenced tour's trips by a mode that needs a driver, such as a car. Omitted means not known, in which case the primary participant is assumed to be the driver and the others are carried.</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
 				</xs:complexType>
@@ -128,6 +168,11 @@
 					<xs:attribute name="role" type="TourParticipantRoleType" use="optional" default="primary">
 						<xs:annotation>
 							<xs:documentation>Role of the participant on the referenced sub-tour, see tourref.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="driver" type="xs:boolean" use="optional">
+						<xs:annotation>
+							<xs:documentation>Whether the participant drives the referenced sub-tour's trips by a mode that needs a driver, see tourref.</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
 				</xs:complexType>
@@ -218,6 +263,39 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="primary"/>
 			<xs:enumeration value="accompanying"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SexType">
+		<xs:annotation>
+			<xs:documentation>Sex of a person, mapping to org.goplanit.demands.discrete.person.Sex</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="female"/>
+			<xs:enumeration value="male"/>
+			<xs:enumeration value="other"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EmploymentStatusType">
+		<xs:annotation>
+			<xs:documentation>Employment status of a person, mapping to org.goplanit.demands.discrete.person.EmploymentStatus</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="full_time"/>
+			<xs:enumeration value="part_time"/>
+			<xs:enumeration value="not_employed"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StudyStatusType">
+		<xs:annotation>
+			<xs:documentation>Study status of a person, mapping to org.goplanit.demands.discrete.person.StudyStatus</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="school"/>
+			<xs:enumeration value="tertiary"/>
+			<xs:enumeration value="not_studying"/>
 		</xs:restriction>
 	</xs:simpleType>
 

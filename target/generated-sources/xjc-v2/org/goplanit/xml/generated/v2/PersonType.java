@@ -31,6 +31,11 @@ import jakarta.xml.bind.annotation.XmlType;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="hhref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="age" type="{http://goplanit.org/v2}NonNegativeIntType" /&gt;
+ *       &lt;attribute name="sex" type="{http://goplanit.org/v2}SexType" /&gt;
+ *       &lt;attribute name="employment" type="{http://goplanit.org/v2}EmploymentStatusType" /&gt;
+ *       &lt;attribute name="study" type="{http://goplanit.org/v2}StudyStatusType" /&gt;
+ *       &lt;attribute name="carlicence" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -58,6 +63,36 @@ public class PersonType
      */
     @XmlAttribute(name = "hhref", required = true)
     protected String hhref;
+    /**
+     * Age in whole years. Omitted means not known.
+     * 
+     */
+    @XmlAttribute(name = "age")
+    protected Integer age;
+    /**
+     * Sex of the person. Omitted means not known.
+     * 
+     */
+    @XmlAttribute(name = "sex")
+    protected SexType sex;
+    /**
+     * Whether the person works full-time, part-time or not at all. Omitted means not known.
+     * 
+     */
+    @XmlAttribute(name = "employment")
+    protected EmploymentStatusType employment;
+    /**
+     * Whether the person is at school (preschool included), in tertiary education or not studying. Omitted means not known.
+     * 
+     */
+    @XmlAttribute(name = "study")
+    protected StudyStatusType study;
+    /**
+     * Whether the person holds a licence to drive a car. Omitted means not known.
+     * 
+     */
+    @XmlAttribute(name = "carlicence")
+    protected Boolean carlicence;
 
     /**
      * Gets the value of the schedule property.
@@ -154,6 +189,131 @@ public class PersonType
      */
     public void setHhref(String value) {
         this.hhref = value;
+    }
+
+    /**
+     * Age in whole years. Omitted means not known.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getAge() {
+        return age;
+    }
+
+    /**
+     * Sets the value of the age property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     * @see #getAge()
+     */
+    public void setAge(Integer value) {
+        this.age = value;
+    }
+
+    /**
+     * Sex of the person. Omitted means not known.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SexType }
+     *     
+     */
+    public SexType getSex() {
+        return sex;
+    }
+
+    /**
+     * Sets the value of the sex property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SexType }
+     *     
+     * @see #getSex()
+     */
+    public void setSex(SexType value) {
+        this.sex = value;
+    }
+
+    /**
+     * Whether the person works full-time, part-time or not at all. Omitted means not known.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EmploymentStatusType }
+     *     
+     */
+    public EmploymentStatusType getEmployment() {
+        return employment;
+    }
+
+    /**
+     * Sets the value of the employment property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EmploymentStatusType }
+     *     
+     * @see #getEmployment()
+     */
+    public void setEmployment(EmploymentStatusType value) {
+        this.employment = value;
+    }
+
+    /**
+     * Whether the person is at school (preschool included), in tertiary education or not studying. Omitted means not known.
+     * 
+     * @return
+     *     possible object is
+     *     {@link StudyStatusType }
+     *     
+     */
+    public StudyStatusType getStudy() {
+        return study;
+    }
+
+    /**
+     * Sets the value of the study property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StudyStatusType }
+     *     
+     * @see #getStudy()
+     */
+    public void setStudy(StudyStatusType value) {
+        this.study = value;
+    }
+
+    /**
+     * Whether the person holds a licence to drive a car. Omitted means not known.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isCarlicence() {
+        return carlicence;
+    }
+
+    /**
+     * Sets the value of the carlicence property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     * @see #isCarlicence()
+     */
+    public void setCarlicence(Boolean value) {
+        this.carlicence = value;
     }
 
 }

@@ -299,6 +299,15 @@ Generated on: 2026.10.16 at 02:18:18 PM AEDT
     <bindings scd="~tns:TourParticipantRoleType" if-exists="true" auto-acknowledge="true">
       <typesafeEnumClass ref="org.goplanit.xml.generated.v2.TourParticipantRoleType"/>
     </bindings>
+    <bindings scd="~tns:SexType" if-exists="true" auto-acknowledge="true">
+      <typesafeEnumClass ref="org.goplanit.xml.generated.v2.SexType"/>
+    </bindings>
+    <bindings scd="~tns:EmploymentStatusType" if-exists="true" auto-acknowledge="true">
+      <typesafeEnumClass ref="org.goplanit.xml.generated.v2.EmploymentStatusType"/>
+    </bindings>
+    <bindings scd="~tns:StudyStatusType" if-exists="true" auto-acknowledge="true">
+      <typesafeEnumClass ref="org.goplanit.xml.generated.v2.StudyStatusType"/>
+    </bindings>
     <bindings scd="~tns:vehicularType" if-exists="true" auto-acknowledge="true">
       <typesafeEnumClass ref="org.goplanit.xml.generated.v2.VehicularType"/>
     </bindings>

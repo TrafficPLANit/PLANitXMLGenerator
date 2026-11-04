@@ -26,6 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="descr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="role" type="{http://goplanit.org/v2}TourParticipantRoleType" default="primary" /&gt;
+ *       &lt;attribute name="driver" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -49,6 +50,12 @@ public class Subtour implements Serializable
      */
     @XmlAttribute(name = "role")
     protected TourParticipantRoleType role;
+    /**
+     * Whether the participant drives the referenced sub-tour's trips by a mode that needs a driver, see tourref.
+     * 
+     */
+    @XmlAttribute(name = "driver")
+    protected Boolean driver;
 
     /**
      * Gets the value of the ref property.
@@ -125,6 +132,31 @@ public class Subtour implements Serializable
      */
     public void setRole(TourParticipantRoleType value) {
         this.role = value;
+    }
+
+    /**
+     * Whether the participant drives the referenced sub-tour's trips by a mode that needs a driver, see tourref.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isDriver() {
+        return driver;
+    }
+
+    /**
+     * Sets the value of the driver property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     * @see #isDriver()
+     */
+    public void setDriver(Boolean value) {
+        this.driver = value;
     }
 
 }

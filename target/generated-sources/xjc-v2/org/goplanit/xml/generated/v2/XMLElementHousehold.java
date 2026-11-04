@@ -28,6 +28,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="zoneref" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="cars" type="{http://goplanit.org/v2}NonNegativeIntType" /&gt;
+ *       &lt;attribute name="yearlyincome" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -48,6 +50,18 @@ public class XMLElementHousehold
     protected String externalid;
     @XmlAttribute(name = "zoneref")
     protected String zoneref;
+    /**
+     * Number of cars available to the household. Omitted means not known.
+     * 
+     */
+    @XmlAttribute(name = "cars")
+    protected Integer cars;
+    /**
+     * Yearly income of the household, in the currency of the model the demand comes from. Omitted means not known.
+     * 
+     */
+    @XmlAttribute(name = "yearlyincome")
+    protected Double yearlyincome;
 
     /**
      * Gets the value of the id property.
@@ -119,6 +133,56 @@ public class XMLElementHousehold
      */
     public void setZoneref(String value) {
         this.zoneref = value;
+    }
+
+    /**
+     * Number of cars available to the household. Omitted means not known.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getCars() {
+        return cars;
+    }
+
+    /**
+     * Sets the value of the cars property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     * @see #getCars()
+     */
+    public void setCars(Integer value) {
+        this.cars = value;
+    }
+
+    /**
+     * Yearly income of the household, in the currency of the model the demand comes from. Omitted means not known.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getYearlyincome() {
+        return yearlyincome;
+    }
+
+    /**
+     * Sets the value of the yearlyincome property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     * @see #getYearlyincome()
+     */
+    public void setYearlyincome(Double value) {
+        this.yearlyincome = value;
     }
 
 }

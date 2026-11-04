@@ -26,6 +26,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *       &lt;attribute name="ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="descr" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="role" type="{http://goplanit.org/v2}TourParticipantRoleType" default="primary" /&gt;
+ *       &lt;attribute name="driver" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -53,6 +54,12 @@ public class Tourref implements Serializable
      */
     @XmlAttribute(name = "role")
     protected TourParticipantRoleType role;
+    /**
+     * Whether this person drives the referenced tour's trips by a mode that needs a driver, such as a car. Omitted means not known, in which case the primary participant is assumed to be the driver and the others are carried.
+     * 
+     */
+    @XmlAttribute(name = "driver")
+    protected Boolean driver;
 
     /**
      * Gets the value of the ref property.
@@ -130,6 +137,31 @@ public class Tourref implements Serializable
      */
     public void setRole(TourParticipantRoleType value) {
         this.role = value;
+    }
+
+    /**
+     * Whether this person drives the referenced tour's trips by a mode that needs a driver, such as a car. Omitted means not known, in which case the primary participant is assumed to be the driver and the others are carried.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isDriver() {
+        return driver;
+    }
+
+    /**
+     * Sets the value of the driver property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     * @see #isDriver()
+     */
+    public void setDriver(Boolean value) {
+        this.driver = value;
     }
 
 }
