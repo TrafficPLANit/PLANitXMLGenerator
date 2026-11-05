@@ -1,0 +1,39 @@
+<jaxb:bindings version="3.0"
+               xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               jaxb:extensionBindingPrefixes="xjc">
+
+    <jaxb:bindings schemaLocation="../../xsd/v2/discretedemandinput.xsd"
+                   xmlns:p="http://goplanit.org/v2">
+
+       <jaxb:bindings node="//xs:element[@name='discretedemand']">
+          <jaxb:class name="XMLElementDiscreteDemand" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='HouseholdsType']">
+          <jaxb:class name="XMLElementHouseholds" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='HouseholdType']">
+          <jaxb:class name="XMLElementHousehold" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='ToursType']">
+          <jaxb:class name="XMLElementTours" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='TourType']">
+          <jaxb:class name="XMLElementTour" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='TripsType']">
+          <jaxb:class name="XMLElementTrips" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='TripType']">
+          <jaxb:class name="XMLElementTrip" />
+       </jaxb:bindings>
+
+    </jaxb:bindings>
+</jaxb:bindings>

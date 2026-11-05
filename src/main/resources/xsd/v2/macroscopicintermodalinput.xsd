@@ -1,0 +1,203 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+			targetNamespace="http://goplanit.org/v2"
+			xmlns="http://goplanit.org/v2"
+			elementFormDefault="qualified">
+	<xs:include schemaLocation="planitlibrary.xsd" />
+	<xs:import namespace="http://www.opengis.net/gml"
+		schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+		
+	<!-- Complex types -->
+	
+	<!-- Simple types -->
+	<xs:simpleType name="transferzonetype">
+		<xs:annotation>
+			<xs:documentation>
+				options for transfer zone types
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="platform" />
+			<xs:enumeration value="stop_pole" />
+			<xs:enumeration value="small_station" />
+			<xs:enumeration value="station" />
+			<xs:enumeration value="unknown" />
+			<xs:enumeration value="none" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Simple elements -->
+	
+	<!-- Complex elements -->
+	
+	<xs:complexType name="intermodaltype">
+	    <xs:sequence>
+	      <xs:element ref="transferzones" minOccurs="1" maxOccurs="1">
+	        <xs:annotation>
+	          <xs:documentation>
+	            A transfer zone represents a possibility for transfers between different modes from different
+	            network layers. How these interactions take place is defined via the transferzoneaccess elements.
+	          </xs:documentation>
+	        </xs:annotation>
+	      </xs:element>
+	      <xs:element ref="transferzoneaccess" minOccurs="1" maxOccurs="1" >
+	        <xs:annotation>
+	          <xs:documentation>
+	            transfer zone access elements define how transfer zones can be accessed via different modes from
+				  different layers linking layer specific infrastructure to the transfer zones which exist
+				  between network layers. For now we only support all zones accessing the same network layer
+	          </xs:documentation>
+	        </xs:annotation>
+		  </xs:element>
+	      <xs:element ref="transferzonegroups" minOccurs="0" maxOccurs="1" >
+	        <xs:annotation>
+	          <xs:documentation>
+	            Transfer zone groups allow one to group multiple transfer zones to indicate they logically belong
+				  together. For example to group various platforms on a station. This is optional.
+	          </xs:documentation>
+	        </xs:annotation>
+	      </xs:element>           
+	    </xs:sequence>
+	  </xs:complexType>	
+		
+	<xs:element name="transferzones">
+		<xs:annotation>
+			<xs:documentation>
+				Defines the available transfer zones one-by-one, where each transferzone represents
+				a geographic location where transfers between zones are being facilitated.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="zone" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							Instance of a transfer zone, such as for example a train station platform, bus stop pole, etc.
+						</xs:documentation>
+					</xs:annotation>
+			    <xs:complexType>
+			      <xs:sequence>
+			        <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
+					<xs:element name="platforms" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								each transfer zone can have a human readable platform code, or codes, e.g. "4,5". This
+								does not necessarily coincide with the name of the transfer zone, nor does it have to
+								be present. However, by explicitly allowing for such platform codes it provides for a
+								means to map more easily between formats and have a more human readable representation
+								of this concept. It is expected that the string is comma separated in case
+								multiple entries are present.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+			        <xs:element ref="centroid" minOccurs="0" maxOccurs="1" >
+			          <xs:annotation>
+			            <xs:documentation>
+			              each transfer zone can have a centroid to allow modes to enter via one mode/network layer, pass through
+			              the centroid, and exit the zone via another mode/network layer. If absent the distance travelled through
+			              the zone cannot be computed geometrically and therefore will revert to the default
+			            </xs:documentation>
+			          </xs:annotation>
+			        </xs:element>
+			        <xs:choice minOccurs="0" maxOccurs="1">
+			          <xs:annotation>
+				            <xs:documentation>
+				              Each transfer zone can additional define a geographical area that it represents
+								(e.g., train platform), but this is entirely optional. Alternatively it can also
+								represent simply a stop pole (which can be located via the centroid only). If it is
+								a platform it can either be a polygon or a line(string), both of which are supported.
+				            </xs:documentation>
+				          </xs:annotation> 			        
+			     		<xs:element ref="gml:LineString" />	            
+			     		<xs:element ref="gml:Polygon" />
+			        </xs:choice>  
+			      </xs:sequence>
+			      <xs:attribute name="id" type="xs:string" use="required" />
+			      <xs:attribute name="externalid" type="xs:string" use="optional"/>
+			      <xs:attribute name="type" type="transferzonetype" use="optional" default="none"/>  
+			    </xs:complexType>					
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	
+	<xs:element name="transferzoneaccess">
+		<xs:annotation>
+			<xs:documentation>
+				Provide how each access point can access one or more transfer zones
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="connectoid" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							Instance of a transfer zone access point known as a connectoid, this is where we connect
+							a network layer and oneor more of its modes to a transfer zone
+						</xs:documentation>
+					</xs:annotation>
+			    <xs:complexType>
+			      <xs:complexContent>
+			        <xs:extension base="connectoidtype"/>
+			      </xs:complexContent>        
+			    </xs:complexType>					
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="network_ref" type="xs:string" />
+			<xs:attribute name="network_layer_ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>			
+	
+	<xs:element name="transferzonegroups">
+		<xs:annotation>
+			<xs:documentation>
+				a transfer zone group is a group of somehow related transfer zones that logically belong together. This is optional
+				 and can potentially be used to streamline finding eligible or more likely transfers, or to aggregate transfer zones if 
+				 one wants to simplify the model in meaningful way
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="transfergroup" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							A transfer group logically groups two or more transfer zones together
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	
+	<xs:element name="transfergroup">
+		<xs:annotation>
+			<xs:documentation>
+				A transfer group logically groups two or more transfer zones together
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />				
+			</xs:sequence>		
+			<xs:attribute name="id" type="xs:string" use="required" />
+			<xs:attribute name="externalid" type="xs:string" use="optional"/>
+			<xs:attribute name="tzrefs" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						transfer zone references should be provided as a comma separated list of transfer zone XML ids, reflecting the zones grouped by this entity
+					</xs:documentation>
+				</xs:annotation>							
+			</xs:attribute>		
+		</xs:complexType>
+	</xs:element>	
+	
+	<!-- Root element, its type is referenced as optional element in macroscopiczoninginput.xsd via intermodal element -->
+	<xs:element name="macroscopicintermodal" type="intermodaltype">
+	<xs:annotation>
+		<xs:documentation>
+			root element that allows one to define intermodal transfer zones, their access and grouping to allow network layers to interact, for
+			example to define public transport networks, supply chains, etc.
+		</xs:documentation>
+	</xs:annotation>	
+</xs:element>
+	
+</xs:schema>
