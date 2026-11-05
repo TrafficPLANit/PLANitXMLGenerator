@@ -80,6 +80,21 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="driverType">
+		<xs:annotation>
+			<xs:documentation>
+				Who drives a mode: traveller when one of the people travelling in it drives, e.g. in a car or on a
+				bicycle, operator when someone who is not one of them drives, e.g. in a taxi or a bus, and none when
+				nobody drives, e.g. when walking or in an automated vehicle
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="traveller" />
+			<xs:enumeration value="operator" />
+			<xs:enumeration value="none" />
+		</xs:restriction>
+	</xs:simpleType>
+
 	<!-- simple elements -->
 	<xs:element name="maxdensitylane" type="xs:double"
 		default="180.0">
@@ -521,6 +536,14 @@
 					<xs:annotation>
 						<xs:documentation>
 							how this mode is used
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="drivertype" type="driverType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							who drives this mode, not known when left out. A predefined mode takes it from its type,
+							and a different value here is warned about
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>

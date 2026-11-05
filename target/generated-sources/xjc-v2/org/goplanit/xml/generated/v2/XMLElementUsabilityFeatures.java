@@ -30,6 +30,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *         &lt;sequence&gt;
  *           &lt;element name="usedtotype" type="{http://goplanit.org/v2}usedToType"/&gt;
+ *           &lt;element name="drivertype" type="{http://goplanit.org/v2}driverType" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *       &lt;/restriction&gt;
  *     &lt;/complexContent&gt;
@@ -41,7 +42,8 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "usedtotype"
+    "usedtotype",
+    "drivertype"
 })
 @XmlRootElement(name = "usabilityfeatures")
 public class XMLElementUsabilityFeatures
@@ -56,6 +58,13 @@ public class XMLElementUsabilityFeatures
     @XmlElement(required = true, defaultValue = "private")
     @XmlSchemaType(name = "string")
     protected UsedToType usedtotype;
+    /**
+     * who drives this mode, not known when left out. A predefined mode takes it from its type,
+     * 							and a different value here is warned about
+     * 
+     */
+    @XmlSchemaType(name = "string")
+    protected DriverType drivertype;
 
     /**
      * how this mode is used
@@ -80,6 +89,32 @@ public class XMLElementUsabilityFeatures
      */
     public void setUsedtotype(UsedToType value) {
         this.usedtotype = value;
+    }
+
+    /**
+     * who drives this mode, not known when left out. A predefined mode takes it from its type,
+     * 							and a different value here is warned about
+     * 
+     * @return
+     *     possible object is
+     *     {@link DriverType }
+     *     
+     */
+    public DriverType getDrivertype() {
+        return drivertype;
+    }
+
+    /**
+     * Sets the value of the drivertype property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DriverType }
+     *     
+     * @see #getDrivertype()
+     */
+    public void setDrivertype(DriverType value) {
+        this.drivertype = value;
     }
 
 }
