@@ -66,17 +66,17 @@ public class ObjectFactory {
     private static final QName _Smoothing_QNAME = new QName("http://goplanit.org/v2", "smoothing");
     private static final QName _Gapfunction_QNAME = new QName("http://goplanit.org/v2", "gapfunction");
     private static final QName _Stopcriterion_QNAME = new QName("http://goplanit.org/v2", "stopcriterion");
-    private static final QName _MultiPolygon_QNAME = new QName("http://www.opengis.net/gml", "MultiPolygon");
-    private static final QName _GeometricAggregate_QNAME = new QName("http://www.opengis.net/gml", "_GeometricAggregate");
-    private static final QName _Geometry_QNAME = new QName("http://www.opengis.net/gml", "_Geometry");
-    private static final QName _GML_QNAME = new QName("http://www.opengis.net/gml", "_GML");
-    private static final QName _Object_QNAME = new QName("http://www.opengis.net/gml", "_Object");
     private static final QName _Polygon_QNAME = new QName("http://www.opengis.net/gml", "Polygon");
     private static final QName _Surface_QNAME = new QName("http://www.opengis.net/gml", "_Surface");
     private static final QName _GeometricPrimitive_QNAME = new QName("http://www.opengis.net/gml", "_GeometricPrimitive");
+    private static final QName _Geometry_QNAME = new QName("http://www.opengis.net/gml", "_Geometry");
+    private static final QName _GML_QNAME = new QName("http://www.opengis.net/gml", "_GML");
+    private static final QName _Object_QNAME = new QName("http://www.opengis.net/gml", "_Object");
     private static final QName _LineString_QNAME = new QName("http://www.opengis.net/gml", "LineString");
     private static final QName _Curve_QNAME = new QName("http://www.opengis.net/gml", "_Curve");
     private static final QName _Point_QNAME = new QName("http://www.opengis.net/gml", "Point");
+    private static final QName _MultiPolygon_QNAME = new QName("http://www.opengis.net/gml", "MultiPolygon");
+    private static final QName _GeometricAggregate_QNAME = new QName("http://www.opengis.net/gml", "_GeometricAggregate");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.goplanit.xml.generated.v2
@@ -666,6 +666,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementNetworkData }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementNetworkData }
+     */
+    public XMLElementNetworkData createXMLElementNetworkData() {
+        return new XMLElementNetworkData();
+    }
+
+    /**
      * Create an instance of {@link CustomPropertiesType }
      * 
      * @return
@@ -943,6 +953,126 @@ public class ObjectFactory {
      */
     public XMLElementIntersections createXMLElementIntersections() {
         return new XMLElementIntersections();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSources }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSources }
+     */
+    public XMLElementSources createXMLElementSources() {
+        return new XMLElementSources();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSource }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSource }
+     */
+    public XMLElementSource createXMLElementSource() {
+        return new XMLElementSource();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementCategories }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementCategories }
+     */
+    public XMLElementCategories createXMLElementCategories() {
+        return new XMLElementCategories();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementCategory }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementCategory }
+     */
+    public XMLElementCategory createXMLElementCategory() {
+        return new XMLElementCategory();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSites }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSites }
+     */
+    public XMLElementSites createXMLElementSites() {
+        return new XMLElementSites();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSite }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSite }
+     */
+    public XMLElementSite createXMLElementSite() {
+        return new XMLElementSite();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSiteElement }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSiteElement }
+     */
+    public XMLElementSiteElement createXMLElementSiteElement() {
+        return new XMLElementSiteElement();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSiteLinkSegment }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSiteLinkSegment }
+     */
+    public XMLElementSiteLinkSegment createXMLElementSiteLinkSegment() {
+        return new XMLElementSiteLinkSegment();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSiteLink }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSiteLink }
+     */
+    public XMLElementSiteLink createXMLElementSiteLink() {
+        return new XMLElementSiteLink();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementCounts }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementCounts }
+     */
+    public XMLElementCounts createXMLElementCounts() {
+        return new XMLElementCounts();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementLanes }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementLanes }
+     */
+    public XMLElementLanes createXMLElementLanes() {
+        return new XMLElementLanes();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSeries }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSeries }
+     */
+    public XMLElementSeries createXMLElementSeries() {
+        return new XMLElementSeries();
     }
 
     /**
@@ -1493,29 +1623,42 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MultiPolygonType }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link MultiPolygonType }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
      */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "MultiPolygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricAggregate")
-    public JAXBElement<MultiPolygonType> createMultiPolygon(MultiPolygonType value) {
-        return new JAXBElement<>(_MultiPolygon_QNAME, MultiPolygonType.class, null, value);
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Polygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Surface")
+    public JAXBElement<PolygonType> createPolygon(PolygonType value) {
+        return new JAXBElement<>(_Polygon_QNAME, PolygonType.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractGeometricAggregateType }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractGeometricAggregateType }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
      */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_GeometricAggregate", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Geometry")
-    public JAXBElement<AbstractGeometricAggregateType> createGeometricAggregate(AbstractGeometricAggregateType value) {
-        return new JAXBElement<>(_GeometricAggregate_QNAME, AbstractGeometricAggregateType.class, null, value);
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_Surface", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricPrimitive")
+    public JAXBElement<AbstractSurfaceType> createSurface(AbstractSurfaceType value) {
+        return new JAXBElement<>(_Surface_QNAME, AbstractSurfaceType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_GeometricPrimitive", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Geometry")
+    public JAXBElement<AbstractGeometricPrimitiveType> createGeometricPrimitive(AbstractGeometricPrimitiveType value) {
+        return new JAXBElement<>(_GeometricPrimitive_QNAME, AbstractGeometricPrimitiveType.class, null, value);
     }
 
     /**
@@ -1558,58 +1701,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link PolygonType }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Polygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Surface")
-    public JAXBElement<PolygonType> createPolygon(PolygonType value) {
-        return new JAXBElement<>(_Polygon_QNAME, PolygonType.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractSurfaceType }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_Surface", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricPrimitive")
-    public JAXBElement<AbstractSurfaceType> createSurface(AbstractSurfaceType value) {
-        return new JAXBElement<>(_Surface_QNAME, AbstractSurfaceType.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractGeometricPrimitiveType }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_GeometricPrimitive", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Geometry")
-    public JAXBElement<AbstractGeometricPrimitiveType> createGeometricPrimitive(AbstractGeometricPrimitiveType value) {
-        return new JAXBElement<>(_GeometricPrimitive_QNAME, AbstractGeometricPrimitiveType.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link XMLElementIntermodal }
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link XMLElementIntermodal }
-     */
-    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "intermodal")
-    public XMLElementIntermodal createXMLElementIntermodal(Macroscopicintermodal value) {
-        return new XMLElementIntermodal(value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link LineStringType }{@code >}
      * 
      * @param value
@@ -1646,6 +1737,45 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Point", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricPrimitive")
     public JAXBElement<PointType> createPoint(PointType value) {
         return new JAXBElement<>(_Point_QNAME, PointType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link MultiPolygonType }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link MultiPolygonType }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "MultiPolygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricAggregate")
+    public JAXBElement<MultiPolygonType> createMultiPolygon(MultiPolygonType value) {
+        return new JAXBElement<>(_MultiPolygon_QNAME, MultiPolygonType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AbstractGeometricAggregateType }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AbstractGeometricAggregateType }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_GeometricAggregate", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Geometry")
+    public JAXBElement<AbstractGeometricAggregateType> createGeometricAggregate(AbstractGeometricAggregateType value) {
+        return new JAXBElement<>(_GeometricAggregate_QNAME, AbstractGeometricAggregateType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link XMLElementIntermodal }
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link XMLElementIntermodal }
+     */
+    @XmlElementDecl(namespace = "http://goplanit.org/v2", name = "intermodal")
+    public XMLElementIntermodal createXMLElementIntermodal(Macroscopicintermodal value) {
+        return new XMLElementIntermodal(value);
     }
 
     /**

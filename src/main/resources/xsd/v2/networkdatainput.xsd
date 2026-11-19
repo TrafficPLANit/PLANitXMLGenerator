@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	Data attached to a network, kept in a file of its own next to the network file, so the network layout is never
+	changed by it. Everything in it refers to network entities by their XML ids, so it is read together with that
+	network.
+
+	A site is a place a source measures at, such as a counting station. Under it, one element per network entity
+	measured there, named after what it is attached to: a sitelinksegment (one direction, optionally some of its
+	lanes only) or a sitelink (both directions together). Under each of those, one element per kind of data:
+	counts, holding one or more series of values, one value per unit of time of an average day, each series for one
+	category of road user. Later network entities are new elements next to sitelinksegment and sitelink (siteturn,
+	and a set of link segments for a screenline or cordon whose total the source reports), and later kinds of data
+	are new elements next to counts (speeds), without changing what is here. A screenline made of sites already in
+	the file is a later grouping of their elements by id, without values of its own.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+		   targetNamespace="http://goplanit.org/v2"
+		   xmlns="http://goplanit.org/v2"
+		   elementFormDefault="qualified">
+	<xs:include schemaLocation="planitlibrary.xsd" />
+	<xs:import namespace="http://www.opengis.net/gml"
+		schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+
+	<xs:element name="networkdata">
+		<xs:annotation>
+			<xs:documentation>
+				Root element: data attached to one network. The sources and categories are shared by all data in the
+				file; the data itself is held by site
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="externalid" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="parentnetwork" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Id of the network the data refers to, as a service network names its parent network. Every
+							link and link segment reference in the file is an XML id in that network
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="sources" type="SourcesType" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="categories" type="CategoriesType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="sites" type="SitesType" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="srsname" type="srsname" use="optional" default="EPSG:4326">
+				<xs:annotation>
+					<xs:documentation>
+						Spatial reference system of every geometry in the file, WGS84 (EPSG:4326) when left out. Data is
+						put in this one system when the file is made, whatever system each source used
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- SOURCES -->
+
+	<xs:complexType name="SourcesType">
+		<xs:sequence>
+			<xs:element name="source" type="SourceType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SourceType">
+		<xs:annotation>
+			<xs:documentation>
+				The dataset data comes from, so each value can be traced back to it, e.g. "TfNSW traffic volume
+				counts", published by Transport for NSW
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The dataset's own code, if it has one</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="publisher" type="xs:string" use="optional"/>
+		<xs:attribute name="url" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>Where the exact copy used was downloaded from</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="licence" type="xs:string" use="optional"/>
+		<xs:attribute name="retrieved" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation>When the copy used was downloaded</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- CATEGORIES -->
+
+	<xs:complexType name="CategoriesType">
+		<xs:sequence>
+			<xs:element name="category" type="CategoryType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CategoryType">
+		<xs:annotation>
+			<xs:documentation>
+				A class of road user as the source defines it, e.g. TfNSW "LIGHT VEHICLES", with the PLANit predefined
+				mode types it covers stated explicitly. These are data about what was counted, independent of the
+				modes of the parent network. The mode types say which values can be added up. Two categories whose
+				mode types overlap count some of the same road users, so their values are never added up, e.g. "LIGHT
+				VEHICLES" (car, taxi, motor_bike, goods) and "ALL VEHICLES" (car, taxi, motor_bike, goods, hgv, lhgv,
+				bus); two whose mode types do not overlap can be, e.g. "LIGHT VEHICLES" and "HEAVY VEHICLES" (hgv,
+				lhgv, bus). A category whose mode types are unknown is never added to another, and neither are two
+				categories that both cover road users without a predefined mode type (listed_and_more), as those road
+				users may be the same
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The source's code for the class, e.g. "2"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sourceref" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The source whose class this is</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The source's wording, kept as it is, e.g. "LIGHT VEHICLES"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="modecoverage" type="ModeCoverageType" use="required">
+			<xs:annotation>
+				<xs:documentation>Whether the mode types the category covers are known, and whether modetypes lists all of them</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="modetypes" type="PredefinedModeTypeListType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Space-separated PLANit predefined mode types the category covers: one, e.g. "car", or several, e.g.
+					"hgv lhgv bus". Required unless modecoverage is unknown, and left out then. Road users without a
+					predefined mode type are not persisted on their own
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:simpleType name="ModeCoverageType">
+		<xs:annotation>
+			<xs:documentation>
+				Which mode types a category covers: exactly the mode types in modetypes (listed_only); the mode types
+				in modetypes and also road users counted together with them that have no predefined mode type, e.g.
+				Seattle's counter of bicycles and scooters together (listed_and_more), so the values are never taken
+				as those mode types alone; or not known, e.g. a loop detector counting every vehicle without telling
+				what it is (unknown)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="listed_only"/>
+			<xs:enumeration value="listed_and_more"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PredefinedModeTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				A PLANit predefined mode type, by the value of org.goplanit.utils.mode.PredefinedModeType, without
+				custom
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="bicycle"/>
+			<xs:enumeration value="car"/>
+			<xs:enumeration value="car_share"/>
+			<xs:enumeration value="car_hov"/>
+			<xs:enumeration value="bus"/>
+			<xs:enumeration value="pedestrian"/>
+			<xs:enumeration value="motor_bike"/>
+			<xs:enumeration value="subway"/>
+			<xs:enumeration value="train"/>
+			<xs:enumeration value="tram"/>
+			<xs:enumeration value="light_rail"/>
+			<xs:enumeration value="ferry"/>
+			<xs:enumeration value="goods"/>
+			<xs:enumeration value="hgv"/>
+			<xs:enumeration value="lhgv"/>
+			<xs:enumeration value="taxi"/>
+			<xs:enumeration value="ride_share"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PredefinedModeTypeListType">
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list itemType="PredefinedModeTypeType"/>
+			</xs:simpleType>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SITES -->
+
+	<xs:complexType name="SitesType">
+		<xs:annotation>
+			<xs:documentation>All sites, each holding the data measured there</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="site" type="SiteType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SiteType">
+		<xs:annotation>
+			<xs:documentation>
+				A place a source measures at, e.g. TfNSW station 12345 on Parramatta Road, which counts each direction
+				on its own. It holds one element per network entity measured there, e.g. a sitelinksegment per
+				direction
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text, e.g. "Parramatta Rd at Auburn"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Where it was counted, as the source gives it, as a stop's location is given: a point for a
+						counting station, a line for a stretch observed by camera or radar, or a polygon for the area a
+						detector or camera covers
+					</xs:documentation>
+				</xs:annotation>
+				<xs:element ref="gml:Point"/>
+				<xs:element ref="gml:LineString"/>
+				<xs:element ref="gml:Polygon"/>
+			</xs:choice>
+			<xs:element name="custom" type="customPropertiesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Further ids and fields of the source for the site, as key and value, as links and nodes keep
+						them, e.g. TfNSW "station_id" or "lane_count"
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="1" maxOccurs="unbounded">
+				<xs:element name="sitelinksegment" type="SiteLinkSegmentType"/>
+				<xs:element name="sitelink" type="SiteLinkType"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The source's id of the counting station or count point, e.g. TfNSW "station_key"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sourceref" type="xs:string" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="SiteElementType">
+		<xs:annotation>
+			<xs:documentation>
+				What every site element holds, whatever network entity it is attached to. Its id is unique among all
+				site elements in the file, so a later screenline can refer to it
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text, e.g. "northbound"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The source's id for this direction, lane or detector, only if it has one</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="SiteLinkSegmentType">
+		<xs:annotation>
+			<xs:documentation>
+				A link segment at a site: everything passing in its direction, or only on the lanes listed
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SiteElementType">
+				<xs:sequence>
+					<xs:element name="lanes" type="LanesType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The lanes measured. Left out, all lanes of the link segment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="counts" type="CountsType" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="lsref" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>XML id of the link segment; its direction is the direction measured</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SiteLinkType">
+		<xs:annotation>
+			<xs:documentation>A link at a site: everything passing in both directions together</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SiteElementType">
+				<xs:sequence>
+					<xs:element name="counts" type="CountsType" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="linkref" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>XML id of the link</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- COUNTS -->
+
+	<xs:complexType name="CountsType">
+		<xs:annotation>
+			<xs:documentation>The counts made on one network entity at a site, one series per category and time</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="series" type="SeriesType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LanesType">
+		<xs:annotation>
+			<xs:documentation>
+				Space-separated numbers of the lanes counted, e.g. "1 2", where lane 1 is the lane next to the side
+				named by countlanesfrom. Sources differ: FHWA counts from the kerb, NDW from the median. A number above
+				the link segment's number of lanes gives a warning, not a refusal, as lane numbers in parsed networks
+				are often wrong
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="LaneNumberListType">
+				<xs:attribute name="countlanesfrom" type="LaneSideType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="LaneSideType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="kerb"/>
+			<xs:enumeration value="median"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LaneNumberListType">
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list itemType="PositiveIntType"/>
+			</xs:simpleType>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PositiveIntType">
+		<xs:annotation>
+			<xs:documentation>A whole number of 1 or more</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SERIES -->
+
+	<xs:complexType name="SeriesType">
+		<xs:annotation>
+			<xs:documentation>
+				The values of one category over equal intervals of one average day. Each value covers
+				temporalunitmultiplier units of temporalunit, and the first starts temporaloffset units of temporalunit
+				after midnight, so value i covers from temporaloffset + i * temporalunitmultiplier up to
+				temporaloffset + (i + 1) * temporalunitmultiplier units after midnight. Examples, as temporalunit,
+				temporalunitmultiplier, temporaloffset and number of values: a day total is day, 1, 0 and one value;
+				hourly values for the whole day are hour, 1, 0 and 24 values; hourly values from 03:00 to 06:00 are
+				hour, 1, 3 and 3 values; 15 minute values from 07:00 to 08:00 are minute, 15, 420 and 4 values; a
+				morning peak total from 06:00 to 10:00 is hour, 4, 6 and one value. Values may run past midnight. The
+				one exception to an average day is temporalunit year: its single value is the total over the whole
+				year, with temporalunitmultiplier 1 and temporaloffset 0
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Free text on which days were averaged and how, e.g. "Average weekday of 2025, public holidays
+						excluded, 231 days", or "TfNSW yearly figure 2024, period WEEKDAYS"
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="values" type="ValueListType">
+				<xs:annotation>
+					<xs:documentation>
+						Space-separated values, one per interval: the number counted during that interval, never a rate.
+						NaN marks a missing value
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valuequality" type="ValueQualityListType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Space-separated quality of each value, one to one with values: exactly as many entries, in the
+						same order, so the n-th entry is the quality of the n-th value. Left out, every value has the
+						series' quality
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="categoryref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The category counted, one of the categories at the top of the file</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="year" type="xs:gYear" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The year the values are from, e.g. 2025, so one link segment or link can hold series of several years. Left
+					out when the values are not from one year, e.g. averaged over several, which the description then
+					says
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="days" type="DayOfWeekListType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Space-separated days of the week the values are from, e.g. "monday tuesday wednesday thursday
+					friday" for weekdays, "saturday sunday" for weekends, all seven for every day. Left out when the
+					source does not say
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="publicholidays" type="HolidayInclusionType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Whether public holidays are among the days the values are from: also (included), not (excluded), or
+					alone (only). Left out when the source does not say
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schoolholidays" type="HolidayInclusionType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Whether school holidays are among the days the values are from, as publicholidays. Left out when the
+					source does not say
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dataunit" type="DataUnitType" use="required">
+			<xs:annotation>
+				<xs:documentation>What one counted unit is, e.g. veh</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temporalunit" type="TemporalUnitType" use="required">
+			<xs:annotation>
+				<xs:documentation>The unit of time the length of each value and the offset are given in, e.g. hour</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temporalunitmultiplier" type="PositiveIntType" use="optional" default="1">
+			<xs:annotation>
+				<xs:documentation>
+					How many units of temporalunit each value covers, e.g. 15 with temporalunit minute for 15 minute
+					values, or 4 with temporalunit hour for a four hour peak. 1 when left out. A value covers at most
+					one day, unless temporalunit is year
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temporaloffset" type="NonNegativeIntType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Units of temporalunit from midnight to the start of the first value, not multiplied by
+					temporalunitmultiplier, e.g. 6 with temporalunit hour when the first value starts at 06:00, or 420
+					with temporalunit minute for 07:00. Less than one day, and 0 with temporalunit year
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="quality" type="ValueQualityType" use="optional" default="measured">
+			<xs:annotation>
+				<xs:documentation>Quality of every value when valuequality is left out, measured when left out itself</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:simpleType name="DayOfWeekType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="monday"/>
+			<xs:enumeration value="tuesday"/>
+			<xs:enumeration value="wednesday"/>
+			<xs:enumeration value="thursday"/>
+			<xs:enumeration value="friday"/>
+			<xs:enumeration value="saturday"/>
+			<xs:enumeration value="sunday"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DayOfWeekListType">
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list itemType="DayOfWeekType"/>
+			</xs:simpleType>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HolidayInclusionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="included"/>
+			<xs:enumeration value="excluded"/>
+			<xs:enumeration value="only"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataUnitType">
+		<xs:annotation>
+			<xs:documentation>
+				What one counted unit is: a vehicle, whatever its size, so a truck is 1 (veh); a passenger car unit,
+				so a truck is more than 1 (pcu); or a person, e.g. a pedestrian (pers)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="veh"/>
+			<xs:enumeration value="pcu"/>
+			<xs:enumeration value="pers"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TemporalUnitType">
+		<xs:annotation>
+			<xs:documentation>
+				The unit of time a series gives the length of each value and its offset in. Minute, hour and day
+				values are parts of an average day; a year value is the total over the whole year
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="minute"/>
+			<xs:enumeration value="hour"/>
+			<xs:enumeration value="day"/>
+			<xs:enumeration value="year"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ValueQualityType">
+		<xs:annotation>
+			<xs:documentation>
+				Quality of a value: counted and correct (measured); counted and correct but unusual, from an event,
+				weather or works (measured_irregular); filled in, factored or expanded rather than counted (estimated);
+				counted but wrong (faulty); or no value (missing)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="measured"/>
+			<xs:enumeration value="measured_irregular"/>
+			<xs:enumeration value="estimated"/>
+			<xs:enumeration value="faulty"/>
+			<xs:enumeration value="missing"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ValueQualityListType">
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list itemType="ValueQualityType"/>
+			</xs:simpleType>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ValueListType">
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list itemType="xs:double"/>
+			</xs:simpleType>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

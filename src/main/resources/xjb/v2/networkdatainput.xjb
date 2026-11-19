@@ -1,0 +1,63 @@
+<jaxb:bindings version="3.0"
+               xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               jaxb:extensionBindingPrefixes="xjc">
+
+    <jaxb:bindings schemaLocation="../../xsd/v2/networkdatainput.xsd"
+                   xmlns:p="http://goplanit.org/v2">
+
+       <jaxb:bindings node="//xs:element[@name='networkdata']">
+          <jaxb:class name="XMLElementNetworkData" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SourcesType']">
+          <jaxb:class name="XMLElementSources" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SourceType']">
+          <jaxb:class name="XMLElementSource" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='CategoriesType']">
+          <jaxb:class name="XMLElementCategories" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='CategoryType']">
+          <jaxb:class name="XMLElementCategory" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SitesType']">
+          <jaxb:class name="XMLElementSites" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SiteType']">
+          <jaxb:class name="XMLElementSite" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SiteElementType']">
+          <jaxb:class name="XMLElementSiteElement" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SiteLinkSegmentType']">
+          <jaxb:class name="XMLElementSiteLinkSegment" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SiteLinkType']">
+          <jaxb:class name="XMLElementSiteLink" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='LanesType']">
+          <jaxb:class name="XMLElementLanes" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='CountsType']">
+          <jaxb:class name="XMLElementCounts" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='SeriesType']">
+          <jaxb:class name="XMLElementSeries" />
+       </jaxb:bindings>
+
+    </jaxb:bindings>
+</jaxb:bindings>
