@@ -13,8 +13,8 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * The unit of time a series gives the length of each value and its offset in. Minute, hour and day
- * 				values are parts of an average day; a year value is the total over the whole year
+ * The unit of time an interval of the day is given in: minute, hour or day, each for part of a day, or year,
+ * 				which only the elements saying so take, such as a network data series giving the total over a whole year
  * 
  * &lt;p&gt;Java class for TemporalUnitType&lt;/p&gt;.
  * 

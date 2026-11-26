@@ -254,6 +254,14 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
+				<xs:element name="tollroads" type="tollroadsType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Optional toll roads of this layer: which link segments are tolled, grouped into roads, and which
+							modes pay on them. What they pay is in a network pricing file, whose schemes refer to these roads
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" use="required" />
 			<xs:attribute name="externalid" type="xs:string"
@@ -1025,6 +1033,68 @@
 					<xs:documentation>A spatial intersection of this layer, over several nodes.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Definition of the 'tollroad' element -->
+	<xs:complexType name="tollroadType">
+		<xs:annotation>
+			<xs:documentation>
+				A toll road: link segments of this layer that are tolled, such as a motorway, a bridge or a tunnel, the
+				crossings of a cordon or the link segments of a charged area. Where it is entered and left follows from the
+				layer. It holds no amounts, times, sections or gates: those are in a network pricing file, whose schemes
+				refer to the road by its id
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Mandatory unique identifier for the toll road, unique over the toll roads of all layers of the network.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Optional identifier for cross-referencing with external databases, e.g. an OSM relation or way, or the
+					operator's code for the road.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="lsrefs" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the one or more link segments of this layer that are tolled. A link
+					segment belongs to at most one toll road
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pricedmoderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the modes that pay on the road, e.g. heavy goods vehicles only on a
+					truck toll road. It says who pays, not who may drive: which modes may use the road is set on its link
+					segments. Never given with pricedexemptmoderefs. With neither, the modes that pay by default do: every
+					motorised mode whose use is not public transport, active or emergency
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pricedexemptmoderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the modes taken out of the modes that pay by default, e.g.
+					motorcycles where they ride free. It says who does not pay, not who may drive. Never given with
+					pricedmoderefs
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Definition of the 'tollroads' element -->
+	<xs:complexType name="tollroadsType">
+		<xs:sequence>
+			<xs:element name="tollroad" type="tollroadType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 

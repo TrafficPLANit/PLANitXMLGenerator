@@ -8,7 +8,7 @@ import org.goplanit.xml.generated.v2.XMLElementConnectoid;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-11-19T17:53:40+1100",
+    date = "2026-11-26T21:43:31+1100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.11 (Amazon.com Inc.)"
 )
 public class ZoningConnectoidV1ToV2MapperImpl implements ZoningConnectoidV1ToV2Mapper {

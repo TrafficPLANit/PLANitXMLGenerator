@@ -369,23 +369,17 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="PositiveIntType">
-		<xs:annotation>
-			<xs:documentation>A whole number of 1 or more</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:int">
-			<xs:minInclusive value="1"/>
-		</xs:restriction>
-	</xs:simpleType>
-
 	<!-- SERIES -->
 
 	<xs:complexType name="SeriesType">
 		<xs:annotation>
 			<xs:documentation>
-				The values of one category over equal intervals of one average day. Each value covers
-				temporalunitmultiplier units of temporalunit, and the first starts temporaloffset units of temporalunit
-				after midnight, so value i covers from temporaloffset + i * temporalunitmultiplier up to
+				The values of one category over equal intervals of one average day. days, publicholidays and
+				schoolholidays say which days the values are from, each left out when the source does not say, e.g.
+				"monday tuesday wednesday thursday friday" with publicholidays excluded for an average working day. Each
+				value covers temporalunitmultiplier units of temporalunit, at most one day, and the first starts
+				temporaloffset units of temporalunit after midnight, so value i covers from temporaloffset + i *
+				temporalunitmultiplier up to
 				temporaloffset + (i + 1) * temporalunitmultiplier units after midnight. Examples, as temporalunit,
 				temporalunitmultiplier, temporaloffset and number of values: a day total is day, 1, 0 and one value;
 				hourly values for the whole day are hour, 1, 0 and 24 values; hourly values from 03:00 to 06:00 are
@@ -436,57 +430,10 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="days" type="DayOfWeekListType" use="optional">
-			<xs:annotation>
-				<xs:documentation>
-					Space-separated days of the week the values are from, e.g. "monday tuesday wednesday thursday
-					friday" for weekdays, "saturday sunday" for weekends, all seven for every day. Left out when the
-					source does not say
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="publicholidays" type="HolidayInclusionType" use="optional">
-			<xs:annotation>
-				<xs:documentation>
-					Whether public holidays are among the days the values are from: also (included), not (excluded), or
-					alone (only). Left out when the source does not say
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="schoolholidays" type="HolidayInclusionType" use="optional">
-			<xs:annotation>
-				<xs:documentation>
-					Whether school holidays are among the days the values are from, as publicholidays. Left out when the
-					source does not say
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
+		<xs:attributeGroup ref="dayTimeAttributes"/>
 		<xs:attribute name="dataunit" type="DataUnitType" use="required">
 			<xs:annotation>
 				<xs:documentation>What one counted unit is, e.g. veh</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="temporalunit" type="TemporalUnitType" use="required">
-			<xs:annotation>
-				<xs:documentation>The unit of time the length of each value and the offset are given in, e.g. hour</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="temporalunitmultiplier" type="PositiveIntType" use="optional" default="1">
-			<xs:annotation>
-				<xs:documentation>
-					How many units of temporalunit each value covers, e.g. 15 with temporalunit minute for 15 minute
-					values, or 4 with temporalunit hour for a four hour peak. 1 when left out. A value covers at most
-					one day, unless temporalunit is year
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="temporaloffset" type="NonNegativeIntType" use="required">
-			<xs:annotation>
-				<xs:documentation>
-					Units of temporalunit from midnight to the start of the first value, not multiplied by
-					temporalunitmultiplier, e.g. 6 with temporalunit hour when the first value starts at 06:00, or 420
-					with temporalunit minute for 07:00. Less than one day, and 0 with temporalunit year
-				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="quality" type="ValueQualityType" use="optional" default="measured">
@@ -495,36 +442,6 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
-
-	<xs:simpleType name="DayOfWeekType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="monday"/>
-			<xs:enumeration value="tuesday"/>
-			<xs:enumeration value="wednesday"/>
-			<xs:enumeration value="thursday"/>
-			<xs:enumeration value="friday"/>
-			<xs:enumeration value="saturday"/>
-			<xs:enumeration value="sunday"/>
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="DayOfWeekListType">
-		<xs:restriction>
-			<xs:simpleType>
-				<xs:list itemType="DayOfWeekType"/>
-			</xs:simpleType>
-			<xs:minLength value="1"/>
-			<xs:maxLength value="7"/>
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="HolidayInclusionType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="included"/>
-			<xs:enumeration value="excluded"/>
-			<xs:enumeration value="only"/>
-		</xs:restriction>
-	</xs:simpleType>
 
 	<xs:simpleType name="DataUnitType">
 		<xs:annotation>
@@ -537,21 +454,6 @@
 			<xs:enumeration value="veh"/>
 			<xs:enumeration value="pcu"/>
 			<xs:enumeration value="pers"/>
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="TemporalUnitType">
-		<xs:annotation>
-			<xs:documentation>
-				The unit of time a series gives the length of each value and its offset in. Minute, hour and day
-				values are parts of an average day; a year value is the total over the whole year
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="minute"/>
-			<xs:enumeration value="hour"/>
-			<xs:enumeration value="day"/>
-			<xs:enumeration value="year"/>
 		</xs:restriction>
 	</xs:simpleType>
 

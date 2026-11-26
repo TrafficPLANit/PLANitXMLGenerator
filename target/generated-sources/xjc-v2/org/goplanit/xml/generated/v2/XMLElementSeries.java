@@ -21,9 +21,12 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * The values of one category over equal intervals of one average day. Each value covers
- * 				temporalunitmultiplier units of temporalunit, and the first starts temporaloffset units of temporalunit
- * 				after midnight, so value i covers from temporaloffset + i * temporalunitmultiplier up to
+ * The values of one category over equal intervals of one average day. days, publicholidays and
+ * 				schoolholidays say which days the values are from, each left out when the source does not say, e.g.
+ * 				"monday tuesday wednesday thursday friday" with publicholidays excluded for an average working day. Each
+ * 				value covers temporalunitmultiplier units of temporalunit, at most one day, and the first starts
+ * 				temporaloffset units of temporalunit after midnight, so value i covers from temporaloffset + i *
+ * 				temporalunitmultiplier up to
  * 				temporaloffset + (i + 1) * temporalunitmultiplier units after midnight. Examples, as temporalunit,
  * 				temporalunitmultiplier, temporaloffset and number of values: a day total is day, 1, 0 and one value;
  * 				hourly values for the whole day are hour, 1, 0 and 24 values; hourly values from 03:00 to 06:00 are
@@ -45,15 +48,10 @@ import jakarta.xml.bind.annotation.XmlType;
  *         &lt;element name="values" type="{http://goplanit.org/v2}ValueListType"/&gt;
  *         &lt;element name="valuequality" type="{http://goplanit.org/v2}ValueQualityListType" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
+ *       &lt;attGroup ref="{http://goplanit.org/v2}dayTimeAttributes"/&gt;
  *       &lt;attribute name="categoryref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="year" type="{http://www.w3.org/2001/XMLSchema}gYear" /&gt;
- *       &lt;attribute name="days" type="{http://goplanit.org/v2}DayOfWeekListType" /&gt;
- *       &lt;attribute name="publicholidays" type="{http://goplanit.org/v2}HolidayInclusionType" /&gt;
- *       &lt;attribute name="schoolholidays" type="{http://goplanit.org/v2}HolidayInclusionType" /&gt;
  *       &lt;attribute name="dataunit" use="required" type="{http://goplanit.org/v2}DataUnitType" /&gt;
- *       &lt;attribute name="temporalunit" use="required" type="{http://goplanit.org/v2}TemporalUnitType" /&gt;
- *       &lt;attribute name="temporalunitmultiplier" type="{http://goplanit.org/v2}PositiveIntType" default="1" /&gt;
- *       &lt;attribute name="temporaloffset" use="required" type="{http://goplanit.org/v2}NonNegativeIntType" /&gt;
  *       &lt;attribute name="quality" type="{http://goplanit.org/v2}ValueQualityType" default="measured" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -111,61 +109,57 @@ public class XMLElementSeries
     @XmlSchemaType(name = "gYear")
     protected XMLGregorianCalendar year;
     /**
-     * Space-separated days of the week the values are from, e.g. "monday tuesday wednesday thursday
-     * 					friday" for weekdays, "saturday sunday" for weekends, all seven for every day. Left out when the
-     * 					source does not say
-     * 
-     */
-    @XmlAttribute(name = "days")
-    protected List<DayOfWeekType> days;
-    /**
-     * Whether public holidays are among the days the values are from: also (included), not (excluded), or
-     * 					alone (only). Left out when the source does not say
-     * 
-     */
-    @XmlAttribute(name = "publicholidays")
-    protected HolidayInclusionType publicholidays;
-    /**
-     * Whether school holidays are among the days the values are from, as publicholidays. Left out when the
-     * 					source does not say
-     * 
-     */
-    @XmlAttribute(name = "schoolholidays")
-    protected HolidayInclusionType schoolholidays;
-    /**
      * What one counted unit is, e.g. veh
      * 
      */
     @XmlAttribute(name = "dataunit", required = true)
     protected DataUnitType dataunit;
     /**
-     * The unit of time the length of each value and the offset are given in, e.g. hour
-     * 
-     */
-    @XmlAttribute(name = "temporalunit", required = true)
-    protected TemporalUnitType temporalunit;
-    /**
-     * How many units of temporalunit each value covers, e.g. 15 with temporalunit minute for 15 minute
-     * 					values, or 4 with temporalunit hour for a four hour peak. 1 when left out. A value covers at most
-     * 					one day, unless temporalunit is year
-     * 
-     */
-    @XmlAttribute(name = "temporalunitmultiplier")
-    protected Integer temporalunitmultiplier;
-    /**
-     * Units of temporalunit from midnight to the start of the first value, not multiplied by
-     * 					temporalunitmultiplier, e.g. 6 with temporalunit hour when the first value starts at 06:00, or 420
-     * 					with temporalunit minute for 07:00. Less than one day, and 0 with temporalunit year
-     * 
-     */
-    @XmlAttribute(name = "temporaloffset", required = true)
-    protected int temporaloffset;
-    /**
      * Quality of every value when valuequality is left out, measured when left out itself
      * 
      */
     @XmlAttribute(name = "quality")
     protected ValueQualityType quality;
+    /**
+     * Space-separated days of the week, e.g. "monday tuesday wednesday thursday friday" for weekdays,
+     * 					"saturday sunday" for weekends, all seven for every day
+     * 
+     */
+    @XmlAttribute(name = "days")
+    protected List<DayOfWeekType> days;
+    /**
+     * Whether public holidays count: also (included), not (excluded), or alone (only)
+     * 
+     */
+    @XmlAttribute(name = "publicholidays")
+    protected HolidayInclusionType publicholidays;
+    /**
+     * Whether school holidays count, as publicholidays
+     * 
+     */
+    @XmlAttribute(name = "schoolholidays")
+    protected HolidayInclusionType schoolholidays;
+    /**
+     * The unit of time the length and the offset of the interval are given in, e.g. hour
+     * 
+     */
+    @XmlAttribute(name = "temporalunit", required = true)
+    protected TemporalUnitType temporalunit;
+    /**
+     * How many units of temporalunit the interval lasts, e.g. 15 with temporalunit minute for a quarter of an
+     * 					hour, or 4 with temporalunit hour for a four hour peak. 1 when left out
+     * 
+     */
+    @XmlAttribute(name = "temporalunitmultiplier")
+    protected Integer temporalunitmultiplier;
+    /**
+     * Units of temporalunit from midnight to the start of the interval, not multiplied by
+     * 					temporalunitmultiplier, e.g. 6 with temporalunit hour for an interval starting at 06:00, or 420 with
+     * 					temporalunit minute for 07:00. Less than one day
+     * 
+     */
+    @XmlAttribute(name = "temporaloffset", required = true)
+    protected int temporaloffset;
 
     /**
      * Free text on which days were averaged and how, e.g. "Average weekday of 2025, public holidays
@@ -317,9 +311,62 @@ public class XMLElementSeries
     }
 
     /**
-     * Space-separated days of the week the values are from, e.g. "monday tuesday wednesday thursday
-     * 					friday" for weekdays, "saturday sunday" for weekends, all seven for every day. Left out when the
-     * 					source does not say
+     * What one counted unit is, e.g. veh
+     * 
+     * @return
+     *     possible object is
+     *     {@link DataUnitType }
+     *     
+     */
+    public DataUnitType getDataunit() {
+        return dataunit;
+    }
+
+    /**
+     * Sets the value of the dataunit property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DataUnitType }
+     *     
+     * @see #getDataunit()
+     */
+    public void setDataunit(DataUnitType value) {
+        this.dataunit = value;
+    }
+
+    /**
+     * Quality of every value when valuequality is left out, measured when left out itself
+     * 
+     * @return
+     *     possible object is
+     *     {@link ValueQualityType }
+     *     
+     */
+    public ValueQualityType getQuality() {
+        if (quality == null) {
+            return ValueQualityType.MEASURED;
+        } else {
+            return quality;
+        }
+    }
+
+    /**
+     * Sets the value of the quality property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ValueQualityType }
+     *     
+     * @see #getQuality()
+     */
+    public void setQuality(ValueQualityType value) {
+        this.quality = value;
+    }
+
+    /**
+     * Space-separated days of the week, e.g. "monday tuesday wednesday thursday friday" for weekdays,
+     * 					"saturday sunday" for weekends, all seven for every day
      * 
      * Gets the value of the days property.
      * 
@@ -353,8 +400,7 @@ public class XMLElementSeries
     }
 
     /**
-     * Whether public holidays are among the days the values are from: also (included), not (excluded), or
-     * 					alone (only). Left out when the source does not say
+     * Whether public holidays count: also (included), not (excluded), or alone (only)
      * 
      * @return
      *     possible object is
@@ -379,8 +425,7 @@ public class XMLElementSeries
     }
 
     /**
-     * Whether school holidays are among the days the values are from, as publicholidays. Left out when the
-     * 					source does not say
+     * Whether school holidays count, as publicholidays
      * 
      * @return
      *     possible object is
@@ -405,32 +450,7 @@ public class XMLElementSeries
     }
 
     /**
-     * What one counted unit is, e.g. veh
-     * 
-     * @return
-     *     possible object is
-     *     {@link DataUnitType }
-     *     
-     */
-    public DataUnitType getDataunit() {
-        return dataunit;
-    }
-
-    /**
-     * Sets the value of the dataunit property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DataUnitType }
-     *     
-     * @see #getDataunit()
-     */
-    public void setDataunit(DataUnitType value) {
-        this.dataunit = value;
-    }
-
-    /**
-     * The unit of time the length of each value and the offset are given in, e.g. hour
+     * The unit of time the length and the offset of the interval are given in, e.g. hour
      * 
      * @return
      *     possible object is
@@ -455,9 +475,8 @@ public class XMLElementSeries
     }
 
     /**
-     * How many units of temporalunit each value covers, e.g. 15 with temporalunit minute for 15 minute
-     * 					values, or 4 with temporalunit hour for a four hour peak. 1 when left out. A value covers at most
-     * 					one day, unless temporalunit is year
+     * How many units of temporalunit the interval lasts, e.g. 15 with temporalunit minute for a quarter of an
+     * 					hour, or 4 with temporalunit hour for a four hour peak. 1 when left out
      * 
      * @return
      *     possible object is
@@ -486,9 +505,9 @@ public class XMLElementSeries
     }
 
     /**
-     * Units of temporalunit from midnight to the start of the first value, not multiplied by
-     * 					temporalunitmultiplier, e.g. 6 with temporalunit hour when the first value starts at 06:00, or 420
-     * 					with temporalunit minute for 07:00. Less than one day, and 0 with temporalunit year
+     * Units of temporalunit from midnight to the start of the interval, not multiplied by
+     * 					temporalunitmultiplier, e.g. 6 with temporalunit hour for an interval starting at 06:00, or 420 with
+     * 					temporalunit minute for 07:00. Less than one day
      * 
      */
     public int getTemporaloffset() {
@@ -501,35 +520,6 @@ public class XMLElementSeries
      */
     public void setTemporaloffset(int value) {
         this.temporaloffset = value;
-    }
-
-    /**
-     * Quality of every value when valuequality is left out, measured when left out itself
-     * 
-     * @return
-     *     possible object is
-     *     {@link ValueQualityType }
-     *     
-     */
-    public ValueQualityType getQuality() {
-        if (quality == null) {
-            return ValueQualityType.MEASURED;
-        } else {
-            return quality;
-        }
-    }
-
-    /**
-     * Sets the value of the quality property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ValueQualityType }
-     *     
-     * @see #getQuality()
-     */
-    public void setQuality(ValueQualityType value) {
-        this.quality = value;
     }
 
 }

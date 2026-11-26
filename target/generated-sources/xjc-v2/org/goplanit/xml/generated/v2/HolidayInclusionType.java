@@ -13,7 +13,7 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * 
+ * Whether holidays count: also (included), not (excluded), or alone (only)
  * 
  * &lt;p&gt;Java class for HolidayInclusionType&lt;/p&gt;.
  * 

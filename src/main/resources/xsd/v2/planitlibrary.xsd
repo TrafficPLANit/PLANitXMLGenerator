@@ -172,6 +172,117 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="PositiveIntType">
+		<xs:annotation>
+			<xs:documentation>A whole number of 1 or more</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- DAYS AND TIMES OF DAY, shared by every file that says when something holds -->
+
+	<xs:simpleType name="DayOfWeekType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="monday"/>
+			<xs:enumeration value="tuesday"/>
+			<xs:enumeration value="wednesday"/>
+			<xs:enumeration value="thursday"/>
+			<xs:enumeration value="friday"/>
+			<xs:enumeration value="saturday"/>
+			<xs:enumeration value="sunday"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DayOfWeekListType">
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list itemType="DayOfWeekType"/>
+			</xs:simpleType>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HolidayInclusionType">
+		<xs:annotation>
+			<xs:documentation>Whether holidays count: also (included), not (excluded), or alone (only)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="included"/>
+			<xs:enumeration value="excluded"/>
+			<xs:enumeration value="only"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TemporalUnitType">
+		<xs:annotation>
+			<xs:documentation>
+				The unit of time an interval of the day is given in: minute, hour or day, each for part of a day, or year,
+				which only the elements saying so take, such as a network data series giving the total over a whole year
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="minute"/>
+			<xs:enumeration value="hour"/>
+			<xs:enumeration value="day"/>
+			<xs:enumeration value="year"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:attributeGroup name="dayTimeAttributes">
+		<xs:annotation>
+			<xs:documentation>
+				When something holds: on which days, on public and school holidays or not, and in which interval of the
+				day. The interval starts temporaloffset units of temporalunit after midnight and lasts
+				temporalunitmultiplier units of temporalunit, e.g. temporalunit minute, temporalunitmultiplier 180 and
+				temporaloffset 390 for 06:30 to 09:30. The element taking these attributes says what holds then, and what
+				leaving out an optional one means
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="days" type="DayOfWeekListType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Space-separated days of the week, e.g. "monday tuesday wednesday thursday friday" for weekdays,
+					"saturday sunday" for weekends, all seven for every day
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="publicholidays" type="HolidayInclusionType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Whether public holidays count: also (included), not (excluded), or alone (only)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schoolholidays" type="HolidayInclusionType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Whether school holidays count, as publicholidays</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temporalunit" type="TemporalUnitType" use="required">
+			<xs:annotation>
+				<xs:documentation>The unit of time the length and the offset of the interval are given in, e.g. hour</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temporalunitmultiplier" type="PositiveIntType" use="optional" default="1">
+			<xs:annotation>
+				<xs:documentation>
+					How many units of temporalunit the interval lasts, e.g. 15 with temporalunit minute for a quarter of an
+					hour, or 4 with temporalunit hour for a four hour peak. 1 when left out
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temporaloffset" type="NonNegativeIntType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Units of temporalunit from midnight to the start of the interval, not multiplied by
+					temporalunitmultiplier, e.g. 6 with temporalunit hour for an interval starting at 06:00, or 420 with
+					temporalunit minute for 07:00. Less than one day
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
 	<!-- ELEMENTS -->
 	
 	<xs:element name="centroid">

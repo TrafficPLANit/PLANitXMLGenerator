@@ -36,6 +36,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *           &lt;element name="turns" type="{http://goplanit.org/v2}turnsType" minOccurs="0"/&gt;
  *           &lt;element name="independentmovements" type="{http://goplanit.org/v2}movementsType" minOccurs="0"/&gt;
  *           &lt;element name="intersections" type="{http://goplanit.org/v2}intersectionsType" minOccurs="0"/&gt;
+ *           &lt;element name="tollroads" type="{http://goplanit.org/v2}tollroadsType" minOccurs="0"/&gt;
  *         &lt;/sequence&gt;
  *         &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *         &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -56,7 +57,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "links",
     "turns",
     "independentmovements",
-    "intersections"
+    "intersections",
+    "tollroads"
 })
 @XmlRootElement(name = "layer")
 public class XMLElementInfrastructureLayer
@@ -96,6 +98,12 @@ public class XMLElementInfrastructureLayer
      * 
      */
     protected XMLElementIntersections intersections;
+    /**
+     * Optional toll roads of this layer: which link segments are tolled, grouped into roads, and which
+     * 							modes pay on them. What they pay is in a network pricing file, whose schemes refer to these roads
+     * 
+     */
+    protected XMLElementTollRoads tollroads;
     @XmlAttribute(name = "id", required = true)
     protected String id;
     @XmlAttribute(name = "externalid")
@@ -269,6 +277,32 @@ public class XMLElementInfrastructureLayer
      */
     public void setIntersections(XMLElementIntersections value) {
         this.intersections = value;
+    }
+
+    /**
+     * Optional toll roads of this layer: which link segments are tolled, grouped into roads, and which
+     * 							modes pay on them. What they pay is in a network pricing file, whose schemes refer to these roads
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLElementTollRoads }
+     *     
+     */
+    public XMLElementTollRoads getTollroads() {
+        return tollroads;
+    }
+
+    /**
+     * Sets the value of the tollroads property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLElementTollRoads }
+     *     
+     * @see #getTollroads()
+     */
+    public void setTollroads(XMLElementTollRoads value) {
+        this.tollroads = value;
     }
 
     /**

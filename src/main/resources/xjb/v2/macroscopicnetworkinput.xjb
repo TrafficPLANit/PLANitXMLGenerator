@@ -139,4 +139,14 @@
     node="//xs:simpleType[@name ='intersectionControlType']">
     <jaxb:typesafeEnumClass name="XMLElementIntersectionControlType" />
   </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='tollroadsType']">
+    <jaxb:class name="XMLElementTollRoads" />
+  </jaxb:bindings>
+  <jaxb:bindings
+    schemaLocation="../../xsd/v2/macroscopicnetworkinput.xsd"
+    node="//xs:complexType[@name ='tollroadType']">
+    <jaxb:class name="XMLElementTollRoad" />
+  </jaxb:bindings>
 </jaxb:bindings>

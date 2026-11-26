@@ -1,4 +1,4 @@
-<routedservices xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xxxx/xsd/routedservices.xsd">
+<routedservices xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://goplanit.org/v2" xsi:schemaLocation="http://goplanit.org/v2 ../../xsd/v2/routedservicesinput.xsd">
 	<!-- to be as generic as possible we do not call this public transport services, because potentially this could be used for shipping services, truck supply chains
 	etc, anything involving semi-fixed routes of entities across a network of a specific mode -->
 	
@@ -28,18 +28,17 @@
 		              <reltimings dwelltime="00:30:00">
 		                <!--  optional dwell time, this is the default waiting time applied at the stop at the end of the leg, i.e., time added to the duration of the leg
 		                    note that the duration is based on the schedule, not necessarily on the actual travel time in any simulation. Dwell time can be overridden per leg -->
-		                <leg ref="legrefid1" duration="00:03:00" dwelltime="00:01:00" />            
-		                <leg ... />  
+		                <leg lsref="1" duration="00:03:00" dwelltime="00:01:00" />            
+		                <leg lsref="2" duration="00:04:00" />  
 		              </reltimings>
 		            </schedule>
+		          </trip>
+		          <trip id="xmlId2" externalid="someid2" >
 		            <!-- frequency based is much simpler, only a frequency for the variant is needed and the ordered legs between stops, the value indicates how often the service
 		                 occurs within a single unit of the time dimension, e.g. here every 20min, i.e., 3 times per hour-->
-		            <frequency legrefs="xmlid1,xmlid4,xmlid2,xmlid8,..." unit="h" >3</frequency>          
+		            <frequency lsrefs="1,2" unit="h" >3</frequency>          
 		          </trip>
 		        </trips>      
-		      </service>
-		      <service>
-		        ...
 		      </service>
 		    </services>	   
 	   </servicelayer>	  

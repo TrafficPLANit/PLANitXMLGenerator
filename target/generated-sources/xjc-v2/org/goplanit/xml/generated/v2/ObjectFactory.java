@@ -676,6 +676,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementNetworkPricing }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementNetworkPricing }
+     */
+    public XMLElementNetworkPricing createXMLElementNetworkPricing() {
+        return new XMLElementNetworkPricing();
+    }
+
+    /**
      * Create an instance of {@link CustomPropertiesType }
      * 
      * @return
@@ -956,6 +966,26 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link XMLElementTollRoad }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementTollRoad }
+     */
+    public XMLElementTollRoad createXMLElementTollRoad() {
+        return new XMLElementTollRoad();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTollRoads }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementTollRoads }
+     */
+    public XMLElementTollRoads createXMLElementTollRoads() {
+        return new XMLElementTollRoads();
+    }
+
+    /**
      * Create an instance of {@link XMLElementSources }
      * 
      * @return
@@ -1073,6 +1103,236 @@ public class ObjectFactory {
      */
     public XMLElementSeries createXMLElementSeries() {
         return new XMLElementSeries();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementModeSchemes }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementModeSchemes }
+     */
+    public XMLElementModeSchemes createXMLElementModeSchemes() {
+        return new XMLElementModeSchemes();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementLocationSchemes }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementLocationSchemes }
+     */
+    public XMLElementLocationSchemes createXMLElementLocationSchemes() {
+        return new XMLElementLocationSchemes();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementEntryExitSchemes }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementEntryExitSchemes }
+     */
+    public XMLElementEntryExitSchemes createXMLElementEntryExitSchemes() {
+        return new XMLElementEntryExitSchemes();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementCaps }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementCaps }
+     */
+    public XMLElementCaps createXMLElementCaps() {
+        return new XMLElementCaps();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementModeScheme }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementModeScheme }
+     */
+    public XMLElementModeScheme createXMLElementModeScheme() {
+        return new XMLElementModeScheme();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementLocationScheme }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementLocationScheme }
+     */
+    public XMLElementLocationScheme createXMLElementLocationScheme() {
+        return new XMLElementLocationScheme();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementEntryExitScheme }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementEntryExitScheme }
+     */
+    public XMLElementEntryExitScheme createXMLElementEntryExitScheme() {
+        return new XMLElementEntryExitScheme();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementInclude }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementInclude }
+     */
+    public XMLElementInclude createXMLElementInclude() {
+        return new XMLElementInclude();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementExclude }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementExclude }
+     */
+    public XMLElementExclude createXMLElementExclude() {
+        return new XMLElementExclude();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSections }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSections }
+     */
+    public XMLElementSections createXMLElementSections() {
+        return new XMLElementSections();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSection }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSection }
+     */
+    public XMLElementSection createXMLElementSection() {
+        return new XMLElementSection();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementGates }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementGates }
+     */
+    public XMLElementGates createXMLElementGates() {
+        return new XMLElementGates();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementGate }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementGate }
+     */
+    public XMLElementGate createXMLElementGate() {
+        return new XMLElementGate();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementPricing }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementPricing }
+     */
+    public XMLElementPricing createXMLElementPricing() {
+        return new XMLElementPricing();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementPrice }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementPrice }
+     */
+    public XMLElementPrice createXMLElementPrice() {
+        return new XMLElementPrice();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementPriceOverride }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementPriceOverride }
+     */
+    public XMLElementPriceOverride createXMLElementPriceOverride() {
+        return new XMLElementPriceOverride();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementSectionPrice }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementSectionPrice }
+     */
+    public XMLElementSectionPrice createXMLElementSectionPrice() {
+        return new XMLElementSectionPrice();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementPair }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementPair }
+     */
+    public XMLElementPair createXMLElementPair() {
+        return new XMLElementPair();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTimeBandOverride }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementTimeBandOverride }
+     */
+    public XMLElementTimeBandOverride createXMLElementTimeBandOverride() {
+        return new XMLElementTimeBandOverride();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementTimeBandEntry }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementTimeBandEntry }
+     */
+    public XMLElementTimeBandEntry createXMLElementTimeBandEntry() {
+        return new XMLElementTimeBandEntry();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementDistanceBandOverride }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementDistanceBandOverride }
+     */
+    public XMLElementDistanceBandOverride createXMLElementDistanceBandOverride() {
+        return new XMLElementDistanceBandOverride();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementCap }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementCap }
+     */
+    public XMLElementCap createXMLElementCap() {
+        return new XMLElementCap();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementMinimum }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementMinimum }
+     */
+    public XMLElementMinimum createXMLElementMinimum() {
+        return new XMLElementMinimum();
     }
 
     /**
