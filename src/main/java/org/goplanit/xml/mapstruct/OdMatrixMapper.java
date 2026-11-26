@@ -5,11 +5,11 @@ import org.mapstruct.ObjectFactory;
 import org.mapstruct.factory.Mappers;
 
 /**
- * Base mapping for top level, nested elements are dealt with separately because they won't be populated here
- * properly.
+ * Base mapping for the top level. Nested elements are mapped separately, as they would not be populated properly
+ * here.
  * <p>
- *   Painful manual mapping needed because we have a polymorphic base matrix xsd definitino and then derived
- *   extensions which are too hard for mapstruct to deal with out-of-the-box so we need to nudge it.
+ *   Awkward manual mapping is needed: the xsd defines a polymorphic base matrix with derived extensions, which
+ *   MapStruct cannot handle out of the box.
  * </p>
  */
 @Mapper(uses = { OdCellByCellMatrixNestedElementsMapper.class,

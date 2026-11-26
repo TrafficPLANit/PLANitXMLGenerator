@@ -5,9 +5,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * Uses MapStruct library to expose functionality to map all legacy versions to the most recent version which then will
- * be used in PLANitIO for actual parsing. This way the business logic will never rely on legacy version for the
- * conversion for the memory model while still being able to parse older versions
+ * Maps all legacy versions to the most recent version with the MapStruct library, so PLANitIO parses the most recent
+ * version only. The conversion to the memory model then never relies on a legacy version, while older versions can
+ * still be parsed
  */
 @Mapper(uses = {ObjectFactory.class, PolymorphicResolver.class, TransferConnectoidV1ToV2Mapper.class,
     ConnectoidEnumMapper.class, UseOfModeEnumMapper.class})

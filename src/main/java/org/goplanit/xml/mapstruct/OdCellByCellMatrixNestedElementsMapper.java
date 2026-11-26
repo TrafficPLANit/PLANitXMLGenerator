@@ -9,24 +9,20 @@ public interface OdCellByCellMatrixNestedElementsMapper {
   org.goplanit.xml.generated.v2.ObjectFactory V2_FACTORY = new org.goplanit.xml.generated.v2.ObjectFactory();
 
   /**
-   * 1. The Origin Bridge
-   * Maps <o ref="..">.
-   * Since V1.O and V2.O are identical, this wires the 'ref' attribute
-   * and triggers the mapping of its internal 'd' elements.
+   * Maps the origin element {@code <o ref="..">}. V1.O and V2.O are identical, so this copies the 'ref' attribute and
+   * maps its nested 'd' elements.
    */
   org.goplanit.xml.generated.v2.O mapOrigin(org.goplanit.xml.generated.v1.O source);
 
   /**
-   * 2. The Destination Bridge
-   * Maps <d ref="..">3600</d>.
-   * This wires the 'ref' and the float value (usually 'value' or 'content').
+   * Maps the destination element {@code <d ref="..">3600</d>}: its 'ref' and its float value (usually 'value' or
+   * 'content').
    */
   org.goplanit.xml.generated.v2.D mapDestination(org.goplanit.xml.generated.v1.D source);
 
   /**
-   * 3. Factory methods
-   * Essential because JAXB classes often need the ObjectFactory
-   * to be recognized correctly by the Marshaller later.
+   * Factory methods, needed because JAXB classes often need the ObjectFactory to be recognised correctly by the
+   * Marshaller later.
    */
   @ObjectFactory
   default org.goplanit.xml.generated.v2.O createO() {
