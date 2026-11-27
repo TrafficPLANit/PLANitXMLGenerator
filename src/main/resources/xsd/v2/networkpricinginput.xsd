@@ -135,7 +135,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="sections" type="sectionsType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="pricing" type="pricingType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="pricing" type="startwithperkmpricingType" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="xs:string" use="required">
 					<xs:annotation>
@@ -166,7 +166,7 @@
 			<xs:extension base="schemeBaseType">
 				<xs:sequence>
 					<xs:element name="sections" type="sectionsType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="pricing" type="pricingType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="pricing" type="startwithperkmpricingType" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="xs:string" use="required">
 					<xs:annotation>
@@ -204,7 +204,7 @@
 			<xs:extension base="schemeBaseType">
 				<xs:sequence>
 					<xs:element name="gates" type="gatesType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="pricing" type="pricingType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="pricing" type="gatepairpricingType" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="xs:string" use="required">
 					<xs:annotation>
@@ -302,7 +302,8 @@
 		<xs:attribute name="typerefs" type="xs:string" use="optional">
 			<xs:annotation>
 				<xs:documentation>
-					Comma-separated list of the ids of the link segment types of the section, in a mode scheme only
+					Comma-separated list of the ids of the link segment types of the section; in a scheme on toll roads, the
+					roads' link segments of those types
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
@@ -349,19 +350,19 @@
 
 	<!-- PRICING -->
 
-	<xs:complexType name="pricingType">
+	<xs:complexType name="startwithperkmpricingType">
 		<xs:annotation>
 			<xs:documentation>
-				What a scheme charges. The price a mode pays at a moment: the time band whose entries cover the moment,
-				else only the base; the band's price, with what it leaves out taken from the base price; the mode's
-				override of the band, else its override of the base, if any, an amount override replacing the amounts
-				it sets and a factor multiplying the whole price; and the factor of the distance band holding the
-				distance already travelled on the scheme in its period. A mode for which neither the band nor the base
-				gives a price pays nothing
+				What a mode or location scheme charges: a start per use and a rate per km, with prices per section. The
+				point price a mode pays at a moment: the time band whose entries cover the moment, else only the base;
+				the band's price, with what it leaves out taken from the base price; the mode's override of the band,
+				else its override of the base, if any, an amount override replacing the amounts it sets and a factor
+				multiplying the whole price; and the factor of the distance band holding the distance already travelled
+				on the scheme in its period. A mode for which neither the band nor the base gives a price pays nothing
 			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="price" type="priceType" minOccurs="0" maxOccurs="1">
+			<xs:element name="price" type="startwithperkmpriceType" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>
 						The base: for all the modes the scheme charges, at all times outside its time bands. Left out,
@@ -369,8 +370,39 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="priceoverride" type="priceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="timebandoverride" type="timebandoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="priceoverride" type="startwithperkmpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="timebandoverride" type="startwithperkmtimebandoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="distancebandscapsandminimums"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="gatepairpricingType">
+		<xs:annotation>
+			<xs:documentation>
+				What an entry-exit scheme charges: an amount per pair of gates. The point price a mode pays at a moment
+				is found as in a mode or location scheme, from the pairs in place of the start, rate and section prices
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="price" type="gatepairpriceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						The base: for all the modes the scheme charges, at all times outside its time bands. Left out,
+						nothing is charged outside the bands
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="priceoverride" type="gatepairpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="timebandoverride" type="gatepairtimebandoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="distancebandscapsandminimums"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="distancebandscapsandminimums">
+		<xs:annotation>
+			<xs:documentation>What follows the overrides in a pricing of either kind</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
 			<xs:element name="distancebandoverride" type="distancebandoverrideType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="cap" type="capType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
@@ -379,19 +411,15 @@
 			</xs:element>
 			<xs:element name="minimum" type="minimumType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-	</xs:complexType>
+	</xs:group>
 
-	<xs:complexType name="priceType">
+	<xs:complexType name="startwithperkmpriceType">
 		<xs:annotation>
-			<xs:documentation>
-				Amounts: in mode and location schemes start and perkm, with prices per section; in entry-exit schemes
-				an amount per pair of gates
-			</xs:documentation>
+			<xs:documentation>Amounts of a mode or location scheme: start and perkm, with prices per section</xs:documentation>
 		</xs:annotation>
-		<xs:choice minOccurs="0" maxOccurs="1">
-			<xs:element name="sectionprice" type="sectionpriceType" minOccurs="1" maxOccurs="unbounded"/>
-			<xs:element name="pair" type="pairType" minOccurs="1" maxOccurs="unbounded"/>
-		</xs:choice>
+		<xs:sequence>
+			<xs:element name="sectionprice" type="sectionpriceType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
 		<xs:attribute name="start" type="nonNegativeDecimalType" use="optional">
 			<xs:annotation>
 				<xs:documentation>
@@ -406,7 +434,32 @@
 		</xs:attribute>
 	</xs:complexType>
 
-	<xs:complexType name="priceoverrideType">
+	<xs:complexType name="gatepairpriceType">
+		<xs:annotation>
+			<xs:documentation>Amounts of an entry-exit scheme: an amount per pair of gates</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pair" type="pairType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:attributeGroup name="priceoverrideAttributes">
+		<xs:attribute name="moderefs" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the modes the override is for</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="factor" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Multiplies every part of the price at that moment, e.g. 3 for trucks charged three times the car
+					price
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:complexType name="startwithperkmpriceoverrideType">
 		<xs:annotation>
 			<xs:documentation>
 				The price for some modes: either amounts, taking anything left out from the price at that moment, or a
@@ -415,20 +468,23 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="priceType">
-				<xs:attribute name="moderefs" type="xs:string" use="required">
-					<xs:annotation>
-						<xs:documentation>Comma-separated list of the ids of the modes the override is for</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="factor" type="nonNegativeDecimalType" use="optional">
-					<xs:annotation>
-						<xs:documentation>
-							Multiplies every part of the price at that moment, e.g. 3 for trucks charged three times the car
-							price
-						</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
+			<xs:extension base="startwithperkmpriceType">
+				<xs:attributeGroup ref="priceoverrideAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="gatepairpriceoverrideType">
+		<xs:annotation>
+			<xs:documentation>
+				The price for some modes: either amounts, taking anything left out from the price at that moment, or a
+				factor multiplying every part of that price, never both and at least one. Each mode is in at most one
+				override of the base and at most one override of each time band
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gatepairpriceType">
+				<xs:attributeGroup ref="priceoverrideAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -474,7 +530,7 @@
 		<xs:attribute name="amount" type="nonNegativeDecimalType" use="required"/>
 	</xs:complexType>
 
-	<xs:complexType name="timebandoverrideType">
+	<xs:complexType name="startwithperkmtimebandoverrideType">
 		<xs:annotation>
 			<xs:documentation>
 				A time band: during the times its entries give, it changes only what it lists, the rest staying as in
@@ -483,8 +539,27 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="timebandentry" type="timebandentryType" minOccurs="1" maxOccurs="unbounded"/>
-			<xs:element name="price" type="priceType" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="priceoverride" type="priceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="price" type="startwithperkmpriceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="priceoverride" type="startwithperkmpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of the band, unique within its scheme, e.g. "peak"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="gatepairtimebandoverrideType">
+		<xs:annotation>
+			<xs:documentation>
+				A time band: during the times its entries give, it changes only what it lists, the rest staying as in
+				the base. The entries of a scheme's bands never overlap
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="timebandentry" type="timebandentryType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="price" type="gatepairpriceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="priceoverride" type="gatepairpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string" use="required">
 			<xs:annotation>
@@ -533,9 +608,10 @@
 		<xs:annotation>
 			<xs:documentation>
 				Either an amount, the most paid over the period on the schemes it covers, or activateabovecount, the
-				number of uses in the period after which those schemes charge nothing, never both; with neither, once per
-				period. Every cap covering a mode applies at once: caps are not in time bands and factors do not scale
-				them
+				number of charged uses in the period, never both. With activateabovecount 3 and per day, the first three
+				uses of a day are charged and the fourth and later charge nothing; with neither, one use per period is
+				charged, as with activateabovecount 1. Every cap covering a mode applies at once: caps are not in time
+				bands and factors do not scale them
 			</xs:documentation>
 		</xs:annotation>
 		<xs:attribute name="id" type="xs:string" use="optional">

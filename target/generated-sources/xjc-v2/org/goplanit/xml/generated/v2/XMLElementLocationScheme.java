@@ -30,7 +30,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://goplanit.org/v2}schemeBaseType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="sections" type="{http://goplanit.org/v2}sectionsType" minOccurs="0"/&gt;
- *         &lt;element name="pricing" type="{http://goplanit.org/v2}pricingType"/&gt;
+ *         &lt;element name="pricing" type="{http://goplanit.org/v2}startwithperkmpricingType"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -56,7 +56,7 @@ public class XMLElementLocationScheme
     private static final long serialVersionUID = -1L;
     protected XMLElementSections sections;
     @XmlElement(required = true)
-    protected XMLElementPricing pricing;
+    protected XMLElementStartWithPerKmPricing pricing;
     /**
      * Mandatory unique identifier for the scheme, unique over the three kinds of scheme of the file.
      * 
@@ -108,10 +108,10 @@ public class XMLElementLocationScheme
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementPricing }
+     *     {@link XMLElementStartWithPerKmPricing }
      *     
      */
-    public XMLElementPricing getPricing() {
+    public XMLElementStartWithPerKmPricing getPricing() {
         return pricing;
     }
 
@@ -120,10 +120,10 @@ public class XMLElementLocationScheme
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementPricing }
+     *     {@link XMLElementStartWithPerKmPricing }
      *     
      */
-    public void setPricing(XMLElementPricing value) {
+    public void setPricing(XMLElementStartWithPerKmPricing value) {
         this.pricing = value;
     }
 

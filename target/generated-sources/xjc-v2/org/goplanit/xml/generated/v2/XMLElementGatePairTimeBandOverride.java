@@ -21,18 +21,18 @@ import jakarta.xml.bind.annotation.XmlType;
  * A time band: during the times its entries give, it changes only what it lists, the rest staying as in
  * 				the base. The entries of a scheme's bands never overlap
  * 
- * &lt;p&gt;Java class for timebandoverrideType complex type&lt;/p&gt;.
+ * &lt;p&gt;Java class for gatepairtimebandoverrideType complex type&lt;/p&gt;.
  * 
  * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
  * 
  * &lt;pre&gt;{&#064;code
- * &lt;complexType name="timebandoverrideType"&gt;
+ * &lt;complexType name="gatepairtimebandoverrideType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="timebandentry" type="{http://goplanit.org/v2}timebandentryType" maxOccurs="unbounded"/&gt;
- *         &lt;element name="price" type="{http://goplanit.org/v2}priceType" minOccurs="0"/&gt;
- *         &lt;element name="priceoverride" type="{http://goplanit.org/v2}priceoverrideType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="price" type="{http://goplanit.org/v2}gatepairpriceType" minOccurs="0"/&gt;
+ *         &lt;element name="priceoverride" type="{http://goplanit.org/v2}gatepairpriceoverrideType" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
@@ -43,21 +43,21 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "timebandoverrideType", propOrder = {
+@XmlType(name = "gatepairtimebandoverrideType", propOrder = {
     "timebandentries",
     "price",
     "priceoverrides"
 })
-public class XMLElementTimeBandOverride
+public class XMLElementGatePairTimeBandOverride
     implements Serializable
 {
 
     private static final long serialVersionUID = -1L;
     @XmlElement(name = "timebandentry", required = true)
     protected List<XMLElementTimeBandEntry> timebandentries;
-    protected XMLElementPrice price;
+    protected XMLElementGatePairPrice price;
     @XmlElement(name = "priceoverride")
-    protected List<XMLElementPriceOverride> priceoverrides;
+    protected List<XMLElementGatePairPriceOverride> priceoverrides;
     /**
      * Id of the band, unique within its scheme, e.g. "peak"
      * 
@@ -102,10 +102,10 @@ public class XMLElementTimeBandOverride
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementPrice }
+     *     {@link XMLElementGatePairPrice }
      *     
      */
-    public XMLElementPrice getPrice() {
+    public XMLElementGatePairPrice getPrice() {
         return price;
     }
 
@@ -114,10 +114,10 @@ public class XMLElementTimeBandOverride
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementPrice }
+     *     {@link XMLElementGatePairPrice }
      *     
      */
-    public void setPrice(XMLElementPrice value) {
+    public void setPrice(XMLElementGatePairPrice value) {
         this.price = value;
     }
 
@@ -139,14 +139,14 @@ public class XMLElementTimeBandOverride
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementPriceOverride }
+     * {@link XMLElementGatePairPriceOverride }
      * </p>
      * 
      * 
      * @return
      *     The value of the priceoverrides property.
      */
-    public List<XMLElementPriceOverride> getPriceoverrides() {
+    public List<XMLElementGatePairPriceOverride> getPriceoverrides() {
         if (priceoverrides == null) {
             priceoverrides = new ArrayList<>();
         }

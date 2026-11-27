@@ -67,16 +67,36 @@
           <jaxb:class name="XMLElementGate" />
        </jaxb:bindings>
 
-       <jaxb:bindings node="//xs:complexType[@name='pricingType']">
-          <jaxb:class name="XMLElementPricing" />
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmpricingType']">
+          <jaxb:class name="XMLElementStartWithPerKmPricing" />
        </jaxb:bindings>
 
-       <jaxb:bindings node="//xs:complexType[@name='priceType']">
-          <jaxb:class name="XMLElementPrice" />
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmpriceType']">
+          <jaxb:class name="XMLElementStartWithPerKmPrice" />
        </jaxb:bindings>
 
-       <jaxb:bindings node="//xs:complexType[@name='priceoverrideType']">
-          <jaxb:class name="XMLElementPriceOverride" />
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmpriceoverrideType']">
+          <jaxb:class name="XMLElementStartWithPerKmPriceOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmtimebandoverrideType']">
+          <jaxb:class name="XMLElementStartWithPerKmTimeBandOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairpricingType']">
+          <jaxb:class name="XMLElementGatePairPricing" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairpriceType']">
+          <jaxb:class name="XMLElementGatePairPrice" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairpriceoverrideType']">
+          <jaxb:class name="XMLElementGatePairPriceOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairtimebandoverrideType']">
+          <jaxb:class name="XMLElementGatePairTimeBandOverride" />
        </jaxb:bindings>
 
        <jaxb:bindings node="//xs:complexType[@name='sectionpriceType']">
@@ -85,10 +105,6 @@
 
        <jaxb:bindings node="//xs:complexType[@name='pairType']">
           <jaxb:class name="XMLElementPair" />
-       </jaxb:bindings>
-
-       <jaxb:bindings node="//xs:complexType[@name='timebandoverrideType']">
-          <jaxb:class name="XMLElementTimeBandOverride" />
        </jaxb:bindings>
 
        <jaxb:bindings node="//xs:complexType[@name='timebandentryType']">

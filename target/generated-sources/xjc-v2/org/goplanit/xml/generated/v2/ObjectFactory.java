@@ -1236,33 +1236,63 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementPricing }
+     * Create an instance of {@link XMLElementStartWithPerKmPricing }
      * 
      * @return
-     *     the new instance of {@link XMLElementPricing }
+     *     the new instance of {@link XMLElementStartWithPerKmPricing }
      */
-    public XMLElementPricing createXMLElementPricing() {
-        return new XMLElementPricing();
+    public XMLElementStartWithPerKmPricing createXMLElementStartWithPerKmPricing() {
+        return new XMLElementStartWithPerKmPricing();
     }
 
     /**
-     * Create an instance of {@link XMLElementPrice }
+     * Create an instance of {@link XMLElementGatePairPricing }
      * 
      * @return
-     *     the new instance of {@link XMLElementPrice }
+     *     the new instance of {@link XMLElementGatePairPricing }
      */
-    public XMLElementPrice createXMLElementPrice() {
-        return new XMLElementPrice();
+    public XMLElementGatePairPricing createXMLElementGatePairPricing() {
+        return new XMLElementGatePairPricing();
     }
 
     /**
-     * Create an instance of {@link XMLElementPriceOverride }
+     * Create an instance of {@link XMLElementStartWithPerKmPrice }
      * 
      * @return
-     *     the new instance of {@link XMLElementPriceOverride }
+     *     the new instance of {@link XMLElementStartWithPerKmPrice }
      */
-    public XMLElementPriceOverride createXMLElementPriceOverride() {
-        return new XMLElementPriceOverride();
+    public XMLElementStartWithPerKmPrice createXMLElementStartWithPerKmPrice() {
+        return new XMLElementStartWithPerKmPrice();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementGatePairPrice }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementGatePairPrice }
+     */
+    public XMLElementGatePairPrice createXMLElementGatePairPrice() {
+        return new XMLElementGatePairPrice();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementStartWithPerKmPriceOverride }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementStartWithPerKmPriceOverride }
+     */
+    public XMLElementStartWithPerKmPriceOverride createXMLElementStartWithPerKmPriceOverride() {
+        return new XMLElementStartWithPerKmPriceOverride();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementGatePairPriceOverride }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementGatePairPriceOverride }
+     */
+    public XMLElementGatePairPriceOverride createXMLElementGatePairPriceOverride() {
+        return new XMLElementGatePairPriceOverride();
     }
 
     /**
@@ -1286,13 +1316,23 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link XMLElementTimeBandOverride }
+     * Create an instance of {@link XMLElementStartWithPerKmTimeBandOverride }
      * 
      * @return
-     *     the new instance of {@link XMLElementTimeBandOverride }
+     *     the new instance of {@link XMLElementStartWithPerKmTimeBandOverride }
      */
-    public XMLElementTimeBandOverride createXMLElementTimeBandOverride() {
-        return new XMLElementTimeBandOverride();
+    public XMLElementStartWithPerKmTimeBandOverride createXMLElementStartWithPerKmTimeBandOverride() {
+        return new XMLElementStartWithPerKmTimeBandOverride();
+    }
+
+    /**
+     * Create an instance of {@link XMLElementGatePairTimeBandOverride }
+     * 
+     * @return
+     *     the new instance of {@link XMLElementGatePairTimeBandOverride }
+     */
+    public XMLElementGatePairTimeBandOverride createXMLElementGatePairTimeBandOverride() {
+        return new XMLElementGatePairTimeBandOverride();
     }
 
     /**

@@ -61,7 +61,7 @@
 	      <link id="1" nodearef="1" nodebref="2">             
 	        <name>Broadway</name>                       
 	        <gml:LineString>                  
-	          <gml:coordinates cs=" " ts=",">100,200 150,300</gml:coordinates>
+	          <gml:coordinates cs="," ts=" ">150.512796,-34.900145 150.512527,-34.900319</gml:coordinates>
 	        </gml:LineString> 
 	        <linksegment id="1" dir="a_b" typeref="1">  
 	          <numberoflanes>2</numberoflanes>      

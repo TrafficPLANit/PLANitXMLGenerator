@@ -17,9 +17,10 @@ import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * Either an amount, the most paid over the period on the schemes it covers, or activateabovecount, the
- * 				number of uses in the period after which those schemes charge nothing, never both; with neither, once per
- * 				period. Every cap covering a mode applies at once: caps are not in time bands and factors do not scale
- * 				them
+ * 				number of charged uses in the period, never both. With activateabovecount 3 and per day, the first three
+ * 				uses of a day are charged and the fourth and later charge nothing; with neither, one use per period is
+ * 				charged, as with activateabovecount 1. Every cap covering a mode applies at once: caps are not in time
+ * 				bands and factors do not scale them
  * 
  * &lt;p&gt;Java class for capType complex type&lt;/p&gt;.
  * 

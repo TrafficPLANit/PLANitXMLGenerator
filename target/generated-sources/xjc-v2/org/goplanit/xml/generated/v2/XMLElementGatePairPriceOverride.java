@@ -20,16 +20,15 @@ import jakarta.xml.bind.annotation.XmlType;
  * 				factor multiplying every part of that price, never both and at least one. Each mode is in at most one
  * 				override of the base and at most one override of each time band
  * 
- * &lt;p&gt;Java class for priceoverrideType complex type&lt;/p&gt;.
+ * &lt;p&gt;Java class for gatepairpriceoverrideType complex type&lt;/p&gt;.
  * 
  * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
  * 
  * &lt;pre&gt;{&#064;code
- * &lt;complexType name="priceoverrideType"&gt;
+ * &lt;complexType name="gatepairpriceoverrideType"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://goplanit.org/v2}priceType"&gt;
- *       &lt;attribute name="moderefs" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="factor" type="{http://goplanit.org/v2}nonNegativeDecimalType" /&gt;
+ *     &lt;extension base="{http://goplanit.org/v2}gatepairpriceType"&gt;
+ *       &lt;attGroup ref="{http://goplanit.org/v2}priceoverrideAttributes"/&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -38,9 +37,9 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "priceoverrideType")
-public class XMLElementPriceOverride
-    extends XMLElementPrice
+@XmlType(name = "gatepairpriceoverrideType")
+public class XMLElementGatePairPriceOverride
+    extends XMLElementGatePairPrice
     implements Serializable
 {
 
@@ -53,7 +52,7 @@ public class XMLElementPriceOverride
     protected String moderefs;
     /**
      * Multiplies every part of the price at that moment, e.g. 3 for trucks charged three times the car
-     * 							price
+     * 					price
      * 
      */
     @XmlAttribute(name = "factor")
@@ -86,7 +85,7 @@ public class XMLElementPriceOverride
 
     /**
      * Multiplies every part of the price at that moment, e.g. 3 for trucks charged three times the car
-     * 							price
+     * 					price
      * 
      * @return
      *     possible object is

@@ -20,21 +20,19 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * Amounts: in mode and location schemes start and perkm, with prices per section; in entry-exit schemes
- * 				an amount per pair of gates
+ * Amounts of a mode or location scheme: start and perkm, with prices per section
  * 
- * &lt;p&gt;Java class for priceType complex type&lt;/p&gt;.
+ * &lt;p&gt;Java class for startwithperkmpriceType complex type&lt;/p&gt;.
  * 
  * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
  * 
  * &lt;pre&gt;{&#064;code
- * &lt;complexType name="priceType"&gt;
+ * &lt;complexType name="startwithperkmpriceType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;choice minOccurs="0"&gt;
- *         &lt;element name="sectionprice" type="{http://goplanit.org/v2}sectionpriceType" maxOccurs="unbounded"/&gt;
- *         &lt;element name="pair" type="{http://goplanit.org/v2}pairType" maxOccurs="unbounded"/&gt;
- *       &lt;/choice&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="sectionprice" type="{http://goplanit.org/v2}sectionpriceType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
  *       &lt;attribute name="start" type="{http://goplanit.org/v2}nonNegativeDecimalType" /&gt;
  *       &lt;attribute name="perkm" type="{http://goplanit.org/v2}nonNegativeDecimalType" /&gt;
  *     &lt;/restriction&gt;
@@ -45,20 +43,17 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "priceType", propOrder = {
-    "pairs",
+@XmlType(name = "startwithperkmpriceType", propOrder = {
     "sectionprices"
 })
 @XmlSeeAlso({
-    XMLElementPriceOverride.class
+    XMLElementStartWithPerKmPriceOverride.class
 })
-public class XMLElementPrice
+public class XMLElementStartWithPerKmPrice
     implements Serializable
 {
 
     private static final long serialVersionUID = -1L;
-    @XmlElement(name = "pair")
-    protected List<XMLElementPair> pairs;
     @XmlElement(name = "sectionprice")
     protected List<XMLElementSectionPrice> sectionprices;
     /**
@@ -73,38 +68,6 @@ public class XMLElementPrice
      */
     @XmlAttribute(name = "perkm")
     protected BigDecimal perkm;
-
-    /**
-     * Gets the value of the pairs property.
-     * 
-     * <p>This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the pairs property.</p>
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * </p>
-     * <pre>
-     * getPairs().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementPair }
-     * </p>
-     * 
-     * 
-     * @return
-     *     The value of the pairs property.
-     */
-    public List<XMLElementPair> getPairs() {
-        if (pairs == null) {
-            pairs = new ArrayList<>();
-        }
-        return this.pairs;
-    }
 
     /**
      * Gets the value of the sectionprices property.

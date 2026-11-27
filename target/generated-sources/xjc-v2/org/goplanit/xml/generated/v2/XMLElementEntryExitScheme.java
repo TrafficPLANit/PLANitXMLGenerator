@@ -29,7 +29,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://goplanit.org/v2}schemeBaseType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="gates" type="{http://goplanit.org/v2}gatesType" minOccurs="0"/&gt;
- *         &lt;element name="pricing" type="{http://goplanit.org/v2}pricingType"/&gt;
+ *         &lt;element name="pricing" type="{http://goplanit.org/v2}gatepairpricingType"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="externalid" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -55,7 +55,7 @@ public class XMLElementEntryExitScheme
     private static final long serialVersionUID = -1L;
     protected XMLElementGates gates;
     @XmlElement(required = true)
-    protected XMLElementPricing pricing;
+    protected XMLElementGatePairPricing pricing;
     /**
      * Mandatory unique identifier for the scheme, unique over the three kinds of scheme of the file.
      * 
@@ -107,10 +107,10 @@ public class XMLElementEntryExitScheme
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementPricing }
+     *     {@link XMLElementGatePairPricing }
      *     
      */
-    public XMLElementPricing getPricing() {
+    public XMLElementGatePairPricing getPricing() {
         return pricing;
     }
 
@@ -119,10 +119,10 @@ public class XMLElementEntryExitScheme
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementPricing }
+     *     {@link XMLElementGatePairPricing }
      *     
      */
-    public void setPricing(XMLElementPricing value) {
+    public void setPricing(XMLElementGatePairPricing value) {
         this.pricing = value;
     }
 

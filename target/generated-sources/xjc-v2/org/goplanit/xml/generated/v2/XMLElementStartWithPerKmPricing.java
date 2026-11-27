@@ -17,28 +17,26 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * What a scheme charges. The price a mode pays at a moment: the time band whose entries cover the moment,
- * 				else only the base; the band's price, with what it leaves out taken from the base price; the mode's
- * 				override of the band, else its override of the base, if any, an amount override replacing the amounts
- * 				it sets and a factor multiplying the whole price; and the factor of the distance band holding the
- * 				distance already travelled on the scheme in its period. A mode for which neither the band nor the base
- * 				gives a price pays nothing
+ * What a mode or location scheme charges: a start per use and a rate per km, with prices per section. The
+ * 				point price a mode pays at a moment: the time band whose entries cover the moment, else only the base;
+ * 				the band's price, with what it leaves out taken from the base price; the mode's override of the band,
+ * 				else its override of the base, if any, an amount override replacing the amounts it sets and a factor
+ * 				multiplying the whole price; and the factor of the distance band holding the distance already travelled
+ * 				on the scheme in its period. A mode for which neither the band nor the base gives a price pays nothing
  * 
- * &lt;p&gt;Java class for pricingType complex type&lt;/p&gt;.
+ * &lt;p&gt;Java class for startwithperkmpricingType complex type&lt;/p&gt;.
  * 
  * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
  * 
  * &lt;pre&gt;{&#064;code
- * &lt;complexType name="pricingType"&gt;
+ * &lt;complexType name="startwithperkmpricingType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="price" type="{http://goplanit.org/v2}priceType" minOccurs="0"/&gt;
- *         &lt;element name="priceoverride" type="{http://goplanit.org/v2}priceoverrideType" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element name="timebandoverride" type="{http://goplanit.org/v2}timebandoverrideType" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element name="distancebandoverride" type="{http://goplanit.org/v2}distancebandoverrideType" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element name="cap" type="{http://goplanit.org/v2}capType" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element name="minimum" type="{http://goplanit.org/v2}minimumType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="price" type="{http://goplanit.org/v2}startwithperkmpriceType" minOccurs="0"/&gt;
+ *         &lt;element name="priceoverride" type="{http://goplanit.org/v2}startwithperkmpriceoverrideType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="timebandoverride" type="{http://goplanit.org/v2}startwithperkmtimebandoverrideType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;group ref="{http://goplanit.org/v2}distancebandscapsandminimums"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -48,7 +46,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "pricingType", propOrder = {
+@XmlType(name = "startwithperkmpricingType", propOrder = {
     "price",
     "priceoverrides",
     "timebandoverrides",
@@ -56,7 +54,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "caps",
     "minima"
 })
-public class XMLElementPricing
+public class XMLElementStartWithPerKmPricing
     implements Serializable
 {
 
@@ -66,11 +64,11 @@ public class XMLElementPricing
      * 						nothing is charged outside the bands
      * 
      */
-    protected XMLElementPrice price;
+    protected XMLElementStartWithPerKmPrice price;
     @XmlElement(name = "priceoverride")
-    protected List<XMLElementPriceOverride> priceoverrides;
+    protected List<XMLElementStartWithPerKmPriceOverride> priceoverrides;
     @XmlElement(name = "timebandoverride")
-    protected List<XMLElementTimeBandOverride> timebandoverrides;
+    protected List<XMLElementStartWithPerKmTimeBandOverride> timebandoverrides;
     @XmlElement(name = "distancebandoverride")
     protected List<XMLElementDistanceBandOverride> distancebandoverrides;
     /**
@@ -88,10 +86,10 @@ public class XMLElementPricing
      * 
      * @return
      *     possible object is
-     *     {@link XMLElementPrice }
+     *     {@link XMLElementStartWithPerKmPrice }
      *     
      */
-    public XMLElementPrice getPrice() {
+    public XMLElementStartWithPerKmPrice getPrice() {
         return price;
     }
 
@@ -100,11 +98,11 @@ public class XMLElementPricing
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLElementPrice }
+     *     {@link XMLElementStartWithPerKmPrice }
      *     
      * @see #getPrice()
      */
-    public void setPrice(XMLElementPrice value) {
+    public void setPrice(XMLElementStartWithPerKmPrice value) {
         this.price = value;
     }
 
@@ -126,14 +124,14 @@ public class XMLElementPricing
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementPriceOverride }
+     * {@link XMLElementStartWithPerKmPriceOverride }
      * </p>
      * 
      * 
      * @return
      *     The value of the priceoverrides property.
      */
-    public List<XMLElementPriceOverride> getPriceoverrides() {
+    public List<XMLElementStartWithPerKmPriceOverride> getPriceoverrides() {
         if (priceoverrides == null) {
             priceoverrides = new ArrayList<>();
         }
@@ -158,14 +156,14 @@ public class XMLElementPricing
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XMLElementTimeBandOverride }
+     * {@link XMLElementStartWithPerKmTimeBandOverride }
      * </p>
      * 
      * 
      * @return
      *     The value of the timebandoverrides property.
      */
-    public List<XMLElementTimeBandOverride> getTimebandoverrides() {
+    public List<XMLElementStartWithPerKmTimeBandOverride> getTimebandoverrides() {
         if (timebandoverrides == null) {
             timebandoverrides = new ArrayList<>();
         }

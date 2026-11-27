@@ -68,7 +68,8 @@ public class XMLElementSection
     @XmlAttribute(name = "lsrefs")
     protected String lsrefs;
     /**
-     * Comma-separated list of the ids of the link segment types of the section, in a mode scheme only
+     * Comma-separated list of the ids of the link segment types of the section; in a scheme on toll roads, the
+     * 					roads' link segments of those types
      * 
      */
     @XmlAttribute(name = "typerefs")
@@ -175,7 +176,8 @@ public class XMLElementSection
     }
 
     /**
-     * Comma-separated list of the ids of the link segment types of the section, in a mode scheme only
+     * Comma-separated list of the ids of the link segment types of the section; in a scheme on toll roads, the
+     * 					roads' link segments of those types
      * 
      * @return
      *     possible object is

@@ -32,6 +32,10 @@ public interface PlanitVersionNormalizationMapper {
         org.goplanit.xml.generated.v2.XMLElementDiscreteDemand source){
         return source;
     }
+    default org.goplanit.xml.generated.v2.XMLElementNetworkPricing toModel(
+        org.goplanit.xml.generated.v2.XMLElementNetworkPricing source){
+        return source;
+    }
     default org.goplanit.xml.generated.v2.XMLElementMacroscopicZoning toModel(
             org.goplanit.xml.generated.v2.XMLElementMacroscopicZoning source)
     {

@@ -249,14 +249,17 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="publicholidays" type="HolidayInclusionType" use="optional">
+		<xs:attribute name="publicholidays" type="HolidayInclusionType" use="optional" default="included">
 			<xs:annotation>
-				<xs:documentation>Whether public holidays count: also (included), not (excluded), or alone (only)</xs:documentation>
+				<xs:documentation>
+					Whether public holidays count: also (included), not (excluded), or alone (only). included when left
+					out
+				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="schoolholidays" type="HolidayInclusionType" use="optional">
+		<xs:attribute name="schoolholidays" type="HolidayInclusionType" use="optional" default="included">
 			<xs:annotation>
-				<xs:documentation>Whether school holidays count, as publicholidays</xs:documentation>
+				<xs:documentation>Whether school holidays count, as publicholidays. included when left out</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="temporalunit" type="TemporalUnitType" use="required">

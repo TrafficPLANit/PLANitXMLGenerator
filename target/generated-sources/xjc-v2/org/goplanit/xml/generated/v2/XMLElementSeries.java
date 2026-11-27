@@ -128,13 +128,14 @@ public class XMLElementSeries
     @XmlAttribute(name = "days")
     protected List<DayOfWeekType> days;
     /**
-     * Whether public holidays count: also (included), not (excluded), or alone (only)
+     * Whether public holidays count: also (included), not (excluded), or alone (only). included when left
+     * 					out
      * 
      */
     @XmlAttribute(name = "publicholidays")
     protected HolidayInclusionType publicholidays;
     /**
-     * Whether school holidays count, as publicholidays
+     * Whether school holidays count, as publicholidays. included when left out
      * 
      */
     @XmlAttribute(name = "schoolholidays")
@@ -400,7 +401,8 @@ public class XMLElementSeries
     }
 
     /**
-     * Whether public holidays count: also (included), not (excluded), or alone (only)
+     * Whether public holidays count: also (included), not (excluded), or alone (only). included when left
+     * 					out
      * 
      * @return
      *     possible object is
@@ -408,7 +410,11 @@ public class XMLElementSeries
      *     
      */
     public HolidayInclusionType getPublicholidays() {
-        return publicholidays;
+        if (publicholidays == null) {
+            return HolidayInclusionType.INCLUDED;
+        } else {
+            return publicholidays;
+        }
     }
 
     /**
@@ -425,7 +431,7 @@ public class XMLElementSeries
     }
 
     /**
-     * Whether school holidays count, as publicholidays
+     * Whether school holidays count, as publicholidays. included when left out
      * 
      * @return
      *     possible object is
@@ -433,7 +439,11 @@ public class XMLElementSeries
      *     
      */
     public HolidayInclusionType getSchoolholidays() {
-        return schoolholidays;
+        if (schoolholidays == null) {
+            return HolidayInclusionType.INCLUDED;
+        } else {
+            return schoolholidays;
+        }
     }
 
     /**

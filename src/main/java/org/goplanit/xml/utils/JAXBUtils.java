@@ -119,13 +119,18 @@ public class JAXBUtils {
 						(org.goplanit.xml.generated.v1.XMLElementMacroscopicDemand) rawPlanitXmlObjectOfSomeVersion);
 			}
 		}
-		//Discrete Demands
+		//Discrete Demands, no legacy version
 		{
 			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementDiscreteDemand) {
 				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
 						(XMLElementDiscreteDemand)rawPlanitXmlObjectOfSomeVersion);
-			}else{
-				LOGGER.info("Legacy V1 XML Discrete demands does not exist, should not happen");
+			}
+		}
+		// network pricing, no legacy version
+		{
+			if (rawPlanitXmlObjectOfSomeVersion instanceof XMLElementNetworkPricing) {
+				return PlanitVersionNormalizationMapper.INSTANCE.toModel(
+						(XMLElementNetworkPricing) rawPlanitXmlObjectOfSomeVersion);
 			}
 		}
 		// service network
