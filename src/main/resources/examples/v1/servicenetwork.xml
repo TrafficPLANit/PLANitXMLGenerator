@@ -1,0 +1,24 @@
+<servicenetwork xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://goplanit.org/v1" xsi:schemaLocation="http://goplanit.org/v1 ../../xsd/v1/servicenetworkinput.xsd">
+	<id>1</id>
+	<parentnetwork>1</parentnetwork>
+	<!-- multiple service network layers can be defined for a service network. However each service network is 1:1 mapped to a physical network via its -->
+	<!-- each service network layer is mapped 1:1 to a network layer of the physical network -->
+	<servicenetworklayer id="1" parentlayerref="roadlayer">
+		<!-- service nodes simply provide a link to the physical node for which a service is available-->
+		<servicenodes>
+			<servicenode id="1" externalid="someid"/>
+			<servicenode id="2"/>
+		</servicenodes>
+		<!-- service legs provide links between service nodes (from/to) where multiple legs between the same service nodes are possible as long as the underlying link segments
+			 these legs represent are different. A leg is modelled as a link in the service network, but reflect a path on the underlying physical network via the combination of
+			 link ids and the leg segment direction (which uniquely identify the underlying link segments in the appropriate direction). It is expected the link references are provided
+			 in the a_b direction
+		-->
+		<servicelegs>
+			<leg id="1" externalid="someid" nodearef="1" nodebref="2">
+			   <legsegment id="1" dir="a_b" lsrefs="1"/>
+			   <legsegment id="2" dir="b_a" lsrefs="2"/>
+			</leg>
+		</servicelegs>
+	</servicenetworklayer>
+</servicenetwork>

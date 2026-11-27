@@ -1,0 +1,127 @@
+<jaxb:bindings version="3.0"
+               xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               jaxb:extensionBindingPrefixes="xjc">
+
+    <jaxb:bindings schemaLocation="../../xsd/v2/networkpricinginput.xsd"
+                   xmlns:p="http://goplanit.org/v2">
+
+       <jaxb:bindings node="//xs:element[@name='networkpricing']">
+          <jaxb:class name="XMLElementNetworkPricing" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='modeschemesType']">
+          <jaxb:class name="XMLElementModeSchemes" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='locationschemesType']">
+          <jaxb:class name="XMLElementLocationSchemes" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='entryexitschemesType']">
+          <jaxb:class name="XMLElementEntryExitSchemes" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='capsType']">
+          <jaxb:class name="XMLElementCaps" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='schemeBaseType']">
+          <jaxb:class name="XMLElementSchemeBase" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='modeschemeType']">
+          <jaxb:class name="XMLElementModeScheme" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='locationschemeType']">
+          <jaxb:class name="XMLElementLocationScheme" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='entryexitschemeType']">
+          <jaxb:class name="XMLElementEntryExitScheme" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='includeType']">
+          <jaxb:class name="XMLElementInclude" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='excludeType']">
+          <jaxb:class name="XMLElementExclude" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='sectionsType']">
+          <jaxb:class name="XMLElementSections" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='sectionType']">
+          <jaxb:class name="XMLElementSection" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatesType']">
+          <jaxb:class name="XMLElementGates" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gateType']">
+          <jaxb:class name="XMLElementGate" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmpricingType']">
+          <jaxb:class name="XMLElementStartWithPerKmPricing" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmpriceType']">
+          <jaxb:class name="XMLElementStartWithPerKmPrice" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmpriceoverrideType']">
+          <jaxb:class name="XMLElementStartWithPerKmPriceOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='startwithperkmtimebandoverrideType']">
+          <jaxb:class name="XMLElementStartWithPerKmTimeBandOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairpricingType']">
+          <jaxb:class name="XMLElementGatePairPricing" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairpriceType']">
+          <jaxb:class name="XMLElementGatePairPrice" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairpriceoverrideType']">
+          <jaxb:class name="XMLElementGatePairPriceOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='gatepairtimebandoverrideType']">
+          <jaxb:class name="XMLElementGatePairTimeBandOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='sectionpriceType']">
+          <jaxb:class name="XMLElementSectionPrice" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='pairType']">
+          <jaxb:class name="XMLElementPair" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='timebandentryType']">
+          <jaxb:class name="XMLElementTimeBandEntry" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='distancebandoverrideType']">
+          <jaxb:class name="XMLElementDistanceBandOverride" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='capType']">
+          <jaxb:class name="XMLElementCap" />
+       </jaxb:bindings>
+
+       <jaxb:bindings node="//xs:complexType[@name='minimumType']">
+          <jaxb:class name="XMLElementMinimum" />
+       </jaxb:bindings>
+
+    </jaxb:bindings>
+</jaxb:bindings>

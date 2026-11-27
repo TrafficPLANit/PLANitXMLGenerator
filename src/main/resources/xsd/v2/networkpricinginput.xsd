@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	The road pricing of a network, kept in a file of its own next to the network file, as prices change every year and
+	are a scenario lever while the network stays. Everything in it refers to network entities by their XML ids, so it is
+	read together with that network. A price scenario is another pricing file on the same network.
+
+	The pricing holds schemes of three kinds, each in a container of its own: mode schemes, charging a mode on a whole
+	class of road or the whole network; location schemes, charging on toll roads of the network by a formula; and
+	entry-exit schemes, charging on toll roads by a table of amounts per pair of entry and exit gate. Schemes add up: a
+	truck on a toll road pays the truck charge per km and the toll. Caps across several schemes sit at the end.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="http://goplanit.org/v2"
+		   xmlns="http://goplanit.org/v2"
+		   elementFormDefault="qualified">
+	<xs:include schemaLocation="planitlibrary.xsd" />
+
+	<xs:element name="networkpricing">
+		<xs:annotation>
+			<xs:documentation>
+				Root element: the road pricing of one network. Everything in it applies
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="externalid" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="parentnetwork" type="xs:string" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Id of the network the pricing refers to, as a service network names its parent network. Every
+							layer, link segment type, link segment, mode and toll road reference in the file is an XML id
+							in that network
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="modeschemes" type="modeschemesType" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="locationschemes" type="locationschemesType" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="entryexitschemes" type="entryexitschemesType" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="caps" type="capsType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+							Caps across several schemes, such as a weekly cap across all toll roads of a city. A cap
+							covering one scheme sits in that scheme's pricing instead
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="currency" type="currencyType" use="required"/>
+			<xs:attribute name="year" type="xs:gYear" use="required">
+				<xs:annotation>
+					<xs:documentation>The year whose price level the amounts are at, e.g. 2025</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- SCHEME CONTAINERS -->
+
+	<xs:complexType name="modeschemesType">
+		<xs:sequence>
+			<xs:element name="modescheme" type="modeschemeType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="locationschemesType">
+		<xs:sequence>
+			<xs:element name="locationscheme" type="locationschemeType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="entryexitschemesType">
+		<xs:sequence>
+			<xs:element name="entryexitscheme" type="entryexitschemeType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="capsType">
+		<xs:sequence>
+			<xs:element name="cap" type="capType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- SCHEMES -->
+
+	<!-- What every kind of scheme has; each kind extends it. The id, externalid and name are declared by each kind, so
+	     they are written first: an element's own attributes are written before those of its base type -->
+	<xs:complexType name="schemeBaseType" abstract="true">
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text, e.g. the operator, or anything else worth saying</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="moderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the modes the scheme charges. Left out, the modes that pay by
+					default: every motorised mode whose use is not public transport, active or emergency, or, on toll
+					roads, the modes the roads price. On toll roads it may only name modes the roads price. Never given
+					with exemptmoderefs
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="exemptmoderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the modes taken out of those the scheme charges when moderefs is
+					left out. Never given with moderefs
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="modeschemeType">
+		<xs:annotation>
+			<xs:documentation>
+				A charge for a mode on a whole class of road or the whole network, such as a truck charge per km. It
+				charges on the link segments its include gives, less those its exclude gives, so a mode scheme over all
+				motorways stays right when links are broken. Each mode is in at most one mode scheme
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="schemeBaseType">
+				<xs:sequence>
+					<xs:element name="include" type="includeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Where the scheme charges. Left out, the whole network</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="exclude" type="excludeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Where the scheme does not charge, taken out of what include gives</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sections" type="sectionsType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="pricing" type="startwithperkmpricingType" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="id" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Mandatory unique identifier for the scheme, unique over the three kinds of scheme of the file.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="externalid" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Optional identifier for cross-referencing with external databases, e.g. the operator's code.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="name" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="locationschemeType">
+		<xs:annotation>
+			<xs:documentation>
+				A charge on one or more toll roads of the network priced as one, by a formula: a start per use and a rate
+				per km. A use is a continuous run through the link segments of its toll roads, from one onto another
+				included, so leaving and coming back is a second use. A cordon or a charged area is a toll road too
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="schemeBaseType">
+				<xs:sequence>
+					<xs:element name="sections" type="sectionsType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="pricing" type="startwithperkmpricingType" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="id" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Mandatory unique identifier for the scheme, unique over the three kinds of scheme of the file.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="externalid" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Optional identifier for cross-referencing with external databases, e.g. the operator's code.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="name" type="xs:string" use="optional"/>
+				<xs:attribute name="tollroadrefs" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Comma-separated list of the ids of the one or more toll roads of the network the scheme charges
+							on, all pricing the same modes
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="entryexitschemeType">
+		<xs:annotation>
+			<xs:documentation>
+				A charge on one or more toll roads of the network priced as one, by a table of amounts per pair of entry
+				and exit gate, as on a closed motorway with a ticket system. A use runs from an entry gate to an exit gate
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="schemeBaseType">
+				<xs:sequence>
+					<xs:element name="gates" type="gatesType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="pricing" type="gatepairpricingType" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="id" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Mandatory unique identifier for the scheme, unique over the three kinds of scheme of the file.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="externalid" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>Optional identifier for cross-referencing with external databases, e.g. the operator's code.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="name" type="xs:string" use="optional"/>
+				<xs:attribute name="tollroadrefs" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							Comma-separated list of the ids of the one or more toll roads of the network the scheme charges
+							on, all pricing the same modes
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- WHERE A MODE SCHEME CHARGES -->
+
+	<xs:complexType name="includeType">
+		<xs:attribute name="layerrefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the layers charged on. Left out, every layer</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typerefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the link segment types charged on</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lsrefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of further link segments charged on</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="excludeType">
+		<xs:attribute name="typerefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the link segment types not charged on</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lsrefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the link segments not charged on</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- SECTIONS AND GATES -->
+
+	<xs:complexType name="sectionsType">
+		<xs:sequence>
+			<xs:element name="section" type="sectionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="sectionType">
+		<xs:annotation>
+			<xs:documentation>
+				A part of the link segments a scheme charges on with prices of its own, e.g. a gantry of a road charged
+				per gantry, a zone and direction of a road charged per km by zone, or the primary roads of a truck
+				charge. Sections of a scheme do not overlap
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Mandatory unique identifier for the section, unique over the sections of the file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Optional identifier for cross-referencing with external databases, e.g. a gantry code such as
+					"M7-03A", the ref of an OSM toll_gantry.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="lsrefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the link segments of the section</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typerefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the link segment types of the section; in a scheme on toll roads, the
+					roads' link segments of those types
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="gatesType">
+		<xs:sequence>
+			<xs:element name="gate" type="gateType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="gateType">
+		<xs:annotation>
+			<xs:documentation>
+				An entry and exit point an operator prices, usually an interchange with several ramps. Its link segments
+				are where the scheme's link segments are entered and left
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Mandatory unique identifier for the gate, unique over the gates of the file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="externalid" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Optional identifier for cross-referencing with external databases, e.g. an interchange number, or an
+					OSM motorway_junction or toll_booth node.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="entrylsrefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the scheme's link segments entered at the gate</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="exitlsrefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the scheme's link segments left at the gate</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- PRICING -->
+
+	<xs:complexType name="startwithperkmpricingType">
+		<xs:annotation>
+			<xs:documentation>
+				What a mode or location scheme charges: a start per use and a rate per km, with prices per section. The
+				point price a mode pays at a moment: the time band whose entries cover the moment, else only the base;
+				the band's price, with what it leaves out taken from the base price; the mode's override of the band,
+				else its override of the base, if any, an amount override replacing the amounts it sets and a factor
+				multiplying the whole price; and the factor of the distance band holding the distance already travelled
+				on the scheme in its period. A mode for which neither the band nor the base gives a price pays nothing
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="price" type="startwithperkmpriceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						The base: for all the modes the scheme charges, at all times outside its time bands. Left out,
+						nothing is charged outside the bands
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="priceoverride" type="startwithperkmpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="timebandoverride" type="startwithperkmtimebandoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="distancebandscapsandminimums"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="gatepairpricingType">
+		<xs:annotation>
+			<xs:documentation>
+				What an entry-exit scheme charges: an amount per pair of gates. The point price a mode pays at a moment
+				is found as in a mode or location scheme, from the pairs in place of the start, rate and section prices
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="price" type="gatepairpriceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						The base: for all the modes the scheme charges, at all times outside its time bands. Left out,
+						nothing is charged outside the bands
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="priceoverride" type="gatepairpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="timebandoverride" type="gatepairtimebandoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="distancebandscapsandminimums"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="distancebandscapsandminimums">
+		<xs:annotation>
+			<xs:documentation>What follows the overrides in a pricing of either kind</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="distancebandoverride" type="distancebandoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="cap" type="capType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A cap of this scheme alone, without schemerefs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minimum" type="minimumType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="startwithperkmpriceType">
+		<xs:annotation>
+			<xs:documentation>Amounts of a mode or location scheme: start and perkm, with prices per section</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sectionprice" type="sectionpriceType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="start" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Charged once per use of the scheme: the flagfall, or the whole charge of a gantry or cordon crossing
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="perkm" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Charged per km travelled on the scheme's link segments outside every section</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="gatepairpriceType">
+		<xs:annotation>
+			<xs:documentation>Amounts of an entry-exit scheme: an amount per pair of gates</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pair" type="pairType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:attributeGroup name="priceoverrideAttributes">
+		<xs:attribute name="moderefs" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the modes the override is for</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="factor" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Multiplies every part of the price at that moment, e.g. 3 for trucks charged three times the car
+					price
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:complexType name="startwithperkmpriceoverrideType">
+		<xs:annotation>
+			<xs:documentation>
+				The price for some modes: either amounts, taking anything left out from the price at that moment, or a
+				factor multiplying every part of that price, never both and at least one. Each mode is in at most one
+				override of the base and at most one override of each time band
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="startwithperkmpriceType">
+				<xs:attributeGroup ref="priceoverrideAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="gatepairpriceoverrideType">
+		<xs:annotation>
+			<xs:documentation>
+				The price for some modes: either amounts, taking anything left out from the price at that moment, or a
+				factor multiplying every part of that price, never both and at least one. Each mode is in at most one
+				override of the base and at most one override of each time band
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gatepairpriceType">
+				<xs:attributeGroup ref="priceoverrideAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="sectionpriceType">
+		<xs:annotation>
+			<xs:documentation>The price of one section of the scheme</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="sectionref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of one of the scheme's own sections</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="start" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Charged once each time the section is passed, a pass being a continuous run through its link
+					segments. Never taken from the price it is in
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="perkm" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Charged per km travelled in the section. Left out, that of the price it is in</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="pairType">
+		<xs:annotation>
+			<xs:documentation>The amount for a use from one gate to another, in that direction</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="fromgateref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of the scheme's gate the use enters at</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="togateref" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of the scheme's gate the use leaves at</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="amount" type="nonNegativeDecimalType" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="startwithperkmtimebandoverrideType">
+		<xs:annotation>
+			<xs:documentation>
+				A time band: during the times its entries give, it changes only what it lists, the rest staying as in
+				the base. The entries of a scheme's bands never overlap
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="timebandentry" type="timebandentryType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="price" type="startwithperkmpriceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="priceoverride" type="startwithperkmpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of the band, unique within its scheme, e.g. "peak"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="gatepairtimebandoverrideType">
+		<xs:annotation>
+			<xs:documentation>
+				A time band: during the times its entries give, it changes only what it lists, the rest staying as in
+				the base. The entries of a scheme's bands never overlap
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="timebandentry" type="timebandentryType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="price" type="gatepairpriceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="priceoverride" type="gatepairpriceoverrideType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Id of the band, unique within its scheme, e.g. "peak"</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="timebandentryType">
+		<xs:annotation>
+			<xs:documentation>
+				When its time band applies, at most one day long: on days, every day when left out; on public and school
+				holidays as publicholidays and schoolholidays say, holidays being like any other day when left out; in
+				the interval of the day that temporalunit, temporalunitmultiplier and temporaloffset give, temporalunit
+				being minute, hour or day. It may run past midnight, its days being the days it starts
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="dayTimeAttributes"/>
+	</xs:complexType>
+
+	<xs:complexType name="distancebandoverrideType">
+		<xs:annotation>
+			<xs:documentation>
+				A distance band: while the distance travelled on the scheme in the period lies from fromkm up to tokm,
+				everything the scheme charges is multiplied by its factor; outside every band the factor is 1. The
+				distance bands of a scheme do not overlap and share one per
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="per" type="distanceBandPeriodType" use="required"/>
+		<xs:attribute name="fromkm" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Left out, 0</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tokm" type="nonNegativeDecimalType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Left out, no end</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="factor" type="nonNegativeDecimalType" use="required"/>
+	</xs:complexType>
+
+	<!-- CAPS AND MINIMUMS -->
+
+	<xs:complexType name="capType">
+		<xs:annotation>
+			<xs:documentation>
+				Either an amount, the most paid over the period on the schemes it covers, or activateabovecount, the
+				number of charged uses in the period, never both. With activateabovecount 3 and per day, the first three
+				uses of a day are charged and the fourth and later charge nothing; with neither, one use per period is
+				charged, as with activateabovecount 1. Every cap covering a mode applies at once: caps are not in time
+				bands and factors do not scale them
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Optional identifier, unique over the caps of the file</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="amount" type="nonNegativeDecimalType" use="optional"/>
+		<xs:attribute name="activateabovecount" type="PositiveIntType" use="optional"/>
+		<xs:attribute name="per" type="capPeriodType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					The period, as calendar periods: clock hours, days, weeks Monday to Sunday, months; use with an amount
+					only
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="moderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the modes capped. Left out, every mode the schemes charge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schemerefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Comma-separated list of the ids of the two or more schemes the cap covers, given in the top-level caps
+					only
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="minimumType">
+		<xs:annotation>
+			<xs:documentation>The least one use of the scheme costs; it only lifts short uses, where a start is added to every use</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="amount" type="nonNegativeDecimalType" use="required"/>
+		<xs:attribute name="moderefs" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Comma-separated list of the ids of the modes it is for. Left out, every mode the scheme charges</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- SIMPLE TYPES -->
+
+	<xs:simpleType name="currencyType">
+		<xs:annotation>
+			<xs:documentation>An ISO 4217 currency code, e.g. AUD</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="nonNegativeDecimalType">
+		<xs:annotation>
+			<xs:documentation>A number of 0 or more, e.g. an amount, a distance or a factor</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="capPeriodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="use"/>
+			<xs:enumeration value="hour"/>
+			<xs:enumeration value="day"/>
+			<xs:enumeration value="week"/>
+			<xs:enumeration value="month"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="distanceBandPeriodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="use"/>
+			<xs:enumeration value="day"/>
+			<xs:enumeration value="week"/>
+			<xs:enumeration value="month"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
